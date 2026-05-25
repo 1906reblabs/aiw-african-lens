@@ -1,1 +1,13 @@
-
+# editions-registry.yaml — 10 lines at the top of weekly:
+- id: "AIW-026-12"
+  status: "new"
+  badge: "gold"
+  date: "25 May 2026"
+  window: "19 May → 25 May 2026"
+  window_short: "19 → 25 May 2026"
+  title: "..."
+  subtitle: "..."
+  summary: "..."
+  themes_line: "..."
+  developments: 10
+  file: "aiw-026-12.html"
