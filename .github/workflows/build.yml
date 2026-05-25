@@ -1,1 +1,50 @@
+name: Build & Deploy
 
+# Trigger on any push to main that touches content, templates, or build code.
+# Manual trigger available via GitHub Actions UI.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/**"
+      - "templates/**"
+      - "afi_parser.py"
+      - "build.py"
+      - "requirements.txt"
+  workflow_dispatch:          # allows manual trigger from GitHub UI
+
+permissions:
+  contents: write             # needed to push built files back to docs/
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ─────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Python ────────────────────────────────────────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      # ── 3. Dependencies ──────────────────────────────────────────────────────
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # ── 4. Build ─────────────────────────────────────────────────────────────
+      - name: Build all HTML
+        run: python build.py all --force
+
+      # ── 5. Commit & push docs/ ───────────────────────────────────────────────
+      - name: Commit built files
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git diff --cached --quiet || git commit -m "build: auto-build from ${{ github.sha }}"
+          git push
