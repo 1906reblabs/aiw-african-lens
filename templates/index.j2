@@ -1,1 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% if page_mode == 'weekly' %}
+<title>AI Weekly Intelligence — {{ site.brand }}</title>
+{% else %}
+<title>{{ site.brand }} — Intelligence Archive</title>
+{% endif %}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#0e0e0e; --cream:#faf7f2; --gold:#c8922a; --rust:#b84c2a;
+    --teal:#1a6b5e; --teal-light:#e3f2ee; --border:#d8d0c4;
+    --mid-grey:#7a7570; --light-grey:#ede9e3; --deep-blue:#0a1628;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.7;}
+  a{color:var(--teal);text-decoration:none;} a:hover{text-decoration:underline;}
+  /* NAV */
+  nav{background:var(--deep-blue);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:#fff;}
+  .nav-brand span{color:var(--gold);}
+  .nav-links{display:flex;gap:24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .nav-links a{color:#8a99b8;} .nav-links a:hover,.nav-links a.active{color:var(--gold);text-decoration:none;}
+  /* HERO */
+  .hero{background:var(--ink);padding:60px 32px 48px;text-align:center;}
+  .hero .over{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,7vw,60px);font-weight:900;color:#fff;line-height:1;letter-spacing:-.02em;margin-bottom:14px;}
+  .hero .tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7a8ca8;}
+  .hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:32px;}
+  .hs-val{font-family:'Playfair Display',serif;font-size:30px;color:var(--gold);font-weight:700;}
+  .hs-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#8a99b8;margin-top:4px;}
+  /* LAYOUT */
+  .main{max-width:900px;margin:0 auto;padding:0 24px 60px;}
+  .sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid-grey);border-bottom:2px solid var(--ink);padding-bottom:10px;margin:48px 0 24px;}
+  /* FEATURED (archive mode) */
+  .featured{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-bottom:16px;}
+  .card-big{background:var(--deep-blue);padding:28px 28px 24px;position:relative;overflow:hidden;}
+  .card-big::after{content:'';position:absolute;bottom:0;right:0;width:80px;height:80px;background:var(--gold);opacity:.08;border-radius:50%;transform:translate(30px,30px);}
+  .card-big .cb-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .card-big h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#fff;line-height:1.3;margin-bottom:10px;}
+  .card-big p{font-size:13px;color:#8a99b8;line-height:1.6;margin-bottom:14px;}
+  .card-big .meta{font-family:'DM Mono',monospace;font-size:10px;color:#4a5568;letter-spacing:.05em;}
+  .card-big .read-btn{display:inline-block;margin-top:14px;background:var(--gold);color:var(--deep-blue);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;font-weight:600;}
+  .card-big .read-btn:hover{background:#fff;text-decoration:none;}
+  .card-stack{display:flex;flex-direction:column;gap:12px;}
+  .card-sm{background:#fff;border:1px solid var(--border);padding:16px 18px;flex:1;}
+  .card-sm .cs-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+  .card-sm h3{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:6px;}
+  .card-sm .cs-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);}
+  /* THEMES GRID (archive mode) */
+  .themes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+  .theme-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px;}
+  .theme-card h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+  .theme-card .tc-count{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);}
+  .theme-card.policy{border-top-color:var(--teal);} .theme-card.security{border-top-color:var(--rust);}
+  .theme-card.infra{border-top-color:#6a1b9a;} .theme-card.ecosystem{border-top-color:#2e7d32;} .theme-card.geo{border-top-color:#1565c0;}
+  /* LATEST FEATURE (weekly mode) */
+  .latest-feature{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:32px;}
+  .feat-big{background:var(--deep-blue);padding:30px 28px 26px;position:relative;overflow:hidden;}
+  .feat-big::after{content:'';position:absolute;bottom:-30px;right:-30px;width:120px;height:120px;background:var(--gold);opacity:.07;border-radius:50%;}
+  .feat-big .fb-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+  .feat-big h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#fff;line-height:1.25;margin-bottom:12px;}
+  .feat-big p{font-size:13px;color:#8a99b8;line-height:1.6;margin-bottom:14px;}
+  .feat-big .fb-meta{font-family:'DM Mono',monospace;font-size:10px;color:#4a5568;letter-spacing:.04em;}
+  .feat-big .read-btn{display:inline-block;margin-top:16px;background:var(--gold);color:var(--deep-blue);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 18px;font-weight:600;}
+  .feat-big .read-btn:hover{background:#fff;text-decoration:none;}
+  .feat-stack{display:flex;flex-direction:column;gap:12px;}
+  .feat-sm{background:#fff;border:1px solid var(--border);padding:16px 18px;flex:1;}
+  .feat-sm .fs-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+  .feat-sm h3{font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:5px;}
+  .feat-sm .fs-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);}
+  /* EDITION GRID (weekly mode) */
+  .edition-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .ed-card{background:#fff;border:1px solid var(--border);display:flex;flex-direction:column;transition:box-shadow .15s;overflow:hidden;}
+  .ed-card:hover{box-shadow:3px 3px 0 var(--ink);}
+  .ed-card .ec-stripe{height:3px;background:var(--ink);}
+  .ed-card.is-new .ec-stripe{background:var(--gold);} .ed-card.is-available .ec-stripe{background:var(--teal);} .ed-card.is-coming .ec-stripe{background:var(--border);}
+  .ed-card .ec-body{padding:18px 18px 14px;flex:1;display:flex;flex-direction:column;}
+  .ec-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .ec-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;white-space:nowrap;}
+  .ec-badge.new{background:var(--gold);color:var(--ink);font-weight:600;} .ec-badge.live{background:var(--teal);color:#fff;} .ec-badge.soon{background:var(--light-grey);color:var(--mid-grey);}
+  .ec-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);}
+  .ed-card h3{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;line-height:1.35;color:var(--ink);margin-bottom:8px;flex:1;}
+  .ec-theme{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);letter-spacing:.04em;line-height:1.5;margin-bottom:10px;}
+  .ec-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);margin-bottom:14px;}
+  .ec-link{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);border:1px solid var(--teal);padding:5px 12px;align-self:flex-start;transition:all .12s;}
+  .ec-link:hover{background:var(--teal);color:#fff;text-decoration:none;}
+  .ec-link.disabled{color:var(--mid-grey);border-color:var(--border);pointer-events:none;}
+  /* SECTIONS GRID (weekly mode) */
+  .sections-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+  .section-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px;}
+  .section-card h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+  .section-card p{font-size:11.5px;color:var(--mid-grey);line-height:1.5;}
+  .section-card.s1{border-top-color:var(--teal);} .section-card.s2{border-top-color:var(--rust);} .section-card.s3{border-top-color:#2e7d32;} .section-card.s4{border-top-color:#1565c0;}
+  /* ARCHIVE TABLE (both modes) */
+  .archive-table{width:100%;border-collapse:collapse;}
+  .archive-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-grey);background:var(--light-grey);padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+  .archive-table td{padding:12px 14px;border-bottom:1px solid var(--border);background:#fff;font-size:13px;vertical-align:top;}
+  .archive-table tr:last-child td{border-bottom:none;}
+  .archive-table tr.row-new td{background:#fffbf0;}
+  .archive-table td a{color:var(--teal);font-weight:500;}
+  .at-badge,.ed-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;padding:2px 7px;white-space:nowrap;display:inline-block;}
+  .at-badge.gold,.ed-badge.new{background:var(--gold);color:var(--ink);font-weight:600;}
+  .at-badge.teal{background:var(--teal);color:#fff;}
+  .at-badge.ink,.ed-badge{background:var(--ink);color:var(--cream);}
+  .at-badge.grey{background:var(--light-grey);color:var(--mid-grey);}
+  .tag-pill{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;background:var(--teal-light);color:var(--teal);padding:1px 6px;margin-right:4px;margin-top:3px;border-radius:2px;}
+  .tag-pill.policy{background:#fef3e2;color:#9a6210;} .tag-pill.security{background:#fbe9e6;color:var(--rust);} .tag-pill.infra{background:#f3e5f5;color:#6a1b9a;}
+  /* FOOTER */
+  footer{background:var(--ink);color:#7a8294;text-align:center;padding:32px 24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;}
+  footer strong{color:#c8d4e8;} footer a{color:#7a8294;} footer a:hover{color:var(--gold);}
+  .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin-top:10px;}
+  @media(max-width:640px){.featured,.latest-feature{grid-template-columns:1fr;}.themes,.edition-grid{grid-template-columns:1fr 1fr;}.sections-grid{grid-template-columns:1fr 1fr;}.hero-stats{gap:20px;}}
+  @media(max-width:480px){.edition-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
 
+<!-- NAV -->
+{% if page_mode == 'weekly' %}
+<nav>
+  <a href="../index.html" style="text-decoration:none;"><div class="nav-brand">{{ site.brand }}<span>.</span></div></a>
+  <div class="nav-links">
+    <a href="../index.html">Archive</a>
+    <a href="index.html" class="active">AI Weekly</a>
+    <a href="../editions/index.html">Daily Editions</a>
+    <a href="{{ site.substack }}" target="_blank">Subscribe</a>
+  </div>
+</nav>
+{% else %}
+<nav>
+  <div class="nav-brand">{{ site.brand }}<span>.</span></div>
+  <div class="nav-links">
+    <a href="index.html">Archive</a>
+    <a href="weekly/index.html">AI Weekly</a>
+    <a href="editions/index.html">Daily Editions</a>
+    <a href="{{ site.substack }}" target="_blank">Subscribe</a>
+  </div>
+</nav>
+{% endif %}
+
+<!-- HERO -->
+{% set latest = weekly[0] %}
+<div class="hero">
+  {% if page_mode == 'weekly' %}
+  <div class="over">AI Weekly Intelligence Series</div>
+  <h1>AI Weekly<br>African Lens</h1>
+  <div class="tag">Institutional-Grade Intelligence · Every Tuesday · 06:00 SAST</div>
+  <div class="hero-stats">
+    <div><div class="hs-val">{{ stats.weekly_total }}</div><div class="hs-lbl">Editions</div></div>
+    <div><div class="hs-val">{{ site.nations }}</div><div class="hs-lbl">Nations</div></div>
+    <div><div class="hs-val">{{ stats.developments_ranked }}</div><div class="hs-lbl">Developments Ranked</div></div>
+    <div><div class="hs-val">{{ site.coverage }}</div><div class="hs-lbl">2026 Coverage</div></div>
+  </div>
+  {% else %}
+  <div class="over">Africa's AI Intelligence Archive</div>
+  <h1>The Weekly<br>African Lens</h1>
+  <div class="tag">AI · Machine Learning · Data Science · Across 54 Nations</div>
+  <div class="hero-stats">
+    <div><div class="hs-val">{{ stats.daily_editions }}</div><div class="hs-lbl">Daily Editions</div></div>
+    <div><div class="hs-val">{{ site.nations }}</div><div class="hs-lbl">Nations Covered</div></div>
+    <div><div class="hs-val">{{ stats.weekly_total }}</div><div class="hs-lbl">AI Weekly Reports</div></div>
+    <div><div class="hs-val">{{ site.coverage }}</div><div class="hs-lbl">2026 Coverage</div></div>
+  </div>
+  {% endif %}
+</div>
+
+<div class="main">
+
+{% if page_mode == 'weekly' %}
+<!-- ── WEEKLY MODE ──────────────────────────────────────────────────────── -->
+
+  <div class="sec-label">§ Latest Edition</div>
+  <div class="latest-feature">
+    <div class="feat-big">
+      <div class="fb-label">AI Weekly Intelligence · Edition #{{ latest.id }} · NEW</div>
+      <h2>{{ latest.title }}</h2>
+      <p>{{ latest.summary }}</p>
+      <div class="fb-meta">Week of {{ latest.date }} · Window: {{ latest.window }}{% if latest.developments and latest.developments > 0 %} · {{ latest.developments }} developments ranked{% endif %}</div>
+      <a class="read-btn" href="{{ latest.file }}">Read Full Report →</a>
+    </div>
+    <div class="feat-stack">
+      {% for ed in weekly[1:4] %}
+      <div class="feat-sm">
+        <div class="fs-label">Prior Edition · {{ ed.id }}</div>
+        <h3>{{ ed.title }} — {{ ed.subtitle }}</h3>
+        <div class="fs-meta">{{ ed.date }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="sec-label">§ All Editions — AI Weekly Intelligence</div>
+  <div class="edition-grid">
+    {% for ed in weekly %}
+    <div class="ed-card is-{{ ed.status }}">
+      <div class="ec-stripe"></div>
+      <div class="ec-body">
+        <div class="ec-top">
+          {% if ed.status == 'new' %}<span class="ec-badge new">NEW</span>
+          {% elif ed.status == 'available' %}<span class="ec-badge live">Available</span>
+          {% else %}<span class="ec-badge soon">Coming Soon</span>{% endif %}
+          <span class="ec-num">{{ ed.id }}</span>
+        </div>
+        <h3>{{ ed.title }}</h3>
+        <div class="ec-theme">{{ ed.themes_line }}</div>
+        <div class="ec-date">{{ ed.date }}{% if ed.developments and ed.developments > 0 %} · {{ ed.developments }} developments{% endif %}</div>
+        {% if ed.status != 'coming' %}
+        <a class="ec-link" href="{{ ed.file }}">Read Report →</a>
+        {% else %}
+        <span class="ec-link disabled">Coming Soon</span>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="sec-label">§ What's in Every Edition</div>
+  <div class="sections-grid">
+    <div class="section-card s1"><h4>Executive Summary</h4><p>9–11 signals, no noise. What actually mattered this week.</p></div>
+    <div class="section-card"><h4>Key Developments</h4><p>Ranked items with full 1st / 2nd / 3rd order analysis and strategic implications.</p></div>
+    <div class="section-card s2"><h4>Risks &amp; Threats</h4><p>RED_TEAM contrarian stress-tests. What the consensus view is getting wrong.</p></div>
+    <div class="section-card s3"><h4>Opportunities</h4><p>DELTA_ANALYSIS winner tiers. Specific, time-bounded actions for founders, investors, and policymakers.</p></div>
+    <div class="section-card"><h4>Market Signals</h4><p>Capital flow analysis. Deal structures. Data points the investment community should be pricing.</p></div>
+    <div class="section-card s4"><h4>Strategic Insights</h4><p>TREND_MAPPER macro narrative. Four-week trailing context. What the sequence tells us.</p></div>
+    <div class="section-card"><h4>Research &amp; Institutional</h4><p>Papers and conference findings with direct relevance to African AI deployment.</p></div>
+    <div class="section-card"><h4>Events Calendar</h4><p>Forward-looking Q2 calendar with strategic significance ratings.</p></div>
+  </div>
+
+  <div class="sec-label">§ Full Archive</div>
+  <table class="archive-table">
+    <thead><tr><th>Edition</th><th>Window</th><th>Theme</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for ed in weekly %}
+      <tr{% if ed.status == 'new' %} class="row-new"{% endif %}>
+        <td><span class="at-badge {{ ed.badge }}">{{ ed.id }}</span></td>
+        <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">{{ ed.window_short }}</td>
+        <td>{% if ed.status == 'new' %}<strong>{{ ed.title }}</strong>{% else %}{{ ed.title }}{% endif %} · {{ ed.themes_line }}</td>
+        <td>
+          {% if ed.status != 'coming' %}
+          <a href="{{ ed.file }}" style="font-family:'DM Mono',monospace;font-size:10px;">Read →</a>
+          {% else %}
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% else %}
+<!-- ── ARCHIVE MODE ─────────────────────────────────────────────────────── -->
+
+  <div class="sec-label">§ Latest — AI Weekly Intelligence</div>
+  <div class="featured">
+    <div class="card-big">
+      <div class="cb-type">AI Weekly Intelligence · Edition #{{ latest.id }} · NEW</div>
+      <h2>{{ latest.title }} — {{ latest.subtitle }}</h2>
+      <p>{{ latest.summary }}</p>
+      <div class="meta">Week of {{ latest.date }} · Window: {{ latest.window }}</div>
+      <a class="read-btn" href="weekly/{{ latest.file }}">Read Full Report →</a>
+    </div>
+    <div class="card-stack">
+      {% for ed in weekly[1:4] %}
+      <div class="card-sm">
+        <div class="cs-type">Weekly Intelligence · {{ ed.id }}</div>
+        <h3>{{ ed.title }} — {{ ed.subtitle }}</h3>
+        <div class="cs-meta">{{ ed.date }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="sec-label">§ Recurring Macro Themes — {{ site.coverage }} 2026</div>
+  <div class="themes">
+    {% for theme in themes %}
+    <div class="theme-card {{ theme.css }}">
+      <h4>{{ theme.title }}</h4>
+      <div class="tc-count">{{ theme.count }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="sec-label">§ Full Archive — Daily Editions</div>
+  <table class="archive-table">
+    <thead><tr><th>Edition</th><th>Date</th><th>Lead Story</th><th>Tags</th></tr></thead>
+    <tbody>
+      {% for ed in daily %}
+      <tr>
+        <td><span class="ed-badge">{{ ed.id }}</span></td>
+        <td>{{ ed.date }}</td>
+        <td><a href="{{ ed.file }}">{{ ed.headline }}</a></td>
+        <td>{% for tag in ed.tags %}<span class="tag-pill {{ tag.css }}">{{ tag.label }}</span>{% endfor %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="sec-label">§ AI Weekly Intelligence — Archive</div>
+  <table class="archive-table">
+    <thead><tr><th>Edition</th><th>Week</th><th>Theme</th><th>Link</th></tr></thead>
+    <tbody>
+      {% for ed in weekly %}
+      <tr{% if ed.status == 'new' %} class="row-new"{% endif %}>
+        <td><span class="ed-badge{% if ed.status == 'new' %} new{% endif %}">{{ ed.id }}</span></td>
+        <td>{{ ed.window_short }}</td>
+        <td>{% if ed.status == 'new' %}<strong>{% endif %}{{ ed.title }} · {{ ed.themes_line }}{% if ed.status == 'new' %}</strong>{% endif %}</td>
+        <td>
+          {% if ed.status != 'coming' %}
+          <a href="weekly/{{ ed.file }}">Read →</a>
+          {% else %}
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endif %}
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>{{ site.brand }}</strong> · AI · Machine Learning · Data Science · Across 54 Nations</p>
+  <p style="margin-top:8px;">Published at 6:00 AM SAST · Archive hosted on GitHub Pages · © 2026 {{ site.brand }}</p>
+  <div class="footer-links">
+    <a href="{% if page_mode == 'weekly' %}../{% endif %}privacy.html">Privacy Policy</a>
+    <a href="{% if page_mode == 'weekly' %}../{% endif %}terms.html">Terms of Use</a>
+    <a href="{% if page_mode == 'weekly' %}../{% endif %}editorial.html">Editorial Standards</a>
+    <a href="{{ site.substack }}" target="_blank">Subscribe</a>
+  </div>
+</footer>
+
+</body>
+</html>
