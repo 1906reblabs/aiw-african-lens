@@ -7,19 +7,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink:#0e0e0e; --cream:#faf7f2; --gold:#c8922a; --gold-light:#f0d898;
-    --rust:#b84c2a; --teal:#1a6b5e; --teal-light:#e3f2ee;
-    --border:#d8d0c4; --mid-grey:#7a7570; --light-grey:#ede9e3;
-    --deep-blue:#0a1628; --deep-blue-mid:#0f2040;
+    --ink:#0e0e0e;--cream:#faf7f2;--gold:#c8922a;--gold-light:#f0d898;
+    --rust:#b84c2a;--teal:#1a6b5e;--teal-light:#e3f2ee;
+    --border:#d8d0c4;--mid-grey:#7a7570;--light-grey:#ede9e3;
+    --deep-blue:#0a1628;--deep-blue-mid:#0f2040;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.7;}
-  a{color:var(--teal);text-decoration:none;} a:hover{text-decoration:underline;}
+  a{color:var(--teal);text-decoration:none;}a:hover{text-decoration:underline;}
   nav{background:var(--deep-blue);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(200,146,42,0.2);}
   .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:#fff;}
   .nav-brand span{color:var(--gold);}
   .nav-links{display:flex;gap:24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
-  .nav-links a{color:#8a99b8;} .nav-links a:hover{color:var(--gold);text-decoration:none;}
+  .nav-links a{color:#8a99b8;}.nav-links a:hover{color:var(--gold);text-decoration:none;}
   .masthead{background:var(--deep-blue);padding:64px 32px 52px;position:relative;overflow:hidden;}
   .masthead::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border:1px solid rgba(200,146,42,0.12);border-radius:50%;}
   .masthead::after{content:'';position:absolute;top:-20px;right:-20px;width:180px;height:180px;border:1px solid rgba(200,146,42,0.08);border-radius:50%;}
@@ -36,10 +36,10 @@
   .mh-sig-val{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--gold);line-height:1;}
   .mh-sig-lbl{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#4a5a78;}
   .toc-bar{background:var(--deep-blue-mid);border-bottom:1px solid rgba(200,146,42,0.15);}
-  .toc-inner{max-width:860px;margin:0 auto;padding:0 32px;display:flex;overflow-x:auto;scrollbar-width:none;}
+  .toc-inner{max-width:860px;margin:0 auto;padding:0 32px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
   .toc-inner::-webkit-scrollbar{display:none;}
   .toc-item{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#5a6a88;padding:12px 16px;white-space:nowrap;border-right:1px solid rgba(255,255,255,0.04);}
-  .toc-item:first-child{padding-left:0;} .toc-item a{color:inherit;} .toc-item:hover a{color:var(--gold);}
+  .toc-item:first-child{padding-left:0;}.toc-item a{color:inherit;}.toc-item:hover a{color:var(--gold);}
   .main{max-width:860px;margin:0 auto;padding:0 24px 80px;}
   .sec{display:flex;align-items:center;gap:12px;margin:56px 0 28px;}
   .sec-num{font-family:'Playfair Display',serif;font-size:11px;font-weight:700;color:var(--gold);min-width:24px;}
@@ -49,48 +49,63 @@
   .opening-frame{background:var(--ink);padding:32px 36px;position:relative;overflow:hidden;margin-bottom:8px;}
   .opening-frame::before{content:'"';font-family:'Playfair Display',serif;font-size:200px;color:rgba(200,146,42,0.06);position:absolute;top:-40px;left:20px;line-height:1;font-weight:900;}
   .opening-frame p{font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.75;color:#c8d4e8;position:relative;z-index:1;max-width:720px;}
-  .opening-frame p strong{color:var(--gold-light);font-weight:600;}
+  .opening-frame p strong,.opening-frame strong{color:var(--gold-light);font-weight:600;}
   .signal-card{border:1px solid var(--border);background:#fff;margin-bottom:2px;position:relative;overflow:hidden;}
   .signal-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ink);}
-  .sc-border-1::before{background:var(--gold);} .sc-border-2::before{background:var(--teal);}
-  .sc-border-3::before{background:var(--rust);} .sc-border-4::before{background:#6a1b9a;} .sc-border-5::before{background:#1565c0;}
+  .sc-border-1::before{background:var(--gold);}
+  .sc-border-2::before{background:var(--teal);}
+  .sc-border-3::before{background:var(--rust);}
+  .sc-border-4::before{background:#6a1b9a;}
+  .sc-border-5::before{background:#1565c0;}
   .sc-border-1 .sc-rank{color:rgba(200,146,42,0.18);}
   .sc-inner{padding:24px 28px 24px 32px;}
   .sc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:12px;}
   .sc-rank{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--light-grey);line-height:1;min-width:44px;}
   .sc-tags{display:flex;gap:6px;flex-wrap:wrap;}
   .sc-tag{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:2px;}
-  .tag-policy{background:var(--teal-light);color:var(--teal);} .tag-infra{background:#f3e5f5;color:#6a1b9a;}
-  .tag-geo{background:#e3f2fd;color:#1565c0;} .tag-tech{background:#fef3e2;color:#9a6210;}
-  .tag-security{background:#fbe9e6;color:var(--rust);} .tag-ecosystem{background:#e8f5e9;color:#2e7d32;}
-  .tag-research{background:#ede7f6;color:#5e35b1;} .tag-capital{background:#e0f7fa;color:#00695c;}
+  .tag-policy{background:var(--teal-light);color:var(--teal);}
+  .tag-infra{background:#f3e5f5;color:#6a1b9a;}
+  .tag-geo{background:#e3f2fd;color:#1565c0;}
+  .tag-tech{background:#fef3e2;color:#9a6210;}
+  .tag-security{background:#fbe9e6;color:var(--rust);}
+  .tag-ecosystem{background:#e8f5e9;color:#2e7d32;}
+  .tag-research{background:#ede7f6;color:#5e35b1;}
+  .tag-capital{background:#e0f7fa;color:#00695c;}
   .sc-head{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;line-height:1.3;color:var(--ink);margin-bottom:14px;}
   .sc-body{font-size:14.5px;line-height:1.75;color:#2a2520;}
-  .sc-body p{margin-bottom:12px;} .sc-body p:last-child{margin-bottom:0;}
+  .sc-body p{margin-bottom:12px;}.sc-body p:last-child{margin-bottom:0;}
+  .sc-body strong{color:var(--ink);font-weight:600;}
   .sc-tier{display:flex;gap:6px;align-items:center;margin-bottom:4px;}
   .tier-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-  .t1{background:#3b82f6;} .t2{background:var(--gold);} .t3{background:var(--rust);}
+  .t1{background:#3b82f6;}.t2{background:var(--gold);}.t3{background:var(--rust);}
   .tier-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid-grey);}
   .sc-analysis{padding:18px 20px;margin-top:16px;background:var(--light-grey);border-left:2px solid var(--border);}
-  .sc-analysis .sa-row{margin-bottom:14px;} .sc-analysis .sa-row:last-child{margin-bottom:0;}
+  .sc-analysis .sa-row{margin-bottom:14px;}.sc-analysis .sa-row:last-child{margin-bottom:0;}
+  .sc-analysis .sa-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px;}
+  .sa-label.l1{color:#3b82f6;}.sa-label.l2{color:var(--gold);}.sa-label.l3{color:var(--rust);}
   .sc-analysis p{font-size:13px;line-height:1.65;color:#2a2520;}
   .layer-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
   .layer-card{background:#fff;border:1px solid var(--border);padding:20px 22px;}
   .layer-full{grid-column:1 / -1;}
   .lc-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);}
-  .lc-icon{font-size:20px;line-height:1;} .lc-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-grey);}
+  .lc-icon{font-size:20px;line-height:1;}
+  .lc-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-grey);}
   .lc-name{font-size:14px;font-weight:600;color:var(--ink);}
   .lc-signal-count{margin-left:auto;font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);background:var(--light-grey);padding:2px 8px;}
-  .lc-highlight{background:var(--ink);color:var(--cream);font-family:'DM Mono',monospace;font-size:10px;padding:5px 10px;margin-bottom:12px;display:inline-block;}
+  .lc-highlight{background:var(--ink);color:var(--cream);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;padding:5px 10px;margin-bottom:12px;display:inline-block;}
   .layer-card .lc-body{font-size:13.5px;line-height:1.7;color:#2a2520;}
-  .layer-card .lc-body p{margin-bottom:10px;} .layer-card .lc-body p:last-child{margin-bottom:0;}
+  .layer-card .lc-body p{margin-bottom:10px;}.layer-card .lc-body p:last-child{margin-bottom:0;}
+  .layer-card .lc-body strong{color:var(--ink);font-weight:600;}
   .policy-block{background:#fff;border:1px solid var(--border);border-top:3px solid var(--teal);padding:24px 26px;margin-bottom:10px;}
   .pb-head{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:12px;}
   .pb-body{font-size:14px;line-height:1.75;color:#2a2520;}
-  .pb-body p{margin-bottom:12px;} .pb-body p:last-child{margin-bottom:0;}
+  .pb-body p{margin-bottom:12px;}.pb-body p:last-child{margin-bottom:0;}
+  .pb-body strong{color:var(--ink);font-weight:600;}
   .status-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px;}
   .status-pill{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:2px;}
-  .sp-active{background:var(--teal-light);color:var(--teal);} .sp-pending{background:#fef3e2;color:#9a6210;} .sp-watch{background:#fbe9e6;color:var(--rust);}
+  .sp-active{background:var(--teal-light);color:var(--teal);}
+  .sp-pending{background:#fef3e2;color:#9a6210;}
+  .sp-watch{background:#fbe9e6;color:var(--rust);}
   .convergence-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px;}
   .convergence-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid-grey);background:var(--light-grey);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);}
   .convergence-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;}
@@ -102,21 +117,22 @@
   .rr-card.global .rr-type{color:#1565c0;}
   .rr-card h3{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.35;}
   .rr-card .rr-body{font-size:13px;line-height:1.7;color:#2a2520;}
-  .rr-card .rr-body p{margin-bottom:10px;} .rr-card .rr-body p:last-child{margin-bottom:0;}
+  .rr-card .rr-body p{margin-bottom:10px;}.rr-card .rr-body p:last-child{margin-bottom:0;}
   .fragility-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--rust);margin-bottom:10px;}
   .frag-header{padding:14px 20px;background:#fdf2f0;border-bottom:1px solid #f0cbc4;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
   .frag-id{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);}
   .frag-badges{display:flex;gap:6px;flex-wrap:wrap;}
-  .frag-badge{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;background:#fbe9e6;color:var(--rust);}
-  .frag-badge.impact-high{background:#b71c1c;color:#fff;} .frag-badge.prob-med{background:#fef3e2;color:#9a6210;}
+  .frag-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;padding:2px 8px;background:#fbe9e6;color:var(--rust);}
+  .frag-badge.impact-high{background:#b71c1c;color:#fff;}
+  .frag-badge.prob-med{background:#fef3e2;color:#9a6210;}
   .frag-body{padding:18px 20px;}
   .frag-body h4{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:10px;}
   .frag-body .frag-prose{font-size:13.5px;line-height:1.7;color:#2a2520;}
-  .frag-body .frag-prose p{margin-bottom:10px;} .frag-body .frag-prose p:last-child{margin-bottom:0;}
+  .frag-body .frag-prose p{margin-bottom:10px;}.frag-body .frag-prose p:last-child{margin-bottom:0;}
   .frag-mitigation{background:#f0faf5;border:1px solid #b2dfdb;padding:12px 16px;margin-top:8px;}
   .frag-mitigation .fm-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:5px;}
   .frag-mitigation .mit-prose{font-size:12.5px;color:#1a4a3a;line-height:1.65;}
-  .frag-mitigation .mit-prose p{margin-bottom:8px;} .frag-mitigation .mit-prose p:last-child{margin-bottom:0;}
+  .frag-mitigation .mit-prose p{margin-bottom:8px;}.frag-mitigation .mit-prose p:last-child{margin-bottom:0;}
   .contrarian-card{background:var(--deep-blue);padding:24px 28px;margin-bottom:10px;position:relative;overflow:hidden;}
   .contrarian-card::after{content:'≠';font-family:'Playfair Display',serif;font-size:180px;color:rgba(200,146,42,0.05);position:absolute;right:20px;top:-20px;line-height:1;font-weight:900;}
   .cc-inner{position:relative;z-index:1;}
@@ -125,8 +141,8 @@
   .cc-consensus-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#4a5a78;margin-bottom:5px;}
   .cc-consensus p{font-size:13px;color:#6a7a98;line-height:1.6;}
   .cc-position h4{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:12px;}
-  .cc-position .cc-body-prose{font-size:14px;color:#8a99b8;line-height:1.7;}
-  .cc-position .cc-body-prose p{margin-bottom:10px;} .cc-position .cc-body-prose p:last-child{margin-bottom:0;}
+  .cc-body-prose{font-size:14px;color:#8a99b8;line-height:1.7;}
+  .cc-body-prose p{margin-bottom:10px;}.cc-body-prose p:last-child{margin-bottom:0;}
   .cc-evidence-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;margin-top:14px;}
   .cc-evidence-text{font-size:13px;color:#8a99b8;line-height:1.7;}
   .cc-falsify{background:rgba(200,146,42,0.08);border:1px solid rgba(200,146,42,0.15);padding:10px 14px;margin-top:14px;}
@@ -134,14 +150,14 @@
   .cc-falsify p{font-size:12.5px;color:#8a8068;line-height:1.6;}
   .spotlight-card{background:#fff;border:1px solid var(--border);margin-bottom:10px;overflow:hidden;}
   .sc-flag-bar{height:4px;}
-  .spotlight-header{padding:18px 24px 14px;border-bottom:1px solid var(--border);}
+  .spotlight-header{padding:18px 24px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
   .sh-country{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--ink);}
   .sh-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);letter-spacing:.06em;margin-top:3px;}
   .sh-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
-  .sh-badge{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;background:var(--light-grey);color:var(--mid-grey);}
+  .sh-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;padding:2px 8px;background:var(--light-grey);color:var(--mid-grey);}
   .spotlight-body{padding:20px 24px;}
   .spotlight-body .sp-prose{font-size:14px;line-height:1.75;color:#2a2520;}
-  .spotlight-body .sp-prose p{margin-bottom:14px;} .spotlight-body .sp-prose p:last-child{margin-bottom:0;}
+  .spotlight-body .sp-prose p{margin-bottom:14px;}.spotlight-body .sp-prose p:last-child{margin-bottom:0;}
   .spotlight-body .sp-prose strong{color:var(--ink);font-weight:600;}
   .spotlight-sub{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid-grey);margin:16px 0 8px;}
   .forward-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
@@ -152,9 +168,17 @@
   .editorial-note{background:var(--light-grey);border:1px solid var(--border);padding:18px 22px;margin-top:48px;font-size:12px;color:var(--mid-grey);line-height:1.65;}
   .en-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-grey);margin-bottom:8px;}
   footer{background:var(--ink);color:#7a8294;text-align:center;padding:36px 24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;}
-  footer strong{color:#c8d4e8;} footer a{color:#7a8294;} footer a:hover{color:var(--gold);}
+  footer strong{color:#c8d4e8;}footer a{color:#7a8294;}footer a:hover{color:var(--gold);}
   .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;margin-top:12px;}
-  @media(max-width:680px){.layer-grid,.research-grid{grid-template-columns:1fr;}.forward-grid{grid-template-columns:1fr 1fr;}.masthead{padding:40px 20px 36px;}.main{padding:0 16px 60px;}nav{padding:12px 18px;}.opening-frame{padding:24px 22px;}}
+  @media(max-width:680px){
+    .layer-grid{grid-template-columns:1fr;}
+    .research-grid{grid-template-columns:1fr;}
+    .forward-grid{grid-template-columns:1fr 1fr;}
+    .masthead{padding:40px 20px 36px;}
+    .main{padding:0 16px 60px;}
+    nav{padding:12px 18px;}
+    .opening-frame{padding:24px 22px;}
+  }
   @media(max-width:480px){.forward-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -174,20 +198,27 @@
 
 <div class="masthead">
   <div class="masthead-inner">
-    <div class="mh-series">AI Weekly Intelligence &nbsp;·&nbsp; Edition #{{ e.edition_id }} &nbsp;·&nbsp; NEW</div>
+    <div class="mh-series">
+      AI Weekly Intelligence &nbsp;·&nbsp; Edition #{{ e.edition_id }} &nbsp;·&nbsp; NEW
+    </div>
     <h1>{{ e.title }}<br><em>{{ e.title_sub }}</em></h1>
     <p class="mh-deck">{{ e.deck }}</p>
     <div class="mh-meta-row">
-      <span>Week of {{ e.date }}</span><span class="dot">·</span>
-      <span>Window: {{ e.window_start }} → {{ e.window_end }}</span><span class="dot">·</span>
-      <span>{{ e.developments_count }} Developments Ranked</span><span class="dot">·</span>
+      <span>Week of {{ e.date }}</span>
+      <span class="dot">·</span>
+      <span>Window: {{ e.window_start }} → {{ e.window_end }}</span>
+      <span class="dot">·</span>
+      <span>{{ e.developments_count }} Developments Ranked</span>
+      <span class="dot">·</span>
       <span>Published 06:00 SAST</span>
     </div>
     <div class="mh-signals">
       <div class="mh-sig"><div class="mh-sig-val">{{ e.developments_count }}</div><div class="mh-sig-lbl">Ranked Developments</div></div>
       <div class="mh-sig"><div class="mh-sig-val">{{ e.nations_covered }}</div><div class="mh-sig-lbl">Nations Covered</div></div>
       <div class="mh-sig"><div class="mh-sig-val">5</div><div class="mh-sig-lbl">AI Stack Layers</div></div>
+      {% if e.sa_comment_days_remaining > 0 %}
       <div class="mh-sig"><div class="mh-sig-val">{{ e.sa_comment_days_remaining }}</div><div class="mh-sig-lbl">Days Left — SA Comment</div></div>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -208,23 +239,30 @@
 
 <div class="main">
 
-  <!-- §1 OPENING FRAME -->
   <div class="sec" id="opening">
-    <span class="sec-num">§1</span><span class="sec-title">Opening Frame</span><div class="sec-line"></div>
+    <span class="sec-num">§1</span>
+    <span class="sec-title">Opening Frame</span>
+    <div class="sec-line"></div>
   </div>
-  <div class="opening-frame">{{ e.opening_frame_html | safe }}</div>
+  <div class="opening-frame">
+    {{ e.opening_frame_html | safe }}
+  </div>
 
-  <!-- §2 TOP 5 SIGNALS -->
   <div class="sec" id="signals">
-    <span class="sec-num">§2</span><span class="sec-title">Top 5 Signals — Ranked by Strategic Importance</span><div class="sec-line"></div>
+    <span class="sec-num">§2</span>
+    <span class="sec-title">Top 5 Signals — Ranked by Strategic Importance</span>
+    <div class="sec-line"></div>
   </div>
+
   {% for signal in e.signals %}
-  <div class="signal-card sc-border-{{ signal.rank }}">
+  <div class="signal-card sc-border-{{ loop.index }}">
     <div class="sc-inner">
       <div class="sc-top">
         <span class="sc-rank">{{ signal.rank_str }}</span>
         <div class="sc-tags">
-          {% for tag in signal.tags %}<span class="sc-tag {{ tag.css }}">{{ tag.label }}</span>{% endfor %}
+          {% for tag in signal.tags %}
+          <span class="sc-tag {{ tag.css }}">{{ tag.label }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="sc-head">{{ signal.title }}</div>
@@ -232,14 +270,17 @@
       <div class="sc-analysis">
         <div class="sa-row">
           <div class="sc-tier"><div class="tier-dot t1"></div><div class="tier-label">1st Order</div></div>
+          <div class="sa-label l1"></div>
           <p>{{ signal.analysis_1 }}</p>
         </div>
         <div class="sa-row">
           <div class="sc-tier"><div class="tier-dot t2"></div><div class="tier-label">2nd Order</div></div>
+          <div class="sa-label l2"></div>
           <p>{{ signal.analysis_2 }}</p>
         </div>
         <div class="sa-row">
           <div class="sc-tier"><div class="tier-dot t3"></div><div class="tier-label">3rd Order</div></div>
+          <div class="sa-label l3"></div>
           <p>{{ signal.analysis_3 }}</p>
         </div>
       </div>
@@ -247,16 +288,20 @@
   </div>
   {% endfor %}
 
-  <!-- §3 BY LAYER -->
   <div class="sec" id="layers">
-    <span class="sec-num">§3</span><span class="sec-title">By AI Stack Layer</span><div class="sec-line"></div>
+    <span class="sec-num">§3</span>
+    <span class="sec-title">By AI Stack Layer</span>
+    <div class="sec-line"></div>
   </div>
   <div class="layer-grid">
     {% for layer in e.layers %}
     <div class="layer-card{% if loop.last %} layer-full{% endif %}">
       <div class="lc-header">
         <span class="lc-icon">{{ layer.symbol }}</span>
-        <div><div class="lc-label">Layer {{ layer.number }}</div><div class="lc-name">{{ layer.name }}</div></div>
+        <div>
+          <div class="lc-label">Layer {{ layer.number }}</div>
+          <div class="lc-name">{{ layer.name }}</div>
+        </div>
         <span class="lc-signal-count">{{ layer.signal_count }}</span>
       </div>
       <div class="lc-highlight">{{ layer.highlight }}</div>
@@ -265,23 +310,36 @@
     {% endfor %}
   </div>
 
-  <!-- §4 POLICY WATCH -->
   <div class="sec" id="policy">
-    <span class="sec-num">§4</span><span class="sec-title">Policy &amp; Regulation Watch</span><div class="sec-line"></div>
+    <span class="sec-num">§4</span>
+    <span class="sec-title">Policy &amp; Regulation Watch</span>
+    <div class="sec-line"></div>
   </div>
+
   <div class="policy-block">
     <div class="status-row">
-      {% for pill in e.policy_status_pills %}<span class="status-pill {{ pill.css }}">{{ pill.label }}</span>{% endfor %}
+      {% for pill in e.policy_status_pills %}
+      <span class="status-pill {{ pill.css }}">{{ pill.label }}</span>
+      {% endfor %}
     </div>
     <div class="pb-head">{{ e.policy_head }}</div>
     <div class="pb-body">{{ e.policy_body_1_html | safe }}</div>
   </div>
+
   <div class="policy-block">
-    <div class="pb-head">Kenya's AI Deployment Register: Making the Invisible Visible</div>
     <div class="pb-body">{{ e.policy_body_2_html | safe }}</div>
   </div>
+
+  {% if e.convergence_rows %}
   <table class="convergence-table">
-    <thead><tr><th>Country</th><th>Policy Status</th><th>Key Development This Week</th><th>Convergence Signal</th></tr></thead>
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Policy Status</th>
+        <th>Key Development This Week</th>
+        <th>Convergence Signal</th>
+      </tr>
+    </thead>
     <tbody>
       {% for row in e.convergence_rows %}
       <tr>
@@ -293,10 +351,12 @@
       {% endfor %}
     </tbody>
   </table>
+  {% endif %}
 
-  <!-- §5 RESEARCH RADAR -->
   <div class="sec" id="research">
-    <span class="sec-num">§5</span><span class="sec-title">Research Radar</span><div class="sec-line"></div>
+    <span class="sec-num">§5</span>
+    <span class="sec-title">Research Radar</span>
+    <div class="sec-line"></div>
   </div>
   <div class="research-grid">
     <div class="rr-card">
@@ -305,15 +365,16 @@
       <div class="rr-body">{{ e.research_african.body_html | safe }}</div>
     </div>
     <div class="rr-card global">
-      <div class="rr-type">African Ecosystem — Institutional Signal</div>
+      <div class="rr-type">Global Research — African Impact</div>
       <h3>{{ e.research_global.head }}</h3>
       <div class="rr-body">{{ e.research_global.body_html | safe }}</div>
     </div>
   </div>
 
-  <!-- §6 FRAGILITY INDEX -->
   <div class="sec" id="fragility">
-    <span class="sec-num">§6</span><span class="sec-title">Fragility Index</span><div class="sec-line"></div>
+    <span class="sec-num">§6</span>
+    <span class="sec-title">Fragility Index</span>
+    <div class="sec-line"></div>
   </div>
   {% for frag in e.fragility_items %}
   <div class="fragility-card">
@@ -336,9 +397,10 @@
   </div>
   {% endfor %}
 
-  <!-- §7 CONTRARIAN BETS -->
   <div class="sec" id="contrarian">
-    <span class="sec-num">§7</span><span class="sec-title">Contrarian Bets</span><div class="sec-line"></div>
+    <span class="sec-num">§7</span>
+    <span class="sec-title">Contrarian Bets</span>
+    <div class="sec-line"></div>
   </div>
   {% for cb in e.contrarian_items %}
   <div class="contrarian-card">
@@ -362,9 +424,10 @@
   </div>
   {% endfor %}
 
-  <!-- §8 COUNTRY SPOTLIGHT -->
   <div class="sec" id="spotlight">
-    <span class="sec-num">§8</span><span class="sec-title">Country Spotlight</span><div class="sec-line"></div>
+    <span class="sec-num">§8</span>
+    <span class="sec-title">Country Spotlight</span>
+    <div class="sec-line"></div>
   </div>
   {% for spot in e.spotlights %}
   <div class="spotlight-card">
@@ -373,7 +436,11 @@
       <div>
         <div class="sh-country">{{ spot.country }}</div>
         <div class="sh-sub">{{ spot.subtitle }}</div>
-        <div class="sh-badges">{% for badge in spot.badges %}<span class="sh-badge">{{ badge }}</span>{% endfor %}</div>
+        <div class="sh-badges">
+          {% for badge in spot.badges %}
+          <span class="sh-badge">{{ badge }}</span>
+          {% endfor %}
+        </div>
       </div>
     </div>
     <div class="spotlight-body">
@@ -387,26 +454,29 @@
   </div>
   {% endfor %}
 
-  <!-- §9 FORWARD LOOK -->
   <div class="sec" id="forward">
-    <span class="sec-num">§9</span><span class="sec-title">Forward Look — Strategic Calendar</span><div class="sec-line"></div>
+    <span class="sec-num">§9</span>
+    <span class="sec-title">Forward Look — Strategic Calendar</span>
+    <div class="sec-line"></div>
   </div>
   <div class="forward-grid">
-    {% for item in e.forward_items %}
+    {% for fw in e.forward_items %}
     <div class="fw-card">
-      <div class="fw-date">{{ item.date }}</div>
-      <h4>{{ item.title }}</h4>
-      <p>{{ item.body }}</p>
+      <div class="fw-date">{{ fw.date }}</div>
+      <h4>{{ fw.title }}</h4>
+      <p>{{ fw.body }}</p>
     </div>
     {% endfor %}
   </div>
 
+  {% if e.editorial_note %}
   <div class="editorial-note">
     <div class="en-label">Editorial Note — {{ e.edition_id }}</div>
     <p>{{ e.editorial_note }}</p>
   </div>
+  {% endif %}
 
-</div><!-- /main -->
+</div>
 
 <footer>
   <p><strong>AI Weekly African Lens — Edition {{ e.edition_id }}</strong></p>
@@ -416,6 +486,7 @@
     <a href="../editions/index.html">Daily Editions</a>
     <a href="../index.html">Full Archive</a>
     {% if e.prev_edition %}<a href="{{ e.prev_edition }}">← {{ e.prev_edition_id }}</a>{% endif %}
+    {% if e.next_edition %}<a href="{{ e.next_edition }}">{{ e.next_edition }} →</a>{% endif %}
     <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe on Substack</a>
   </div>
   <p style="margin-top:16px;">The Weekly African Lens · AI · Machine Learning · Data Science · Across 54 Nations</p>
