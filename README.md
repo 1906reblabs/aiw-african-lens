@@ -1,408 +1,323 @@
-# Antifragile Africa Crypto — Intelligence OS
+# AI Weekly African Lens
 
-**Institutional-grade intelligence on African crypto markets.**  
-Weekly reports covering capital flows, regulatory arbitrage, OTC signals, and hidden trades across all 54 African states.
+**Institutional-grade intelligence tracking Africa's AI stack across 54 nations.**
 
-> *"Africa already has the world's most advanced crypto use case in production, at scale. It just doesn't look like what the Western industry built."*
+Published every Tuesday at 06:00 SAST · Hosted at [simphiwemlotshwa.substack.com](https://simphiwemlotshwa.substack.com/) · Deployed via GitHub Pages
 
 ---
 
-## What This Repo Does
+## What This Is
 
-This repository stores every weekly ACIOS intelligence report as a structured Markdown file and automatically converts each one to a full-featured HTML page on every push. The build system is a Python + Jinja2 pipeline that parses section-structured `.md` files into the complete 10-component weekly publication format.
+AI Weekly African Lens is a weekly intelligence publication covering artificial intelligence, machine learning, and data science developments across all 54 African Union member states. Each edition ranks 10 developments by strategic importance, applies first/second/third-order analysis across Africa's five-layer AI stack, and delivers fragility assessments, contrarian bets, country spotlights, and a forward events calendar.
 
-**Write `.md` → Push to GitHub → GitHub Actions builds `.html` → GitHub Pages serves it.**
+The publication does not aggregate news. It produces intelligence — analysis that changes how a sophisticated reader thinks or acts, not a summary of what happened.
+
+**Current archive:** AIW-026-01 through AIW-026-12 · March–May 2026
 
 ---
 
 ## Repository Structure
 
 ```
-acios/
+aiw-african-lens/
 │
-├── reports/                        ← Write your weekly .md reports here
-│   ├── vol09.md                    ← Vol. 09 — 26 May 2026
-│   ├── vol08.md
-│   └── ...
+├── content/
+│   ├── issues/                  # Per-edition content files (YAML frontmatter)
+│   │   ├── aiw-026-12-content.md
+│   │   ├── aiw-026-11-content.md
+│   │   └── ...
+│   └── registry.yaml            # Master editions index — source of truth for all index pages
 │
-├── templates/                      ← Jinja2 HTML templates (do not edit unless restyling)
-│   ├── issue.j2                    ← Individual report page template
-│   └── index.j2                    ← Archive / homepage template
+├── templates/
+│   ├── issue.j2                 # Jinja2 template for individual edition HTML
+│   └── index.j2                 # Jinja2 template for archive and weekly index pages
 │
-├── output/                         ← Generated HTML files (auto-created by build; gitignored or deployed)
-│   ├── antifragile_africa_weekly_26may2026.html
-│   ├── index.html
-│   └── ...
+├── docs/                        # Built output — served by GitHub Pages
+│   ├── index.html               # Root archive index
+│   ├── weekly/
+│   │   ├── index.html           # Weekly editions index
+│   │   ├── aiw-026-12.html
+│   │   └── ...
+│   └── editions/                # Daily editions (hand-authored)
 │
-├── .github/
-│   └── workflows/
-│       └── build.yml               ← GitHub Actions workflow (auto-build + deploy)
-│
-├── afi_parser.py                   ← Markdown report parser
-├── build.py                        ← Build orchestrator (CLI: report / index / all)
-├── requirements.txt                ← Python dependencies
-└── README.md                       ← This file
+├── afi_parser.py                # Content parser — YAML → template context
+├── build.py                     # Build orchestrator
+├── requirements.txt
+└── .github/workflows/build.yml  # CI: auto-build and deploy on push to main
 ```
 
 ---
 
-## How the Build System Works
+## The Build Pipeline
+
+Content is authored as structured YAML-frontmatter Markdown files. The build system separates editorial intelligence from HTML construction.
 
 ```
-reports/vol09.md
-        │
-        ▼
-   afi_parser.py          Parses YAML frontmatter + 13 structured sections
-        │                 into a Python dict
-        ▼
-   build.py               Feeds the dict into Jinja2 templates
-        │
-        ├── templates/issue.j2   → output/antifragile_africa_weekly_26may2026.html
-        └── templates/index.j2  → output/index.html
+aiw-026-12-content.md          (editorial — structured YAML + Markdown prose)
+        ↓  afi_parser.py
+Template context dict           (Python — validates, processes, converts MD → HTML)
+        ↓  Jinja2
+aiw-026-12.html                 (output — publication-ready HTML)
+        ↓  GitHub Pages
+Live at /weekly/aiw-026-12.html
 ```
 
----
-
-## Local Development
-
-### 1. Install dependencies
+### Build Commands
 
 ```bash
+# Build a single edition
+python build.py issue content/issues/aiw-026-12-content.md
+
+# Rebuild both index pages from the registry
+python build.py index
+
+# Build everything (stale-check by default)
+python build.py all
+
+# Force rebuild everything regardless of timestamps
+python build.py all --force
+
+# Override output directory
+python build.py all --out /custom/output/dir
+```
+
+### Installation
+
+```bash
+git clone https://github.com/1906reblabs/aiw-african-lens.git
+cd aiw-african-lens
 pip install -r requirements.txt
+python build.py all
 ```
 
-### 2. Build a single report
-
-```bash
-python build.py report reports/vol09.md
-# → output/antifragile_africa_weekly_26may2026.html
-```
-
-### 3. Build the archive index only
-
-```bash
-python build.py index reports/
-# → output/index.html
-```
-
-### 4. Build everything (all reports + index)
-
-```bash
-python build.py all reports/
-# → output/*.html + output/index.html
-```
+**Python 3.11+ required.** Dependencies: `jinja2`, `pyyaml`, `markdown`.
 
 ---
 
-## Writing a Weekly Report
+## Publishing a New Edition
 
-Every report is a single `.md` file in `reports/`. The filename convention is `volNN.md` (e.g. `vol09.md`).
+### Step 1 — Author the content file
 
-### Frontmatter
-
-Start every file with a YAML block between `---` markers:
+Create `content/issues/aiw-026-XX-content.md` using the YAML-frontmatter schema. Copy the most recent edition as your template. Required top-level fields:
 
 ```yaml
 ---
-vol: "09"
-vol_roman: "IX"
-date: "26 May 2026"
-filename: "antifragile_africa_weekly_26may2026.html"
-title: "Your headline here — *italic via asterisks*"
-title_plain: "Your headline here — plain text version"
-standfirst: "One-paragraph summary shown under the headline."
-audit: "4.91"
-agents: "28"
-layers: "7"
-new_signal: "Short signal label for chip display"
-next_vol: "10"
-badges:
-  - text: "Latest"
-    cls: "badge-vol"
-  - text: "★ Some Signal"
-    cls: "badge-gold"
-  - text: "✓ Prediction Confirmed"
-    cls: "badge-confirmed"
+edition_id: AIW-026-XX
+date: "DD Month YYYY"
+window_start: "DD Month"
+window_end: "DD Month YYYY"
+title: "Edition Title"
+title_sub: "Edition Subtitle"
+deck: >
+  150-word teaser paragraph.
+developments_count: 10
+nations_covered: N
+prev_edition: aiw-026-NN.html
+prev_edition_id: AIW-026-NN
+next_edition: ""
 ---
 ```
 
-**Badge classes:** `badge-vol` (steel), `badge-gold` (gold), `badge-alert` (red), `badge-confirmed` (green).
+Full schema documentation: see any existing `*-content.md` file in `content/issues/`.
 
----
+### Step 2 — Update the registry
 
-### Section Reference
+In `content/registry.yaml`:
 
-Sections begin with `## SECTION_NAME`. The parser recognises these 13 sections:
+1. Copy the most recent `weekly:` list entry
+2. Paste it at the **top** of the list (above the previous entry)
+3. Update all fields for the new edition
+4. Set `status: "new"` and `badge: "gold"` on the new entry
+5. Change the previous top entry to `status: "available"` and `badge: "teal"`
+6. Increment `stats.weekly_total` by 1
 
-| Section header | What it contains |
-|---|---|
-| `## SPREADS` | Pipe-delimited spread rows |
-| `## EXECUTIVE BRIEF` | Headline, paragraphs, risk line, summary |
-| `## INSIGHTS` | `### INSIGHT` blocks |
-| `## HEATMAP` | Caption + `### ALERTS` + `### CELLS` |
-| `## FULLSTACK` | `### LAYER Name` blocks + `### CROSS-LAYER` |
-| `## FRAGILITY` | Score, bars, risk cards |
-| `## OPPORTUNITIES` | `### OPP` blocks |
-| `## POWERMAP` | `### CARD` and `### SHIFT` blocks |
-| `## BLACKSWAN` | `### SCENARIO` blocks |
-| `## SIGNAL_NOISE` | `### TABLE` + `### UNRESOLVED` |
-| `## RECOMMENDATIONS` | `### REC R01` blocks |
-| `## MEMORY` | `### TRENDS`, `### COUNTRIES`, `### RESOLVED`, `### PREDICTIONS`, `### WATCHLIST` |
+### Step 3 — Build and verify
 
----
-
-### Section Format Details
-
-#### SPREADS
-```
-Country · CCY | ~Val% | val_cls | ↑ TREND LABEL | trend_cls | Short note text.
-```
-`val_cls` options: `alert` (red), `gold`, `green`, or empty.  
-`trend_cls` options: `t-up`, `t-down`, `t-alert`, `t-gold`, `t-neutral`.
-
-#### EXECUTIVE BRIEF
-```
-HEADLINE: YOUR ALL-CAPS HEADLINE HERE
-
-Paragraph one. Use **bold** and *italic* for emphasis. Separate paragraphs with blank lines.
-
----
-
-Paragraph two after a --- divider.
-
-RISK: One-sentence key risk statement.
-SUMMARY: One-line bottom-line summary.
-```
-
-#### INSIGHTS
-```
-### INSIGHT
-
-CONF: HIGH
-HEADLINE: The insight headline in title case
-
-Body text for this insight. Can be multiple paragraphs separated by blank lines.
-
-SOURCE: Agent Name · Agent Name · Agent Name
-```
-`CONF` options: `HIGH`, `MEDIUM`, `LOW`.
-
-#### HEATMAP
-```
-CAPTION: **Bold lead sentence.** Rest of caption in plain text.
-
-### ALERTS
-
-⚡ Label Text | Body text for this alert with **bold** supported.
-★ Another Label | Another alert body.
-
-### CELLS
-
-Country Name | Score | score_cls | border_cls | ↑ TREND | trend_cls | Short note.
-```
-`score_cls`: `c-gr` (green), `c-r` (red), `c-g` (gold), `c-s` (steel).  
-`border_cls`: `l-green`, `l-red`, `l-gold`, `l-steel`, `l-dim`.
-
-#### FULLSTACK
-```
-### LAYER Layer Name Here
-
-Paragraph text. Separate paragraphs with blank lines.
-
-Use --- to separate if needed.
-
-### LAYER Another Layer
-
-For [1st order] / [2nd order] / [3rd order] analysis:
-
-[1st order]: First order text here.
-
-[2nd order]: Second order text.
-
-[3rd order]: Third order text.
-
-### CROSS-LAYER
-
-#### Cross-layer insight title
-
-Body text for this cross-layer insight.
-```
-
-#### FRAGILITY
-```
-SCORE: 3.5
-SCORE_CLS: low
-STATUS: MEDIUM — DECLINING TREND
-CHANGE: ↓ -0.3 from Vol. 07 (3.8)
-DESC: One paragraph description of the index.
-
-### BARS
-
-Bar label text | 50% | fb-med | 5.0
-
-### RISKS
-
-#### RISK 01: Risk Title Here
-LEVEL: MEDIUM
-LEVEL_CLS: risk-med
-
-Risk description text here.
-```
-`SCORE_CLS`: `low` (green), `med` (gold), `high` (red).  
-`fb-*` classes: `fb-low` (steel), `fb-med` (gold), `fb-high` (red).  
-`risk-*` classes: `risk-low`, `risk-med`, `risk-high`.
-
-#### OPPORTUNITIES
-```
-### OPP
-
-TIER: Tier 1 · Category Label
-TITLE: Opportunity title text
-SCORE: 9.2
-
-Thesis paragraph one.
-
-Thesis paragraph two. Use --- to separate paragraphs.
-
-FOR WHOM: Description of who this is for
-TIMEFRAME: Time window
-TRIGGER: What triggers action
-INVALIDATION: What would invalidate this thesis
-```
-
-#### POWERMAP
-```
-### CARD Country Name — Short Status Label
-
-STATUS: STATUS TEXT
-
-Row label | Row value | p-state
-Row label | Row value | p-contested
-Row label | Row value | p-crypto
-
-### SHIFT
-
-BORDER_CLS: green-border
-LABEL: ★ Label text
-LABEL_CLS: green
-TITLE: Power shift title
-
-Body text for this power shift description.
-```
-`p-*` classes: `p-state` (red), `p-contested` (gold), `p-crypto` (green).  
-`BORDER_CLS`: empty (gold border) or `green-border`.  
-`LABEL_CLS`: empty (gold) or `green`.
-
-#### BLACKSWAN
-```
-### SCENARIO
-
-CARD_CLS: s-low
-PROB: LOW
-TREND: → Stable
-TREND_CLS: t-neutral
-NEW: false
-TITLE: Scenario title here
-
-Paragraph one.
-
----
-
-Paragraph two.
-
-TRIGGER: Trigger signal text here.
-```
-`CARD_CLS`: `s-remote`, `s-low`, `s-med`, `s-pos`, `s-high`.
-
-#### SIGNAL_NOISE
-```
-### TABLE
-
-Development description | sn-ss | STRONG SIGNAL | Rationale text here.
-Another development | sn-s | SIGNAL | Rationale.
-Noise item | sn-n | NOISE | Rationale.
-
-### UNRESOLVED
-
-#### Unresolved item title here
-
-CONDITION: Becomes SIGNAL if... Becomes NOISE if...
-
-REVIEW: Vol. 10 · Date · Context
-```
-`sn-*` classes: `sn-ss` (sky/strong signal), `sn-s` (green/signal), `sn-n` (grey/noise), `sn-u` (gold/unresolved).
-
-#### RECOMMENDATIONS
-```
-### REC R01
-
-ACTION: The specific action to take.
-
-FOR WHOM: Who this is for
-TIMEFRAME: Time horizon
-TRIGGER: Trigger condition
-RISK: Risk of acting or not acting
-```
-
-#### MEMORY
-```
-### TRENDS
-
-**Trend Name — STATUS:** Trend description and update.
-
-### COUNTRIES
-
-**Country:** Country memory update.
-
-### RESOLVED
-
-**P-XX-XX — CORRECT/INCORRECT:** Resolution note.
-
-### PREDICTIONS
-
-P-09-01 | Prediction statement. Falsification condition. | HIGH
-
-### WATCHLIST
-
-**Date/Event:** What to monitor and why.
-```
-
----
-
-## GitHub Actions: Automatic Build and Deploy
-
-The workflow file at `.github/workflows/build.yml` triggers on every push to `main` that touches `reports/`, `templates/`, or the build scripts. It:
-
-1. Installs Python dependencies
-2. Runs `python build.py all reports/`
-3. Deploys the `output/` folder to the `gh-pages` branch
-
-**GitHub Pages setup (one-time):**
-
-1. Go to your repo → **Settings** → **Pages**
-2. Set **Source** to `Deploy from a branch`
-3. Set **Branch** to `gh-pages` / `/ (root)`
-4. Save
-
-Your reports will be live at `https://<your-username>.github.io/<repo-name>/`.
-
----
-
-## Requirements
-
-```
-pyyaml>=6.0
-markdown2>=2.4
-jinja2>=3.1
-```
-
-Install with:
 ```bash
-pip install -r requirements.txt
+python build.py issue content/issues/aiw-026-XX-content.md
+python build.py index
+```
+
+Open `docs/weekly/aiw-026-XX.html` and `docs/index.html` in a browser to verify rendering.
+
+### Step 4 — Commit and push
+
+```bash
+git add content/ docs/
+git commit -m "publish: AIW-026-XX — Edition Title"
+git push origin main
+```
+
+The GitHub Actions workflow (`build.yml`) runs automatically on push to `main` and rebuilds all HTML from source, committing the output to `docs/`. GitHub Pages serves from `docs/`.
+
+---
+
+## Content Schema Reference
+
+Each edition content file is structured YAML with Markdown prose in multi-line string fields. The parser (`afi_parser.py`) converts all prose fields to HTML before handing the context to Jinja2.
+
+### Top-5 Signals
+
+```yaml
+signals:
+  - rank: 1
+    title: "Signal headline"
+    tags:
+      - label: "Policy"
+        css: "tag-policy"     # tag-policy | tag-infra | tag-geo | tag-tech |
+                               # tag-security | tag-ecosystem | tag-research | tag-capital
+    body: |
+      Two paragraphs of factual description. No interpretation.
+    analysis_1: >
+      1st order — what literally changed. One sentence.
+    analysis_2: >
+      2nd order — the non-obvious implication. Rewrite if a smart reader
+      could infer this in five seconds.
+    analysis_3: >
+      3rd order — what must investors, policymakers, or builders reconsider.
+      Must produce a concrete strategic implication.
+```
+
+### Layer Analyses
+
+```yaml
+layers:
+  - symbol: "⚡"         # ⚡ 🧱 🌐 🧠 🚀
+    number: "1"
+    name: "Energy"
+    signal_count: "2 signals"
+    highlight: "Short callout headline"
+    body: |
+      150–200 words of layer analysis prose.
+```
+
+### Fragility Index
+
+```yaml
+fragility_items:
+  - frag_id: "FRAG-026-XX-01"
+    domain: "Regulatory · Country"
+    impact: "Severe"               # Severe | Moderate | Minor
+    impact_css: "impact-high"      # impact-high | prob-med | ""
+    probability: "Medium"
+    prob_css: "prob-med"
+    horizon: "6–12 months"
+    title: "Fragility headline"
+    body: |
+      Description of the fragility. Precise actors, specific conditions.
+      No vague language.
+    mitigation: |
+      Concrete mitigation path. Must be actionable.
+```
+
+### Contrarian Bets
+
+```yaml
+contrarian_items:
+  - cb_id: "CB-026-XX-01"
+    cb_type: "Overlooked Country · Long-Term"
+    consensus: >
+      What everyone currently believes.
+    position_head: "The contrarian claim headline"
+    position_body: |
+      The argument. Must include mechanism for why the consensus is wrong.
+    evidence: >
+      Specific signals supporting the contrarian view.
+    falsification: >
+      What would make this position wrong. Prevents ideological lock-in.
 ```
 
 ---
 
-## Disclaimer
+## The Five-Layer AI Stack
 
-All content produced by this system is for informational and research purposes only. Not financial advice. Simulated data where noted. All figures are estimates or model outputs. Past signals do not guarantee future accuracy. For institutional and professional use only. © 2026 Antifragile Africa Crypto.
+All analysis is referenced against Africa's AI stack:
+
+| # | Symbol | Layer | Domain |
+|---|--------|-------|--------|
+| 1 | ⚡ | Energy | Power generation, grid reliability, renewable energy for compute |
+| 2 | 🧱 | Chips | Semiconductors, GPU access, export controls, compute hardware |
+| 3 | 🌐 | Infrastructure | Data centres, connectivity, subsea cables, cloud regions |
+| 4 | 🧠 | Models | AI model development, NLP/CV research, foundation models |
+| 5 | 🚀 | Applications | AI products, sector deployments, commercial traction |
+
+---
+
+## Editorial Standards
+
+**Voice:** Senior intelligence analyst. Not journalist, not academic, not marketer.
+
+**Default output:** Insight, not news. Every claim must answer: does this change how a sophisticated reader thinks or acts?
+
+**Three-tier analysis standard — mandatory for all signal analysis:**
+- 🔵 **1st Order** — What literally happened? (floor, not ceiling)
+- 🟡 **2nd Order** — What non-obvious implication does this create?
+- 🔴 **3rd Order** — What must investors, policymakers, or builders now reconsider?
+
+**Banned phrases:** leapfrog · African lion · the next Silicon Valley · powering Africa's AI revolution · on the continent *(as opener)* · it remains to be seen · in recent years · increasingly
+
+**Country coverage:** Editions rotate country spotlight beyond the Nigeria-Kenya-South Africa default axis. Anglophone capital-city bias is the most common failure mode in African tech coverage.
+
+**Policy vs. deployment:** A government announcing an AI strategy and a government implementing one are entirely different signals. Never conflate them.
+
+---
+
+## The Agent Framework
+
+Each edition is produced through a multi-agent intelligence pipeline:
+
+| Agent | Role |
+|-------|------|
+| **Geo Scraper** | 54-country signal collection across all six African regional blocs |
+| **Policy & Regulation Agent** | Legislative and governance signal collection |
+| **Research Harvester** | Academic, lab, and conference signal collection |
+| **Startup & Capital Tracker** | Funding rounds, acquisitions, market entry/exit |
+| **Infra Signals Agent** | Energy, chips, connectivity, data centre signals |
+| **Research Analyst Agent** | Signal validation, scoring, noise removal, routing |
+| **Layer Specialists (×5)** | 1st/2nd/3rd order analysis per AI stack layer |
+| **Policy Strategist** | Regulatory deep analysis, convergence tracking |
+| **Taleb Agent** | Fragility Engine — finds what everyone else is not looking for |
+| **Thiel Agent** | Contrarian Engine — finds what the consensus is missing |
+| **Synthesis Agent** | Editor-in-Chief AI — assembles the final publication-ready report |
+
+Full agent skill files are maintained in the editorial project repository.
+
+---
+
+## Archive
+
+| Edition | Window | Theme | Status |
+|---------|--------|-------|--------|
+| AIW-026-12 | 19–25 May 2026 | The Governance Quality Audit | New |
+| AIW-026-11 | 12–18 May 2026 | Before the Hearings | Available |
+| AIW-026-10 | 05–11 May 2026 | The Consultation Week | Available |
+| AIW-026-09 | 28 Apr–04 May 2026 | The Deployment Quarter | Available |
+| AIW-026-08 | 21–27 Apr 2026 | The Post-GITEX Reckoning | Available |
+| AIW-026-07 | 14–21 Apr 2026 | The Policy Moment Arrives | Available |
+| AIW-026-06 | 08–14 Apr 2026 | South Africa's AI Policy Lands | Available |
+| AIW-026-05 | 31 Mar–07 Apr 2026 | Infrastructure Ahead of Governance | Available |
+| AIW-026-04 | 24–31 Mar 2026 | The Week Everything Converged | Coming Soon |
+| AIW-026-03 | 17–24 Mar 2026 | The Sovereignty Inflection | Available |
+| AIW-026-02 | 10–17 Mar 2026 | Governance Week | Coming Soon |
+| AIW-026-01 | 03–10 Mar 2026 | Launch Week | Coming Soon |
+
+---
+
+## Deployment
+
+The repository uses GitHub Pages served from the `docs/` directory on `main`. The GitHub Actions workflow (`.github/workflows/build.yml`) triggers on any push to `main` that touches `content/`, `templates/`, `afi_parser.py`, or `build.py` — rebuilding all HTML and committing the output automatically.
+
+Manual rebuilds can be triggered via the GitHub Actions UI using the `workflow_dispatch` event.
+
+---
+
+## Subscribe
+
+New editions published every Tuesday at 06:00 SAST.
+
+**Substack:** [simphiwemlotshwa.substack.com](https://simphiwemlotshwa.substack.com/)
+
+---
+
+*AI Weekly African Lens — Intelligence, not aggregation.*  
+*© 2026 The Weekly African Lens · 54 Nations · Q1–Q2 2026 Coverage*
