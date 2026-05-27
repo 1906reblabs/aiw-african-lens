@@ -1,1 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIW-026-11 — Before the Hearings: Nigeria's AI Governance Endgame and the Infrastructure Counter-Surge · AI Weekly African Lens</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0e0e; --cream: #faf7f2; --gold: #c8922a; --gold-light: #f0d898;
+    --rust: #b84c2a; --teal: #1a6b5e; --teal-light: #e3f2ee;
+    --border: #d8d0c4; --mid-grey: #7a7570; --light-grey: #ede9e3;
+    --deep-blue: #0a1628; --deep-blue-mid: #0f2040;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; line-height: 1.7; }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
+  nav {
+    background: var(--deep-blue); padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px; position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid rgba(200,146,42,0.2);
+  }
+  .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 18px; color: #fff; }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-links a { color: #8a99b8; }
+  .nav-links a:hover { color: var(--gold); text-decoration: none; }
+
+  .masthead { background: var(--deep-blue); padding: 64px 32px 52px; position: relative; overflow: hidden; }
+  .masthead::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border: 1px solid rgba(200,146,42,0.12); border-radius: 50%; }
+  .masthead::after { content: ''; position: absolute; top: -20px; right: -20px; width: 180px; height: 180px; border: 1px solid rgba(200,146,42,0.08); border-radius: 50%; }
+  .masthead-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+  .mh-series { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 16px; }
+  .mh-series::after { content: ''; flex: 1; height: 1px; background: rgba(200,146,42,0.3); max-width: 120px; }
+  .masthead h1 { font-family: 'Playfair Display', serif; font-size: clamp(30px,5vw,52px); font-weight: 900; color: #fff; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 20px; max-width: 700px; }
+  .masthead h1 em { font-style: italic; color: var(--gold); }
+  .mh-deck { font-size: 15px; color: #8a99b8; line-height: 1.65; max-width: 620px; margin-bottom: 28px; }
+  .mh-meta-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: #4a5a78; }
+  .mh-meta-row .dot { color: rgba(200,146,42,0.4); }
+  .mh-signals { display: flex; gap: 20px; margin-top: 32px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; }
+  .mh-sig { display: flex; flex-direction: column; gap: 3px; }
+  .mh-sig-val { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .mh-sig-lbl { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #4a5a78; }
+
+  .toc-bar { background: var(--deep-blue-mid); border-bottom: 1px solid rgba(200,146,42,0.15); }
+  .toc-inner { max-width: 860px; margin: 0 auto; padding: 0 32px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .toc-inner::-webkit-scrollbar { display: none; }
+  .toc-item { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #5a6a88; padding: 12px 16px; white-space: nowrap; border-right: 1px solid rgba(255,255,255,0.04); }
+  .toc-item:first-child { padding-left: 0; }
+  .toc-item a { color: inherit; }
+  .toc-item:hover a { color: var(--gold); }
+
+  .main { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+
+  .sec { display: flex; align-items: center; gap: 12px; margin: 56px 0 28px; }
+  .sec-num { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 700; color: var(--gold); min-width: 24px; }
+  .sec-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid-grey); }
+  .sec-line { flex: 1; height: 1px; background: var(--border); }
+  .sec::after { content: ''; height: 2px; width: 40px; background: var(--ink); display: block; }
+
+  .opening-frame { background: var(--ink); padding: 32px 36px; position: relative; overflow: hidden; margin-bottom: 8px; }
+  .opening-frame::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 200px; color: rgba(200,146,42,0.06); position: absolute; top: -40px; left: 20px; line-height: 1; font-weight: 900; }
+  .opening-frame p { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.75; color: #c8d4e8; position: relative; z-index: 1; max-width: 720px; }
+  .opening-frame p strong { color: var(--gold-light); font-weight: 600; }
+
+  .signal-card { border: 1px solid var(--border); background: #fff; margin-bottom: 2px; position: relative; overflow: hidden; }
+  .signal-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--ink); }
+  .sc-border-1::before { background: var(--gold); }
+  .sc-border-2::before { background: var(--teal); }
+  .sc-border-3::before { background: var(--rust); }
+  .sc-border-4::before { background: #6a1b9a; }
+  .sc-border-5::before { background: #1565c0; }
+  .sc-border-1 .sc-rank { color: rgba(200,146,42,0.18); }
+
+  .sc-inner { padding: 24px 28px 24px 32px; }
+  .sc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+  .sc-rank { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: var(--light-grey); line-height: 1; min-width: 44px; }
+  .sc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .sc-tag { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; }
+  .tag-policy { background: var(--teal-light); color: var(--teal); }
+  .tag-infra { background: #f3e5f5; color: #6a1b9a; }
+  .tag-geo { background: #e3f2fd; color: #1565c0; }
+  .tag-tech { background: #fef3e2; color: #9a6210; }
+  .tag-security { background: #fbe9e6; color: var(--rust); }
+  .tag-ecosystem { background: #e8f5e9; color: #2e7d32; }
+  .tag-research { background: #ede7f6; color: #5e35b1; }
+  .tag-capital { background: #e0f7fa; color: #00695c; }
+
+  .sc-head { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1.3; color: var(--ink); margin-bottom: 14px; }
+  .sc-body { font-size: 14.5px; line-height: 1.75; color: #2a2520; }
+  .sc-body p { margin-bottom: 12px; }
+  .sc-body p:last-child { margin-bottom: 0; }
+  .sc-tier { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; }
+  .tier-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .t1 { background: #3b82f6; } .t2 { background: var(--gold); } .t3 { background: var(--rust); }
+  .tier-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); }
+  .sc-analysis { padding: 18px 20px; margin-top: 16px; background: var(--light-grey); border-left: 2px solid var(--border); }
+  .sc-analysis .sa-row { margin-bottom: 14px; }
+  .sc-analysis .sa-row:last-child { margin-bottom: 0; }
+  .sc-analysis .sa-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 5px; }
+  .sa-label.l1 { color: #3b82f6; } .sa-label.l2 { color: var(--gold); } .sa-label.l3 { color: var(--rust); }
+  .sc-analysis p { font-size: 13px; line-height: 1.65; color: #2a2520; }
+
+  .layer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .layer-card { background: #fff; border: 1px solid var(--border); padding: 20px 22px; }
+  .layer-full { grid-column: 1 / -1; }
+  .lc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .lc-icon { font-size: 20px; line-height: 1; }
+  .lc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); }
+  .lc-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .lc-signal-count { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); background: var(--light-grey); padding: 2px 8px; }
+  .lc-highlight { background: var(--ink); color: var(--cream); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 5px 10px; margin-bottom: 12px; display: inline-block; }
+  .layer-card .lc-body { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .layer-card .lc-body p { margin-bottom: 10px; }
+  .layer-card .lc-body p:last-child { margin-bottom: 0; }
+
+  .policy-block { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--teal); padding: 24px 26px; margin-bottom: 10px; }
+  .pb-head { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
+  .pb-body { font-size: 14px; line-height: 1.75; color: #2a2520; }
+  .pb-body p { margin-bottom: 12px; }
+  .pb-body p:last-child { margin-bottom: 0; }
+  .status-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+  .status-pill { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; }
+  .sp-active { background: var(--teal-light); color: var(--teal); }
+  .sp-pending { background: #fef3e2; color: #9a6210; }
+  .sp-watch { background: #fbe9e6; color: var(--rust); }
+
+  .convergence-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 12.5px; }
+  .convergence-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .convergence-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.55; }
+  .convergence-table tr:last-child td { border-bottom: none; }
+
+  .research-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 10px; }
+  .rr-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid #5e35b1; padding: 20px 22px; }
+  .rr-card.global { border-top-color: #1565c0; }
+  .rr-type { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #5e35b1; margin-bottom: 10px; }
+  .rr-card.global .rr-type { color: #1565c0; }
+  .rr-card h3 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.35; }
+  .rr-card .rr-body { font-size: 13px; line-height: 1.7; color: #2a2520; }
+  .rr-card .rr-body p { margin-bottom: 10px; }
+  .rr-card .rr-body p:last-child { margin-bottom: 0; }
+
+  .fragility-card { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--rust); margin-bottom: 10px; }
+  .frag-header { padding: 14px 20px; background: #fdf2f0; border-bottom: 1px solid #f0cbc4; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .frag-id { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); }
+  .frag-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .frag-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; padding: 2px 8px; background: #fbe9e6; color: var(--rust); }
+  .frag-badge.impact-high { background: #b71c1c; color: #fff; }
+  .frag-badge.prob-med { background: #fef3e2; color: #9a6210; }
+  .frag-body { padding: 18px 20px; }
+  .frag-body h4 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+  .frag-body .frag-prose { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .frag-body .frag-prose p { margin-bottom: 10px; }
+  .frag-body .frag-prose p:last-child { margin-bottom: 0; }
+  .frag-mitigation { background: #f0faf5; border: 1px solid #b2dfdb; padding: 12px 16px; margin-top: 8px; }
+  .frag-mitigation .fm-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 5px; }
+  .frag-mitigation .mit-prose { font-size: 12.5px; color: #1a4a3a; line-height: 1.65; }
+  .frag-mitigation .mit-prose p { margin-bottom: 8px; }
+  .frag-mitigation .mit-prose p:last-child { margin-bottom: 0; }
+
+  .contrarian-card { background: var(--deep-blue); padding: 24px 28px; margin-bottom: 10px; position: relative; overflow: hidden; }
+  .contrarian-card::after { content: '≠'; font-family: 'Playfair Display', serif; font-size: 180px; color: rgba(200,146,42,0.05); position: absolute; right: 20px; top: -20px; line-height: 1; font-weight: 900; }
+  .cc-inner { position: relative; z-index: 1; }
+  .cc-type { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .cc-consensus { background: rgba(255,255,255,0.05); padding: 12px 16px; margin-bottom: 14px; border-left: 2px solid rgba(255,255,255,0.1); }
+  .cc-consensus-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #4a5a78; margin-bottom: 5px; }
+  .cc-consensus p { font-size: 13px; color: #6a7a98; line-height: 1.6; }
+  .cc-position h4 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 12px; }
+  .cc-position .cc-body-prose { font-size: 14px; color: #8a99b8; line-height: 1.7; }
+  .cc-position .cc-body-prose p { margin-bottom: 10px; }
+  .cc-position .cc-body-prose p:last-child { margin-bottom: 0; }
+  .cc-evidence-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; margin-top: 14px; }
+  .cc-evidence-text { font-size: 13px; color: #8a99b8; line-height: 1.7; }
+  .cc-falsify { background: rgba(200,146,42,0.08); border: 1px solid rgba(200,146,42,0.15); padding: 10px 14px; margin-top: 14px; }
+  .cc-falsify-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(200,146,42,0.6); margin-bottom: 4px; }
+  .cc-falsify p { font-size: 12.5px; color: #8a8068; line-height: 1.6; }
+
+  .spotlight-card { background: #fff; border: 1px solid var(--border); margin-bottom: 10px; overflow: hidden; }
+  .sc-flag-bar { height: 4px; }
+  .spotlight-header { padding: 18px 24px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .sh-country { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--ink); }
+  .sh-sub { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); letter-spacing: 0.06em; margin-top: 3px; }
+  .sh-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  .sh-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; padding: 2px 8px; background: var(--light-grey); color: var(--mid-grey); }
+  .spotlight-body { padding: 20px 24px; }
+  .spotlight-body .sp-prose { font-size: 14px; line-height: 1.75; color: #2a2520; }
+  .spotlight-body .sp-prose p { margin-bottom: 14px; }
+  .spotlight-body .sp-prose p:last-child { margin-bottom: 0; }
+  .spotlight-body .sp-prose strong { color: var(--ink); font-weight: 600; }
+  .spotlight-sub { font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin: 16px 0 8px; }
+
+  .forward-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .fw-card { background: #fff; border: 1px solid var(--border); padding: 16px 18px; }
+  .fw-date { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 6px; }
+  .fw-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.4; margin-bottom: 6px; }
+  .fw-card p { font-size: 12px; color: var(--mid-grey); line-height: 1.55; }
+
+  .editorial-note { background: var(--light-grey); border: 1px solid var(--border); padding: 18px 22px; margin-top: 48px; font-size: 12px; color: var(--mid-grey); line-height: 1.65; }
+  .en-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 8px; }
+
+  footer { background: var(--ink); color: #7a8294; text-align: center; padding: 36px 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; }
+  footer strong { color: #c8d4e8; }
+  footer a { color: #7a8294; }
+  footer a:hover { color: var(--gold); }
+  .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 12px; }
+
+  @media (max-width: 680px) {
+    .layer-grid { grid-template-columns: 1fr; }
+    .research-grid { grid-template-columns: 1fr; }
+    .forward-grid { grid-template-columns: 1fr 1fr; }
+    .masthead { padding: 40px 20px 36px; }
+    .main { padding: 0 16px 60px; }
+    nav { padding: 12px 18px; }
+    .opening-frame { padding: 24px 22px; }
+  }
+  @media (max-width: 480px) { .forward-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" style="text-decoration:none;">
+    <div class="nav-brand">The Weekly African Lens<span>.</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Archive</a>
+    <a href="index.html">AI Weekly</a>
+    <a href="../editions/index.html">Daily Editions</a>
+    <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe</a>
+  </div>
+</nav>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="mh-series">
+      AI Weekly Intelligence &nbsp;·&nbsp; Edition #AIW-026-11 &nbsp;·&nbsp; NEW
+    </div>
+    <h1>Before the Hearings<br><em>Nigeria's AI Governance Endgame and the Infrastructure Counter-Surge</em></h1>
+    <p class="mh-deck">Nigeria's pre-hearing submissions have crystallised the real fault line in African AI governance — not policy ambition, but enforcement architecture. Egypt enters the continental AI infrastructure race with a scale that reorders every ranking chart drawn in the last two years. South Africa's civil society gap begins to close, slowly. Cassava breaks ground in Accra. This is the week the pieces stopped moving and started arriving.</p>
+    <div class="mh-meta-row">
+      <span>Week of 18 May 2026</span>
+      <span class="dot">·</span>
+      <span>Window: 12 May → 18 May 2026</span>
+      <span class="dot">·</span>
+      <span>10 Developments Ranked</span>
+      <span class="dot">·</span>
+      <span>Published 06:00 SAST</span>
+    </div>
+    <div class="mh-signals">
+      <div class="mh-sig"><div class="mh-sig-val">10</div><div class="mh-sig-lbl">Ranked Developments</div></div>
+      <div class="mh-sig"><div class="mh-sig-val">9</div><div class="mh-sig-lbl">Nations Covered</div></div>
+      <div class="mh-sig"><div class="mh-sig-val">5</div><div class="mh-sig-lbl">AI Stack Layers</div></div>
+      <div class="mh-sig"><div class="mh-sig-val">22</div><div class="mh-sig-lbl">Days Left — SA Comment</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc-bar">
+  <div class="toc-inner">
+    <div class="toc-item"><a href="#opening">§1 Opening</a></div>
+    <div class="toc-item"><a href="#signals">§2 Top 5 Signals</a></div>
+    <div class="toc-item"><a href="#layers">§3 By Layer</a></div>
+    <div class="toc-item"><a href="#policy">§4 Policy Watch</a></div>
+    <div class="toc-item"><a href="#research">§5 Research Radar</a></div>
+    <div class="toc-item"><a href="#fragility">§6 Fragility Index</a></div>
+    <div class="toc-item"><a href="#contrarian">§7 Contrarian Bets</a></div>
+    <div class="toc-item"><a href="#spotlight">§8 Country Spotlight</a></div>
+    <div class="toc-item"><a href="#forward">§9 Forward Look</a></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- §1 OPENING FRAME -->
+  <div class="sec" id="opening">
+    <span class="sec-num">§1</span>
+    <span class="sec-title">Opening Frame</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="opening-frame">
+    <p>Three days from now, Nigeria's Senate Committee on ICT convenes the most<br />
+consequential AI governance session in African legislative history. The<br />
+pre-hearing brief analysis has delivered something more useful than the<br />
+hearings themselves: for the first time, Nigeria's regulatory bodies have<br />
+staked <strong>publicly incompatible positions</strong> on enforcement architecture,<br />
+forcing the Senate to make a genuine choice rather than ratify a consensus.<br />
+That choice — self-certification or mandatory audit, NITDA or NDPC — will be<br />
+the reference case for AI governance across West Africa for a decade. The<br />
+week arrived carrying a second signal of comparable magnitude: Egypt's $800M<br />
+sovereign AI compute announcement reorders the continental infrastructure map<br />
+so completely that analysis frameworks built on the South Africa–Kenya axis<br />
+now require revision. <strong>Two markets are emerging</strong> — a Sub-Saharan arc and a<br />
+North African arc — with different capital structures, different regulatory<br />
+environments, and different geopolitical alignments. Cassava has broken ground<br />
+in Accra, converting a corridor announcement into poured concrete. South<br />
+Africa's civil society gap has begun to close. This is the week before the<br />
+hearings, when positions are fixed and consequences are not yet priced.</p>
+  </div>
+
+  <!-- §2 TOP 5 SIGNALS -->
+  <div class="sec" id="signals">
+    <span class="sec-num">§2</span>
+    <span class="sec-title">Top 5 Signals — Ranked by Strategic Importance</span>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="signal-card sc-border-1">
+    <div class="sc-inner">
+      <div class="sc-top">
+        <span class="sc-rank">01</span>
+        <div class="sc-tags">
+          <span class="sc-tag tag-policy">Policy</span>
+          <span class="sc-tag tag-policy">Nigeria</span>
+          <span class="sc-tag tag-policy">Legislation</span>
+        </div>
+      </div>
+      <div class="sc-head">Nigeria's Pre-Hearing Submissions: The Enforcement Architecture War Is Now Public</div>
+      <div class="sc-body"><p>With three working days until the Senate Committee's public hearings on<br />
+Nigeria's AI Governance Bill (20–22 May, Abuja), the pre-hearing submission<br />
+window closed on 15 May. NITDA filed a 47-page brief advocating a<br />
+self-certification model for high-risk AI, arguing that mandatory third-party<br />
+audits would create compliance costs that price Nigerian startups out of the<br />
+market. The NDPC filed a 38-page counter-brief calling self-certification<br />
+"structurally incapable of producing accountability" and demanding<br />
+independent audits for any AI system operating at scale in financial services,<br />
+health, and election infrastructure. The two regulatory bodies that will<br />
+jointly govern Nigeria's AI ecosystem have, for the first time, published<br />
+positions that are mutually incompatible.</p>
+<p>The fault line is not technical — it is political economy. NITDA's<br />
+self-certification model benefits incumbents who can build internal compliance<br />
+capacity; mandatory audits benefit citizens who cannot audit the systems<br />
+affecting them. The Senate committee's framing of next week's hearings will<br />
+reveal which constituency it is optimising for. A third submission, from a<br />
+coalition of 14 civil society organisations coordinated by Paradigm Initiative,<br />
+demands that both NITDA and NDPC positions be treated as insufficient — calling<br />
+instead for a citizen-facing AI incident reporting registry as the baseline<br />
+accountability mechanism. It is the most structurally novel proposal in any<br />
+African AI governance proceeding to date.</p></div>
+      <div class="sc-analysis">
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t1"></div><div class="tier-label">1st Order</div></div>
+          <div class="sa-label l1"></div>
+          <p>Nigeria's two AI regulatory bodies have filed publicly incompatible pre-hearing briefs ahead of the Senate AI Bill hearings, with a civil society coalition introducing a third accountability model that neither agency proposed.</p>
+        </div>
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t2"></div><div class="tier-label">2nd Order</div></div>
+          <div class="sa-label l2"></div>
+          <p>The publication of incompatible regulatory positions before a Senate hearing is not a governance failure — it is the governance process working as designed. The significance is that the incompatibility is now on the public record. Whichever position the Senate committee adopts will be a legible choice with traceable consequences, not an ambiguous compromise that obscures responsibility. For Africa's AI governance development, this is progress: the first country in which the enforcement architecture debate is happening in public, with named institutions taking named positions.</p>
+        </div>
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t3"></div><div class="tier-label">3rd Order</div></div>
+          <div class="sa-label l3"></div>
+          <p>The civil society incident reporting registry proposal is the most strategically important element of this week's Nigerian signal and the one receiving the least coverage. A citizen-facing AI incident registry — modelled loosely on the FDA's MedWatch system but adapted for AI harms — would create a continuous accountability mechanism that neither self-certification nor periodic audits can replicate. If adopted, it would be the first such instrument in Africa and would generate the empirical dataset on AI harms in Nigerian deployment contexts that currently does not exist. Investors in Nigerian AI companies should be watching the Senate committee's response to this proposal closely: a registry creates transparency that changes the liability calculus for AI deployment, and any company building AI in Nigeria should be modelling both scenarios.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="signal-card sc-border-2">
+    <div class="sc-inner">
+      <div class="sc-top">
+        <span class="sc-rank">02</span>
+        <div class="sc-tags">
+          <span class="sc-tag tag-infra">Infrastructure</span>
+          <span class="sc-tag tag-infra">Egypt</span>
+          <span class="sc-tag tag-capital">Capital</span>
+        </div>
+      </div>
+      <div class="sc-head">Egypt Announces $800M Sovereign AI Compute Centre — The North Africa Pivot Arrives</div>
+      <div class="sc-body"><p>Egypt's Ministry of Communications and Information Technology announced on<br />
+13 May a partnership with an undisclosed Gulf sovereign wealth fund to<br />
+establish a National AI Computing Centre in the New Administrative Capital<br />
+outside Cairo, with committed investment of $800M USD in Phase 1 and an<br />
+additional $600M contingent on Phase 1 completion. The facility will house<br />
+64,000 GPU-equivalent units at full build-out — the largest announced AI<br />
+compute concentration on the African continent by a factor of three — and<br />
+will operate under a sovereign data residency framework that requires all<br />
+government AI workloads to process domestically. Construction is expected to<br />
+begin in Q3 2026 with Phase 1 operational by Q2 2028.</p>
+<p>The Gulf SWF identity has not been confirmed by official sources, but the<br />
+structure of the announcement — joint press conference with Egypt's Prime<br />
+Minister and a reference to "strategic partnership terms aligned with the<br />
+UAE's AI 2031 strategy" — points to Abu Dhabi's ADQ or Mubadala as the<br />
+counterparty. Egypt's choice of the New Administrative Capital as the site<br />
+is significant: the NAC is an energy-guaranteed zone with dedicated grid<br />
+infrastructure, removing the power reliability constraint that has historically<br />
+disqualified Egypt from serious AI infrastructure consideration despite its<br />
+scale.</p></div>
+      <div class="sc-analysis">
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t1"></div><div class="tier-label">1st Order</div></div>
+          <div class="sa-label l1"></div>
+          <p>Egypt has announced an $800M Phase 1 commitment to a sovereign AI computing centre that would be the largest AI compute facility on the African continent at full build-out, with a Gulf SWF as the probable co-investor.</p>
+        </div>
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t2"></div><div class="tier-label">2nd Order</div></div>
+          <div class="sa-label l2"></div>
+          <p>This announcement reorders the continental AI infrastructure ranking that has been stable since Equinix's R7.5B South Africa commitment in March 2026. Egypt at 64,000 GPU-equivalent units is not incremental to the existing picture — it is a step-change that, if delivered, creates a Northern African AI infrastructure anchor comparable in scale to what the entire rest of the continent combined has announced. The Gulf SWF structure matters: it brings patient capital with a 10-to-15-year return horizon rather than hyperscaler capital that requires near-term utilisation returns. That difference in capital patience allows Egypt to build infrastructure ahead of demand, which is exactly what sovereign AI infrastructure requires.</p>
+        </div>
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t3"></div><div class="tier-label">3rd Order</div></div>
+          <div class="sa-label l3"></div>
+          <p>African AI infrastructure analysis has operated on a South Africa–Kenya–Nigeria axis for three years. Egypt's announcement changes that geometry. At full build-out, Egypt's compute centre shifts the centre of gravity of African AI infrastructure north and east — toward the Mediterranean corridor, the Arab world's AI investment flows, and the European cloud providers that are Egypt's natural latency partners. Companies building AI infrastructure strategies for "Africa" need to model two distinct markets: the Sub-Saharan arc anchored by South Africa and Kenya, and the North African arc anchored by Egypt and Morocco. The investment thesis, the talent pipeline, the regulatory environment, and the geopolitical alignment are different in each. Treating them as one "African AI market" now constitutes analytical error.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="signal-card sc-border-3">
+    <div class="sc-inner">
+      <div class="sc-top">
+        <span class="sc-rank">03</span>
+        <div class="sc-tags">
+          <span class="sc-tag tag-policy">Policy</span>
+          <span class="sc-tag tag-policy">South Africa</span>
+          <span class="sc-tag tag-ecosystem">Governance</span>
+        </div>
+      </div>
+      <div class="sc-head">South Africa's Civil Society Counter-Move: Three Submissions in Five Days</div>
+      <div class="sc-body"><p>In the five days following AIW-026-10's identification of the sector<br />
+participation gap in South Africa's AI Policy comment process, three<br />
+institutional actors filed submissions that had not previously been registered<br />
+on the DTIC portal: Agri SA (the Agricultural Business Chamber), the South<br />
+African Medical Association, and the Equal Education Law Centre. Agri SA's<br />
+submission — 22 pages — addresses AI liability for automated crop insurance<br />
+decisions affecting smallholder farmers, a deployment context entirely absent<br />
+from the existing submission corpus. SAMA's brief focuses on accountability<br />
+for AI-assisted diagnosis in primary healthcare settings under the NHI<br />
+framework. The Equal Education Law Centre's submission addresses automated<br />
+assessment tools in state schools, noting that 890 state schools are currently<br />
+operating AI assessment systems under no regulatory framework.</p>
+<p>The DTIC's portal now shows 73 registered respondents, up from 67 one week<br />
+ago. The sector balance remains skewed — 61 of 73 are institutional<br />
+technology or financial services entities — but the direction of movement<br />
+has changed. With 22 days remaining in the comment window, the question is<br />
+whether the mobilisation continues or whether three submissions constitute<br />
+the full civil society response.</p></div>
+      <div class="sc-analysis">
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t1"></div><div class="tier-label">1st Order</div></div>
+          <div class="sa-label l1"></div>
+          <p>Three health, agriculture, and education sector institutions filed AI policy submissions in South Africa within five days of the sector participation gap being publicly identified, bringing the total respondent count to 73.</p>
+        </div>
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t2"></div><div class="tier-label">2nd Order</div></div>
+          <div class="sa-label l2"></div>
+          <p>This is a small but directionally significant development. The three submissions cover precisely the deployment contexts — smallholder agricultural AI, primary health AI under NHI, state school assessment AI — that were absent from the process a week ago and that represent the highest-impact AI deployments in South Africa by user population. Their presence changes the input to the policy drafters in a material way: there are now primary sources on the AI liability question in agricultural insurance, the AI accountability question in NHI health delivery, and the AI transparency question in state education — three domains that no financial services submission was competent to address.</p>
+        </div>
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t3"></div><div class="tier-label">3rd Order</div></div>
+          <div class="sa-label l3"></div>
+          <p>Twenty-two days remain. The DTIC has authority to weight submissions by sector representation in its drafting process, but only if the sector submissions exist. The strategic question for any foundation, civil society funder, or development finance institution with African AI programming is: which other South African institutions currently operating AI at scale — social grant disbursement (SASSA), municipal service delivery, judicial sentence recommendations — have not yet submitted? Those are the remaining gaps. Each one that closes in the next 22 days reduces the probability that South Africa's AI Act is designed primarily around financial services risk.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="signal-card sc-border-4">
+    <div class="sc-inner">
+      <div class="sc-top">
+        <span class="sc-rank">04</span>
+        <div class="sc-tags">
+          <span class="sc-tag tag-infra">Infrastructure</span>
+          <span class="sc-tag tag-infra">Ghana</span>
+          <span class="sc-tag tag-ecosystem">Pan-African</span>
+        </div>
+      </div>
+      <div class="sc-head">Cassava Breaks Ground in Accra: The West Africa Corridor Passes the Viability Test</div>
+      <div class="sc-body"><p>Cassava Technologies confirmed on 14 May that construction has begun on its<br />
+Accra data centre node, with the Ghana Investment Promotion Centre present at<br />
+the ground-breaking ceremony. The facility will occupy a 4.2-hectare site in<br />
+the Tema Industrial Area, with Phase 1 targeting 12MW of IT load capacity<br />
+and a completion timeline of Q1 2027. The Tema site selection is significant:<br />
+it sits within Ghana's Special Economic Zone framework, which provides power<br />
+reliability guarantees and customs exemptions for imported compute hardware<br />
+that are not available at general commercial sites.</p>
+<p>Cassava's anchor tenant model is visible in the confirmation that three<br />
+entities have signed Letters of Intent for rack space: Ghana's Ministry of<br />
+Finance (AI-enabled tax compliance system), a West African mobile money<br />
+operator (undisclosed), and an international NGO running AI-powered health<br />
+surveillance across Ghana and Côte d'Ivoire. The three tenants represent<br />
+exactly the institutional-government-NGO mix that Cassava established in<br />
+Johannesburg — suggesting a repeatable go-to-market that reduces the<br />
+pre-construction risk of each new node.</p></div>
+      <div class="sc-analysis">
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t1"></div><div class="tier-label">1st Order</div></div>
+          <div class="sa-label l1"></div>
+          <p>Cassava Technologies has broken ground on its Accra data centre node, beginning physical construction with three anchor tenants and a Q1 2027 Phase 1 target.</p>
+        </div>
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t2"></div><div class="tier-label">2nd Order</div></div>
+          <div class="sa-label l2"></div>
+          <p>Construction commencement within 35 days of the announcement is the viability signal that AIW-026-10 set as the test. The announcement has passed it. The anchor tenant mix — government, fintech, and NGO health — confirms that Cassava's commercial model works outside South Africa's specific context, where the same mix applied. The replicability of the anchor tenant pattern is more strategically significant than the Accra node itself: it means Cassava's next announcement (Lagos is under NCC negotiation per AIW-026-10) can be analysed on the same template.</p>
+        </div>
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t3"></div><div class="tier-label">3rd Order</div></div>
+          <div class="sa-label l3"></div>
+          <p>The Tema Special Economic Zone placement deserves attention from other AI infrastructure investors. Ghana's SEZ framework provides de facto compute hardware import facilitation at a time when GPU logistics and customs clearance delays are a material constraint on African data centre timelines. Infrastructure investors planning Sub-Saharan African AI facilities should map every country's SEZ or equivalent framework for compute hardware: the difference between a 6-month and a 14-month facility delivery can hinge entirely on customs clearance speed, not construction capacity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="signal-card sc-border-5">
+    <div class="sc-inner">
+      <div class="sc-top">
+        <span class="sc-rank">05</span>
+        <div class="sc-tags">
+          <span class="sc-tag tag-geo">Geopolitics</span>
+          <span class="sc-tag tag-infra">Chips</span>
+          <span class="sc-tag tag-geo">DRC</span>
+        </div>
+      </div>
+      <div class="sc-head">Korea Responds to the DRC Brief: Formal Infrastructure Dialogue Confirmed</div>
+      <div class="sc-body"><p>South Korea's Ministry of Trade, Industry and Energy confirmed on 16 May<br />
+that it has accepted the Democratic Republic of Congo's invitation for a<br />
+formal bilateral dialogue on "strategic minerals and digital infrastructure<br />
+cooperation," following the DRC Ministry of Mines brief published on 7–8<br />
+May (Signal 1, AIW-026-10). The Korean Trade Ministry's statement names<br />
+coltan and cobalt explicitly and references "AI hardware supply chain<br />
+continuity" as the framing for the dialogue — language that directly mirrors<br />
+the DRC brief's own framing, indicating that the technical specificity of<br />
+the document reached its intended audience.</p>
+<p>The dialogue is scheduled for a preliminary session in Seoul on 9 June. No<br />
+other country from the DRC brief's four-capital addressee list — Washington,<br />
+Beijing, Brussels, and Seoul — has responded formally as of 18 May. Korea's<br />
+first-mover position in responding to the DRC's leverage play gives it a<br />
+structural advantage in whatever preferential terms are eventually negotiated:<br />
+the first mover in a resource-for-infrastructure negotiation sets the price<br />
+floor.</p></div>
+      <div class="sc-analysis">
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t1"></div><div class="tier-label">1st Order</div></div>
+          <div class="sa-label l1"></div>
+          <p>South Korea has formally accepted the DRC's invitation for bilateral dialogue on minerals and digital infrastructure, becoming the first of the four addressees of the DRC brief to respond.</p>
+        </div>
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t2"></div><div class="tier-label">2nd Order</div></div>
+          <div class="sa-label l2"></div>
+          <p>Korea's response confirms that the DRC's minerals brief achieved its primary objective: it moved the DRC from passive resource exporter to active diplomatic counterparty in AI hardware supply chain negotiations. The specific framing Korea used — "AI hardware supply chain continuity" — is the commercial language of South Korea's NAVER, Samsung, and SK Hynix, all of which depend on DRC-sourced minerals and all of which operate AI infrastructure at scale. Korea's response may reflect private-sector pressure on the trade ministry to secure supply chain security before the US or China establish preferential terms.</p>
+        </div>
+        <div class="sa-row">
+          <div class="sc-tier"><div class="tier-dot t3"></div><div class="tier-label">3rd Order</div></div>
+          <div class="sa-label l3"></div>
+          <p>The June 9 Seoul session is a watching brief for anyone with African infrastructure or minerals exposure. If Korea offers digital infrastructure investment in exchange for preferred mineral access, it establishes the template for all subsequent DRC negotiations with Washington, Beijing, and Brussels. The template's terms — specifically, the ratio of infrastructure investment to mineral supply guarantee duration — will become the reference price for a deal structure that could be replicated across multiple African resource-rich, infrastructure-poor countries. This is potentially the most consequential African trade negotiation of 2026, and it is happening with almost no coverage in technology or policy media.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- §3 BY LAYER -->
+  <div class="sec" id="layers">
+    <span class="sec-num">§3</span>
+    <span class="sec-title">By AI Stack Layer</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="layer-grid">
+    <div class="layer-card">
+      <div class="lc-header">
+        <span class="lc-icon">⚡</span>
+        <div>
+          <div class="lc-label">Layer 1</div>
+          <div class="lc-name">Energy</div>
+        </div>
+        <span class="lc-signal-count">1 signal</span>
+      </div>
+      <div class="lc-highlight">Egypt NAC — Power-Guaranteed Zone</div>
+      <div class="lc-body"><p>Egypt's New Administrative Capital energy profile changes the North African<br />
+AI infrastructure calculus. The NAC operates on a dedicated grid with<br />
+committed supply from the national grid reinforced by an on-site 200MW<br />
+renewable generation facility — a power architecture that South Africa's<br />
+Johannesburg data centre corridor does not replicate. The practical implication<br />
+is that Egypt's compute centre will not face the load-shedding risk that has<br />
+historically made Johannesburg data centres operationally expensive (diesel<br />
+backup costs are a significant proportion of opex for South African facilities).</p>
+<p>No new energy signals from Sub-Saharan Africa this week. Kenya's Olkaria V<br />
+Phase 2 continues to be the most significant recent energy development for<br />
+AI infrastructure in East Africa; no new signals have changed that assessment.</p></div>
+    </div>
+    <div class="layer-card">
+      <div class="lc-header">
+        <span class="lc-icon">🧱</span>
+        <div>
+          <div class="lc-label">Layer 2</div>
+          <div class="lc-name">Chips</div>
+        </div>
+        <span class="lc-signal-count">2 signals</span>
+      </div>
+      <div class="lc-highlight">DRC-Korea Dialogue + Egypt GPU Procurement</div>
+      <div class="lc-body"><p>The DRC-Korea dialogue (Signal 5) is the chips-layer story of the week.<br />
+The secondary development is Egypt's compute centre procurement specification,<br />
+which the MCIT release confirms will use NVIDIA H100-class hardware for the<br />
+initial deployment — establishing Egypt as the largest single buyer of<br />
+AI-class GPUs on the African continent by a significant margin. The procurement<br />
+will be structured through the Gulf SWF partner rather than direct purchase,<br />
+which may allow Egypt to avoid US export control licensing complexity by<br />
+routing through UAE-based entities with existing NVIDIA distribution<br />
+relationships.</p>
+<p>This procurement routing is itself a signal: African countries watching Egypt<br />
+will note that Gulf SWF partnership is a viable mechanism for accessing<br />
+high-capability AI compute that the export control environment would otherwise<br />
+constrain. The implication for African AI infrastructure planning is that the<br />
+path to H100-class compute may run through Abu Dhabi for the foreseeable future.</p></div>
+    </div>
+    <div class="layer-card">
+      <div class="lc-header">
+        <span class="lc-icon">🌐</span>
+        <div>
+          <div class="lc-label">Layer 3</div>
+          <div class="lc-name">Infrastructure</div>
+        </div>
+        <span class="lc-signal-count">3 signals</span>
+      </div>
+      <div class="lc-highlight">Cassava Accra + Egypt NAC + Abidjan IXP 100Gbps</div>
+      <div class="lc-body"><p>Cassava's Accra ground-breaking (Signal 4) is the sub-Saharan<br />
+infrastructure story of the week. Alongside it, the Abidjan Internet Exchange<br />
+Point crossed 100Gbps peak throughput on 15 May — a milestone that marks<br />
+Abidjan's transition from a regional to a continental-grade connectivity hub.<br />
+The 100Gbps threshold is not arbitrary: it is the minimum bandwidth floor<br />
+that AI model inference traffic requires to route economically through a local<br />
+exchange rather than internationally. Abidjan at 100Gbps means that Francophone<br />
+West African AI applications can now route inference traffic locally without<br />
+cost penalty — a structural change for the approximately 200 million users<br />
+in the ECOWAS Francophone zone.</p>
+<p>Egypt's NAC announcement represents the largest single infrastructure<br />
+development this week by capital commitment, but its impact on the<br />
+Sub-Saharan AI stack is indirect — it accelerates the bifurcation between<br />
+North African and Sub-Saharan AI infrastructure markets that analysts should<br />
+now be tracking as two separate vectors.</p></div>
+    </div>
+    <div class="layer-card">
+      <div class="lc-header">
+        <span class="lc-icon">🧠</span>
+        <div>
+          <div class="lc-label">Layer 4</div>
+          <div class="lc-name">Models</div>
+        </div>
+        <span class="lc-signal-count">2 signals</span>
+      </div>
+      <div class="lc-highlight">AIMS Paper Community Review — 47 Forks</div>
+      <div class="lc-body"><p>The AIMS compute-efficient distillation paper (flagged in AIW-026-10's Research<br />
+Radar) has entered open community review, with 47 GitHub forks recorded in<br />
+the first five days after the pre-print's repository was made public on<br />
+13 May. The fork velocity is a signal in its own right: for context, the<br />
+Masakhane multilingual embedding repository that became the most widely adopted<br />
+African NLP tool reached 47 forks in 11 weeks. The AIMS distillation paper<br />
+is tracking 15x faster, which reflects both the practical relevance of<br />
+compute-efficient models in constrained environments and the expanding global<br />
+interest in efficient inference architectures post-2025.</p>
+<p>No new African language model releases this week. The DeepSeek Hausa and<br />
+Amharic additions from AIW-026-10 remain the current frontier. The<br />
+competitive pressure on Microsoft and Google to match DeepSeek's African<br />
+language additions has not yet produced a public response.</p></div>
+    </div>
+    <div class="layer-card layer-full">
+      <div class="lc-header">
+        <span class="lc-icon">🚀</span>
+        <div>
+          <div class="lc-label">Layer 5</div>
+          <div class="lc-name">Applications</div>
+        </div>
+        <span class="lc-signal-count">3 signals</span>
+      </div>
+      <div class="lc-highlight">M-Pesa Week 1 — Fraud Reduction Holds at 39%</div>
+      <div class="lc-body"><p>Safaricom's first full-week performance data on the M-Pesa AI fraud detection<br />
+system confirms that the 41% fraud reduction figure from the controlled trial<br />
+has settled at 39% in production deployment — within normal variance of the<br />
+trial result, and well above the 30% threshold that Safaricom's engineering<br />
+team had identified as the minimum viable performance floor. The slight<br />
+reduction from 41% to 39% reflects the difference between a controlled trial<br />
+environment and production scale across 32 million users with genuine<br />
+adversarial actors adapting to the new detection system.</p>
+<p>Two secondary applications signals: Kenya's Communications Authority published<br />
+the technical specification for the AI deployment register introduced in its<br />
+Senate committee amendments (Signal: Policy Watch). And in Senegal, the GITEX<br />
+Africa "Best Young AI Company" winner — Ndax AI — confirmed a $4.2M Series B<br />
+close on 17 May, with Partech Africa as lead investor. The close validates<br />
+the GITEX award as a commercial signal rather than a ceremonial one.</p></div>
+    </div>
+  </div>
+
+  <!-- §4 POLICY WATCH -->
+  <div class="sec" id="policy">
+    <span class="sec-num">§4</span>
+    <span class="sec-title">Policy &amp; Regulation Watch</span>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="policy-block">
+    <div class="status-row">
+      <span class="status-pill sp-watch">Nigeria Hearings — 20 May</span>
+      <span class="status-pill sp-active">SA Comment — 22 Days</span>
+      <span class="status-pill sp-active">Kenya Register — Spec Published</span>
+    </div>
+    <div class="pb-head">Three Governance Systems in Parallel: Nigeria Decides, Kenya Specifies, South Africa Listens</div>
+    <div class="pb-body"><p>Nigeria's Senate hearings arrive with a governance architecture that is,<br />
+for once in African AI policy history, transparent about its own fault lines.<br />
+The pre-hearing briefs from NITDA and NDPC have made the enforcement<br />
+architecture debate public in a way that no other African country's AI<br />
+governance process has achieved. Self-certification versus mandatory audit is<br />
+not a technical dispute — it is a question about who bears the cost of<br />
+accountability. NITDA's position optimises for startup formation velocity;<br />
+NDPC's position optimises for citizen protection in high-stakes deployments.<br />
+Both are coherent. Neither is wrong. The Senate's job on 20 May is to choose<br />
+between them for a defined set of risk categories, not to reconcile them<br />
+philosophically.</p>
+<p>South Africa's 22 remaining comment days are carrying more weight than the<br />
+initial participation numbers suggested. The three civil society submissions<br />
+filed this week introduce deployment contexts — smallholder agricultural AI,<br />
+NHI health diagnostics, state school assessment — that the financial services<br />
+submissions are not competent to address. The DTIC now has primary sources<br />
+on AI risk in the sectors that matter most to the most people. Whether those<br />
+sources are weighted proportionally in the drafting process depends on<br />
+editorial judgment by officials who are not publicly accountable for that<br />
+judgment. The window to add more sources has 22 days left.</p></div>
+  </div>
+
+  <div class="policy-block">
+    <div class="pb-head">Kenya's AI Deployment Register: Making the Invisible Visible</div>
+    <div class="pb-body"><p>Kenya's AI deployment register technical specification — published by the<br />
+Communications Authority on 15 May — is the most operationally specific<br />
+AI transparency requirement in African legislation to date. The register<br />
+requires any AI system operating above a defined scale threshold to be listed<br />
+in a publicly accessible database with mandatory disclosure of: the system's<br />
+purpose and operating domain, the entity responsible for deployment, the data<br />
+sources used in training, and the estimated number of affected users. These<br />
+disclosure requirements are more granular than the EU AI Act's equivalent<br />
+provisions for comparable risk categories.</p>
+<p>The practical implication is not primarily about compliance burden — it is<br />
+about market intelligence. A public register of AI deployments at scale<br />
+creates a dataset that investors, researchers, and civil society can use to<br />
+map the actual state of AI deployment in Kenya. Regulators globally struggle<br />
+with this: they legislate around AI deployments they cannot fully see.<br />
+Kenya's register makes the invisible visible — the prerequisite for all<br />
+subsequent governance actions.</p></div>
+  </div>
+
+  <table class="convergence-table">
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Policy Status</th>
+        <th>Key Development This Week</th>
+        <th>Convergence Signal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Nigeria</strong></td>
+        <td>Bill in Senate — hearings 20 May</td>
+        <td>NITDA vs NDPC incompatible briefs; civil society incident registry proposal</td>
+        <td>→ West Africa reference case — decision this week</td>
+      </tr>
+      <tr>
+        <td><strong>South Africa</strong></td>
+        <td>Comment period — day 39 of 60</td>
+        <td>3 civil society submissions filed (Agri SA, SAMA, EELC); 73 respondents</td>
+        <td>→ Likely SADC template; 22 days remain</td>
+      </tr>
+      <tr>
+        <td><strong>Kenya</strong></td>
+        <td>Senate technical amendments</td>
+        <td>AI deployment register technical spec published by CA Kenya</td>
+        <td>↑ Most transparent framework on continent</td>
+      </tr>
+      <tr>
+        <td><strong>Rwanda</strong></td>
+        <td>Regulatory sandbox — active</td>
+        <td>First cohort operational; health + agri, 12-month supervised deployment</td>
+        <td>→ Evidence-first model proving viable</td>
+      </tr>
+      <tr>
+        <td><strong>Egypt</strong></td>
+        <td>Vision 2030 — infrastructure phase</td>
+        <td>$800M sovereign compute centre; Gulf SWF co-investor; NAC site</td>
+        <td>↑ North African infrastructure anchor</td>
+      </tr>
+      <tr>
+        <td><strong>DRC</strong></td>
+        <td>No AI legislation</td>
+        <td>Korea formal minerals dialogue accepted; Seoul session 9 June</td>
+        <td>→ Resource diplomacy, not legislation</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- §5 RESEARCH RADAR -->
+  <div class="sec" id="research">
+    <span class="sec-num">§5</span>
+    <span class="sec-title">Research Radar</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="research-grid">
+    <div class="rr-card">
+      <div class="rr-type">African-Led Research</div>
+      <h3>AIMS Distillation Paper Enters Community Review — 47 Forks, 5 Days</h3>
+      <div class="rr-body"><p>The African Institute for Mathematical Sciences compute-efficient distillation<br />
+paper — pre-printed in late April, flagged as a watching brief in AIW-026-10 —<br />
+has entered formal community review with early adoption signals that exceed any<br />
+comparable African AI research release. The 47-fork velocity in five days is<br />
+the headline number, but the adoption geography is more significant: 31 of the<br />
+47 forks are from institutions in Southeast Asia, Latin America, and South<br />
+Asia — compute-constrained regions where the methodology has identical<br />
+applicability to Africa. The AIMS paper is the first African AI research<br />
+output to generate majority non-African adoption in its first week of release,<br />
+which is a structural first for the continent's AI research standing.</p>
+<p>The open-source release is scheduled for June; the current pre-print repository<br />
+is read-only. The six-country field trial partnership call closes 30 May.<br />
+Institutions in Ethiopia, Kenya, Ghana, Tanzania, Senegal, and Egypt are<br />
+named as priority country partners.</p></div>
+    </div>
+    <div class="rr-card global">
+      <div class="rr-type">African Ecosystem — Institutional Signal</div>
+      <h3>Ethiopia AAU AI Research Fund — First Call for Proposals</h3>
+      <div class="rr-body"><p>Addis Ababa University's AI research fund — the $12M component of Ethiopia's<br />
+National AI Strategy 2026–2030 announced in AIW-026-10 — published its first<br />
+call for proposals on 15 May. The call covers four thematic areas aligned with<br />
+the strategy's sector priorities: smallholder agriculture AI, maternal and child<br />
+health diagnostics, secondary education tools, and cross-border trade facilitation.<br />
+The proposal deadline is 15 July 2026; awards will be announced in October.<br />
+The fund explicitly invites joint applications from Ethiopian and international<br />
+research teams, creating a structured pathway for global AI researchers to<br />
+engage the Ethiopian AI ecosystem through institutional channels for the first<br />
+time. This is not a global research signal — it is a domestically driven<br />
+research mobilisation — but its global impact comes through the joint-application<br />
+mechanism, which will pull international AI researchers into Ethiopian deployment<br />
+contexts they would not otherwise engage.</p></div>
+    </div>
+  </div>
+
+  <!-- §6 FRAGILITY INDEX -->
+  <div class="sec" id="fragility">
+    <span class="sec-num">§6</span>
+    <span class="sec-title">Fragility Index</span>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="fragility-card">
+    <div class="frag-header">
+      <span class="frag-id">FRAG-026-11-01 · Regulatory · Nigeria</span>
+      <div class="frag-badges">
+        <span class="frag-badge impact-high">Impact: Severe</span>
+        <span class="frag-badge prob-med">Probability: Medium</span>
+        <span class="frag-badge">Horizon: Imminent — 72 hours</span>
+      </div>
+    </div>
+    <div class="frag-body">
+      <h4>Nigeria Senate Hearings: The Risk of a Staged Compromise That Resolves Nothing</h4>
+      <div class="frag-prose"><p>The Nigerian Senate's AI Governance Bill hearings begin in 72 hours. The<br />
+pre-hearing brief analysis (Signal 1) has clarified that NITDA and NDPC<br />
+hold incompatible positions on enforcement architecture. The Senate committee's<br />
+most politically convenient resolution — a compromise that adopts<br />
+self-certification language from NITDA with an aspirational audit provision<br />
+from NDPC that is never operationalised — would produce a bill that passes<br />
+with broad support and governs nothing.</p>
+<p>The risk is not legislative failure in the obvious sense (bill stalls, no<br />
+law). It is legislative success in the worst sense: a bill that is enacted,<br />
+held up as a governance milestone, and deployed to signal regulatory maturity<br />
+to international investors — while leaving the enforcement gap that makes<br />
+AI accountability meaningful entirely unresolved. This is not speculative; it<br />
+is the outcome that has resulted from similar regulatory compromises in Nigeria's<br />
+fintech regulatory history, where aspirational frameworks were enacted without<br />
+enforcement capacity, producing a decade of regulatory arbitrage.</p></div>
+      <div class="frag-mitigation">
+        <div class="fm-label">Mitigation Path</div>
+        <div class="mit-prose"><p>The Paradigm Initiative civil society coalition's incident reporting registry<br />
+proposal is the mechanism that could prevent this outcome. An incident<br />
+registry requires no inter-agency agreement on enforcement architecture —<br />
+it simply requires that AI operators report harms as they occur, creating<br />
+the empirical record that makes subsequent enforcement decisions possible.<br />
+If the Senate committee includes the registry as a pilot provision with a<br />
+12-month review trigger, it creates an accountability instrument independent<br />
+of the NITDA-NDPC disagreement. Nigerian civil society organisations with<br />
+Senate access should be advocating for this specific provision in the 72<br />
+hours before hearings open.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="fragility-card">
+    <div class="frag-header">
+      <span class="frag-id">FRAG-026-11-02 · Capital · Egypt</span>
+      <div class="frag-badges">
+        <span class="frag-badge ">Impact: Moderate</span>
+        <span class="frag-badge prob-med">Probability: Medium</span>
+        <span class="frag-badge">Horizon: 24–36 months</span>
+      </div>
+    </div>
+    <div class="frag-body">
+      <h4>Egypt's $800M Compute Centre: Gulf SWF Capital Carries Political Alignment Risk</h4>
+      <div class="frag-prose"><p>Egypt's sovereign AI compute centre is the most significant African AI<br />
+infrastructure announcement of 2026. Its funding structure is also its primary<br />
+fragility: a Gulf SWF as co-investor brings capital patience but also political<br />
+alignment expectations. Gulf sovereign wealth funds investing in Egyptian<br />
+digital infrastructure do not operate as neutral financial actors — they are<br />
+instruments of strategic alignment, and the terms of that alignment are not<br />
+publicly disclosed.</p>
+<p>The specific risk is not geopolitical exposure per se — Egypt has managed<br />
+Gulf diplomatic relationships with sophistication for decades. The risk is<br />
+that the sovereignty provisions of the facility are negotiated around the<br />
+Gulf SWF's interests rather than Egypt's. If the "sovereign data residency<br />
+framework" allows data access for the SWF's own AI development purposes, the<br />
+sovereignty claim is hollow. If the facility's compute priority is allocated<br />
+partly to Gulf-originated AI workloads, the 64,000 GPU-equivalent units<br />
+available to Egyptian developers is significantly less than the headline number.</p></div>
+      <div class="frag-mitigation">
+        <div class="fm-label">Mitigation Path</div>
+        <div class="mit-prose"><p>The MCIT should publish the data governance terms of the SWF partnership as<br />
+a condition of sovereign framing. If it is a true sovereign AI facility, the<br />
+terms should be publicly stated and subject to Egyptian parliamentary review.<br />
+International development finance institutions (World Bank, AfDB) with<br />
+Egyptian digital programs should make governance transparency a condition of<br />
+any complementary funding they provide to the facility's research or<br />
+skills components.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- §7 CONTRARIAN BETS -->
+  <div class="sec" id="contrarian">
+    <span class="sec-num">§7</span>
+    <span class="sec-title">Contrarian Bets</span>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="contrarian-card">
+    <div class="cc-inner">
+      <div class="cc-type">Contrarian Bet · Dangerous Consensus · Act Now</div>
+      <div class="cc-consensus">
+        <div class="cc-consensus-label">The Consensus View</div>
+        <p>Egypt's $800M compute centre announcement means Egypt is now a serious African AI hub. The announcement validates Egypt's AI strategy. Investors should begin building Egypt exposure in anticipation of the demand that this infrastructure will attract.
+</p>
+      </div>
+      <div class="cc-position">
+        <h4>The Infrastructure Is Real. The AI Ecosystem That Would Use It Is Not — Yet.</h4>
+        <div class="cc-body-prose"><p>Egypt's compute announcement is significant and the infrastructure will be<br />
+built. The contrarian position is not about the facility — it is about the<br />
+two-year gap between the announcement and the AI deployment ecosystem that<br />
+could utilise it. Egypt's AI startup ecosystem, as of May 2026, does not<br />
+have the depth to absorb 64,000 GPU-equivalent units of compute. The<br />
+researchers who could train on it, the companies that could deploy products<br />
+using it, and the regulatory frameworks that would govern its commercial use<br />
+are all at earlier stages of development than the infrastructure.</p>
+<p>Infrastructure-first AI strategies have a consistent failure mode in<br />
+emerging markets: the facilities are built, the demand does not materialise<br />
+at the projected pace, the SWF loses patience, and the facility is<br />
+repurposed or underutilised for years. Egypt's compute centre is three times<br />
+larger than any current Sub-Saharan African AI facility — in a country whose<br />
+AI startup ecosystem is, by most measures, smaller than Kenya's or Nigeria's.<br />
+The gap between infrastructure scale and ecosystem readiness is the risk that<br />
+the announcement coverage is not pricing.</p></div>
+      </div>
+      <div class="cc-evidence-label">Evidence</div>
+      <div class="cc-evidence-text">Egypt's Crunchbase-listed AI startup count (Q1 2026): 34. Kenya: 89. Nigeria: 147. Egypt's annual AI research publications per million population: 0.8. South Africa: 4.2. The MCIT has not published a talent pipeline strategy alongside the infrastructure announcement. The Gulf SWF's return horizon is stated as 10-15 years — which implies an expectation that the ecosystem will need to be built, not that it already exists.</div>
+      <div class="cc-falsify">
+        <div class="cc-falsify-label">What Would Falsify This Position</div>
+        <p>A credible Egyptian AI talent and startup development strategy published alongside or shortly after the infrastructure announcement, with funding commitments comparable to the infrastructure investment, would change this position. If Egypt demonstrates an ecosystem-building plan at infrastructure scale, the contrarian concern collapses.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- §8 COUNTRY SPOTLIGHT -->
+  <div class="sec" id="spotlight">
+    <span class="sec-num">§8</span>
+    <span class="sec-title">Country Spotlight</span>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="spotlight-card">
+    <div class="sc-flag-bar" style="background: linear-gradient(to right, #008751 33%, #fff 33%, #fff 66%, #008751 66%);"></div>
+    <div class="spotlight-header">
+      <div>
+        <div class="sh-country">Nigeria</div>
+        <div class="sh-sub">Federal Republic of Nigeria · ECOWAS · Pop. 220M</div>
+        <div class="sh-badges">
+          <span class="sh-badge">Senate Hearings — 20 May</span>
+          <span class="sh-badge">Pre-Hearing Briefs Filed</span>
+          <span class="sh-badge">Signal Density: Critical</span>
+        </div>
+      </div>
+    </div>
+    <div class="spotlight-body">
+      <div class="spotlight-sub">State of Play</div>
+      <div class="sp-prose"><p>Nigeria enters the most consequential week in its AI governance history.<br />
+The Senate committee hearings beginning 20 May are not routine legislative<br />
+process — they are the first moment in which Nigeria's regulatory bodies,<br />
+civil society, and technology industry will present publicly incompatible<br />
+positions before elected legislators who will have to choose between them.<br />
+The policy entrepreneur community in Lagos and Abuja has spent the preceding<br />
+weeks positioning for this moment; the pre-hearing briefs are the public<br />
+artefact of that positioning.</p></div>
+      <div class="spotlight-sub">What Changed This Week</div>
+      <div class="sp-prose"><p>The disclosure of NITDA's and NDPC's incompatible pre-hearing briefs is<br />
+the signal. This is the first time in the Nigerian AI governance process<br />
+that the fault line is not between government and industry (the usual frame)<br />
+but within government itself. NITDA and NDPC are both government bodies;<br />
+their public disagreement means the Senate committee cannot adopt a<br />
+"government position" — it must adjudicate between two regulatory agencies<br />
+with different institutional interests.</p>
+<p><strong>This is actually a strengthening of governance, not a weakness.</strong> A<br />
+regulatory body that publicly defends its enforcement position before a<br />
+legislative committee is operating as designed in a functioning democracy.<br />
+The NDPC's willingness to publicly oppose NITDA in a Senate submission is<br />
+evidence that Nigeria's regulatory architecture is developing the<br />
+institutional independence needed for credible AI oversight. The question<br />
+is whether the Senate committee recognises and preserves that independence<br />
+rather than resolving the conflict through a compromise that subordinates<br />
+the weaker agency to the stronger one.</p></div>
+      <div class="spotlight-sub">Strategic Outlook</div>
+      <div class="sp-prose"><p>Three scenarios emerge from next week's hearings. First: the committee<br />
+adopts the NITDA self-certification model with a nominal audit provision —<br />
+the staged compromise scenario flagged in the Fragility Index. This produces<br />
+a bill that passes but governs weakly. Second: the committee adopts the<br />
+NDPC audit requirement for a defined set of high-risk applications while<br />
+accepting NITDA's self-certification for lower-risk categories — a risk-tiered<br />
+outcome that is defensible and workable. Third: the committee is persuaded<br />
+by the Paradigm Initiative coalition's incident registry proposal and<br />
+incorporates it as a parallel accountability mechanism independent of the<br />
+NITDA-NDPC disagreement — the outcome with the most long-term governance<br />
+value. The probability ordering, based on Nigerian legislative precedent,<br />
+is roughly 50% / 35% / 15%. The 15% outcome would be the most significant<br />
+African AI governance development since South Africa's gazette.</p></div>
+    </div>
+  </div>
+  <div class="spotlight-card">
+    <div class="sc-flag-bar" style="background: linear-gradient(to bottom, #CE1126 33%, #fff 33%, #fff 66%, #000 66%);"></div>
+    <div class="spotlight-header">
+      <div>
+        <div class="sh-country">Egypt</div>
+        <div class="sh-sub">Arab Republic of Egypt · AMU/African Union · Pop. 107M</div>
+        <div class="sh-badges">
+          <span class="sh-badge">$800M Infrastructure Announced</span>
+          <span class="sh-badge">Gulf SWF Partner</span>
+          <span class="sh-badge">Coverage Gap: Closing</span>
+        </div>
+      </div>
+    </div>
+    <div class="spotlight-body">
+      <div class="spotlight-sub">State of Play</div>
+      <div class="sp-prose"><p>Egypt has been the most consistent undervaluation in African AI analysis.<br />
+The country has the largest Arabic-speaking population in the world, a<br />
+government AI strategy (Egypt Vision 2030) that predates most African<br />
+equivalents, a university system that produces the largest volume of<br />
+computer science graduates in Africa, and — as of this week — the most<br />
+significant announced AI infrastructure investment on the continent. The<br />
+coverage gap has been maintained by Anglophone media's structural bias<br />
+toward Sub-Saharan Africa and by Egypt's AI ecosystem communicating<br />
+primarily in Arabic in its domestic channels.</p></div>
+      <div class="spotlight-sub">What Changed This Week</div>
+      <div class="sp-prose"><p>The $800M compute centre announcement changes the Egypt coverage question<br />
+from "why is this being ignored?" to "why does the announced infrastructure<br />
+scale not match the ecosystem depth?" The contrarian bet in this edition<br />
+addresses that gap directly. But the signal this week is primarily the<br />
+announcement itself, which is significant regardless of the ecosystem<br />
+readiness question.</p>
+<p>The Gulf SWF partnership structure is Egypt's signature move: the country<br />
+has a track record of mobilising Gulf capital for large infrastructure<br />
+projects that serve domestic priorities while offering strategic alignment<br />
+benefits to Gulf investors. The NAC energy infrastructure makes this specific<br />
+facility viable in a way that previous Egyptian data centre proposals were<br />
+not — the power reliability question, historically Egypt's primary<br />
+infrastructure constraint, is resolved by the NAC's dedicated grid.</p></div>
+      <div class="spotlight-sub">Strategic Outlook</div>
+      <div class="sp-prose"><p>Egypt's AI trajectory over the next 24 months will be determined by whether<br />
+the MCIT publishes a credible ecosystem development strategy alongside the<br />
+infrastructure. The infrastructure-first risk is real (see Contrarian Bets).<br />
+The mitigation is a parallel investment in AI talent development, startup<br />
+funding, and research capacity that is currently not in the public<br />
+announcement. Egypt has the institutional actors to execute such a strategy:<br />
+the American University in Cairo, Cairo University's AI research clusters,<br />
+and a diaspora community with significant AI expertise in the Gulf, Europe,<br />
+and North America. Whether the MCIT mobilises those assets in the 2026–2028<br />
+infrastructure build period will determine whether Egypt's compute centre<br />
+is an African AI inflection point or an expensive underutilised facility by<br />
+2030.</p></div>
+    </div>
+  </div>
+
+  <!-- §9 FORWARD LOOK -->
+  <div class="sec" id="forward">
+    <span class="sec-num">§9</span>
+    <span class="sec-title">Forward Look — Strategic Calendar</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="forward-grid">
+    <div class="fw-card">
+      <div class="fw-date">20–22 May 2026</div>
+      <h4>Nigeria Senate AI Bill — Public Hearings</h4>
+      <p>The defining event of Q2 African AI governance. Watch for committee framing language in the opening session — it will signal which positions the chair is predisposed to adopt. The Paradigm Initiative incident registry proposal is the swing variable.</p>
+    </div>
+    <div class="fw-card">
+      <div class="fw-date">26 May 2026</div>
+      <h4>SA AI Policy — Mid-Window Participation Report</h4>
+      <p>DTIC expected to publish an interim participation summary. If civil society mobilisation is confirmed in official data, this is the escalation point for foundations and development funders to demand process adjustments.</p>
+    </div>
+    <div class="fw-card">
+      <div class="fw-date">28 May 2026</div>
+      <h4>Deep Learning Indaba² — Addis Ababa</h4>
+      <p>First Indaba² held in Ethiopia with a government AI mandate in force. Ministry of Innovation and Technology confirmed attendance. The AAU research fund call deadline (15 July) makes this the logical moment for the fund to engage the research community. Strategic significance: elevated.</p>
+    </div>
+    <div class="fw-card">
+      <div class="fw-date">30 May 2026</div>
+      <h4>AIMS Distillation Paper — Field Trial Partnership Deadline</h4>
+      <p>Six-country field trial partnership call closes. Ethiopia, Kenya, Ghana, Tanzania, Senegal, and Egypt named as priority countries. Institutions with deployment capacity in these markets should apply.</p>
+    </div>
+    <div class="fw-card">
+      <div class="fw-date">9 June 2026</div>
+      <h4>DRC–Korea Minerals Dialogue — Seoul</h4>
+      <p>Preliminary session confirmed. The framing of Korea's opening offer will set the reference price for infrastructure-for-minerals exchange. Any DFI or bilateral investor with DRC infrastructure exposure should have representation at or monitoring of this session.</p>
+    </div>
+    <div class="fw-card">
+      <div class="fw-date">9 June 2026</div>
+      <h4>SA AI Policy — Comment Window Closes</h4>
+      <p>22 days remain. The three civil society submissions this week are a beginning, not a conclusion. SASSA, municipal AI deployments, and judicial AI applications remain unrepresented in the submission corpus.</p>
+    </div>
+  </div>
+
+  <!-- EDITORIAL NOTE -->
+  <div class="editorial-note">
+    <div class="en-label">Editorial Note — AIW-026-11</div>
+    <p>This edition introduces the pipeline-generated format for AI Weekly Lens. The content is generated as structured markdown, parsed by a Python builder, and rendered through a Jinja2 template — separating editorial intelligence from HTML construction. The output is structurally identical to hand-coded editions; the difference is in the authoring workflow, not the reader experience. Feedback on any rendering issues to the editorial team.</p>
+  </div>
+
+</div><!-- /main -->
+
+<footer>
+  <p><strong>AI Weekly African Lens — Edition AIW-026-11</strong></p>
+  <p style="margin-top:6px;">Week of 18 May 2026 · Window: 12 May → 18 May 2026 · Published 06:00 SAST</p>
+  <div class="footer-links">
+    <a href="index.html">All Weekly Editions</a>
+    <a href="../editions/index.html">Daily Editions</a>
+    <a href="../index.html">Full Archive</a>
+<a href="aiw-026-10.html">← AIW-026-10</a>    <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe on Substack</a>
+  </div>
+  <p style="margin-top:16px;">The Weekly African Lens · AI · Machine Learning · Data Science · Across 54 Nations</p>
+  <p style="margin-top:6px;">© 2026 The Weekly African Lens · Archive hosted on GitHub Pages</p>
+</footer>
+
+</body>
+</html>

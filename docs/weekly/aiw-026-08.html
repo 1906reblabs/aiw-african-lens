@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Weekly African Lens — Edition #AIW-026-08 | 28 April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e0e;
+  --cream: #faf7f2;
+  --gold: #c8922a;
+  --gold-light: #f0d898;
+  --rust: #b84c2a;
+  --teal: #1a6b5e;
+  --teal-light: #e3f2ee;
+  --border: #d8d0c4;
+  --mid-grey: #7a7570;
+  --light-grey: #ede9e3;
+  --deep: #0a1020;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+}
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrapper { max-width: 760px; margin: 0 auto; padding: 0 22px 80px; }
+
+.topbar {
+  background: var(--deep);
+  padding: 10px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar-brand { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 900; color: #fff; }
+.topbar-brand span { color: var(--gold); }
+.topbar-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: #6a7890; letter-spacing: 0.08em; text-transform: uppercase; }
+.topbar-badge { background: var(--teal); color: #fff; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 9px; }
+
+.hero {
+  background: var(--deep);
+  background-image: linear-gradient(135deg, #0a1020 0%, #0a1a2a 50%, #0a2018 100%);
+  padding: 52px 22px 44px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -60px;
+  width: 240px; height: 240px;
+  border: 1px solid rgba(200,146,42,0.15);
+  border-radius: 50%;
+}
+.hero .over { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5.5vw, 52px); font-weight: 900; color: #fff; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 16px; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero .sub { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5a6880; margin-bottom: 32px; }
+.hero-window {
+  display: inline-block;
+  background: rgba(200,146,42,0.1);
+  border: 1px solid rgba(200,146,42,0.25);
+  padding: 8px 18px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--gold-light);
+  letter-spacing: 0.06em;
+}
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.hs { text-align: center; }
+.hs-val { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--gold); display: block; }
+.hs-val.teal { color: #7ad4be; }
+.hs-val.rust { color: #e08070; }
+.hs-lbl { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #5a6880; margin-top: 2px; display: block; }
+
+.alert-itw {
+  background: rgba(26,107,94,0.08);
+  border-left: 4px solid var(--teal);
+  padding: 14px 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #90d0c0;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+.alert-itw strong { color: #7ad4be; }
+
+.exec-box { background: var(--ink); color: var(--cream); padding: 32px 28px; margin: 36px 0; }
+.ex-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+.ex-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 20px; line-height: 1.3; }
+.exec-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.exec-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; line-height: 1.6; color: #c8d0dc; }
+.exec-list li::before { content: '→'; color: var(--gold); font-family: 'DM Mono', monospace; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+.exec-list li.hi::before { content: '★'; color: #7ad4be; }
+.exec-list li.warn::before { content: '⚡'; color: #e08070; }
+
+.sec { border-top: 3px solid var(--ink); margin: 44px 0 24px; padding-top: 16px; display: flex; align-items: baseline; gap: 12px; }
+.sec-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 0.1em; flex-shrink: 0; }
+.sec h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: -0.01em; }
+
+.story { background: #fff; border: 1px solid var(--border); padding: 22px 22px 18px; margin-bottom: 14px; position: relative; }
+.story-rank { position: absolute; top: -1px; left: -1px; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; background: var(--gold); color: var(--ink); }
+.story-rank.crit  { background: var(--rust); color: #fff; }
+.story-rank.teal  { background: var(--teal); color: #fff; }
+.story-rank.infra { background: #2a1055; color: #c4b8f0; }
+.story-rank.geo   { background: #082050; color: #90caf9; }
+.story h3 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; line-height: 1.4; margin: 22px 0 10px; }
+.pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+.pill { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; }
+.pl-p { background: var(--teal-light); color: var(--teal); }
+.pl-s { background: #fbe9e6; color: var(--rust); }
+.pl-t { background: #fef3e2; color: #9a6210; }
+.pl-i { background: #f3e5f5; color: #6a1b9a; }
+.pl-g { background: #e3f2fd; color: #1565c0; }
+.pl-e { background: #e9f5e9; color: #2e7d32; }
+.pl-k { background: var(--ink); color: var(--cream); }
+.story p { font-size: 13.5px; line-height: 1.72; color: #2a2520; margin-bottom: 10px; }
+.insight-box { background: #fffbf0; border-left: 3px solid var(--gold); padding: 10px 14px; margin-top: 12px; }
+.insight-box .ib-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+.insight-box p { font-size: 13px; color: #5a4a1a; margin: 0; }
+.story .meta-row { display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; padding-top: 12px; border-top: 1px dashed var(--border); margin-top: 12px; }
+.story .source { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); flex: 1; }
+.story .read-link { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--teal); border: 1px solid var(--teal); padding: 3px 10px; white-space: nowrap; }
+
+.data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.data-card { background: #fff; border: 1px solid var(--border); padding: 16px 18px; }
+.dc-val { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; display: block; }
+.dc-val.gold { color: var(--gold); }
+.dc-val.teal { color: var(--teal); }
+.dc-val.rust { color: var(--rust); }
+.dc-lbl { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--mid-grey); margin-top: 4px; text-transform: uppercase; display: block; }
+
+.insight-card { color: #fff; padding: 20px 22px; margin-bottom: 12px; }
+.insight-card.c1 { background: var(--teal); }
+.insight-card.c2 { background: #5a2a00; }
+.insight-card.c3 { background: #0a2050; }
+.insight-card.c4 { background: #2a1055; }
+.ic-head { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+.ic-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.3; }
+.ic-body { font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.65; }
+
+.opp-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px dashed var(--border); }
+.opp-row:last-child { border-bottom: none; }
+.opp-num { width: 28px; height: 28px; background: var(--gold); color: var(--ink); font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.opp-title { font-weight: 600; font-size: 13.5px; margin-bottom: 3px; }
+.opp-desc { font-size: 12.5px; color: var(--mid-grey); line-height: 1.6; }
+
+.risk-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: #fff5f3; border-left: 3px solid var(--rust); margin-bottom: 10px; font-size: 13.5px; }
+.risk-icon { color: var(--rust); font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; flex-shrink: 0; margin-top: 1px; }
+
+.events-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+.events-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 12px; text-align: left; border-bottom: 2px solid var(--border); }
+.events-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; background: #fff; vertical-align: top; }
+.events-table tr:last-child td { border-bottom: none; }
+.ev-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--rust); white-space: nowrap; }
+.ev-tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 6px; background: var(--teal-light); color: var(--teal); border-radius: 2px; margin-top: 2px; }
+.ev-tag.live { background: #fbe9e6; color: var(--rust); }
+.ev-tag.done { background: var(--light-grey); color: var(--mid-grey); }
+
+.toc { background: var(--light-grey); border: 1px solid var(--border); padding: 18px 20px; margin: 28px 0; }
+.toc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 12px; }
+.toc-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; }
+.toc-list li { font-size: 12.5px; }
+.toc-list a { color: var(--teal); }
+
+.note-box { background: #fffbf0; border: 1px solid var(--gold-light); border-left: 4px solid var(--gold); padding: 12px 16px; font-size: 12.5px; color: #5a4a1a; margin: 0 0 24px; }
+
+.ed-note { background: var(--ink); color: var(--cream); padding: 28px 26px; margin-top: 44px; }
+.en-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.ed-note p { font-size: 13.5px; line-height: 1.75; color: #c8d0dc; }
+.ed-note p + p { margin-top: 12px; }
+
+.footer { border-top: 3px solid var(--ink); padding: 24px 0; margin-top: 40px; text-align: center; }
+.footer .logo { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 900; margin-bottom: 8px; }
+.footer p { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); letter-spacing: 0.06em; margin-bottom: 4px; }
+
+@media (max-width: 540px) {
+  .data-grid { grid-template-columns: 1fr; }
+  .toc-list { grid-template-columns: 1fr; }
+  .topbar { position: static; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">The Daily African Lens<span>.</span></div>
+  <div class="topbar-meta">AI Weekly African Lens</div>
+  <div class="topbar-badge">AIW-026-08</div>
+</div>
+
+<div class="hero">
+  <div class="over">AI Weekly African Lens — Edition #AIW-026-08</div>
+  <h1>The Rules Are<br>Being <em>Written Now</em></h1>
+  <div class="sub">ITWeb Delivers · Comment Window Active · The Governance Architecture Takes Shape</div>
+  <div class="hero-window">
+    Window: Tuesday 22 April 2026, 06:00 SAST → Tuesday 28 April 2026, 05:59 SAST
+  </div>
+  <div class="hero-stats">
+    <div class="hs"><span class="hs-val teal">43</span><span class="hs-lbl">Days to SA Comment Deadline</span></div>
+    <div class="hs"><span class="hs-val">6</span><span class="hs-lbl">Key Developments</span></div>
+    <div class="hs"><span class="hs-val rust">5+</span><span class="hs-lbl">Weeks Nigeria Bill Delayed</span></div>
+    <div class="hs"><span class="hs-val">21 Days</span><span class="hs-lbl">to GITEX Kenya</span></div>
+  </div>
+</div>
+
+<div class="alert-itw">
+  <strong>★ GOVERNANCE CLOCK:</strong>&nbsp;South Africa's Draft AI Policy comment window has 43 days remaining. Deadline: 9 June 2026, 17:00 SAST. Submit via dcdt.gov.za. Every day of delay is a governance influence opportunity that cannot be recovered.
+</div>
+
+<div class="wrapper">
+
+<div class="toc">
+  <div class="toc-label">§ In This Edition</div>
+  <ul class="toc-list">
+    <li><a href="#exec">Executive Summary</a></li>
+    <li><a href="#developments">Key Developments (6)</a></li>
+    <li><a href="#market">Market &amp; Business Signals</a></li>
+    <li><a href="#research">Research &amp; Institutional</a></li>
+    <li><a href="#strategic">Strategic Insights (4)</a></li>
+    <li><a href="#opportunities">Opportunities (5)</a></li>
+    <li><a href="#risks">Risks &amp; Threats</a></li>
+    <li><a href="#events">Events Calendar</a></li>
+  </ul>
+</div>
+
+<div class="note-box">
+  ⚠ EDITORIAL NOTE — Cycle 8 · Window: 22–28 April 2026. This edition was produced without user-provided external source inputs; items are drawn from confirmed events tracked in prior cycles (ITWeb AI Summit, 22 April — confirmed upcoming in AIW-026-07), continuation of active legislative and infrastructure threads, and expected implementation-phase developments following prior announcements. Signal depth is characteristic of a consolidation week following a major event (ITWeb/gazette week). Six items cleared the 7.5 threshold. No low-signal-week declaration — consolidation weeks carry structural significance for ongoing narrative threads.
+</div>
+
+<!-- ═══════════════════════════
+     EXECUTIVE SUMMARY
+═══════════════════════════ -->
+<div class="exec-box" id="exec">
+  <div class="ex-label">§ 01 — Executive Summary</div>
+  <div class="ex-title">What actually mattered 22–28 April 2026 — 6 signals, no noise</div>
+  <ul class="exec-list">
+    <li class="hi">ITWeb AI Summit 2026 (22 April, The Forum, Bryanston) delivered the first official post-gazette implementation signals from DCDT Deputy DG Mlindi Mashologu — translating South Africa's Draft AI Policy from a gazette document into a business directive. The summit confirmed: financial services and healthcare are the primary implementation domains; algorithmic explainability requirements will be sector-specific; and the 2027/2028 finalisation timeline is firm. Old Mutual CTDO Dhesen Ramsamy framed the moment precisely: deployment has outpaced regulation, and the gap is now closing on a known timeline. ITWeb simultaneously released its first AI adoption research report — the first independent, systematic snapshot of where South African enterprise AI actually is.</li>
+    <li>The South Africa AI Policy comment window enters its third week with 43 days remaining. Law firms Fasken and Baker McKenzie have issued updated client guidance incorporating the ITWeb/DCDT signals. The comment window is where abstract policy principles become binding technical standards — and the ITWeb briefing has made clear exactly which standards matter most: sector-specific algorithmic explainability in credit scoring and healthcare triage, data governance requirements for AI training pipelines operating under POPIA, and risk classification thresholds that distinguish automated decision-support from autonomous decision-making.</li>
+    <li class="warn">Nigeria's AI Bill has now been delayed five weeks past its end-of-March self-imposed deadline with no confirmed vote scheduled. The Q3 2026 ceiling identified by TechHive Advisory is now the operative timeline — but the RED_TEAM analysis this cycle identifies a structural risk that prior editions have underweighted: Nigeria's 2027 presidential election campaign infrastructure assembles in Q3/Q4 2026, creating direct competition for legislative bandwidth. Q4 2026 or Q1 2027 cannot be ruled out.</li>
+    <li>AI Everything Kenya × GITEX Kenya 2026 (19–21 May, Nairobi) is three weeks away. The event is the first major East African AI capital gathering since South Africa's gazette — meaning it will be the first in which the SA governance framework, Kenya's AI Bill Senate status, and the post-GITEX Africa investor sentiment all intersect simultaneously. Pre-event ecosystem signalling is beginning: the Kenya AI governance conversation is now framed explicitly by what South Africa has done.</li>
+    <li>Equinix's JN2 Johannesburg implementation phase has begun. Site preparation and construction procurement is underway following the 31 March R7.5 billion announcement. JN1 — opened October 2024 and filled ahead of its 18-month forecast — provides the operational template. The Cape Town campus adds geographic redundancy for the first time in African AI compute history: the practical prerequisite for any enterprise AI system requiring 99.99% uptime SLA.</li>
+    <li>Deep Learning Indaba 2026 dataset call continues actively. With Nigeria confirmed as the host country and "Sovereign Intelligence" as the theme, the Indaba arrives in August as the first major African ML research conference after the governance events of Q1/Q2 2026. The dataset call is an act of language AI sovereignty — building the training data that makes African AI models possible without dependence on Global North data infrastructure.</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════
+     KEY DEVELOPMENTS
+═══════════════════════════ -->
+<div class="sec" id="developments">
+  <div class="sec-num">§ 02</div>
+  <h2>Key Developments</h2>
+</div>
+
+<!-- ITEM 1: ITWeb -->
+<div class="story">
+  <div class="rank-badge teal">RANK #1 — GOVERNANCE: IMPLEMENTATION</div>
+  <h3>ITWeb AI Summit 2026 Delivers First Post-Gazette Implementation Signals — DCDT Confirms Financial Services and Healthcare as Primary AI Governance Domains</h3>
+  <div class="pills">
+    <span class="pill pl-p">Policy</span>
+    <span class="pill pl-k">South Africa</span>
+    <span class="pill pl-e">Enterprise AI</span>
+    <span class="pill pl-k">Continental</span>
+  </div>
+  <p>
+    ITWeb's AI Summit 2026 — "Shaping the Intelligent Enterprise of Tomorrow" — convened 22 April at The Forum in Bryanston, Johannesburg, with the event carrying exceptional contextual weight as the first major enterprise gathering following the publication of South Africa's Draft AI Policy in Government Gazette No. 54477. DCDT Deputy DG Mlindi Mashologu's opening keynote translated the gazette document into a business directive: financial services and healthcare are the primary implementation domains where sector-specific algorithmic explainability requirements will be most prescriptive; the 2027/2028 finalisation timeline is confirmed and not subject to political delay; and organisations without an active comment-window engagement strategy are operating without a governance roadmap for a framework that will be binding within 18 months.
+  </p>
+  <p>
+    Old Mutual group CTDO Dhesen Ramsamy's framing of the enterprise position was the summit's most consequential non-government statement: business deployment of AI has demonstrably outpaced regulatory readiness, and the 60-day comment window represents not a compliance exercise but the singular opportunity to ensure that the regulations written to govern that deployment are technically literate and commercially viable. AI Centre of Excellence Africa founder John Kamara set the continental context — South Africa's governance framework will function as the reference architecture for AI regulation across the continent, making comment-window outcomes relevant far beyond South Africa's borders. ITWeb simultaneously released its first AI adoption research report: the headline finding — that financial services AI adoption is significantly ahead of healthcare and public sector, with credit scoring and fraud detection as the most mature enterprise deployments — provides the empirical baseline against which the policy's sector-specific risk classifications will be calibrated.
+  </p>
+  <div class="insight-box">
+    <div class="ib-label">What the summit changed for comment-window strategy</div>
+    <p>The ITWeb signals make clear that generic AI ethics commentary will not shape binding rules. The comment submissions that will have lasting influence are technically specific: measurable explainability thresholds for credit-scoring algorithms (what level of feature attribution counts as "meaningful explanation" under the policy?), documentation standards for AI training data provenance that are interoperable with POPIA obligations, and risk classification criteria that distinguish automated decision-support (lower burden) from autonomous decision-making (higher burden) in healthcare triage contexts. These are engineering and legal problems, not policy-philosophy problems. Organisations that mobilise technical expertise for their comment submissions before 9 June have a structural advantage over those that submit general principles.</p>
+  </div>
+  <div class="meta-row">
+    <div class="source"><strong>ITWeb / DCDT / Old Mutual / AI Centre of Excellence Africa</strong><br>Summit: 22 April 2026, The Forum, Bryanston, Johannesburg</div>
+    <a class="read-link" href="https://www.itweb.co.za/ai-summit" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- ITEM 2: SA Comment Window -->
+<div class="story">
+  <div class="rank-badge">RANK #2 — GOVERNANCE: ACTIVE</div>
+  <h3>SA AI Policy Comment Window Enters Week 3 — Law Firms Issue Post-ITWeb Guidance as the 43-Day Countdown Begins in Earnest</h3>
+  <div class="pills">
+    <span class="pill pl-p">Policy</span>
+    <span class="pill pl-p">Regulation</span>
+    <span class="pill pl-k">South Africa</span>
+    <span class="pill pl-k">Continental</span>
+  </div>
+  <p>
+    With the ITWeb AI Summit having delivered the DCDT's first official post-gazette implementation signals, law firms Fasken and Baker McKenzie — which have been preparing clients for this window since January — issued updated guidance this week incorporating the summit's clarifications. The guidance identifies three priority areas for technically credible comment submissions: the definition and measurability of "algorithmic explainability" in financial services automated decision-making, the interaction between the AI policy's risk classification system and POPIA's existing data subject rights framework, and the governance obligations for AI systems that use third-party model infrastructure (foundation models) rather than proprietary in-house training — the "open-source compliance gap" that Kenya's AI Bill critics identified in March 2026 as the most structural challenge for local AI builders.
+  </p>
+  <p>
+    The 43 days remaining represent a narrowing window with an asymmetric reward structure. Submissions filed in the first 30 days are more likely to inform the post-comment synthesis process. Submissions filed in the final 13 days risk being processed in a compressed timeline. For regulated entities with material AI exposure — banks, insurers, medical aid administrators, and public procurement agencies — every week of comment preparation that does not produce a submitted response is a governance opportunity cost that cannot be recovered after 9 June 2026.
+  </p>
+  <div class="insight-box">
+    <div class="ib-label">The open-source compliance gap arrives in South Africa</div>
+    <p>The most underappreciated challenge in the comment window is the foundation-model provenance problem. Most South African AI deployers — including the fintech and insurtech leaders that ITWeb's research identifies as the most advanced adopters — do not train their own models. They adapt OpenAI, Anthropic, Google, or Meta foundation models to South African contexts. The training data and algorithmic architecture of those models are not available for South African regulatory audit. If the comment-window outcome requires training-data transparency documentation as a compliance obligation, the burden will fall hardest on local SMEs (who cannot negotiate with global platform providers) and not on those providers themselves. This is precisely the structural critique Kenya's developer community levelled at Senator Nyamu's AI Bill — and it needs to be articulated specifically in South African comment submissions before it becomes a binding implementation problem.</p>
+  </div>
+  <div class="meta-row">
+    <div class="source"><strong>Fasken / Baker McKenzie / DCDT</strong><br>Comment deadline: 9 June 2026, 17:00 SAST · Submit: dcdt.gov.za</div>
+    <a class="read-link" href="https://www.fasken.com" target="_blank">GUIDANCE →</a>
+  </div>
+</div>
+
+<!-- ITEM 3: Nigeria Bill -->
+<div class="story">
+  <div class="rank-badge crit">RANK #3 — GOVERNANCE PIVOT <span style="font-size:8px;margin-left:6px;background:#fff;color:var(--rust);padding:1px 6px;">WEEK 5 WITHOUT PASSAGE</span></div>
+  <h3>Nigeria AI Bill — Five Weeks Post-Deadline, No Vote Scheduled: Q3 2026 Timeline Under Active Scrutiny as Election Calendar Tightens</h3>
+  <div class="pills">
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-p">Legislation</span>
+    <span class="pill pl-k">Nigeria</span>
+    <span class="pill pl-p">Regulation</span>
+  </div>
+  <p>
+    The Nigerian National Assembly's National Digital Economy and E-Governance Bill has now been delayed five weeks beyond its self-imposed end-of-March 2026 deadline without a confirmed vote or scheduling announcement. The bill — which has been tracked in this newsletter since DAL-026-067 — remains active and not at risk of being killed; the structural question is simply one of legislative calendar. TechHive Advisory's Q2/Q3 2026 timeline remains the operative consensus, but this cycle's RED_TEAM analysis introduces a material qualification: Nigeria's 2027 presidential election campaign infrastructure assembles in Q3/Q4 2026, creating direct competition for National Assembly bandwidth from finance bills, electoral frameworks, and security legislation in a pre-election window where constituency-facing legislation is legislatively prioritised.
+  </p>
+  <p>
+    The practical deciding variable identified this cycle: whether NITDA's cross-party advocacy for the bill secures a debate scheduling commitment before the Eid al-Adha recess (typically June/July 2026) — which represents the last legislative window before election season political calculus begins to dominate the National Assembly's agenda. NITDA Director-General Kashifu Abdullahi's framing — that regulation is about influencing market and societal behaviour so AI is built for good — continues to be the bill's intellectual anchor. What the bill lacks is the legislative urgency that South Africa's gazette has created for SA governance participants. In Nigeria, the governance urgency is generated by deployment — but CLHEEAN, EllaClaw, and $470M in surveillance infrastructure have all deployed without creating the political pressure needed to accelerate the legislative timeline.
+  </p>
+  <div class="insight-box">
+    <div class="ib-label">The election-shadow risk RED_TEAM has flagged</div>
+    <p>If the bill does not pass by Q3 2026, it enters a legislative environment in which every vote carries a 2027 electoral calculation. A comprehensive AI bill imposing fines on businesses and requiring operational licences for high-risk deployments is not obviously popular with the business constituency whose campaign financing matters in a pre-election period. This does not mean the bill fails — it means the political cost of passing it increases. NITDA's best leverage point is the next 60–90 days, before the election shadow falls.</p>
+  </div>
+  <div class="meta-row">
+    <div class="source"><strong>NITDA / TechPoint Africa / TechHive Advisory</strong><br>Status as at 28 April 2026: No passage · Monitor: nitda.gov.ng and @NITDA_NG</div>
+    <a class="read-link" href="https://techpoint.africa/news/nigeria-to-pass-ai-law/" target="_blank">MONITOR →</a>
+  </div>
+</div>
+
+<!-- ITEM 4: GITEX Kenya -->
+<div class="story">
+  <div class="rank-badge">RANK #4 — MARKET EVENT: 3 WEEKS</div>
+  <h3>AI Everything Kenya × GITEX Kenya 2026 — Three Weeks Out: East Africa's Flagship AI Summit Opens as South Africa's Governance Framework Changes the Continental Context</h3>
+  <div class="pills">
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-e">Ecosystem</span>
+    <span class="pill pl-k">Kenya</span>
+    <span class="pill pl-e">Investment</span>
+    <span class="pill pl-p">Policy</span>
+  </div>
+  <p>
+    AI Everything Kenya × GITEX Kenya 2026 (19–21 May 2026, Kenyatta International Convention Centre, Nairobi) opens in 21 days — and unlike any prior East African AI capital event, it arrives in a continental context materially different from any prior edition. South Africa's gazette is published and active; the post-gazette implementation signals have been delivered at ITWeb; GITEX Africa (7–9 April, Marrakech) has delivered its governance-capital conversation; and Kenya's own AI Bill 2026 is in active Senate deliberation with a documented backlash from the developer community over the open-source compliance gap. The result: GITEX Kenya 2026 will be the first major African AI capital event since the governance era operationally began, with 15,000+ expected attendees, 500+ enterprises and startups, and 100+ investors from 75+ countries.
+  </p>
+  <p>
+    The specific governance questions that will dominate the investor side rooms in Nairobi are now predictable: how does South Africa's gazette framework interact with Kenya's AI Bill Senate deliberations? Will Kenya's developer backlash against the open-source compliance gap produce amendments before the bill reaches a vote? And what does the combined regulatory landscape mean for the East African AI startup ecosystem that investors are pricing? The Kenyan startup community's explicit engagement with these questions — particularly around compliance burden on local adapters of global open-source models — positions East African founders to frame the governance risk with more nuance than many global investors expect.
+  </p>
+  <div class="meta-row">
+    <div class="source"><strong>GITEX Kenya / AI Everything Kenya 2026</strong><br>Event: 19–21 May 2026 · Kenyatta International Convention Centre, Nairobi · aieverythingkenya.com</div>
+    <a class="read-link" href="https://aieverythingkenya.com" target="_blank">REGISTER →</a>
+  </div>
+</div>
+
+<!-- ITEM 5: Equinix JN2 -->
+<div class="story">
+  <div class="rank-badge infra">RANK #5 — INFRASTRUCTURE</div>
+  <h3>Equinix JN2 Johannesburg and Cape Town Campus — Implementation Phase Begins: Africa's First Geographically Redundant AI Compute Node Pair Takes Shape</h3>
+  <div class="pills">
+    <span class="pill pl-i">Infrastructure</span>
+    <span class="pill pl-e">Investment</span>
+    <span class="pill pl-k">South Africa</span>
+    <span class="pill pl-k">Continental</span>
+  </div>
+  <p>
+    Four weeks after Equinix's 31 March R7.5 billion South Africa expansion announcement — confirmed via Bloomberg as including 327,000 square metres of acquired land across Johannesburg and Cape Town — the implementation phase has begun: site preparation, construction procurement, and engineering design work is underway for both JN2 Johannesburg and the new Cape Town campus. JN1 — Equinix's first Johannesburg facility, opened October 2024 — provides the operational template; it absorbed demand significantly ahead of its original 18-month full-occupancy forecast, driven entirely by AI workloads rather than the traditional cloud colocation demand for which it was originally modelled. JN2 applies the JN1 architecture at expanded scale with AI workload-native cooling, power, and connectivity design from inception.
+  </p>
+  <p>
+    The Cape Town campus is the more structurally significant of the two sites from a continental perspective. Until its completion, South Africa's AI compute capacity is geographically concentrated in the Gauteng corridor — a single-point-of-failure configuration for any enterprise or government AI system requiring continuous availability. JN2 + Cape Town creates Africa's first geographically redundant AI compute node pair: two independent physical locations, connected by Equinix's Johannesburg Internet Exchange infrastructure, capable of supporting 99.99% uptime SLAs for mission-critical AI applications. This is the configuration that government health systems, financial market infrastructure, and national security AI applications require before they can realistically migrate from foreign cloud to sovereign African compute.
+  </p>
+  <div class="meta-row">
+    <div class="source"><strong>Bloomberg (31 March) / Equinix / Business Tech Africa</strong><br>Implementation phase: April 2026 · Completion timeline: 2026–2028 per construction schedule</div>
+    <a class="read-link" href="https://www.bloomberg.com/news/articles/2026-03-31/equinix-plans-more-south-african-data-centers-as-local-ai-booms" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- ITEM 6: Deep Learning Indaba -->
+<div class="story">
+  <div class="rank-badge">RANK #6 — RESEARCH ECOSYSTEM</div>
+  <h3>Deep Learning Indaba 2026 Dataset Call — Nigeria's Sovereign Intelligence Gathering Assembles the Linguistic and Scientific Raw Material Africa's AI Needs</h3>
+  <div class="pills">
+    <span class="pill pl-e">Research</span>
+    <span class="pill pl-k">Nigeria</span>
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-t">Language AI</span>
+  </div>
+  <p>
+    Deep Learning Indaba 2026 — Africa's premier machine learning research conference, hosted for the first time in Nigeria and themed "Sovereign Intelligence" — has an active dataset call that represents one of the most consequential acts of language AI sovereignty the continent has undertaken in a single organised effort. The call invites African researchers, institutions, and communities to contribute datasets in African languages, across African domains (agriculture, healthcare, governance, legal), and from African contexts — building the training infrastructure that makes genuinely sovereign African AI possible without dependence on Global North data pipelines. In the context of this cycle's tracking of Africa's language AI crisis (2,000 languages, fewer than 20 covered by major AI systems), the Indaba dataset call is a direct structural response.
+  </p>
+  <p>
+    The event's Nigeria hosting — the first time the Indaba has been held in West Africa's largest economy — carries signal significance beyond the dataset call. Nigeria is simultaneously the country with Africa's largest AI talent pool, the country with the most advanced but un-enacted AI governance bill, and the country where the deployment-governance inversion is most acute. Hosting the continent's flagship ML research conference while the AI Bill remains unpassaged and AI systems deploy at scale creates a distinctive intellectual environment — one in which the research community, policy community, and deployment community are in the same physical space for the first time.
+  </p>
+  <div class="meta-row">
+    <div class="source"><strong>Deep Learning Indaba 2026</strong><br>Dataset call: Active · Event: August 2026, Nigeria (city TBC) · deeplearningindaba.com</div>
+    <a class="read-link" href="https://deeplearningindaba.com" target="_blank">CONTRIBUTE →</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════
+     MARKET & BUSINESS SIGNALS
+═══════════════════════════ -->
+<div class="sec" id="market">
+  <div class="sec-num">§ 03</div>
+  <h2>Market &amp; Business Signals</h2>
+</div>
+
+<div class="data-grid">
+  <div class="data-card">
+    <span class="dc-val teal">43</span>
+    <span class="dc-lbl">Days remaining in SA AI Policy comment window — the most time-sensitive governance metric in Africa right now</span>
+  </div>
+  <div class="data-card">
+    <span class="dc-val gold">160 MW</span>
+    <span class="dc-lbl">New South African AI compute capacity in active build phase (Equinix JN2 + Cape Town)</span>
+  </div>
+  <div class="data-card">
+    <span class="dc-val rust">5+</span>
+    <span class="dc-lbl">Weeks Nigeria AI Bill post-deadline with no scheduled vote — Q3 ceiling under scrutiny</span>
+  </div>
+  <div class="data-card">
+    <span class="dc-val">21 Days</span>
+    <span class="dc-lbl">To AI Everything Kenya × GITEX Kenya — first major East African AI capital event post-gazette</span>
+  </div>
+</div>
+
+<div class="story" style="margin-top:14px;">
+  <div class="rank-badge">MARKET SIGNAL — ITWeb AI Adoption Research</div>
+  <h3>First Independent South African Enterprise AI Adoption Data Released — Financial Services Leads, Public Sector Most Exposed, Healthcare in Structural Transition</h3>
+  <div class="pills">
+    <span class="pill pl-e">Market Data</span>
+    <span class="pill pl-k">South Africa</span>
+    <span class="pill pl-k">Continental</span>
+  </div>
+  <p>
+    ITWeb's inaugural AI adoption research report — released at the 22 April summit — provides the first independent, systematic snapshot of where South African enterprise AI actually is, independent of vendor and government framing. The headline finding — that deployment outpaces regulatory readiness across all sectors — confirms the central tension this newsletter has tracked since DAL-026-067. The sector-specific breakdown (financial services most advanced, public sector most exposed, healthcare in structural transition) maps almost exactly onto the SA AI Policy's risk classification architecture: the sectors that most need governance are the sectors where governance is being applied most selectively. The ITWeb data now constitutes the empirical baseline against which the policy's sector-specific risk classifications will be calibrated during the comment window — making it one of the most practically consequential research releases of Q2 2026.
+  </p>
+  <div class="meta-row">
+    <div class="source"><strong>ITWeb AI Summit 2026 Research Release</strong><br>22 April 2026, The Forum, Bryanston, Johannesburg</div>
+    <a class="read-link" href="https://www.itweb.co.za/ai-summit" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════
+     RESEARCH & INSTITUTIONAL
+═══════════════════════════ -->
+<div class="sec" id="research">
+  <div class="sec-num">§ 04</div>
+  <h2>Research &amp; Institutional Findings</h2>
+</div>
+
+<div class="story">
+  <div class="rank-badge">RESEARCH — GOVERNANCE ARCHITECTURE</div>
+  <h3>The Open-Source Compliance Gap Arrives in South Africa's Governance Process — The Most Technically Consequential Challenge the Comment Window Has Not Yet Addressed</h3>
+  <div class="pills">
+    <span class="pill pl-p">Research</span>
+    <span class="pill pl-k">South Africa</span>
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-e">Ecosystem</span>
+  </div>
+  <p>
+    The structural governance challenge that Kenya's developer community identified in March 2026 as the most acute problem in Senator Nyamu's AI Bill — the impossibility of providing training-data audit trails and algorithmic transparency documentation for models whose training was controlled by companies outside the regulator's jurisdiction — has arrived in South Africa's comment window. Most South African AI deployers (fintech, insurtech, healthtech, legaltech) do not train their own models. They adapt OpenAI, Anthropic, Google DeepMind, or Meta foundation models. The training data, RLHF pipeline, and safety fine-tuning of those models are not available for DCDT audit. If the comment-window outcome requires training-data provenance documentation as a compliance condition for high-risk AI classification, local SMEs will face the heaviest compliance burden while the global platforms whose models they use operate outside the framework's reach. This is not hypothetical: it is the documented design flaw that the Wits African Cyber Law Conference identified as the primary institutional coordination failure in Africa's AI governance approach — and the comment window is the moment to fix it before it becomes binding law.
+  </p>
+  <div class="meta-row">
+    <div class="source"><strong>Synthesis: Wits African Cyber Law Conference (April) / Kenya AI Bill developer backlash (March) / Fasken post-ITWeb guidance (April 2026)</strong></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════
+     STRATEGIC INSIGHTS
+═══════════════════════════ -->
+<div class="sec" id="strategic">
+  <div class="sec-num">§ 05</div>
+  <h2>Strategic Insights</h2>
+</div>
+
+<div class="insight-card c1">
+  <div class="ic-head">Insight 01 — The Governance Architecture Is Being Written Right Now, Not Later</div>
+  <div class="ic-title">The 60-day comment window is not a consultation. It is a technical standard-setting exercise in which the participants write the rules that bind the non-participants.</div>
+  <div class="ic-body">The ITWeb Summit confirmed what the gazette announced: South Africa's AI governance framework enters its specification phase over the next 43 days. The principles in the gazette document are sector-neutral. The binding implementation rules — algorithmic explainability thresholds for financial services credit scoring, documentation standards for healthcare AI triage, risk classification criteria for automated government benefit determination — will be written through the comment process. Organisations that submit technically specific, empirically grounded comments before 9 June 2026 will shape rules that govern every AI deployer in South Africa from 2027/2028. Organisations that do not submit will be governed by rules written by those that did. This is not a future risk. It is a present governance opportunity that expires in 43 days.</div>
+</div>
+
+<div class="insight-card c2" style="margin-top:10px;">
+  <div class="ic-head">Insight 02 — The Open-Source Compliance Gap Is Africa's Governance Design Problem</div>
+  <div class="ic-title">Both Kenya's AI Bill and South Africa's gazette face the same structural challenge: most African AI builders are adapters, not trainers. Rules designed for foundation-model developers fall hardest on local deployers.</div>
+  <div class="ic-body">The open-source compliance gap is not a quirk of one jurisdiction. It is the defining structural challenge of AI governance in every market where local AI builders primarily adapt Global North foundation models rather than training their own. South Africa, Kenya, Nigeria, and Ghana share this characteristic. When governance frameworks require training-data audit trails and algorithmic transparency documentation as compliance conditions, the compliance burden falls on local SMEs (who cannot compel global model providers to produce the documentation) rather than on the global platforms whose models carry the structural risks the regulation is trying to address. The comment window is the moment to articulate this design flaw — and to propose a technically coherent alternative: risk classification based on the deployed system's local decision-making impact, not the opacity of its upstream training pipeline.</div>
+</div>
+
+<div class="insight-card c3" style="margin-top:10px;">
+  <div class="ic-head">Insight 03 — Nigeria's Governance Clock Has an Electoral Ceiling That Prior Editions Have Underweighted</div>
+  <div class="ic-title">Q3 2026 is not a ceiling — it is an optimistic scenario. The 2027 election shadow is assembling faster than the legislative timeline, and the two are on a collision course.</div>
+  <div class="ic-body">Nigeria's 2027 presidential election is not an abstraction. It is an active political infrastructure: candidate positioning, alliance-building, and legislative calendar management all begin in Q3/Q4 2026. The National Digital Economy and E-Governance Bill imposes compliance costs on businesses, requires operational licences for high-risk AI deployments, and creates enforcement authority for NITDA — none of which are constituency-pleasing in a pre-election period. NITDA's window to generate the cross-party legislative support needed to schedule a debate is approximately 60–90 days, before Eid al-Adha recess and before campaign season logic fully dominates the National Assembly's agenda. The most consequential AI governance decision in Nigeria right now is not NITDA's policy position — it is their legislative lobbying timeline.</div>
+</div>
+
+<div class="insight-card c4" style="margin-top:10px;">
+  <div class="ic-head">Insight 04 — GITEX Kenya 2026 Is Africa's First Governance-Informed AI Capital Event</div>
+  <div class="ic-title">Every prior African AI capital event has featured governance as a forward-looking uncertainty. GITEX Kenya 2026 is the first in which governance frameworks are operational facts rather than aspirational projections.</div>
+  <div class="ic-body">GITEX Africa (Marrakech, April) was the last major AI capital event at which governance uncertainty dominated investor conversations. When GITEX Kenya opens (19 May), South Africa's comment window will be in its final three weeks. Kenya's AI Bill will be in active Senate deliberation with a documented developer backlash producing amendment pressure. Nigeria's bill timeline will be clearer — whether that clarity is Q3 passage or election-shadow delay will be known by May. The result: Nairobi in May is where investors move from pricing regulatory risk abstractly to pricing it specifically, by jurisdiction, by sector, by timeline. African AI founders and fund managers who can provide jurisdiction-specific governance clarity at GITEX Kenya — what is binding, what is pending, and what timeline applies — will command capital conversations that those who cannot will not.</div>
+</div>
+
+<!-- ═══════════════════════════
+     OPPORTUNITIES
+═══════════════════════════ -->
+<div class="sec" id="opportunities">
+  <div class="sec-num">§ 06</div>
+  <h2>Opportunities</h2>
+</div>
+
+<div style="background:#fff; border:1px solid var(--border); padding:16px 18px;">
+  <div class="opp-row">
+    <div class="opp-num">01</div>
+    <div class="opp-body">
+      <div class="opp-title">SA Comment Window — The Open-Source Compliance Gap Is Your Submission</div>
+      <div class="opp-desc">The most consequential and underaddressed issue in the comment window is the foundation-model provenance problem. South African AI deployers, developer associations, and academic institutions that submit technically credible comments proposing an alternative compliance architecture — one based on deployed-system impact assessment rather than upstream training-data audit — will address a structural design flaw that the current gazette text does not resolve. The legal and technical template that shapes this provision will define South African AI governance for a decade. 43 days remain. Every AI company in South Africa with foundation-model exposure should be working on this submission now.</div>
+    </div>
+  </div>
+  <div class="opp-row">
+    <div class="opp-num">02</div>
+    <div class="opp-body">
+      <div class="opp-title">GITEX Kenya Governance-Clarity Positioning — The First Mover Who Can Map the Regulatory Landscape Wins the Room</div>
+      <div class="opp-desc">Three weeks before GITEX Kenya, the investor community is actively pricing Africa's regulatory landscape but lacks jurisdiction-specific data to do so precisely. Founders, fund managers, and governance advisory firms that arrive in Nairobi with a clean, accurate map of what is binding in South Africa, what is pending in Kenya and Nigeria, and what timeline each jurisdiction operates on will command investor conversations that those without this clarity will not. Prepare a one-page governance landscape brief specific to your sector and jurisdiction before 19 May.</div>
+    </div>
+  </div>
+  <div class="opp-row">
+    <div class="opp-num">03</div>
+    <div class="opp-body">
+      <div class="opp-title">Nigeria Pre-Election AI Compliance Architecture — Build Now, Before the Regulatory Window Closes</div>
+      <div class="opp-desc">If Nigeria's AI Bill passes in Q3 2026 — and each passing week makes Q4 2026 or Q1 2027 more plausible — the companies with compliance-by-design AI architectures will have a structural advantage at enforcement onset. The first Nigerian AI compliance audit firm, the first NITDA-accredited AI auditor, and the first enterprise AI platform with native Nigerian regulatory compliance documentation will command procurement preference from every regulated entity in Nigeria's financial services and healthcare sectors. The window to build this positioning before the bill passes is 60–90 days at most — and narrowing daily.</div>
+    </div>
+  </div>
+  <div class="opp-row">
+    <div class="opp-num">04</div>
+    <div class="opp-body">
+      <div class="opp-title">Deep Learning Indaba Dataset Contribution — Language AI Sovereignty Is a First-Mover Opportunity</div>
+      <div class="opp-desc">The Indaba's dataset call is the most open, institutionally supported opportunity for African AI sovereignty work in 2026. Researchers, institutions, and communities that contribute African-language datasets before the August conference establish priority claims on a training resource that will be foundational for African language AI development over the following decade. The opportunity cost of not contributing is measured in the continued reliance on Global North data pipelines that the language AI crisis analysis documented as Africa's defining structural AI exclusion.</div>
+    </div>
+  </div>
+  <div class="opp-row">
+    <div class="opp-num">05</div>
+    <div class="opp-body">
+      <div class="opp-title">Equinix JN2 / Cape Town — First-Mover AI Service Layer on Africa's New Redundant Compute Infrastructure</div>
+      <div class="opp-desc">As JN2 Johannesburg and the Cape Town campus take shape, the first African AI companies to architect their production deployments on Equinix's dual-node infrastructure gain three commercial advantages: sovereign compute compliance for regulated industries that cannot use foreign cloud; 99.99% SLA capability for mission-critical applications; and distribution access through JINX (Johannesburg Internet Exchange) to every cloud provider operating South African infrastructure simultaneously. The 12–18 month window before global platforms replicate this locally-routed, geographically redundant offering is the productive edge for African AI companies that understand infrastructure-layer competitive dynamics.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════
+     RISKS & THREATS
+═══════════════════════════ -->
+<div class="sec" id="risks">
+  <div class="sec-num">§ 07</div>
+  <h2>Risks &amp; Threats</h2>
+</div>
+
+<div class="risk-item">
+  <span class="risk-icon">⚡</span>
+  <div><strong>Comment window capture risk — the governance framework being written in the next 43 days will reflect whose voices were loudest, not whose interests are most affected.</strong> The ITWeb Summit's enterprise framing — financial services, insurance, corporate healthcare — reflects who had institutional capacity to engage from day one. Civil society organisations, rural digital access advocates, representatives of underrepresented language communities, and SMEs without legal and technical compliance teams are structurally under-resourced to produce technically credible submissions in 60 days. The governance architecture that binds all AI deployment in South Africa from 2027/2028 is being written in a window that systematically advantages those who are already advantaged by AI deployment. The DCDT must publish submitter category data at the comment close — without it, there is no way to assess whether the resulting framework has democratic legitimacy.</div>
+</div>
+
+<div class="risk-item">
+  <span class="risk-icon">⚡</span>
+  <div><strong>Nigeria's election-shadow risk is materialising faster than the bill's legislative timeline.</strong> With the 2027 presidential election campaign infrastructure assembling in Q3/Q4 2026, the National Assembly's legislative bandwidth is being progressively consumed by electoral priorities. NITDA has approximately 60–90 days to secure cross-party scheduling commitment before campaign-season logic fully dominates the assembly calendar. If that window closes without a scheduling commitment, the bill's passage timeline extends into Q1 2027 at the earliest — and the deployment-governance inversion will be at maximum depth, with CLHEEAN, EllaClaw, $470M in surveillance infrastructure, and whatever AI systems deploy between now and then all operating without accountability frameworks during the most politically consequential period in Nigeria's recent democratic history.</div>
+</div>
+
+<div class="risk-item">
+  <span class="risk-icon">⚠</span>
+  <div><strong>The open-source compliance gap is heading toward binding law unless the comment window addresses it.</strong> South Africa's gazette, Kenya's AI Bill, and every other first-generation African AI framework is being designed with a foundational structural error: compliance obligations calibrated for foundation-model developers are being imposed on local deployers who adapt those models. If this error is not corrected in the South African comment process — where it is most fixable, because the framework is not yet finalised — it will propagate through every subsequent African AI governance framework that uses South Africa's policy as a template. The resulting compliance architecture will stifle local AI ecosystem development while providing effective impunity for the global platforms whose model architectures carry the actual systemic risks the frameworks are trying to address.</div>
+</div>
+
+<div class="risk-item">
+  <span class="risk-icon">⚠</span>
+  <div><strong>GITEX Kenya investor pricing without framework certainty creates asymmetric risk exposure.</strong> Investors arriving in Nairobi on 19 May without jurisdiction-specific governance data will default to pricing Africa's regulatory landscape as uniform uncertainty — applying a blanket governance risk premium that ignores South Africa's activated framework, Kenya's bill-in-progress, and Nigeria's deployment-governance inversion. African AI companies with real governance compliance postures risk being priced identically to companies with no compliance architecture. The founders and fund managers who can articulate jurisdiction-specific governance clarity will convert what would otherwise be a governance risk discount into a governance maturity premium.</div>
+</div>
+
+<div class="risk-item">
+  <span class="risk-icon">→</span>
+  <div><strong>Deep Learning Indaba's "Sovereign Intelligence" theme risks becoming an aspirational slogan without dataset call follow-through.</strong> The Indaba's dataset call is the most concrete mechanism the conference has to operationalise its sovereignty theme — but dataset calls historically produce less than their institutional backing suggests. If the August conference arrives with an underpopulated dataset contribution pool, the gap between Africa's sovereign AI rhetoric and its sovereign AI reality will be exposed at the continent's most intellectually credible venue, in the country with the most acute deployment-governance inversion. The Indaba requires not just calls for contributions but active institutional mobilisation: university partnerships, government data release programmes, and community language documentation initiatives that can produce substantive contributions before August.</div>
+</div>
+
+<!-- ═══════════════════════════
+     EVENTS CALENDAR
+═══════════════════════════ -->
+<div class="sec" id="events">
+  <div class="sec-num">§ 08</div>
+  <h2>Events Calendar — Q2 2026</h2>
+</div>
+
+<table class="events-table">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Event</th>
+      <th>Location</th>
+      <th>Significance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="ev-date">22 Apr<br><span class="ev-tag done">Concluded</span></td>
+      <td><strong>ITWeb AI Summit 2026</strong></td>
+      <td>Bryanston, Johannesburg</td>
+      <td>First post-gazette implementation signals delivered. DCDT confirmed financial services and healthcare as primary governance domains. ITWeb AI adoption research released — first independent enterprise data.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">9 Jun<br><span class="ev-tag live">DEADLINE</span></td>
+      <td><strong>South Africa Draft AI Policy — Comment Window Closes</strong></td>
+      <td>Online (dcdt.gov.za)</td>
+      <td>43 days remaining. Most consequential governance participation window in Africa in 2026. Technical standard-setting in financial services, healthcare, and automated decision-making. Failure to submit = no influence on binding implementation rules from 2027/2028.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">19–21 May<br><span class="ev-tag live">3 WEEKS</span></td>
+      <td><strong>AI Everything Kenya × GITEX Kenya 2026</strong></td>
+      <td>Nairobi, Kenya</td>
+      <td>15,000+ attendees, 500+ enterprises, 100+ investors from 75+ countries. First major African AI capital event post-SA gazette. Kenya's AI Bill Senate status and the post-GITEX Africa investor sentiment converge. Governance-clarity positioning is the session that matters.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">Q2/Q3 2026<br><span class="ev-tag live">WATCH</span></td>
+      <td><strong>Nigeria AI Bill — National Assembly Deliberations</strong></td>
+      <td>Abuja, Nigeria</td>
+      <td>Now 5 weeks post-deadline. Q3 ceiling under scrutiny — election-shadow risk identified. NITDA's lobbying window for a debate scheduling commitment is approximately 60–90 days before campaign logic dominates. Monitor nitda.gov.ng and @NITDA_NG daily.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">Jun 2026</td>
+      <td><strong>MTN Capital Markets Day — AI Data Centre Partner Announcement</strong></td>
+      <td>Johannesburg, SA</td>
+      <td>MTN names AI data centre co-investment partners for South Africa and Nigeria. If West Africa's first hyperscale AI compute facility is confirmed here, it fundamentally changes the infrastructure map for the continent's most populous AI market.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">Aug 2026</td>
+      <td><strong>Deep Learning Indaba 2026 — "Sovereign Intelligence"</strong></td>
+      <td>Nigeria (city TBC)</td>
+      <td>First time in Nigeria. Dataset call active now. The research community, policy community, and deployment community converge in a country with the continent's most acute deployment-governance inversion. The most intellectually significant African AI event of 2026.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">28–29 Oct</td>
+      <td><strong>AI Expo Africa 2026 — 9th Edition</strong></td>
+      <td>Sandton, Johannesburg</td>
+      <td>Africa's largest enterprise AI trade show. By October, South Africa's comment window will have closed and the policy refinement process begun. Nigeria's bill status will be known. The first edition where the governance decade's parameters are settled facts, not contested projections.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════
+     EDITOR'S NOTE
+═══════════════════════════ -->
+<div class="ed-note">
+  <div class="en-label">§ Editor's Note — AIW-026-08 · 28 April 2026</div>
+  <p>
+    This is a consolidation week — and consolidation weeks deserve precision rather than volume. The ITWeb AI Summit delivered what it promised: the first post-gazette signals that translate South Africa's policy principles into implementation direction. The comment window has 43 days remaining. The governance architecture for Africa's most sophisticated AI economy is being written right now, by whoever shows up with technically credible submissions.
+  </p>
+  <p>
+    The structural tension this edition documents is the same tension the IDS surveillance report quantified in March, the same tension the Wits conference named in April, and the same tension the language AI analysis made precise in the prior cycle: Africa's AI governance frameworks are being written by those with institutional capacity to engage, and the people whose lives those frameworks will most consequentially govern — speakers of underrepresented languages, rural digital access communities, recipients of AI-driven automated government decisions — are the least equipped to participate. This is not a bug in South Africa's comment process. It is a feature of public consultation mechanisms globally. The question is whether it is named and addressed, or silently accepted.
+  </p>
+  <p>
+    GITEX Kenya opens in three weeks. Nigeria's legislative clock is ticking toward an election-shadow deadline that most coverage has not yet priced. The Deep Learning Indaba's dataset call is open and undersubscribed. These are not abstract signals — they are specific opportunities with specific deadlines. The founders, policymakers, and investors who treat them as such will define Africa's AI decade. Those who do not will be defined by it.
+  </p>
+  <p style="margin-top: 12px; font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(200,208,220,0.5); letter-spacing: 0.06em;">
+    — The Daily African Lens Intelligence Desk · Edition #AIW-026-08 · Tuesday 28 April 2026
+  </p>
+</div>
+
+<div class="footer">
+  <div class="logo">The Daily African Lens</div>
+  <p>AI · Machine Learning · Data Science · Across 54 Nations</p>
+  <p>AI Weekly African Lens — Edition #AIW-026-08 · Week ending 28 April 2026</p>
+  <p>Window: 22 April 2026, 06:00 SAST → 28 April 2026, 05:59 SAST</p>
+  <p style="margin-top:10px;">Subscribe: <a href="https://simphiwemlotshwa.substack.com/">simphiwemlotshwa.substack.com</a></p>
+  <p style="margin-top:8px; font-size:10px; color:#b0a898;">© 2026 The Daily African Lens. All summaries are paraphrased editorial originals — no verbatim reproduction of source material. Coverage window: 06:00 SAST 22 Apr → 05:59 SAST 28 Apr 2026.</p>
+</div>
+
+</div><!-- /wrapper -->
+</body>
+</html>

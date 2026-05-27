@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Weekly African Lens — Edition #AIW-026-08 | 05 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest:   #080e07;
+  --deep:     #0e1a0c;
+  --surface:  #151f13;
+  --border:   #1e2e1c;
+  --muted:    #28382a;
+  --cream:    #e8e4d0;
+  --warm:     #d4d0bc;
+  --emerald:  #16a34a;
+  --emerald-l:#22c55e;
+  --emerald-d:#14532d;
+  --amber:    #d97706;
+  --amber-l:  #f59e0b;
+  --amber-d:  #92400e;
+  --rust:     #c0392b;
+  --rust-l:   #ef4444;
+  --azure:    #0284c7;
+  --azure-l:  #38bdf8;
+  --slate:    #4d6b50;
+  --text:     #b4c8b0;
+  --text-dim: #6b8a6e;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--forest);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  line-height: 1.72;
+  overflow-x: hidden;
+}
+a { color: var(--emerald-l); text-decoration: none; }
+a:hover { color: var(--amber-l); text-decoration: underline; }
+
+/* ── NOISE TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.5;
+}
+
+.wrapper { max-width: 780px; margin: 0 auto; padding: 0 22px 100px; position: relative; z-index: 1; }
+
+/* ── TOP BAR ── */
+.topbar {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(8, 14, 7, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 22px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; flex-wrap: wrap;
+}
+.topbar-brand {
+  font-family: 'Crimson Pro', serif;
+  font-size: 17px; font-weight: 700;
+  color: var(--cream); letter-spacing: -0.01em;
+}
+.topbar-brand em { font-style: italic; color: var(--emerald-l); }
+.topbar-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: var(--slate);
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+.topbar-pill {
+  background: var(--emerald);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 3px 10px; font-weight: 500;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--deep);
+  border-bottom: 1px solid var(--border);
+  padding: 62px 22px 50px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% -10%, rgba(22,163,74,0.1) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 80% 100%, rgba(217,119,6,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 1; }
+.hero-over {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--emerald);
+  margin-bottom: 18px; opacity: 0.9;
+}
+.hero h1 {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(34px, 7vw, 66px);
+  font-weight: 600; color: var(--cream);
+  line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 20px;
+}
+.hero h1 em { font-style: italic; color: var(--emerald-l); }
+.hero h1 small {
+  display: block;
+  font-size: 0.45em; font-weight: 400;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--slate); margin-top: 10px;
+}
+.hero-window {
+  display: inline-block;
+  border: 1px solid rgba(22,163,74,0.3);
+  background: rgba(22,163,74,0.05);
+  padding: 8px 20px; margin-bottom: 38px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--emerald-l); letter-spacing: 0.06em;
+}
+.hero-stats {
+  display: flex; justify-content: center;
+  gap: 38px; flex-wrap: wrap;
+  padding-top: 30px; border-top: 1px solid var(--border);
+}
+.hs-val {
+  font-family: 'Crimson Pro', serif;
+  font-size: 28px; font-weight: 700;
+  color: var(--emerald-l); display: block; line-height: 1;
+}
+.hs-val.amber { color: var(--amber-l); }
+.hs-val.rust  { color: var(--rust-l); }
+.hs-val.azure { color: var(--azure-l); }
+.hs-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--slate);
+  margin-top: 4px; display: block;
+}
+
+/* ── ALERT STRIPS ── */
+.alert {
+  padding: 11px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.04em;
+  display: flex; align-items: flex-start;
+  gap: 10px; flex-wrap: wrap;
+  border-left: 3px solid; margin: 0; line-height: 1.6;
+}
+.alert.health  { background: rgba(22,163,74,0.07); border-color: var(--emerald); color: #90c898; }
+.alert.health strong { color: var(--emerald-l); }
+.alert.count   { background: rgba(217,119,6,0.07); border-color: var(--amber); color: #d4a060; }
+.alert.count strong { color: var(--amber-l); }
+
+/* ── EXEC BOX ── */
+.exec-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--emerald);
+  padding: 32px 28px; margin: 36px 0;
+}
+.ex-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--emerald); margin-bottom: 16px;
+}
+.ex-title {
+  font-family: 'Crimson Pro', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--cream); margin-bottom: 22px; line-height: 1.3;
+}
+.exec-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.exec-list li {
+  display: flex; gap: 14px; align-items: flex-start;
+  font-size: 13.5px; line-height: 1.65; color: var(--text);
+}
+.exec-list li .arr {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--emerald); font-size: 10px;
+  flex-shrink: 0; margin-top: 3px;
+}
+.exec-list li.hi .arr  { color: var(--emerald-l); }
+.exec-list li.crit .arr { color: var(--rust-l); }
+
+/* ── SECTION HEADERS ── */
+.sec {
+  display: flex; align-items: baseline; gap: 14px;
+  margin: 50px 0 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.sec-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--emerald); letter-spacing: 0.12em; flex-shrink: 0;
+}
+.sec h2 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 24px; font-weight: 700;
+  letter-spacing: -0.02em; color: var(--cream);
+}
+
+/* ── STORY CARDS ── */
+.story {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 22px 22px 18px; margin-bottom: 14px; position: relative;
+}
+.story::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+}
+.story.s-health::before  { background: var(--emerald); }
+.story.s-capital::before { background: var(--amber); }
+.story.s-policy::before  { background: var(--azure); }
+.story.s-security::before{ background: var(--rust); }
+.story.s-research::before{ background: #7c3aed; }
+.story.s-default::before { background: var(--emerald-d); }
+
+.rank-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 3px 10px;
+  margin-bottom: 12px; display: inline-block;
+}
+.rb-default  { background: var(--emerald-d); color: var(--emerald-l); }
+.rb-health   { background: var(--emerald); color: #fff; }
+.rb-capital  { background: #451a03; color: var(--amber-l); }
+.rb-policy   { background: #082040; color: var(--azure-l); }
+.rb-security { background: #3b0909; color: var(--rust-l); }
+.rb-research { background: #2e1065; color: #c4b8f8; }
+
+/* ── FEATURE CARD — HEALTH ── */
+.health-feature {
+  background: linear-gradient(135deg, rgba(22,163,74,0.08) 0%, rgba(8,14,7,0) 60%);
+  border: 1px solid rgba(22,163,74,0.25);
+  border-left: 4px solid var(--emerald);
+  padding: 24px 22px; margin-bottom: 14px;
+}
+.health-feature .hf-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--emerald-l); margin-bottom: 10px;
+}
+.health-feature h3 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--cream); line-height: 1.3; margin-bottom: 14px;
+}
+.health-feature p { font-size: 13.5px; line-height: 1.75; color: var(--text); margin-bottom: 10px; }
+
+.story h3 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 16.5px; font-weight: 600;
+  line-height: 1.35; margin-bottom: 12px; color: var(--cream);
+}
+.pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+.pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 2px 8px; border-radius: 2px;
+}
+.pl-h  { background: rgba(22,163,74,0.1);   color: var(--emerald-l); border: 1px solid rgba(22,163,74,0.2); }
+.pl-c  { background: rgba(217,119,6,0.1);   color: var(--amber-l);   border: 1px solid rgba(217,119,6,0.2); }
+.pl-p  { background: rgba(2,132,199,0.1);   color: var(--azure-l);   border: 1px solid rgba(2,132,199,0.2); }
+.pl-s  { background: rgba(192,57,43,0.1);   color: var(--rust-l);    border: 1px solid rgba(192,57,43,0.2); }
+.pl-r  { background: rgba(124,58,237,0.1);  color: #c4b8f8;          border: 1px solid rgba(124,58,237,0.2); }
+.pl-e  { background: rgba(46,125,50,0.1);   color: #86d490;          border: 1px solid rgba(46,125,50,0.2); }
+.pl-k  { background: var(--muted);          color: var(--cream);     border: 1px solid var(--border); }
+
+.story p { font-size: 13.5px; line-height: 1.75; color: var(--text); margin-bottom: 10px; }
+
+.insight-box {
+  background: rgba(22,163,74,0.05);
+  border-left: 3px solid var(--emerald-d);
+  padding: 12px 16px; margin-top: 14px;
+}
+.ib-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--emerald); margin-bottom: 5px;
+}
+.insight-box p { font-size: 13px; color: #7aaa7a; margin: 0; line-height: 1.65; }
+
+.story .meta-row {
+  display: flex; align-items: flex-start;
+  gap: 12px; flex-wrap: wrap;
+  padding-top: 12px; border-top: 1px solid var(--border); margin-top: 14px;
+}
+.source {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px; color: var(--text-dim); flex: 1; letter-spacing: 0.02em;
+}
+.read-link {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--emerald-l);
+  border: 1px solid rgba(22,163,74,0.3);
+  padding: 4px 12px; transition: all 0.12s; white-space: nowrap;
+}
+.read-link:hover { background: var(--emerald); color: #fff; text-decoration: none; }
+
+/* ── DATA PANELS ── */
+.data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
+.data-card { background: var(--surface); border: 1px solid var(--border); padding: 16px 18px; }
+.dc-val {
+  font-family: 'Crimson Pro', serif;
+  font-size: 30px; font-weight: 700;
+  color: var(--cream); display: block; line-height: 1;
+}
+.dc-val.em  { color: var(--emerald-l); }
+.dc-val.am  { color: var(--amber-l); }
+.dc-val.ru  { color: var(--rust-l); }
+.dc-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.08em;
+  color: var(--text-dim); margin-top: 6px;
+  text-transform: uppercase; display: block;
+}
+
+/* ── STRATEGIC INSIGHT CARDS ── */
+.sc {
+  padding: 20px 22px; margin-bottom: 10px; position: relative;
+}
+.sc.s1 { background: rgba(22,163,74,0.05);  border: 1px solid rgba(22,163,74,0.12);  border-left: 3px solid var(--emerald); }
+.sc.s2 { background: rgba(217,119,6,0.04);  border: 1px solid rgba(217,119,6,0.1);   border-left: 3px solid var(--amber-d); }
+.sc.s3 { background: rgba(192,57,43,0.05);  border: 1px solid rgba(192,57,43,0.12);  border-left: 3px solid var(--rust); }
+.sc.s4 { background: rgba(2,132,199,0.04);  border: 1px solid rgba(2,132,199,0.1);   border-left: 3px solid var(--azure); }
+.sc-head {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--text-dim); margin-bottom: 7px;
+}
+.sc-title {
+  font-family: 'Crimson Pro', serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--cream); margin-bottom: 8px; line-height: 1.3;
+}
+.sc-body { font-size: 13px; color: var(--text); line-height: 1.65; }
+
+/* ── OPPORTUNITIES ── */
+.opp-row {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px 0; border-bottom: 1px solid var(--border);
+}
+.opp-row:last-child { border-bottom: none; padding-bottom: 0; }
+.opp-num {
+  width: 28px; height: 28px;
+  background: var(--emerald); color: #fff;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  font-weight: 500; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0; margin-top: 2px;
+}
+.opp-title { font-weight: 600; font-size: 13.5px; margin-bottom: 4px; color: var(--cream); }
+.opp-desc  { font-size: 12.5px; color: var(--text-dim); line-height: 1.6; }
+
+/* ── RISKS ── */
+.risk-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 12px 16px; margin-bottom: 10px;
+  font-size: 13.5px; color: var(--text);
+  background: rgba(192,57,43,0.04);
+  border: 1px solid rgba(192,57,43,0.12);
+  border-left: 3px solid var(--rust);
+}
+.risk-icon { color: var(--rust-l); font-family: 'JetBrains Mono', monospace; font-size: 11px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── EVENTS TABLE ── */
+.events-table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+.events-table th {
+  font-family: 'JetBrains Mono', monospace; font-size: 8px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-dim); background: var(--surface);
+  padding: 8px 12px; text-align: left;
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+}
+.events-table td {
+  padding: 10px 12px; border-bottom: 1px solid var(--border);
+  font-size: 13px; background: var(--deep);
+  vertical-align: top; color: var(--text);
+}
+.events-table tr:last-child td { border-bottom: none; }
+.ev-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--amber); white-space: nowrap; }
+.ev-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace; font-size: 8px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 2px 7px; margin-top: 3px; border-radius: 2px;
+}
+.ev-tag.em   { background: rgba(22,163,74,0.1);  color: var(--emerald-l); border: 1px solid rgba(22,163,74,0.2); }
+.ev-tag.live { background: rgba(192,57,43,0.1);  color: var(--rust-l);    border: 1px solid rgba(192,57,43,0.2); }
+.ev-tag.done { background: rgba(77,107,80,0.1);  color: var(--slate);     border: 1px solid rgba(77,107,80,0.2); }
+
+/* ── TOC ── */
+.toc {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 20px 22px; margin: 32px 0;
+}
+.toc-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 8px;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 14px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+.toc-list {
+  list-style: none; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 5px 24px;
+}
+.toc-list li { font-size: 12.5px; }
+.toc-list a { color: var(--emerald-l); }
+.toc-list a:hover { color: var(--amber-l); text-decoration: none; }
+
+/* ── NOTE BOX ── */
+.note-box {
+  background: rgba(22,163,74,0.04);
+  border: 1px solid rgba(22,163,74,0.12);
+  border-left: 3px solid var(--emerald-d);
+  padding: 12px 16px; margin: 0 0 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: #5a8a5a;
+  letter-spacing: 0.03em; line-height: 1.7;
+}
+
+/* ── PIPELINE LOG ── */
+.pipeline-log {
+  background: #030805; border: 1px solid #0e1e0c;
+  padding: 16px 18px; margin: 0 0 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; color: #3a5a3c;
+  letter-spacing: 0.04em; line-height: 1.8;
+}
+.pl-head { color: var(--emerald); letter-spacing: 0.12em; text-transform: uppercase; font-size: 8.5px; margin-bottom: 10px; }
+.pl-step .ag { color: #2a7a3c; }
+.pl-step .st { color: #3a5a3c; }
+.pl-step .ok { color: #3aaa5a; }
+.pl-step .warn { color: var(--amber); }
+
+/* ── EDITOR NOTE ── */
+.ed-note {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--emerald);
+  padding: 28px 26px; margin-top: 52px;
+}
+.en-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 8px;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--emerald); margin-bottom: 14px;
+}
+.ed-note p { font-size: 13.5px; line-height: 1.8; color: var(--text); }
+.ed-note p + p { margin-top: 12px; }
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0; margin-top: 48px; text-align: center;
+}
+.footer-brand {
+  font-family: 'Crimson Pro', serif; font-size: 20px;
+  font-weight: 700; color: var(--cream);
+  letter-spacing: -0.01em; margin-bottom: 10px;
+}
+.footer p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px; color: var(--text-dim);
+  letter-spacing: 0.05em; margin-bottom: 4px;
+}
+.footer a { color: var(--emerald-l); }
+.footer .sub-cta {
+  display: inline-block; margin-top: 18px;
+  background: var(--emerald); color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 10px 28px;
+  font-weight: 500; transition: background 0.15s;
+}
+.footer .sub-cta:hover { background: var(--emerald-l); color: var(--forest); text-decoration: none; }
+
+@media (max-width: 540px) {
+  .hero-stats { gap: 22px; }
+  .data-grid  { grid-template-columns: 1fr; }
+  .toc-list   { grid-template-columns: 1fr; }
+  .topbar     { position: static; }
+  .hero       { padding: 48px 20px 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-brand">The Daily African Lens<em>.</em></div>
+  <div class="topbar-meta">AI Weekly African Lens</div>
+  <div class="topbar-pill">AIW-026-08</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-over">AI Weekly African Lens — Edition #AIW-026-08</div>
+    <h1>The <em>Health</em> Turn<small>Gulf Capital Arrives · GITEX Goes Continental · Africa Confronts the Automation-Labour Dilemma</small></h1>
+    <div class="hero-window">
+      Window: Tuesday 28 April 2026, 06:00 SAST → Tuesday 05 May 2026, 05:59 SAST
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="hs-val em">4–6 May</span>
+        <span class="hs-lbl">GITEX Future Health Africa</span>
+      </div>
+      <div>
+        <span class="hs-val">15,000</span>
+        <span class="hs-lbl">Health Summit Visitors</span>
+      </div>
+      <div>
+        <span class="hs-val amber">$2.4B</span>
+        <span class="hs-lbl">Kenya AI GDP Projection</span>
+      </div>
+      <div>
+        <span class="hs-val rust">$1B</span>
+        <span class="hs-lbl">Autonomous Weapons Imports</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ALERTS -->
+<div class="alert health">
+  <strong>★ LIVE THIS WEEK:</strong>&nbsp;GITEX Future Health Africa 2026 — inaugural edition — opened in Casablanca 4 May under the theme "Digitising Africa's Healthcare Future: Essential Care Advancing With AI." 300+ exhibitors, 30 countries, 50+ investors. Africa's first AI health summit at this scale. Runs through 6 May.
+</div>
+<div class="alert count">
+  <strong>SA GAZETTE — DAY 25/60:</strong>&nbsp;South Africa's Draft National AI Policy comment window is now at its midpoint. Deadline: 10 June 2026 at 16:00 SAST. Submit to aipolicy@dcdt.gov.za. Every week of silence narrows the window for organisations to shape binding implementation rules.
+</div>
+
+<div class="wrapper">
+
+<!-- PIPELINE LOG -->
+<div class="pipeline-log">
+  <div class="pl-head">§ Pipeline Execution Log — AIW-026-08 · Cycle 8</div>
+  <div class="pl-step"><span class="ag">[SIGNAL_SCORE]</span> <span class="st">→ 13 items processed · 10 cleared threshold ≥7.5 · 3 dropped (GITEX Health pre-event noise, iGaming AI, regional award)</span> <span class="ok">✓</span></div>
+  <div class="pl-step"><span class="ag">[MULTI_VECTOR]</span> <span class="st">→ 10 items verified: 8 HIGH confidence, 2 MODERATE · AI-generated citations claim (one source only) CONTESTED — dropped from verified claims</span> <span class="ok">✓</span></div>
+  <div class="pl-step"><span class="ag">[TECH_AUDIT + DELTA + TREND]</span> <span class="st">→ Healthcare AI: PROMISING verdict · Gulf infrastructure: VALIDATED thesis, DEPENDENT execution · Platform expansion: ACCELERATION classification</span> <span class="ok">✓</span></div>
+  <div class="pl-step"><span class="ag">[RED_TEAM]</span> <span class="st">→ CHALLENGE on automation-labour optimism (HIGH plausibility) · QUALIFIED SUPPORT on Gulf capital · MODERATE on GITEX event-to-deal conversion</span> <span class="warn">⚠ CHALLENGE ISSUED</span></div>
+  <div class="pl-step"><span class="ag">[M1 CONSISTENCY]</span> <span class="st">→ Rules C1–C6 checked · All clear · CHALLENGE item in Risks &amp; Threats: automation-labour structural gap</span> <span class="ok">✓ CLEAN</span></div>
+  <div class="pl-step"><span class="ag">[MEMORY]</span> <span class="st">→ Open predictions resolved: GITEX Future Health confirmed (triggered) · GITEX Africa government assessment resolved · SA gazette Day 25 status updated</span> <span class="ok">✓ REGISTERS UPDATED</span></div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-label">§ In This Edition</div>
+  <ul class="toc-list">
+    <li><a href="#exec">Executive Summary</a></li>
+    <li><a href="#developments">Key Developments (10)</a></li>
+    <li><a href="#market">Market &amp; Business Signals</a></li>
+    <li><a href="#research">Research &amp; Institutional</a></li>
+    <li><a href="#strategic">Strategic Insights (4)</a></li>
+    <li><a href="#opportunities">Opportunities (5)</a></li>
+    <li><a href="#risks">Risks &amp; Threats</a></li>
+    <li><a href="#events">Events Calendar</a></li>
+  </ul>
+</div>
+
+<div class="note-box">
+  ⚠ EDITORIAL NOTE — Cycle 8 · Window: 28 April → 05 May 2026, 06:00–05:59 SAST. GITEX Future Health Africa (4–6 May, Casablanca) opens within this window and is the dominant event development. An unverified claim about South Africa withdrawing a draft AI policy due to AI-generated citations appeared in one secondary source and was CONTESTED by MULTI_VECTOR — it is not included in verified claims. All 10 items verified across primary and secondary source vectors. No padding or fabrication.
+</div>
+
+<!-- ═══════════════ EXECUTIVE SUMMARY ═══════════════ -->
+<div class="exec-box" id="exec">
+  <div class="ex-label">§ 01 — Executive Summary</div>
+  <div class="ex-title">What actually mattered 28 April – 5 May 2026 — 10 signals, no noise</div>
+  <ul class="exec-list">
+    <li class="hi">
+      <span class="arr">★</span>
+      GITEX Future Health Africa 2026 opened in Casablanca on 4 May — the inaugural edition of what KAOUN International is positioning as Africa's premier AI health summit. Under the theme "Digitising Africa's Healthcare Future: Essential Care Advancing With AI," the event draws 15,000 visitors, 300+ exhibitors from 30 countries, and 50+ investors. Morocco's Health Minister Amine Tahraoui and KAOUN International's Trixie LohMirmand both framed the event not as an aspiration but as infrastructure: "It's an engine. It's up to governments and the private sector how they want to use this engine." This is the GITEX brand extending from pure technology into healthcare — and healthcare AI infrastructure is the most immediately deployable sector for AI in Africa given the 10 million healthcare worker shortage projected by 2030.
+    </li>
+    <li>
+      <span class="arr">→</span>
+      Morocco's Minister of Digital Transition Amal El Fallah Seghrouchni provided the official parliamentary assessment of GITEX Africa 2026 this week: 55,000 participants (up from 52,000 in 2025), 1,500 exhibitors from 58 countries, 412 investors from 35+ countries managing $350B+ in assets, 4,600+ business meetings organized, and critically — 64% of participating Moroccan startups entered advanced-stage negotiations. This is the first official governmental validation of GITEX Africa's commercial conversion rates, not just attendance figures.
+    </li>
+    <li>
+      <span class="arr">→</span>
+      Gulf sovereign wealth capital is moving into African AI infrastructure with structural intent — not portfolio diversification. A significant FurtherAfrica analysis confirmed the Microsoft-G42 Kenya initiative as a proof-of-concept for UAE capital in African AI: geothermal power feeding a sovereign-grade data centre, an Azure cloud region on African soil. The Gulf's advantage over US VC capital is not technology — it is capital patience. Sovereign wealth funds can take 20-year infrastructure bets. A new geopolitical axis is now fully operational in African AI: Gulf SWF capital alongside US, Chinese, and Korean capital.
+    </li>
+    <li>
+      <span class="arr">→</span>
+      The Stimson Center published a landmark analysis of Africa's AI governance priorities at global and national levels, surfacing a data point that has not previously appeared in this newsletter: the automated weapons market in Africa is growing to $1 billion in imports. African policymakers debate autonomous weapons concerns behind closed doors, the analysis notes — but the PSC session we documented last week in Addis Ababa is the institutional mechanism through which those concerns are being formalised.
+    </li>
+    <li>
+      <span class="arr">→</span>
+      GITEX Kenya is 14 days away. KAOUN International this week confirmed the full economic projection: AI market expected to contribute $2.4 billion to Kenya's GDP by 2030 and generate 300,000+ new jobs by 2028. The inaugural AI Everything Kenya × GITEX Kenya (19–21 May) will comprise a one-day global summit at Kenyatta International Convention Centre and a two-day expo at Sarit Expo Centre. East Africa's largest AI event is now a fortnight away.
+    </li>
+    <li>
+      <span class="arr">→</span>
+      Kenya launched the AI for Disability Project at the 15th Connected Africa Summit in Nairobi this week — in partnership with Huawei's TECH4ALL initiative, the Ministry of ICT, the Kenya Institute of Special Education, and a consortium of assistive technology organisations from 12+ African countries. This is inclusive AI delivered as a multi-stakeholder institutional commitment rather than a corporate pilot.
+    </li>
+    <li>
+      <span class="arr">→</span>
+      The Diplomat published the most rigorous analysis of the AI-labour dilemma for Africa this cycle, using China's 2026 Two Sessions as the analytical anchor. The central finding challenges the dominant optimism: Africa's structural labor challenge is fundamentally different from China's — 740 million people will enter Africa's working-age population over the next three decades, 12 million annually, but only 3 million formal jobs are created per year. China has a manufacturing-to-services transition pathway. Africa does not, because manufacturing has been partially automated before Africa could use it as the development ladder.
+    </li>
+    <li>
+      <span class="arr">→</span>
+      African Energy Week 2026 (October 12–16, Cape Town) launched its first-ever AI and Data Center Track this week. NJ Ayuk, Executive Chairman of the African Energy Chamber, framed it explicitly: "We will start a data center and AI revolution in Cape Town." The AEW track is significant because it embeds AI infrastructure into mainstream energy policy discourse — treating data centres as bankable energy demand rather than as digital sector footnotes.
+    </li>
+    <li>
+      <span class="arr">→</span>
+      Deep Learning Indaba 2026 confirmed Pan-Atlantic University (PAU) in Lagos as its venue, with dates 2–7 August 2026. All open calls were extended by 10 days this week. Accepted papers will be published in a special IJCAI volume — the first time African AI research presented at the Indaba will receive indexed, peer-reviewed global publication at this level. This is not a logistics update. It is an academic credentialising moment for African AI research.
+    </li>
+    <li>
+      <span class="arr">→</span>
+      Algeria launched an AI and cybersecurity startup cluster, confirmed active this week in Africa News Analysis coverage — joining Morocco, Kenya, South Africa, Nigeria, Egypt, and Tunisia in building structured national AI production infrastructure. North Africa's AI ecosystem is now being built through coordinated cluster policy as well as individual national strategies. Meanwhile South Africa's comment window continues: Day 25 of 60 has passed, with the deadline of 10 June 2026 approaching.
+    </li>
+  </ul>
+</div>
+
+<!-- ═══════════════ KEY DEVELOPMENTS ═══════════════ -->
+<div class="sec" id="developments">
+  <div class="sec-num">§ 02</div>
+  <h2>Key Developments</h2>
+</div>
+
+<!-- RANK 1: GITEX FUTURE HEALTH -->
+<div class="health-feature">
+  <div class="hf-label">Rank #1 — Healthcare AI · Continental · LIVE THIS WEEK · First Feature</div>
+  <h3>GITEX Future Health Africa 2026 Debuts in Casablanca — Africa's First AI Health Summit Opens, Morocco Positions as the Continent's Biomedical Sovereignty Hub</h3>
+  <div class="pills">
+    <span class="pill pl-h">Healthcare AI</span>
+    <span class="pill pl-k">Morocco</span>
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-c">Investment</span>
+    <span class="pill pl-p">Governance</span>
+  </div>
+  <p>
+    The inaugural edition of GITEX Future Health Africa 2026 opened on 4 May at the Casablanca International Fair, running through 6 May under the theme "Digitising Africa's Healthcare Future: Essential Care Advancing With AI." Organised by Morocco's Ministry of Health and Social Protection, the Mohammed VI Foundation for Science and Health (FM6SS), and KAOUN International — with the patronage of King Mohammed VI — the event is the first major dedicated AI-in-healthcare summit on the African continent at this scale. Opening remarks from Health Minister Amine Tahraoui and FM6SS Director Youns Bjijou positioned Morocco as a continental health system architect, not just a host: Morocco already has AI applications in telemedicine, tumour detection, and remote patient monitoring, with a government target for full digitisation of patient records by 2030 and 70 hospitals upgraded with smart technologies by 2027.
+  </p>
+  <p>
+    The event's Executive Summit on 4 May focused on "Financing Health Sovereignty: From Dependency to Dominance" — embedding the same sovereignty framing that has defined Africa's AI infrastructure debate into healthcare specifically. With 15,000 visitors expected, 300+ exhibitors from 30 countries, and 50+ investors in attendance, the market signal is unambiguous: healthcare AI has arrived as a commercially actionable domain for African enterprise and government procurement, not merely a research aspiration. KAOUN International CEO Trixie LohMirmand was precise about what the event is and is not: "It's an event at the end of the day. It's an engine." The conversion of that engine into health system outcomes depends on the procurement cycles and policy frameworks of the governments in the room — not on the event itself.
+  </p>
+  <div class="insight-box">
+    <div class="ib-label">What this changes structurally</div>
+    <p>GITEX Future Health Africa is not just a healthcare event — it is the GITEX brand committing to a permanent presence in African health capital markets. With GITEX Africa (Marrakech), GITEX Kenya (Nairobi, 19 May), and now GITEX Future Health (Casablanca), KAOUN International has in a single year established a three-city, three-domain African event infrastructure covering enterprise tech, East African ecosystem, and health. This is a platform consolidation play — and it means that in 2027, Africa's AI event calendar will be anchored by a single global brand with continental distribution, rather than fragmented national events competing for investor attention.</p>
+  </div>
+  <div class="meta-row">
+    <span class="source">Morocco World News (multiple articles) · GITEX Future Health Official · 4–5 May 2026</span>
+    <a class="read-link" href="https://www.gitexfuturehealth.com/" target="_blank">EVENT SITE →</a>
+  </div>
+</div>
+
+<!-- RANK 2: GITEX AFRICA GOVERNMENT ASSESSMENT -->
+<div class="story s-default">
+  <div class="rank-badge rb-default">Rank #2 — Market Validation · Morocco · GITEX Africa 2026 Official Assessment</div>
+  <h3>Morocco's Minister Gives Parliament the GITEX Africa 2026 Verdict: 55,000 Attendees, 64% Startup Advanced-Stage Negotiations, $350B in Managed Assets Confirmed</h3>
+  <div class="pills">
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-c">Market Data</span>
+    <span class="pill pl-h">Ecosystem</span>
+    <span class="pill pl-k">Morocco</span>
+  </div>
+  <p>
+    Morocco's Minister of Digital Transition and Administrative Reform Amal El Fallah Seghrouchni addressed the House of Councillors this week with the official government assessment of GITEX Africa 2026: 55,000 participants (up from 52,000 in 2025), 1,500 exhibitors from 58 countries — up from 145 countries in prior reporting but now clarified as 58 with full exhibitor delegations — 412 investors from 35+ countries managing more than $350 billion in assets, and 4,600+ business meetings organized. The most commercially significant figure: 64% of participating Moroccan startups — drawn from Morocco's "Morocco 300" programme which supported 300 Moroccan startups for exhibition participation — entered advanced-stage negotiations following the event.
+  </p>
+  <p>
+    The 64% advanced-stage negotiation rate is the metric that converts GITEX Africa from a networking event into a capital-formation infrastructure claim. The Minister also confirmed that GITEX Future Health Africa (Casablanca, 4–6 May) is the formal next chapter in Morocco's GITEX expansion strategy, extending the economic logic of the Marrakech event into healthcare procurement markets. The parliamentary nature of this assessment means it is Morocco's official account of the event's commercial outcomes — not a promoter's claim.
+  </p>
+  <div class="meta-row">
+    <span class="source">Morocco World News · Parliamentary session — April 29, 2026</span>
+    <a class="read-link" href="https://www.moroccoworldnews.com/2026/04/289200/gitex-africa-2026-draws-350-billion-in-assets/" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- RANK 3: GULF CAPITAL -->
+<div class="story s-capital">
+  <div class="rank-badge rb-capital">Rank #3 — Geopolitics · Infrastructure · Gulf Capital Enters African AI</div>
+  <h3>Gulf Sovereign Capital Is Now Structurally Positioned in African AI Infrastructure — And Its Advantage Over US VC Is Capital Patience, Not Technology</h3>
+  <div class="pills">
+    <span class="pill pl-c">Geopolitics</span>
+    <span class="pill pl-c">Investment</span>
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-p">Infrastructure</span>
+  </div>
+  <p>
+    A FurtherAfrica analysis confirmed and extended the Gulf capital thesis this week: UAE-based G42's partnership with Microsoft in Kenya — the largest private-sector digital investment in Kenya's history — is now the blueprint that Gulf sovereign wealth funds are using to enter African AI infrastructure. The structure is distinct: geothermal power feeding a sovereign-grade Azure data centre, local employment requirements, and long-term patient capital at returns that VC funds cannot sustain. Africa holds less than 1% of global data centre capacity despite representing 1.4 billion people, 40% annual mobile data usage growth, and a median age of 19. That gap is the asymmetry that Gulf sovereign capital is pricing — correctly, according to the analysis.
+  </p>
+  <p>
+    The geopolitical implication is structural: Gulf capital adds a fourth axis to Africa's AI investment trilemma. Where prior editions tracked US (Microsoft Elevate, Equinix), Chinese (Huawei, surveillance infrastructure), and Korean (KOICA, Korea-Africa Foundation) engagement simultaneously, Gulf SWF participation through the G42-Microsoft model, Abu Dhabi Investment Authority, and Saudi PIF broadens the competitive field further. For African governments with AI infrastructure gaps, this is negotiating leverage — provided governance frameworks exist to set terms rather than accept them unilaterally.
+  </p>
+  <div class="insight-box">
+    <div class="ib-label">The capital structure distinction that matters</div>
+    <p>Most coverage of African AI investment treats all capital as equivalent. It is not. US VC capital has a 7–10 year return horizon, demands 3–5x returns, and exits via IPO or M&A. Gulf SWF capital has a 20–50 year horizon, accepts 6–8% long-term infrastructure returns, and is patient with the 4–6 year construction-to-operation cycle of data centres. African governments negotiating AI infrastructure partnerships need to match the capital structure to the infrastructure type — and sovereign wealth capital is structurally superior for data centres, fibre, and energy infrastructure, while VC remains appropriate for software and application-layer companies.</p>
+  </div>
+  <div class="meta-row">
+    <span class="source">FurtherAfrica — April 27, 2026 (active traction in window)</span>
+    <a class="read-link" href="https://furtherafrica.com/2026/04/27/africa-gulf-ai-infrastructure-investment/" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- RANK 4: STIMSON CENTER -->
+<div class="story s-security">
+  <div class="rank-badge rb-security">Rank #4 — Research · Continental · Security · Stimson Center</div>
+  <h3>Stimson Center: Africa's Autonomous Weapons Imports Hit $1 Billion — The AI Security Dimension Being Debated Behind Closed Doors</h3>
+  <div class="pills">
+    <span class="pill pl-s">Security</span>
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-r">Research</span>
+    <span class="pill pl-p">Governance</span>
+  </div>
+  <p>
+    The Stimson Center published a comprehensive analysis of Africa's AI governance priorities at the global and national level this week, surfacing a data point that has not previously appeared in this newsletter's coverage: the automated weapons market in Africa is growing to $1 billion in imports. African policymakers, the Stimson analysis notes, are seized by the challenge of autonomous weapons — but they largely debate their concerns behind closed doors. The PSC session in Addis Ababa documented in last week's edition is the institutional mechanism through which those concerns are being formalised into the Common African Position on AI Governance, Peace and Security.
+  </p>
+  <p>
+    The Stimson analysis also documents the continental variation in AI strategy development: Rwanda and Nigeria have published strategies, while conflict-affected countries with the highest vulnerability to AI-enabled harm — and the lowest AI readiness — have nothing. The compute power imbalance is named as a structural disadvantage that knowledge-sharing frameworks (the GDC's Objectives 1 and 5, the Pact for the Future's Action 29) could partially address but have not yet institutionalised. The report also confirms: Google is funding the Masakhane African Languages AI Hub specifically to expand AI access to 40+ African languages — the most concrete institutional response yet to the 2,000-languages/20-covered gap documented last week.
+  </p>
+  <div class="insight-box">
+    <div class="ib-label">The autonomous weapons gap that is not being discussed publicly</div>
+    <p>$1 billion in autonomous weapons imports to a continent with active conflicts in Sudan, DRC, Mali, Mozambique, and Somalia — without any public governance framework for their deployment — is the most under-reported AI governance failure on the continent. It is structurally more urgent than consumer deepfakes or content moderation language gaps, because the harm pathway is immediate, irreversible, and already operational. The AU PSC process is the correct institutional vehicle. Its inadequacy is that it operates on diplomatic timelines while weapons operate on tactical ones.</p>
+  </div>
+  <div class="meta-row">
+    <span class="source">Stimson Center — April 2026 publication (active in window)</span>
+    <a class="read-link" href="https://www.stimson.org/2026/priorities-for-africa-artificial-intelligence-governance-at-the-global-and-national-level/" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- RANK 5: GITEX KENYA -->
+<div class="story s-default">
+  <div class="rank-badge rb-default">Rank #5 — Event: 14 Days Away · Kenya · East Africa</div>
+  <h3>GITEX Kenya Now 14 Days Out — $2.4 Billion GDP Projection Confirmed, East Africa's Moment of Maximum Global Attention Arrives 19 May</h3>
+  <div class="pills">
+    <span class="pill pl-k">Kenya</span>
+    <span class="pill pl-h">Ecosystem</span>
+    <span class="pill pl-c">Investment</span>
+    <span class="pill pl-k">Continental</span>
+  </div>
+  <p>
+    KAOUN International this week confirmed the full economic impact projections for AI Everything Kenya × GITEX Kenya (19–21 May 2026): the AI market is expected to contribute $2.4 billion to Kenya's GDP by 2030 and generate 300,000+ new jobs by 2028. The three-day event — a one-day global summit at Kenyatta International Convention Centre (19 May) followed by a two-day expo at Sarit Expo Centre (20–21 May) — will unite 15,000+ tech executives, 500+ global enterprises and startups, 100+ investors from 75 countries, and 150+ speakers.
+  </p>
+  <p>
+    TechAfrica News analysis from 30 April framed the significance precisely: GITEX Kenya is not primarily about whether the event succeeds — it almost certainly will. The question is whether the energy it generates converts into lasting structural value. For policymakers, that means using the summit to accelerate Kenya's AI Bill progress, data protection implementation, and spectrum policy. For founders, it means arriving with the clearest governance narrative in the room. For investors, it means arriving expecting frank conversations about what enacted governance — South Africa's gazette — changes for risk pricing in the region.
+  </p>
+  <div class="meta-row">
+    <span class="source">KAOUN International · IoT Now · TechAfrica News — April 30, 2026</span>
+    <a class="read-link" href="https://techafricanews.com/2026/04/30/gitex-comes-to-east-africa-what-nairobis-moment-on-the-global-tech-stage-really-means/" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- RANK 6: KENYA AI DISABILITY -->
+<div class="story s-policy">
+  <div class="rank-badge rb-policy">Rank #6 — Kenya · Inclusive AI · Connected Africa Summit</div>
+  <h3>Kenya Launches AI for Disability Project at Connected Africa Summit — 12-Country Multi-Stakeholder Coalition Signals Inclusive AI Is Now Institutional Policy</h3>
+  <div class="pills">
+    <span class="pill pl-p">Policy</span>
+    <span class="pill pl-k">Kenya</span>
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-h">Inclusive AI</span>
+  </div>
+  <p>
+    Kenya's Ministry of Information, Communications and the Digital Economy — in partnership with Huawei's TECH4ALL initiative — officially launched the Kenya AI for Disability Project at the 15th Connected Africa Summit 2026 in Nairobi on 4 May. The initiative brings together the State Department for Broadcasting and Telecommunications, the Kenya Institute of Special Education, Qhala, the Assistive Technologies for Disability Trust (AT4D), and inABLE in a multi-stakeholder coalition spanning 12+ African countries. The Summit itself, chaired by Kenya and anchored by President William Ruto, focuses on actionable continental digital outcomes — including the launch of the Connected Africa Secretariat.
+  </p>
+  <p>
+    The AI for Disability Project is significant not for its technology — AI assistive tools exist globally — but for its institutional architecture. By embedding AI accessibility into a formal ministry-led programme with a 12-country coalition, Kenya is creating a governance model for inclusive AI that other African nations can adopt and adapt without starting from zero. The TECH4ALL framing from Huawei is notable: it signals that the same Chinese technology company deploying surveillance infrastructure elsewhere in Africa is simultaneously funding inclusive AI access programmes — a tension that governance frameworks will need to address.
+  </p>
+  <div class="meta-row">
+    <span class="source">TechAfrica News · Connected Africa Summit — 4 May 2026</span>
+    <a class="read-link" href="https://techafricanews.com/2026/05/04/kenya-launches-ai-for-disability-project-at-connected-africa-summit-2026-in-partnership-with-huawei/" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- RANK 7: CHINA-AFRICA LABOR -->
+<div class="story s-research">
+  <div class="rank-badge rb-research">Rank #7 — Research · Continental · Automation-Labour Challenge</div>
+  <h3>What China's AI Push Can Teach Africa — The Automation-Labour Dilemma Is More Dangerous Than Optimists Acknowledge</h3>
+  <div class="pills">
+    <span class="pill pl-r">Research</span>
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-c">Economics</span>
+  </div>
+  <p>
+    The Diplomat published a rigorous analysis this week using China's 2026 Two Sessions as an analytical lens for Africa's automation challenge. China's 2026 Government Work Report set a growth target of 4.5–5%, targeted 12 million+ new urban jobs, and simultaneously laid out a roadmap for an "intelligent economy" — AI across industries, automated business models, advanced data governance. The nuanced reading: China is simultaneously generating jobs and producing deep anxiety among graduates, because the specific jobs being created do not match the skills of the 13 million college graduates entering the market annually.
+  </p>
+  <p>
+    For Africa, the situation is structurally different and structurally more dangerous. Over the next three decades, 740 million people will be added to Africa's working-age population — approximately 12 million new labour market entrants per year. Current formal job creation is approximately 3 million per year. The shortfall is not new — it has defined African development policy for decades. What AI changes is the manufacturing escape route: manufacturing was the sector that absorbed East Asia's excess labour in previous development cycles. If manufacturing jobs are automated before Africa can capture them, the development ladder has been removed.
+  </p>
+  <div class="insight-box">
+    <div class="ib-label">RED TEAM — CHALLENGE verdict on automation optimism</div>
+    <p>The dominant narrative in African AI policy — that AI creates new jobs while displacing others, net positive — relies on analogy to China and South Korea. This analogy fails structurally: those countries had deep manufacturing bases to soften the automation transition. The correct African comparator may be Indonesia or Bangladesh — and even there, the pathway requires sequencing that Africa's current industrial base does not support. The 3 million formal jobs per year figure is the most important number in African AI policy and it appears in almost no AI governance document on the continent. Strategy without this number is not strategy — it is aspiration.</p>
+  </div>
+  <div class="meta-row">
+    <span class="source">The Diplomat — May 5, 2026</span>
+    <a class="read-link" href="https://thediplomat.com/2026/05/what-chinas-ai-push-can-teach-africa-about-the-future-of-labor/" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- RANK 8: AEW AI TRACK -->
+<div class="story s-capital">
+  <div class="rank-badge rb-capital">Rank #8 — Infrastructure · South Africa · Energy-AI Nexus</div>
+  <h3>African Energy Week 2026 Launches First-Ever AI and Data Center Track — Energy Policy Finally Treats AI Infrastructure as Bankable Demand, Not Digital Footnote</h3>
+  <div class="pills">
+    <span class="pill pl-p">Infrastructure</span>
+    <span class="pill pl-k">South Africa</span>
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-c">Energy</span>
+  </div>
+  <p>
+    The African Energy Week Conference and Exhibition (AEW 2026, October 12–16, Cape Town) announced this week the launch of its first-ever AI and Data Center Track. Led by the African Energy Chamber, the track is explicitly designed to "align policymakers, investors and technology players around a unified strategy for scaling power generation through data-driven demand." NJ Ayuk, AEC Executive Chairman, was unambiguous: "We will start a data center and AI revolution in Cape Town."
+  </p>
+  <p>
+    The AEW track is structurally significant because it inverts the usual energy-AI discourse. Previously, AI was discussed as a demand problem for energy systems (how do data centres consume power sustainably?). The AEW frame treats data centres as a demand solution for energy investors: predictable, bankable, uninterrupted electricity demand that justifies new generation capacity and grid expansion. With global data centre IT load forecast to reach 249 GW by 2030, Africa holds less than 1% of current global capacity — making it the highest-growth market for energy-anchored digital infrastructure investment over the next decade.
+  </p>
+  <div class="meta-row">
+    <span class="source">Zawya / African Energy Chamber — May 4, 2026</span>
+    <a class="read-link" href="https://www.zawya.com/en/press-release/africa-press-releases/african-energy-week-aew-2026-launches-artificial-intelligence-ai-and-data-center-platform-bridging-africas-mqwremxm" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- RANK 9: DEEP LEARNING INDABA -->
+<div class="story s-research">
+  <div class="rank-badge rb-research">Rank #9 — Research · Nigeria · Deep Learning Indaba 2026</div>
+  <h3>Deep Learning Indaba 2026 Confirms Pan-Atlantic University Lagos — African AI Research to Be Published in IJCAI Special Volume for First Time</h3>
+  <div class="pills">
+    <span class="pill pl-r">Research</span>
+    <span class="pill pl-k">Nigeria</span>
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-h">Talent</span>
+  </div>
+  <p>
+    The Deep Learning Indaba 2026 confirmed this week that its venue will be Pan-Atlantic University (PAU) in Lagos, Nigeria, running 2–7 August 2026 — the first time the continent's premier AI research gathering has been held in Nigeria. All open calls (participation, papers, datasets, startups) were extended by 10 days during this window, signalling healthy application volumes. The most significant governance update: accepted research papers will be published in a special volume of the International Joint Conference on Artificial Intelligence (IJCAI) — making DLI 2026 the first edition to produce peer-reviewed, indexed global publications from African AI research presented at the event.
+  </p>
+  <p>
+    The IJCAI publication channel elevates the Indaba from a community gathering into an academic credentialising mechanism. For African AI researchers — who have historically been disadvantaged in publication pipelines dominated by European and US institutions — this creates a pathway for their work to enter the global citation ecosystem on equal terms. The African Datasets call, which emphasises low-resource language datasets and community-centred data collection for health, education, and agriculture, is active until 30 May 2026. Microsoft and Google are confirmed sponsors; the Deep Learning Indaba 2026 is the first time DLI has co-launched the Masakhane African Languages Hub at the event.
+  </p>
+  <div class="meta-row">
+    <span class="source">Deep Learning Indaba 2026 official site · iAfrikan.com — confirmed in window</span>
+    <a class="read-link" href="https://deeplearningindaba.com/2026/" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- RANK 10: ALGERIA + SA WINDOW -->
+<div class="story s-policy">
+  <div class="rank-badge rb-policy">Rank #10 — Policy · North Africa + South Africa</div>
+  <h3>Algeria Launches AI Startup Cluster, North Africa Builds Its Own Production Infrastructure — While South Africa's Comment Window Passes Its Midpoint</h3>
+  <div class="pills">
+    <span class="pill pl-p">Policy</span>
+    <span class="pill pl-k">Algeria</span>
+    <span class="pill pl-k">South Africa</span>
+    <span class="pill pl-k">Continental</span>
+  </div>
+  <p>
+    Algeria launched an AI and cybersecurity startup cluster this week, confirmed in Africa News Analysis coverage — adding a structured, state-led AI production infrastructure to the North African landscape alongside Morocco's established GITEX and AI policy presence, Tunisia's capital-efficient AI startup cluster, and Egypt's dominant position on AI readiness indices. Algeria's cluster signals that Africa's AI ecosystem is moving beyond the Big Four (South Africa, Kenya, Nigeria, Egypt) into a more geographically distributed architecture of national AI production capacity.
+  </p>
+  <p>
+    Simultaneously, South Africa's Draft AI Policy comment window passed its midpoint this week — Day 25 of 60, with the submission deadline of 10 June 2026 at 16:00 SAST (aipolicy@dcdt.gov.za) now 36 days away. The policy architecture — sector-specific, multi-regulator, embedded in POPIA across six pillars — will be shaped by the submissions received between now and that deadline. The governance conversation at GITEX Kenya (19 May) will be the first major capital event where the SA comment window is an open, active process rather than an anticipated one — and investors in attendance will be asking whether substantive technical submissions are being prepared.
+  </p>
+  <div class="meta-row">
+    <span class="source">Africa News Analysis · Bowmans · Ellipsis — active in window</span>
+    <a class="read-link" href="https://www.ellipsis.co.za/artificial-intelligence-regulation-in-south-africa/" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- ═══════════════ MARKET & BUSINESS ═══════════════ -->
+<div class="sec" id="market">
+  <div class="sec-num">§ 03</div>
+  <h2>Market &amp; Business Signals</h2>
+</div>
+
+<div class="data-grid">
+  <div class="data-card">
+    <span class="dc-val em">64%</span>
+    <span class="dc-lbl">of Moroccan startups at GITEX Africa 2026 entered advanced-stage negotiations (official parliamentary report)</span>
+  </div>
+  <div class="data-card">
+    <span class="dc-val am">$2.4B</span>
+    <span class="dc-lbl">AI market contribution to Kenya's GDP projected by 2030 (KAOUN International)</span>
+  </div>
+  <div class="data-card">
+    <span class="dc-val">249 GW</span>
+    <span class="dc-lbl">Global data centre IT load forecast by 2030 — Africa holds less than 1% of current capacity</span>
+  </div>
+  <div class="data-card">
+    <span class="dc-val ru">$1B</span>
+    <span class="dc-lbl">Autonomous weapons imports in Africa — without a single public governance framework (Stimson Center)</span>
+  </div>
+</div>
+
+<div class="story s-capital" style="margin-top:14px;">
+  <div class="rank-badge rb-capital">Market Signal — GITEX as Capital Formation Infrastructure</div>
+  <h3>GITEX Africa Is No Longer Just an Event — The 64% Advanced-Stage Negotiation Rate Makes It a Capital Formation Institution</h3>
+  <div class="pills">
+    <span class="pill pl-c">Market Data</span>
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-h">Ecosystem</span>
+  </div>
+  <p>
+    The 64% advanced-stage negotiation figure from Morocco's parliamentary report changes the analytical framing for GITEX Africa. Events with conversion rates below 30% are networking infrastructure. Events with rates above 60% are capital formation infrastructure. The distinction matters because capital formation infrastructure justifies long-term investment by governments, development finance institutions, and ecosystem builders — beyond sponsor fees. Morocco's strategic calculation — hosting GITEX, subsidising 300 startups through the "Morocco 300" programme, and now expanding into health — is now validating commercially. The question for other African cities competing for GITEX expansion (Nairobi is next) is whether they can replicate Morocco's state-backed startup preparation pipeline that produces deal-ready companies rather than exhibition participants.
+  </p>
+  <div class="meta-row">
+    <span class="source">Morocco World News / Parliamentary session — April 29, 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════ RESEARCH ═══════════════ -->
+<div class="sec" id="research">
+  <div class="sec-num">§ 04</div>
+  <h2>Research &amp; Institutional Findings</h2>
+</div>
+
+<div class="story s-research">
+  <div class="rank-badge rb-research">Research — Healthcare AI Economics</div>
+  <h3>Global AI Diagnostics Market: $7B in 2025, $209B by 2034 — Africa's Healthcare AI Window Is Open Now, Infrastructure Bottleneck Is Not the Algorithm</h3>
+  <div class="pills">
+    <span class="pill pl-h">Healthcare AI</span>
+    <span class="pill pl-r">Market Data</span>
+    <span class="pill pl-k">Continental</span>
+  </div>
+  <p>
+    GITEX Future Health Africa coverage this week cited the global AI in healthcare market: $39 billion in 2025, projected to surpass $1 trillion by 2034 at 44% CAGR (Fortune Business Insights). AI diagnostics specifically was valued at $7.03 billion in 2025, projected to pass $209 billion by 2034 at 46%+ growth. More than 80% of health system executives globally now prioritise AI for clinical operations (Deloitte). For Africa, the bottleneck is not the AI algorithm — mature, often open-source diagnostic AI tools exist for tumour detection, diabetic retinopathy screening, and ECG interpretation. The bottleneck is the digital health infrastructure layer beneath the AI: fragmented EHR systems, paper-based clinical workflows, absence of PACS infrastructure, and the critical absence of interoperability standards across continental health systems. GITEX Future Health is the right convening — but the investments that will unlock African health AI are in infrastructure, not in models.
+  </p>
+  <div class="meta-row">
+    <span class="source">Morocco World News / GITEX Future Health — May 4–5, 2026</span>
+    <a class="read-link" href="https://www.moroccoworldnews.com/2026/04/289104/gitex-future-health-africa-2026-ai-in-healthcare-moves-toward-real-world-use/" target="_blank">READ →</a>
+  </div>
+</div>
+
+<div class="story s-research">
+  <div class="rank-badge rb-research">Research — Sovereign AI Infrastructure</div>
+  <h3>Stimson: Africa's AI Governance Variation — From Rwanda and Nigeria's Published Strategies to Conflict-Affected Countries With Zero AI Readiness</h3>
+  <div class="pills">
+    <span class="pill pl-r">Research</span>
+    <span class="pill pl-k">Continental</span>
+    <span class="pill pl-p">Policy</span>
+  </div>
+  <p>
+    The Stimson Center's continental analysis documents significant governance variation that aggregate "Africa AI" narratives obscure: on one end, Rwanda and Nigeria have published AI strategies, South Africa has gazetted a draft policy, and Morocco, Kenya, and Egypt all have formal frameworks in development or enacted. On the other end, the continent's most conflict-affected countries — precisely those where AI-enabled weapons, surveillance, and disinformation pose the highest risk — have no AI readiness infrastructure whatsoever. The policy gap and the harm exposure are inversely correlated: the least protected populations are in the countries where AI-enabled harm is most likely. The analysis also confirms Google's Masakhane African Languages AI Hub funding specifically to expand to 40+ African languages — the most targeted response yet to the structural language exclusion problem documented in the prior edition.
+  </p>
+  <div class="meta-row">
+    <span class="source">Stimson Center — 2026 publication</span>
+    <a class="read-link" href="https://www.stimson.org/2026/priorities-for-africa-artificial-intelligence-governance-at-the-global-and-national-level/" target="_blank">READ →</a>
+  </div>
+</div>
+
+<!-- ═══════════════ STRATEGIC INSIGHTS ═══════════════ -->
+<div class="sec" id="strategic">
+  <div class="sec-num">§ 05</div>
+  <h2>Strategic Insights</h2>
+</div>
+
+<div class="sc s1">
+  <div class="sc-head">Insight 01 — The GITEX Consolidation Play</div>
+  <div class="sc-title">KAOUN International is not running multiple African events. It is building continental AI event infrastructure — with Marrakech, Nairobi, and Casablanca as nodes of a single platform.</div>
+  <div class="sc-body">Within 45 days: GITEX Africa (Marrakech, April), GITEX Future Health Africa (Casablanca, May 4–6), AI Everything Kenya × GITEX Kenya (Nairobi, May 19–21). Three cities. Three distinct market segments: enterprise tech, healthcare procurement, East African ecosystem. One brand. This is not event diversification — it is platform infrastructure. By 2027, the GITEX brand will anchor Africa's three most consequential AI capital markets. Every African city not in this network is structurally disadvantaged for investor attention. The competitive question for African governments is not whether to attend GITEX — it is whether to become a GITEX city.</div>
+</div>
+
+<div class="sc s2">
+  <div class="sc-head">Insight 02 — The Health Sovereignty Frame</div>
+  <div class="sc-title">GITEX Future Health Africa launched with the word "sovereignty" at its centre. This is not accidental — it mirrors the compute sovereignty narrative that has dominated African AI infrastructure discourse since Cassava's AI Factory in March.</div>
+  <div class="sc-body">Health sovereignty, compute sovereignty, language sovereignty, data sovereignty — the pattern is now explicit: every major domain of African AI has been framed in sovereignty terms in Q1-Q2 2026. This framing is politically potent and strategically important because it transforms AI from a technology procurement decision into a development trajectory decision. Governments that accept it will make different procurement choices — insisting on local data residency, local language support, local employment in system maintenance — than governments that do not. The risk is that sovereignty framing becomes rhetorical cover for protectionism rather than genuine capability-building.</div>
+</div>
+
+<div class="sc s3">
+  <div class="sc-head">Insight 03 — The 3 Million Jobs Problem</div>
+  <div class="sc-title">Every African AI strategy document assumes AI creates net new employment. None of them model the formal jobs gap — 12 million labour market entrants vs 3 million formal jobs created annually. This gap is the AI governance conversation that isn't happening.</div>
+  <div class="sc-body">The Diplomat's China analysis is the first substantive treatment this quarter of what happens when AI-enabled automation meets Africa's structural jobs deficit. The optimistic framing — AI creates new job categories — is correct in theory but requires the institutional infrastructure to train and place workers in those categories to function in practice. China has that infrastructure. Africa is building it. The window during which BAFAI, Google Accelerator alumni, and Microsoft Elevate graduates can absorb the new AI-adjacent jobs is not unlimited. By 2028, the automation of routine cognitive tasks will have advanced considerably further. The question African AI policy must answer — and none currently does — is: what is the sequencing between education reform, AI adoption, and formal employment creation that prevents mass youth unemployment driven by AI displacement from becoming the continent's defining crisis?</div>
+</div>
+
+<div class="sc s4">
+  <div class="sc-head">Insight 04 — The SA Comment Window Is the Governance Test No One Is Watching</div>
+  <div class="sc-title">Day 25 of 60 has passed. In 36 days, South Africa's comment window closes. The question is not whether the policy is well-designed — it is whether African institutions have the capacity to submit substantive technical comments that actually shape implementation.</div>
+  <div class="sc-body">The South African Draft AI Policy's value to Africa's AI governance decade depends entirely on what is submitted before 10 June 2026. A comment window dominated by large financial institutions and international law firms will produce rules calibrated for large financial institutions and international law firms. A comment window that also includes civil society submissions on language rights, community health AI, and rural digital access will produce rules calibrated for the populations AI will most affect. The institutional capacity gap — who can write a technically credible 15-page submission to a government gazette? — is the governance participation inequality that mirrors the startup funding concentration problem in investment. Both require deliberate, funded intervention to correct.</div>
+</div>
+
+<!-- ═══════════════ OPPORTUNITIES ═══════════════ -->
+<div class="sec" id="opportunities">
+  <div class="sec-num">§ 06</div>
+  <h2>Opportunities</h2>
+</div>
+
+<div style="background: var(--surface); border: 1px solid var(--border); padding: 16px 18px;">
+  <div class="opp-row">
+    <div class="opp-num">01</div>
+    <div>
+      <div class="opp-title">Healthcare AI Infrastructure — The Layer Below the Algorithm</div>
+      <div class="opp-desc">GITEX Future Health Africa confirms institutional appetite for AI health procurement. But the binding constraint is not diagnostic AI — it is interoperability, EHR digitisation, and PACS infrastructure. African health tech companies that provide the enabling infrastructure layer (data pipelines, clinical workflow digitisation, HL7/FHIR interoperability) rather than the AI model sit in the highest-value position: they are required for AI to work, and they are addressable through government procurement channels that B2C health AI companies cannot access.</div>
+    </div>
+  </div>
+  <div class="opp-row">
+    <div class="opp-num">02</div>
+    <div>
+      <div class="opp-title">Gulf Capital Access — Structuring African AI Infrastructure Partnerships for SWF Return Profiles</div>
+      <div class="opp-desc">Gulf sovereign wealth funds are actively seeking African AI infrastructure deals. African telcos, port authorities, and energy companies with land, fibre rights, and power capacity are the natural partners — but they need advisors who understand how to structure deals for 20-year SWF return horizons rather than 7-year VC exits. The first advisory firms and development finance institutions to build expertise in Gulf SWF-African infrastructure deal structuring are positioning for the most important capital deployment cycle on the continent in the next decade.</div>
+    </div>
+  </div>
+  <div class="opp-row">
+    <div class="opp-num">03</div>
+    <div>
+      <div class="opp-title">GITEX Kenya — The First AI Event Where the SA Gazette is Enacted Governance, Not a Promise</div>
+      <div class="opp-desc">When investors gather in Nairobi on 19 May, South Africa's comment window will be actively open and Nigeria's Q2 timeline will be drawing to a close. This is the first major African AI capital event at which governance progress can be presented as a specific, time-bound regulatory timeline — not a vague assurance. Founders and policymakers who can articulate exactly what South Africa's policy means for compliance timelines, what Nigeria's bill passage enables, and what Kenya's AI Bill progress signals for regional harmonisation will control the most important conversations of the event.</div>
+    </div>
+  </div>
+  <div class="opp-row">
+    <div class="opp-num">04</div>
+    <div>
+      <div class="opp-title">Deep Learning Indaba Datasets — The IJCAI Publication Path Is Now Open to African AI Researchers</div>
+      <div class="opp-desc">DLI 2026's IJCAI special volume creates the first indexed global publication pathway for African AI research. African PhD students, early-career researchers, and university AI labs who have been unable to access the global citation ecosystem should be submitting to the DLI 2026 research track before the submission deadline. The competitive field is smaller than IJCAI's main track; the publication credibility is the same. Dataset call deadline is 30 May 2026. Research paper submission window is active now.</div>
+    </div>
+  </div>
+  <div class="opp-row">
+    <div class="opp-num">05</div>
+    <div>
+      <div class="opp-title">AEW 2026 AI & Data Center Track — Positioning Before Cape Town's AI Infrastructure Conversation Begins</div>
+      <div class="opp-desc">African Energy Week's first AI and Data Center Track (October 12–16, Cape Town) will be the first energy-policy event where AI infrastructure is on the main agenda as a demand driver, not a technology sidebar. AI infrastructure companies, GPU cloud providers, modular data centre builders (Horus Labs, Africa Compute Fund), and renewable energy developers who position now — as exhibitors, speakers, or sponsor partners — will be in the room when Africa's energy policy community formally aligns behind AI compute as bankable demand. The alignment of energy and AI investment communities is worth attending before it fully materialises.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ RISKS ═══════════════ -->
+<div class="sec" id="risks">
+  <div class="sec-num">§ 07</div>
+  <h2>Risks &amp; Threats</h2>
+</div>
+
+<div class="risk-item">
+  <span class="risk-icon">⚡</span>
+  <div><strong>The automation-labour dilemma is not in any African AI governance document — and it should be.</strong> The Diplomat analysis confirms the structural gap: 740 million additional working-age people over three decades, 12 million annual labour market entrants, 3 million formal jobs created per year. No African AI strategy — not Nigeria's, not South Africa's draft policy, not Kenya's — has modelled what happens if AI-enabled automation accelerates the displacement of the cognitive routine work that entry-level workers depend on before those workers can be retrained for AI-adjacent roles. This is not a future risk. It is a policy design failure in documents currently open for comment.</div>
+</div>
+<div class="risk-item">
+  <span class="risk-icon">⚡</span>
+  <div><strong>GITEX event-to-deal conversion — 64% advanced-stage negotiations is not 64% closed deals.</strong> Morocco's parliamentary report is a significant data point — but "advanced-stage negotiations" is not "signed contracts" or "disbursed capital." African startup ecosystems have historically had high engagement rates at events and low conversion rates to actual capital deployment, because the 6–12 month due diligence cycle required for capital commitment falls outside any event's accountability window. The 64% figure should be tracked over the next 12 months: how many of those negotiations convert to announced funding rounds, signed enterprise contracts, or government procurement decisions?</div>
+</div>
+<div class="risk-item">
+  <span class="risk-icon">⚠</span>
+  <div><strong>Autonomous weapons governance is lagging the fastest-growing AI harm domain in Africa.</strong> The Stimson Center's $1 billion autonomous weapons import figure, combined with active conflicts in Sudan, DRC, Mali, and Mozambique, places Africa at the intersection of AI capability and governance vacuum in the domain with the most irreversible harm pathway. The AU PSC process is the correct institutional vehicle — but it operates on diplomatic timelines. The Common African Position on AI Governance, Peace and Security, when finalised, must include explicit provisions for lethal autonomous weapons systems, not just digital economy AI. The current draft process has not surfaced this publicly.</div>
+</div>
+<div class="risk-item">
+  <span class="risk-icon">⚠</span>
+  <div><strong>Gulf-Africa AI partnerships may include non-commercial conditions that compromise data sovereignty.</strong> The Microsoft-G42 Kenya model is a high-quality outlier — it involves a technically sophisticated UAE partner, a development bank (IFC), and a bilateral relationship with strong governance. Most Gulf SWF capital in Africa has historically included conditions (port access agreements, strategic commodity pricing, supplier nationality requirements) that are not disclosed in public announcements. The risk that Gulf capital in African AI infrastructure comes with data sovereignty conditions that undermine the sovereignty argument for hosting local compute is not theoretical — it is the standard pattern of resource-linked Gulf investment in other sectors.</div>
+</div>
+<div class="risk-item">
+  <span class="risk-icon">→</span>
+  <div><strong>SA comment window participation inequality is approaching structural lock-in.</strong> Day 25 of 60 has passed. Organisations with dedicated AI policy teams — large financial institutions, international law firms, global tech companies — have had months to prepare. Civil society organisations, SMEs, and community AI practitioners are still trying to understand what the gazette means. If submissions close on 10 June with the balance tilted heavily toward large institutional actors, the resulting implementation rules will reflect their interests — not the populations most exposed to AI harm in financial services, healthcare, and public administration.</div>
+</div>
+
+<!-- ═══════════════ EVENTS CALENDAR ═══════════════ -->
+<div class="sec" id="events">
+  <div class="sec-num">§ 08</div>
+  <h2>Events Calendar — Q2 2026</h2>
+</div>
+
+<table class="events-table">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Event</th>
+      <th>Location</th>
+      <th>Significance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="ev-date">4–6 May<br><span class="ev-tag live">LIVE NOW</span></td>
+      <td><strong>GITEX Future Health Africa 2026 — Inaugural Edition</strong></td>
+      <td>Casablanca, Morocco</td>
+      <td>Africa's first AI health summit at this scale. 15,000 visitors, 300+ exhibitors, 50+ investors. Health sovereignty framing. Executive Summit: "Financing Health Sovereignty: From Dependency to Dominance."</td>
+    </tr>
+    <tr>
+      <td class="ev-date">10 Jun<br><span class="ev-tag live">DEADLINE</span></td>
+      <td><strong>South Africa Draft AI Policy — Comment Window Closes</strong></td>
+      <td>Online (dcdt.gov.za)</td>
+      <td>Day 36 remaining. Submit before 16:00 SAST to aipolicy@dcdt.gov.za. Most consequential governance participation opportunity in Africa this year. After this closes, implementation rules are set without your input.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">19–21 May<br><span class="ev-tag em">14 Days</span></td>
+      <td><strong>AI Everything Kenya × GITEX Kenya 2026</strong></td>
+      <td>Nairobi, Kenya</td>
+      <td>East Africa's flagship AI gathering. 15,000+ attendees, 100+ investors from 75 countries. First major capital event with SA gazette as active governance context. $2.4B Kenya AI GDP projection anchors the agenda.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">30 May</td>
+      <td><strong>Deep Learning Indaba 2026 — Dataset Call Deadline</strong></td>
+      <td>Online (deeplearningindaba.com)</td>
+      <td>African dataset submissions close. Papers accepted for IJCAI special volume. Apply now — deeplearningindaba.com/2026</td>
+    </tr>
+    <tr>
+      <td class="ev-date">Q2–Q3 2026</td>
+      <td><strong>Nigeria AI Bill — National Assembly</strong><br><span class="ev-tag live">WATCH</span></td>
+      <td>Abuja, Nigeria</td>
+      <td>Q2 ceiling approaching. Five AI-related bills active. TechHive Q2/Q3 timeline. Any passage confirmation = continental breaking news. Monitor nitda.gov.ng and @NITDA_NG.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">Jun 2026</td>
+      <td><strong>MTN Capital Markets Day</strong></td>
+      <td>Johannesburg, SA</td>
+      <td>MTN names AI data centre co-investment partners for South Africa and Nigeria. Most important African compute infrastructure announcement of Q2.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">2–7 Aug</td>
+      <td><strong>Deep Learning Indaba 2026 — "Sovereign Intelligence"</strong></td>
+      <td>Pan-Atlantic University, Lagos, Nigeria</td>
+      <td>First Indaba in Nigeria. IJCAI special volume publication. Masakhane African Languages Hub launch. Africa's premier ML research gathering. Applications open now.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">Oct 12–16</td>
+      <td><strong>African Energy Week 2026 — First AI &amp; Data Center Track</strong></td>
+      <td>Cape Town, SA</td>
+      <td>First major African energy event where AI infrastructure is mainstreamed as bankable demand driver, not digital sector sidebar. African Energy Chamber leading. NJ Ayuk confirmed.</td>
+    </tr>
+    <tr>
+      <td class="ev-date">Oct 28–29</td>
+      <td><strong>AI Expo Africa 2026 — 9th Edition</strong></td>
+      <td>Sandton Convention Centre, Johannesburg</td>
+      <td>Africa's largest enterprise AI trade show. By October, SA comment window will have closed, implementation direction set, and Nigeria bill status resolved.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════ EDITOR'S NOTE ═══════════════ -->
+<div class="ed-note">
+  <div class="en-label">§ Editor's Note — AIW-026-08 · 05 May 2026</div>
+  <p>
+    Two images define this week. In Casablanca, the inaugural GITEX Future Health Africa opened in a room full of health ministers, hospital procurement officers, and investors discussing what it would mean for Africa to design and govern its own healthcare AI systems rather than import and implement what others built. In The Diplomat's analysis, a quieter image: 12 million young Africans entering a labour market that creates 3 million formal jobs per year, in a world where routine cognitive work is being automated before those jobs can absorb that labour. These two images are not in tension — they are the same story told from different vantage points.
+  </p>
+  <p>
+    The GITEX expansion — Marrakech, Casablanca, Nairobi within 45 days — is genuine infrastructure progress. The Gulf capital thesis is real. The Indaba's IJCAI publication channel is a meaningful credentialising advance. But none of these developments addresses the structural reality that The Diplomat surfaced: Africa's AI decade will be measured not by how many billion-dollar data centres are built or how many government AI strategies are published — but by whether the 12 million young people entering labour markets this year are better positioned to participate in an AI-shaped economy than the 12 million who entered last year. No governance document on the continent currently asks that question in explicit, measurable terms. The 60-day comment window in South Africa is the most immediate opportunity to change that.
+  </p>
+  <p style="margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-dim); letter-spacing: 0.06em;">
+    — The Daily African Lens Intelligence Desk · Edition #AIW-026-08 · Tuesday 05 May 2026
+  </p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">The Daily African Lens</div>
+  <p>AI · Machine Learning · Data Science · Across 54 Nations</p>
+  <p>AI Weekly African Lens — Edition #AIW-026-08 · Week ending 05 May 2026</p>
+  <p>Window: 28 April 2026, 06:00 SAST → 05 May 2026, 05:59 SAST</p>
+  <p style="margin-top: 10px;">Subscribe: <a href="https://simphiwemlotshwa.substack.com/">simphiwemlotshwa.substack.com</a></p>
+  <a class="sub-cta" href="https://simphiwemlotshwa.substack.com/">Subscribe Free →</a>
+  <p style="margin-top: 20px; font-size: 9px; color: var(--text-dim);">© 2026 The Daily African Lens. All summaries are paraphrased editorial originals — no verbatim reproduction of source material. All links verified at time of publication. Coverage window: 06:00 SAST 28 Apr → 05:59 SAST 05 May 2026.</p>
+</div>
+
+</div><!-- /wrapper -->
+</body>
+</html>
