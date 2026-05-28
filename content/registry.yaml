@@ -1,26 +1,327 @@
-# editions-registry.yaml — 10 lines at the top of weekly:
-- id: "AIW-026-12"
-  status: "new"
-  badge: "gold"
-  date: "25 May 2026"
-  window: "19 May → 25 May 2026"
-  window_short: "19 → 25 May 2026"
-  title: "..."
-  subtitle: "..."
-  summary: "..."
-  themes_line: "..."
-  developments: 10
-  file: "aiw-026-12.html"
-# editions-registry.yaml — 10 lines at the top of weekly:
-- id: "AIW-026-11"
-  status: "available"
-  badge: "teal"
-  date: "19 May 2026"
-  window: "12 May → 19 May 2026"
-  window_short: "12 → 19 May 2026"
-  title: "..."
-  subtitle: "..."
-  summary: "..."
-  themes_line: "..."
-  developments: 10
-  file: "aiw-026-11.html"
+# AI Weekly Lens — Editions Registry
+# File: content/registry.yaml
+# ─────────────────────────────────
+# HOW TO ADD A NEW EDITION
+# 1. Copy the top weekly: entry below
+# 2. Paste it ABOVE the current first entry
+# 3. Set status: "new" and badge: "gold"
+# 4. Change previous top entry to status: "available", badge: "teal"
+# 5. Increment stats.weekly_total by 1
+
+# ── SITE ──────────────────────────────────────────────────────────────────────
+site:
+  brand: "The Weekly African Lens"
+  substack: "https://simphiwemlotshwa.substack.com/"
+  coverage: "Q1–Q2"
+  nations: 54
+
+# ── STATS ─────────────────────────────────────────────────────────────────────
+stats:
+  daily_editions: "21+"
+  weekly_total: 12
+  developments_ranked: "110+"
+
+# ── MACRO THEMES ──────────────────────────────────────────────────────────────
+themes:
+  - title: "African AI Policy & Regulation"
+    count: "24+ editions · SA Withdrawn · Nigeria Hearings · Kenya Register"
+    css: "policy"
+  - title: "Language AI & African NLP"
+    count: "14+ editions · DeepSeek Hausa · Masakhane · Google"
+    css: ""
+  - title: "AI Fraud & Biometric Security"
+    count: "12+ editions · Smile ID · M-Pesa · NDPC"
+    css: "security"
+  - title: "Sovereign AI Infrastructure"
+    count: "12+ editions · Egypt $800M · Cassava · Equinix R7.5B"
+    css: "infra"
+  - title: "US–China–Korea AI Competition"
+    count: "10+ editions · Microsoft · DeepSeek · Nvidia · Korea-DRC"
+    css: "geo"
+  - title: "Deep Tech Ecosystem Building"
+    count: "8+ editions · BAFAI · ADTF · Indaba · Angola"
+    css: "ecosystem"
+
+# ── WEEKLY EDITIONS (newest first) ────────────────────────────────────────────
+weekly:
+
+  - id: "AIW-026-12"
+    status: "new"
+    badge: "gold"
+    date: "25 May 2026"
+    window: "19 May → 25 May 2026"
+    window_short: "19 → 25 May 2026"
+    title: "The Governance Quality Audit"
+    subtitle: "South Africa's Policy Reset, Nigeria's Senate Delivers, and a Continent Takes Notes"
+    summary: >
+      South Africa's AI policy withdrawal enters its reconstruction phase: seven-member
+      panel active, January 2027 comment target confirmed, two officials suspended.
+      Nigeria's Senate committee recommends a risk-tiered framework with concurrent
+      NITDA-NDPC oversight and a 12-month incident registry pilot. Kenya publishes
+      Africa's first responsible AI drafting guidance. Angola enters the governance
+      frame. The week governance demonstrated that failure and institutional competence
+      are not opposites.
+    themes_line: "SA Policy Reset · Nigeria Risk-Tier · Kenya CA Guidance · Angola Strategy · IFC $1.2B"
+    developments: 10
+    file: "aiw-026-12.html"
+
+  - id: "AIW-026-11"
+    status: "available"
+    badge: "teal"
+    date: "18 May 2026"
+    window: "12 May → 18 May 2026"
+    window_short: "12 → 18 May 2026"
+    title: "Before the Hearings"
+    subtitle: "Nigeria's AI Governance Endgame and the Infrastructure Counter-Surge"
+    summary: >
+      Nigeria's pre-hearing submissions crystallise the enforcement fault line —
+      NITDA versus NDPC, self-certification versus mandatory audit. Egypt's $800M
+      sovereign compute centre rewrites every continental infrastructure ranking.
+      Cassava breaks ground in Accra. Korea confirms DRC minerals dialogue.
+      South Africa's civil society gap begins to close.
+    themes_line: "Nigeria Hearings · Egypt $800M Compute · Cassava Accra · DRC–Korea · SA Civil Society"
+    developments: 10
+    file: "aiw-026-11.html"
+
+  - id: "AIW-026-10"
+    status: "available"
+    badge: "ink"
+    date: "11 May 2026"
+    window: "05 May → 11 May 2026"
+    window_short: "05 → 11 May 2026"
+    title: "The Consultation Week"
+    subtitle: "Who Writes Africa's AI Rules?"
+    summary: >
+      South Africa's comment window filling without the right voices. The DRC links
+      coltan export policy to AI chip access. Ethiopia commits $40M to a
+      sector-specific national strategy. DeepSeek adds Hausa and Amharic.
+      M-Pesa AI fraud detection live across 32 million users.
+    themes_line: "DRC Minerals Leverage · SA Comment Gap · Ethiopia $40M · DeepSeek Hausa · M-Pesa 32M"
+    developments: 10
+    file: "aiw-026-10.html"
+
+  - id: "AIW-026-09"
+    status: "available"
+    badge: "ink"
+    date: "04 May 2026"
+    window: "28 Apr → 04 May 2026"
+    window_short: "28 Apr → 04 May 2026"
+    title: "The Deployment Quarter"
+    subtitle: "M-Pesa AI Scale, Ethiopia Grid Readiness, Cassava Southern Africa Metrics"
+    summary: >
+      M-Pesa AI fraud detection controlled trial confirms 41% fraud reduction.
+      Ethiopia's GERD Phase 4 crosses the AI infrastructure viability threshold.
+      Cassava Southern Africa operational metrics published. Rwanda regulatory
+      sandbox opens first cohort.
+    themes_line: "M-Pesa AI Trial · Ethiopia GERD · Cassava SA Metrics · Rwanda Sandbox"
+    developments: 10
+    file: "aiw-026-09.html"
+
+  - id: "AIW-026-08"
+    status: "available"
+    badge: "ink"
+    date: "27 Apr 2026"
+    window: "21 Apr → 27 Apr 2026"
+    window_short: "21 → 27 Apr 2026"
+    title: "The Post-GITEX Reckoning"
+    subtitle: "Governance Commitments Meet Implementation Reality"
+    summary: >
+      SA AI Policy comment window opens — financial services dominant, civil society
+      absent. Morocco Nexus construction confirmed. Nigeria Senate committee begins
+      technical review. Abidjan IXP growth signals Francophone West Africa pivot.
+      Korea-UCT chip architecture research partnership announced.
+    themes_line: "SA Comment Opens · Morocco Nexus · Nigeria Senate Review · Abidjan IXP · Korea-UCT"
+    developments: 10
+    file: "aiw-026-08.html"
+
+  - id: "AIW-026-07"
+    status: "available"
+    badge: "ink"
+    date: "21 Apr 2026"
+    window: "14 Apr → 21 Apr 2026"
+    window_short: "14 → 21 Apr 2026"
+    title: "The Policy Moment Arrives"
+    subtitle: "South Africa Gazetted, GITEX Delivered"
+    summary: >
+      SA Draft AI Policy published (Gazette No. 54477). 60-day comment window open
+      until 9 June 2026. AU PSC formally engages AI as a continental security matter.
+      GITEX Africa closes with Senegal winning Best Young AI Company.
+      IMF warns against cutting AI budgets.
+    themes_line: "SA Gazette Published · AU PSC AI Security · GITEX Delivers · Language AI Gap · IMF Warning"
+    developments: 10
+    file: "aiw-026-07.html"
+
+  - id: "AIW-026-06"
+    status: "available"
+    badge: "ink"
+    date: "14 Apr 2026"
+    window: "08 Apr → 14 Apr 2026"
+    window_short: "08 → 14 Apr 2026"
+    title: "South Africa's AI Policy Lands"
+    subtitle: "The 60-Day Window Opens"
+    summary: >
+      South Africa's AI Policy gazetted — the governance era begins. Morocco's
+      Nexus data centre closes $1.28B in financing. GITEX Africa opens with
+      $5B deal pipeline. Mauritius publishes FAIR AI Guidelines.
+    themes_line: "SA AI Policy Gazetted · Morocco Nexus $1.28B · GITEX $5B Pipeline · Mauritius FAIR"
+    developments: 10
+    file: "aiw-026-06.html"
+
+  - id: "AIW-026-05"
+    status: "available"
+    badge: "ink"
+    date: "07 Apr 2026"
+    window: "31 Mar → 07 Apr 2026"
+    window_short: "31 Mar → 07 Apr 2026"
+    title: "Infrastructure Ahead of Governance"
+    subtitle: "Africa's Q1 AI Reckoning"
+    summary: >
+      Equinix bets R7.5B on South Africa. Nigeria's AI Bill deadline expires
+      without enactment. GITEX Africa opens. ERA 2026 concludes. The
+      governance-capital gap defines the quarter.
+    themes_line: "Equinix R7.5B · Nigeria Bill Misses Deadline · GITEX Africa Opens · ERA 2026"
+    developments: 10
+    file: "aiw-026-05.html"
+
+  - id: "AIW-026-04"
+    status: "coming"
+    badge: "grey"
+    date: "31 Mar 2026"
+    window: "24 Mar → 31 Mar 2026"
+    window_short: "24 → 31 Mar 2026"
+    title: "The Week Everything Converged"
+    subtitle: "Nigeria Bill Deadline Week"
+    summary: ""
+    themes_line: "Nigeria Bill Deadline · SA Gazette · $2B Surveillance · TECNO EllaClaw · GITEX Preview"
+    developments: 11
+    file: "aiw-026-04.html"
+
+  - id: "AIW-026-03"
+    status: "available"
+    badge: "ink"
+    date: "24 Mar 2026"
+    window: "17 Mar → 24 Mar 2026"
+    window_short: "17 → 24 Mar 2026"
+    title: "The Sovereignty Inflection"
+    subtitle: "Cassava AI Factory, NVIDIA GTC, Kenya AI Bill"
+    summary: >
+      Cassava AI Factory deploys in South Africa. NVIDIA GTC unveils Vera Rubin.
+      Kenya AI Bill enters Senate debate. $2.1B Chinese AI surveillance documented
+      across 11 African nations. BAFAI expands curriculum.
+    themes_line: "Cassava AI Factory · NVIDIA GTC Vera Rubin · Kenya AI Bill · $2.1B Surveillance · BAFAI"
+    developments: 11
+    file: "aiw-026-03.html"
+
+  - id: "AIW-026-02"
+    status: "coming"
+    badge: "grey"
+    date: "17 Mar 2026"
+    window: "10 Mar → 17 Mar 2026"
+    window_short: "10 → 17 Mar 2026"
+    title: "Governance Week"
+    subtitle: "Microsoft vs DeepSeek · SA Policy · IFF Kigali"
+    summary: ""
+    themes_line: "Microsoft vs DeepSeek · SA AI Policy · IFF 2026 Kigali · Nigeria Surveillance Bill"
+    developments: 0
+    file: "aiw-026-02.html"
+
+  - id: "AIW-026-01"
+    status: "coming"
+    badge: "grey"
+    date: "10 Mar 2026"
+    window: "03 Mar → 10 Mar 2026"
+    window_short: "03 → 10 Mar 2026"
+    title: "Launch Week"
+    subtitle: "Google 13 African Languages · Smile ID Fraud · US-China"
+    summary: ""
+    themes_line: "Google 13 African Languages · Smile ID 69% AI Fraud · US-China AI Competition"
+    developments: 0
+    file: "aiw-026-01.html"
+
+# ── DAILY EDITIONS ─────────────────────────────────────────────────────────────
+daily:
+  - id: "DAL-026-088"
+    date: "01 Apr 2026"
+    headline: "Equinix R7.5B + Nigeria Bill Post-Deadline + GITEX 6 Days"
+    tags: [{label: "Infrastructure", css: "infra"}, {label: "Policy", css: "policy"}]
+    file: "editions/dal-026-088.html"
+  - id: "DAL-026-087"
+    date: "31 Mar 2026"
+    headline: "Nigeria AI Bill Deadline Day + AfDB MEO 2026 + NKENNEAi Talks"
+    tags: [{label: "Legislation", css: "policy"}, {label: "Language AI", css: ""}]
+    file: "editions/dal-026-087.html"
+  - id: "DAL-026-081"
+    date: "24 Mar 2026"
+    headline: "TECNO EllaClaw + Africa FinTech Forum SA + Nigeria Surveillance"
+    tags: [{label: "Tech", css: ""}, {label: "Security", css: "security"}]
+    file: "editions/dal-026-081.html"
+  - id: "DAL-026-080"
+    date: "23 Mar 2026"
+    headline: "Africa Is Not Missing the AI Wave + SA Gazette + $2B Surveillance"
+    tags: [{label: "Ecosystem", css: ""}, {label: "Security", css: "security"}]
+    file: "editions/dal-026-080.html"
+  - id: "DAL-026-079"
+    date: "21 Mar 2026"
+    headline: "Rest of World: $2B Chinese AI Surveillance + World Bank WDR 2026"
+    tags: [{label: "Geopolitics", css: "security"}, {label: "Research", css: ""}]
+    file: "editions/dal-026-079.html"
+  - id: "DAL-026-078"
+    date: "20 Mar 2026"
+    headline: "Kenya AI Bill + Data Protection as Backdoor AI Regulation"
+    tags: [{label: "Legislation", css: "policy"}, {label: "Kenya", css: ""}]
+    file: "editions/dal-026-078.html"
+  - id: "DAL-026-077"
+    date: "19 Mar 2026"
+    headline: "Cassava AI Factory Deploys in South Africa + Google Accelerator Closes"
+    tags: [{label: "Infrastructure", css: "infra"}, {label: "Ecosystem", css: ""}]
+    file: "editions/dal-026-077.html"
+  - id: "DAL-026-076"
+    date: "18 Mar 2026"
+    headline: "Rwanda FinTech Centre + NDPC Deepfake Consultation + Standard Bank Kukura"
+    tags: [{label: "Fintech", css: ""}, {label: "AI Fraud", css: "security"}]
+    file: "editions/dal-026-076.html"
+  - id: "DAL-026-075"
+    date: "17 Mar 2026"
+    headline: "NVIDIA GTC 2026 + MTN AI Data Centre + Mark Nasila Sovereign AI"
+    tags: [{label: "Infrastructure", css: "infra"}, {label: "Research", css: ""}]
+    file: "editions/dal-026-075.html"
+  - id: "DAL-026-074"
+    date: "16 Mar 2026"
+    headline: "Microsoft Elevate 3M + Nigeria AI Bill + Ghana Court Challenge [48-Hr]"
+    tags: [{label: "Geopolitics", css: ""}, {label: "Policy", css: "policy"}]
+    file: "editions/dal-026-074.html"
+  - id: "DAL-026-073"
+    date: "14 Mar 2026"
+    headline: "Servernah Cloud — East Africa's First Sovereign AI Platform Goes Live"
+    tags: [{label: "Infrastructure", css: "infra"}, {label: "Kenya", css: ""}]
+    file: "editions/dal-026-073.html"
+  - id: "DAL-026-072"
+    date: "13 Mar 2026"
+    headline: "Microsoft vs DeepSeek for Africa's AI Market — Bloomberg Exclusive"
+    tags: [{label: "Geopolitics", css: ""}, {label: "Tech", css: "infra"}]
+    file: "editions/dal-026-072.html"
+  - id: "DAL-026-071"
+    date: "12 Mar 2026"
+    headline: "Microsoft-MTN Copilot Deal + IFF 2026 Closes + Veta Origin LLM"
+    tags: [{label: "Tech", css: ""}, {label: "Fintech", css: ""}]
+    file: "editions/dal-026-071.html"
+  - id: "DAL-026-070"
+    date: "11 Mar 2026"
+    headline: "Inclusive FinTech Forum Kigali + TikTok $200K AI Literacy + FraudLens"
+    tags: [{label: "AI Fraud", css: "security"}, {label: "Rwanda", css: ""}]
+    file: "editions/dal-026-070.html"
+  - id: "DAL-026-069"
+    date: "10 Mar 2026"
+    headline: "UN ECA ERA 2026 Preview + Nigeria AI Election Threat + Vodacom CEO"
+    tags: [{label: "Continental", css: ""}, {label: "Security", css: "security"}]
+    file: "editions/dal-026-069.html"
+  - id: "DAL-026-068"
+    date: "09 Mar 2026"
+    headline: "Nigeria 2027 Election AI Attack + Cassava Autonomous Network + Roam Explorer"
+    tags: [{label: "AI Fraud", css: "security"}, {label: "Infrastructure", css: "infra"}]
+    file: "editions/dal-026-068.html"
+  - id: "DAL-026-067"
+    date: "08 Mar 2026"
+    headline: "Google 13 African Languages + Smile ID 69% AI Fraud + US-China Competition"
+    tags: [{label: "Language AI", css: ""}, {label: "Security", css: "security"}]
+    file: "editions/dal-026-067.html"
