@@ -143,6 +143,27 @@ def parse_registry(path) -> dict:
     """
     data = _load_yaml(path)
 
+    # Guard: if the registry YAML was saved as a bare list of editions
+    # (missing the top-level site/stats/themes/weekly/daily wrapper),
+    # reconstruct the expected dict so the build does not crash.
+    if isinstance(data, list):
+        data = {
+            "site": {
+                "brand":    "The Weekly African Lens",
+                "substack": "https://simphiwemlotshwa.substack.com/",
+                "coverage": "Q1-Q2",
+                "nations":  54,
+            },
+            "stats": {
+                "daily_editions":     "21+",
+                "weekly_total":       len(data),
+                "developments_ranked": "110+",
+            },
+            "themes": [],
+            "weekly": data,
+            "daily":  [],
+        }
+
     # Normalise weekly summaries to plain strings
     for ed in data.get("weekly", []):
         ed["summary"] = str(ed.get("summary", "")).strip()
