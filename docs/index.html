@@ -1,1 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Weekly African Lens — Intelligence Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0e0e0e;--cream:#faf7f2;--gold:#c8922a;--gold-light:#f0d898;--rust:#b84c2a;--teal:#1a6b5e;--teal-light:#e3f2ee;--border:#d8d0c4;--mid-grey:#7a7570;--light-grey:#ede9e3;--deep-blue:#0a1628;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.7;}
+  a{color:var(--teal);text-decoration:none;}a:hover{text-decoration:underline;}
+  nav{background:var(--deep-blue);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:#fff;letter-spacing:-.01em;}
+  .nav-brand span{color:var(--gold);}
+  .nav-links{display:flex;gap:24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
+  .nav-links a{color:#8a99b8;}.nav-links a:hover,.nav-links a.active{color:var(--gold);text-decoration:none;}
+  .hero{background:var(--ink);padding:52px 32px 40px;text-align:center;}
+  .hero .over{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,52px);font-weight:900;color:#fff;line-height:1;letter-spacing:-.02em;margin-bottom:12px;}
+  .hero .tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7a8ca8;}
+  .hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:28px;}
+  .hs-val{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);font-weight:700;}
+  .hs-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#8a99b8;margin-top:2px;}
+  .main{max-width:900px;margin:0 auto;padding:0 24px 60px;}
+  .sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid-grey);border-bottom:2px solid var(--ink);padding-bottom:10px;margin:48px 0 24px;}
+  .featured{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-bottom:16px;}
+  .card-big{background:var(--deep-blue);padding:28px 28px 24px;position:relative;overflow:hidden;}
+  .card-big::after{content:'';position:absolute;bottom:0;right:0;width:80px;height:80px;background:var(--gold);opacity:.08;border-radius:50%;transform:translate(30px,30px);}
+  .card-big .cb-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .card-big h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#fff;line-height:1.3;margin-bottom:10px;}
+  .card-big p{font-size:13px;color:#8a99b8;line-height:1.6;margin-bottom:16px;}
+  .card-big .meta{font-family:'DM Mono',monospace;font-size:10px;color:#4a5568;letter-spacing:.05em;}
+  .card-big .read-btn{display:inline-block;margin-top:14px;background:var(--gold);color:var(--deep-blue);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;font-weight:600;}
+  .card-big .read-btn:hover{background:#fff;text-decoration:none;}
+  .card-stack{display:flex;flex-direction:column;gap:12px;}
+  .card-sm{background:#fff;border:1px solid var(--border);padding:16px 18px;flex:1;}
+  .card-sm .cs-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+  .card-sm h3{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:6px;}
+  .card-sm .cs-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);letter-spacing:.04em;}
+  .themes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+  .theme-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px;}
+  .theme-card h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+  .theme-card .tc-count{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);}
+  .theme-card.policy{border-top-color:var(--teal);}
+  .theme-card.security{border-top-color:var(--rust);}
+  .theme-card.infra{border-top-color:#6a1b9a;}
+  .theme-card.ecosystem{border-top-color:#2e7d32;}
+  .theme-card.geo{border-top-color:#1565c0;}
+  .archive-table{width:100%;border-collapse:collapse;}
+  .archive-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-grey);background:var(--light-grey);padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+  .archive-table td{padding:12px 14px;border-bottom:1px solid var(--border);background:#fff;font-size:13px;vertical-align:top;}
+  .archive-table tr:last-child td{border-bottom:none;}
+  .archive-table tr.is-new td{background:#fffbf0;}
+  .archive-table td a{color:var(--teal);font-weight:500;}
+  .ed-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;background:var(--ink);color:var(--cream);padding:2px 7px;white-space:nowrap;}
+  .ed-badge.new{background:var(--gold);color:var(--ink);}
+  .tag-pill{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;background:var(--teal-light);color:var(--teal);padding:1px 6px;margin-right:4px;margin-top:3px;border-radius:2px;}
+  .tag-pill.policy{background:#fef3e2;color:#9a6210;}
+  .tag-pill.security{background:#fbe9e6;color:var(--rust);}
+  .tag-pill.infra{background:#f3e5f5;color:#6a1b9a;}
+  /* Weekly grid */
+  .edition-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .ed-card{background:#fff;border:1px solid var(--border);display:flex;flex-direction:column;transition:box-shadow .15s;position:relative;overflow:hidden;}
+  .ed-card:hover{box-shadow:3px 3px 0 var(--ink);}
+  .ed-card .ec-stripe{height:3px;background:var(--ink);}
+  .ed-card.is-new .ec-stripe{background:var(--gold);}
+  .ed-card.is-available .ec-stripe{background:var(--teal);}
+  .ed-card.is-coming .ec-stripe{background:var(--border);}
+  .ed-card .ec-body{padding:18px 18px 14px;flex:1;display:flex;flex-direction:column;}
+  .ec-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .ec-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;white-space:nowrap;}
+  .ec-badge.new{background:var(--gold);color:var(--ink);font-weight:600;}
+  .ec-badge.live{background:var(--teal);color:#fff;}
+  .ec-badge.soon{background:var(--light-grey);color:var(--mid-grey);}
+  .ec-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);letter-spacing:.04em;}
+  .ed-card h3{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;line-height:1.35;color:var(--ink);margin-bottom:8px;flex:1;}
+  .ec-theme{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);letter-spacing:.04em;line-height:1.5;margin-bottom:10px;}
+  .ec-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);letter-spacing:.06em;margin-bottom:14px;}
+  .ec-link{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);border:1px solid var(--teal);padding:5px 12px;align-self:flex-start;transition:all .12s;}
+  .ec-link:hover{background:var(--teal);color:#fff;text-decoration:none;}
+  .ec-link.disabled{color:var(--mid-grey);border-color:var(--border);pointer-events:none;}
+  /* What's in each report */
+  .sections-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+  .section-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px;}
+  .section-card h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+  .section-card p{font-size:11.5px;color:var(--mid-grey);line-height:1.5;}
+  .section-card.s1{border-top-color:var(--teal);}
+  .section-card.s2{border-top-color:var(--rust);}
+  .section-card.s3{border-top-color:#2e7d32;}
+  .section-card.s4{border-top-color:#1565c0;}
+  /* Archive full table (weekly mode) */
+  .at-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;padding:2px 7px;white-space:nowrap;display:inline-block;}
+  .at-badge.ink{background:var(--ink);color:var(--cream);}
+  .at-badge.gold{background:var(--gold);color:var(--ink);font-weight:600;}
+  .at-badge.teal{background:var(--teal);color:#fff;}
+  .at-badge.grey{background:var(--light-grey);color:var(--mid-grey);}
+  footer{background:var(--ink);color:#7a8294;text-align:center;padding:32px 24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;}
+  footer strong{color:#c8d4e8;}footer a{color:#7a8294;}footer a:hover{color:var(--gold);}
+  .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin-top:10px;}
+  @media(max-width:700px){.featured{grid-template-columns:1fr;}.edition-grid{grid-template-columns:1fr 1fr;}.themes{grid-template-columns:1fr 1fr;}.sections-grid{grid-template-columns:1fr 1fr;}.hero-stats{gap:20px;}}
+  @media(max-width:480px){.edition-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
 
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">The Weekly African Lens<span>.</span></div>
+  <div class="nav-links">
+    <a href="index.html">Archive</a>
+    <a href="weekly/index.html">AI Weekly</a>
+    <a href="editions/index.html">Daily Editions</a>
+    <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="over">Africa's AI Intelligence Archive</div>
+  <h1>The Weekly<br>African Lens</h1>
+  <div class="tag">AI · Machine Learning · Data Science · Across 54 Nations</div>
+  <div class="hero-stats">
+    <div><div class="hs-val">21+</div><div class="hs-lbl">Daily Editions</div></div>
+    <div><div class="hs-val">54</div><div class="hs-lbl">Nations Covered</div></div>
+    <div><div class="hs-val">12</div><div class="hs-lbl">AI Weekly Reports</div></div>
+    <div><div class="hs-val">Q1–Q2</div><div class="hs-lbl">2026 Coverage</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ── ARCHIVE MODE ───────────────────────────────────── -->
+
+  <div class="sec-label">§ Latest — AI Weekly Intelligence</div>
+  <div class="featured">
+    <div class="card-big">
+      <div class="cb-type">AI Weekly Intelligence · Edition #AIW-026-12 · NEW</div>
+      <h2>The Governance Quality Audit — South Africa's Policy Reset, Nigeria's Senate Delivers, and a Continent Takes Notes</h2>
+      <p>South Africa's AI policy withdrawal enters its reconstruction phase: seven-member panel active, January 2027 comment target confirmed, two officials suspended. Nigeria's Senate committee recommends a risk-tiered framework with concurrent NITDA-NDPC oversight and a 12-month incident registry pilot. Kenya publishes Africa's first responsible AI drafting guidance. Angola enters the governance frame. The week governance demonstrated that failure and institutional competence are not opposites.</p>
+      <div class="meta">Week of 25 May 2026 · Window: 19 May → 25 May 2026</div>
+      <a class="read-btn" href="weekly/aiw-026-12.html">Read Full Report →</a>
+    </div>
+    <div class="card-stack">
+      <div class="card-sm">
+        <div class="cs-type">Weekly Intelligence · AIW-026-11</div>
+        <h3>Before the Hearings — Nigeria's AI Governance Endgame and the Infrastructure Counter-Surge</h3>
+        <div class="cs-meta">18 May 2026</div>
+      </div>
+      <div class="card-sm">
+        <div class="cs-type">Weekly Intelligence · AIW-026-10</div>
+        <h3>The Consultation Week — Who Writes Africa's AI Rules?</h3>
+        <div class="cs-meta">11 May 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">§ Recurring Macro Themes — Q1–Q2 2026</div>
+  <div class="themes">
+    <div class="theme-card policy">
+      <h4>African AI Policy & Regulation</h4>
+      <div class="tc-count">24+ editions · SA Withdrawn · Nigeria Hearings · Kenya Register</div>
+    </div>
+    <div class="theme-card ">
+      <h4>Language AI & African NLP</h4>
+      <div class="tc-count">14+ editions · DeepSeek Hausa · Masakhane · Google</div>
+    </div>
+    <div class="theme-card security">
+      <h4>AI Fraud & Biometric Security</h4>
+      <div class="tc-count">12+ editions · Smile ID · M-Pesa · NDPC</div>
+    </div>
+    <div class="theme-card infra">
+      <h4>Sovereign AI Infrastructure</h4>
+      <div class="tc-count">12+ editions · Egypt $800M · Cassava · Equinix R7.5B</div>
+    </div>
+    <div class="theme-card geo">
+      <h4>US–China–Korea AI Competition</h4>
+      <div class="tc-count">10+ editions · Microsoft · DeepSeek · Nvidia · Korea-DRC</div>
+    </div>
+    <div class="theme-card ecosystem">
+      <h4>Deep Tech Ecosystem Building</h4>
+      <div class="tc-count">8+ editions · BAFAI · ADTF · Indaba · Angola</div>
+    </div>
+  </div>
+
+  <div class="sec-label">§ Full Archive — Daily Editions</div>
+  <table class="archive-table">
+    <thead><tr><th>Edition</th><th>Date</th><th>Lead Story</th><th>Tags</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="ed-badge">DAL-026-088</span></td>
+        <td>01 Apr 2026</td>
+        <td><a href="editions/dal-026-088.html">Equinix R7.5B + Nigeria Bill Post-Deadline + GITEX 6 Days</a></td>
+        <td>
+          <span class="tag-pill infra">Infrastructure</span>
+          <span class="tag-pill policy">Policy</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-087</span></td>
+        <td>31 Mar 2026</td>
+        <td><a href="editions/dal-026-087.html">Nigeria AI Bill Deadline Day + AfDB MEO 2026 + NKENNEAi Talks</a></td>
+        <td>
+          <span class="tag-pill policy">Legislation</span>
+          <span class="tag-pill ">Language AI</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-081</span></td>
+        <td>24 Mar 2026</td>
+        <td><a href="editions/dal-026-081.html">TECNO EllaClaw + Africa FinTech Forum SA + Nigeria Surveillance</a></td>
+        <td>
+          <span class="tag-pill ">Tech</span>
+          <span class="tag-pill security">Security</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-080</span></td>
+        <td>23 Mar 2026</td>
+        <td><a href="editions/dal-026-080.html">Africa Is Not Missing the AI Wave + SA Gazette + $2B Surveillance</a></td>
+        <td>
+          <span class="tag-pill ">Ecosystem</span>
+          <span class="tag-pill security">Security</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-079</span></td>
+        <td>21 Mar 2026</td>
+        <td><a href="editions/dal-026-079.html">Rest of World: $2B Chinese AI Surveillance + World Bank WDR 2026</a></td>
+        <td>
+          <span class="tag-pill security">Geopolitics</span>
+          <span class="tag-pill ">Research</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-078</span></td>
+        <td>20 Mar 2026</td>
+        <td><a href="editions/dal-026-078.html">Kenya AI Bill + Data Protection as Backdoor AI Regulation</a></td>
+        <td>
+          <span class="tag-pill policy">Legislation</span>
+          <span class="tag-pill ">Kenya</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-077</span></td>
+        <td>19 Mar 2026</td>
+        <td><a href="editions/dal-026-077.html">Cassava AI Factory Deploys in South Africa + Google Accelerator Closes</a></td>
+        <td>
+          <span class="tag-pill infra">Infrastructure</span>
+          <span class="tag-pill ">Ecosystem</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-076</span></td>
+        <td>18 Mar 2026</td>
+        <td><a href="editions/dal-026-076.html">Rwanda FinTech Centre + NDPC Deepfake Consultation + Standard Bank Kukura</a></td>
+        <td>
+          <span class="tag-pill ">Fintech</span>
+          <span class="tag-pill security">AI Fraud</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-075</span></td>
+        <td>17 Mar 2026</td>
+        <td><a href="editions/dal-026-075.html">NVIDIA GTC 2026 + MTN AI Data Centre + Mark Nasila Sovereign AI</a></td>
+        <td>
+          <span class="tag-pill infra">Infrastructure</span>
+          <span class="tag-pill ">Research</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-074</span></td>
+        <td>16 Mar 2026</td>
+        <td><a href="editions/dal-026-074.html">Microsoft Elevate 3M + Nigeria AI Bill + Ghana Court Challenge [48-Hr]</a></td>
+        <td>
+          <span class="tag-pill ">Geopolitics</span>
+          <span class="tag-pill policy">Policy</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-073</span></td>
+        <td>14 Mar 2026</td>
+        <td><a href="editions/dal-026-073.html">Servernah Cloud — East Africa's First Sovereign AI Platform Goes Live</a></td>
+        <td>
+          <span class="tag-pill infra">Infrastructure</span>
+          <span class="tag-pill ">Kenya</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-072</span></td>
+        <td>13 Mar 2026</td>
+        <td><a href="editions/dal-026-072.html">Microsoft vs DeepSeek for Africa's AI Market — Bloomberg Exclusive</a></td>
+        <td>
+          <span class="tag-pill ">Geopolitics</span>
+          <span class="tag-pill infra">Tech</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-071</span></td>
+        <td>12 Mar 2026</td>
+        <td><a href="editions/dal-026-071.html">Microsoft-MTN Copilot Deal + IFF 2026 Closes + Veta Origin LLM</a></td>
+        <td>
+          <span class="tag-pill ">Tech</span>
+          <span class="tag-pill ">Fintech</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-070</span></td>
+        <td>11 Mar 2026</td>
+        <td><a href="editions/dal-026-070.html">Inclusive FinTech Forum Kigali + TikTok $200K AI Literacy + FraudLens</a></td>
+        <td>
+          <span class="tag-pill security">AI Fraud</span>
+          <span class="tag-pill ">Rwanda</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-069</span></td>
+        <td>10 Mar 2026</td>
+        <td><a href="editions/dal-026-069.html">UN ECA ERA 2026 Preview + Nigeria AI Election Threat + Vodacom CEO</a></td>
+        <td>
+          <span class="tag-pill ">Continental</span>
+          <span class="tag-pill security">Security</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-068</span></td>
+        <td>09 Mar 2026</td>
+        <td><a href="editions/dal-026-068.html">Nigeria 2027 Election AI Attack + Cassava Autonomous Network + Roam Explorer</a></td>
+        <td>
+          <span class="tag-pill security">AI Fraud</span>
+          <span class="tag-pill infra">Infrastructure</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">DAL-026-067</span></td>
+        <td>08 Mar 2026</td>
+        <td><a href="editions/dal-026-067.html">Google 13 African Languages + Smile ID 69% AI Fraud + US-China Competition</a></td>
+        <td>
+          <span class="tag-pill ">Language AI</span>
+          <span class="tag-pill security">Security</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sec-label">§ AI Weekly Intelligence — Archive</div>
+  <table class="archive-table">
+    <thead><tr><th>Edition</th><th>Week</th><th>Theme</th><th>Link</th></tr></thead>
+    <tbody>
+      <tr style="background:#fffbf0;">
+        <td><span class="ed-badge new">AIW-026-12</span></td>
+        <td>19 → 25 May 2026</td>
+        <td><strong>The Governance Quality Audit · SA Policy Reset · Nigeria Risk-Tier · Kenya CA Guidance · Angola Strategy · IFC $1.2B</strong></td>
+        <td>
+          <a href="weekly/aiw-026-12.html">Read →</a>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">AIW-026-11</span></td>
+        <td>12 → 18 May 2026</td>
+        <td>Before the Hearings · Nigeria Hearings · Egypt $800M Compute · Cassava Accra · DRC–Korea · SA Civil Society</td>
+        <td>
+          <a href="weekly/aiw-026-11.html">Read →</a>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">AIW-026-10</span></td>
+        <td>05 → 11 May 2026</td>
+        <td>The Consultation Week · DRC Minerals Leverage · SA Comment Gap · Ethiopia $40M · DeepSeek Hausa · M-Pesa 32M</td>
+        <td>
+          <a href="weekly/aiw-026-10.html">Read →</a>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">AIW-026-09</span></td>
+        <td>28 Apr → 04 May 2026</td>
+        <td>The Deployment Quarter · M-Pesa AI Trial · Ethiopia GERD · Cassava SA Metrics · Rwanda Sandbox</td>
+        <td>
+          <a href="weekly/aiw-026-09.html">Read →</a>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">AIW-026-08</span></td>
+        <td>21 → 27 Apr 2026</td>
+        <td>The Post-GITEX Reckoning · SA Comment Opens · Morocco Nexus · Nigeria Senate Review · Abidjan IXP · Korea-UCT</td>
+        <td>
+          <a href="weekly/aiw-026-08.html">Read →</a>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">AIW-026-07</span></td>
+        <td>14 → 21 Apr 2026</td>
+        <td>The Policy Moment Arrives · SA Gazette Published · AU PSC AI Security · GITEX Delivers · Language AI Gap · IMF Warning</td>
+        <td>
+          <a href="weekly/aiw-026-07.html">Read →</a>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">AIW-026-06</span></td>
+        <td>08 → 14 Apr 2026</td>
+        <td>South Africa's AI Policy Lands · SA AI Policy Gazetted · Morocco Nexus $1.28B · GITEX $5B Pipeline · Mauritius FAIR</td>
+        <td>
+          <a href="weekly/aiw-026-06.html">Read →</a>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">AIW-026-05</span></td>
+        <td>31 Mar → 07 Apr 2026</td>
+        <td>Infrastructure Ahead of Governance · Equinix R7.5B · Nigeria Bill Misses Deadline · GITEX Africa Opens · ERA 2026</td>
+        <td>
+          <a href="weekly/aiw-026-05.html">Read →</a>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">AIW-026-04</span></td>
+        <td>24 → 31 Mar 2026</td>
+        <td>The Week Everything Converged · Nigeria Bill Deadline · SA Gazette · $2B Surveillance · TECNO EllaClaw · GITEX Preview</td>
+        <td>
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">AIW-026-03</span></td>
+        <td>17 → 24 Mar 2026</td>
+        <td>The Sovereignty Inflection · Cassava AI Factory · NVIDIA GTC Vera Rubin · Kenya AI Bill · $2.1B Surveillance · BAFAI</td>
+        <td>
+          <a href="weekly/aiw-026-03.html">Read →</a>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">AIW-026-02</span></td>
+        <td>10 → 17 Mar 2026</td>
+        <td>Governance Week · Microsoft vs DeepSeek · SA AI Policy · IFF 2026 Kigali · Nigeria Surveillance Bill</td>
+        <td>
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ed-badge">AIW-026-01</span></td>
+        <td>03 → 10 Mar 2026</td>
+        <td>Launch Week · Google 13 African Languages · Smile ID 69% AI Fraud · US-China AI Competition</td>
+        <td>
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+
+<footer>
+  <p><strong>The Weekly African Lens</strong> · AI · Machine Learning · Data Science · Across 54 Nations</p>
+  <p style="margin-top:8px;">Published at 6:00 AM SAST · Archive hosted on GitHub Pages · © 2026 The Weekly African Lens</p>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="editorial.html">Editorial Standards</a>
+    <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe</a>
+  </div>
+</footer>
+
+</body>
+</html>
