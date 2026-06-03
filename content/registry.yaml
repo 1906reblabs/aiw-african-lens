@@ -18,7 +18,7 @@ site:
 # ── STATS ─────────────────────────────────────────────────────────────────────
 stats:
   daily_editions: "21+"
-  weekly_total: 12
+  weekly_total: 13
   developments_ranked: "110+"
 
 # ── MACRO THEMES ──────────────────────────────────────────────────────────────
@@ -45,9 +45,29 @@ themes:
 # ── WEEKLY EDITIONS (newest first) ────────────────────────────────────────────
 weekly:
 
-  - id: "AIW-026-12"
+  - id: "AIW-026-13"
     status: "new"
     badge: "gold"
+    date: "02 June 2026"
+    window: "26 May → 02 June 2026"
+    window_short: "26 May → 02 June 2026"
+    title: "The Governance Quality Audit"
+    subtitle: "South Africa's Policy Reset, Nigeria's Senate Delivers, and a Continent Takes Notes"
+    summary: >
+      South Africa's AI policy withdrawal enters its reconstruction phase: seven-member
+      panel active, January 2027 comment target confirmed, two officials suspended.
+      Nigeria's Senate committee recommends a risk-tiered framework with concurrent
+      NITDA-NDPC oversight and a 12-month incident registry pilot. Kenya publishes
+      Africa's first responsible AI drafting guidance. Angola enters the governance
+      frame. The week governance demonstrated that failure and institutional competence
+      are not opposites.
+    themes_line: "SA Policy Reset · Nigeria Risk-Tier · Kenya CA Guidance · Angola Strategy · IFC $1.2B"
+    developments: 10
+    file: "aiw-026-13.html"
+    
+  - id: "AIW-026-12"
+    status: "available"
+    badge: "teal"
     date: "25 May 2026"
     window: "19 May → 25 May 2026"
     window_short: "19 → 25 May 2026"
