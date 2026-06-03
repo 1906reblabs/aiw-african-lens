@@ -11,7 +11,7 @@
   body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.7;}
   a{color:var(--teal);text-decoration:none;}a:hover{text-decoration:underline;}
   nav{background:var(--deep-blue);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-  .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:#fff;}
+  .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:#fff;letter-spacing:-.01em;}
   .nav-brand span{color:var(--gold);}
   .nav-links{display:flex;gap:24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
   .nav-links a{color:#8a99b8;}.nav-links a:hover,.nav-links a.active{color:var(--gold);text-decoration:none;}
@@ -24,20 +24,42 @@
   .hs-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#8a99b8;margin-top:2px;}
   .main{max-width:900px;margin:0 auto;padding:0 24px 60px;}
   .sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid-grey);border-bottom:2px solid var(--ink);padding-bottom:10px;margin:48px 0 24px;}
-  .latest-feature{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:32px;}
-  .feat-big{background:var(--deep-blue);padding:30px 28px 26px;position:relative;overflow:hidden;}
-  .feat-big::after{content:'';position:absolute;bottom:-30px;right:-30px;width:120px;height:120px;background:var(--gold);opacity:.07;border-radius:50%;}
-  .feat-big .fb-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
-  .feat-big h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#fff;line-height:1.25;margin-bottom:12px;}
-  .feat-big p{font-size:13px;color:#8a99b8;line-height:1.6;margin-bottom:14px;}
-  .feat-big .fb-meta{font-family:'DM Mono',monospace;font-size:10px;color:#4a5568;letter-spacing:.04em;}
-  .feat-big .read-btn{display:inline-block;margin-top:16px;background:var(--gold);color:var(--deep-blue);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 18px;font-weight:600;}
-  .feat-big .read-btn:hover{background:#fff;text-decoration:none;}
-  .feat-stack{display:flex;flex-direction:column;gap:12px;}
-  .feat-sm{background:#fff;border:1px solid var(--border);padding:16px 18px;flex:1;}
-  .feat-sm .fs-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
-  .feat-sm h3{font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:5px;}
-  .feat-sm .fs-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);}
+  .featured{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-bottom:16px;}
+  .card-big{background:var(--deep-blue);padding:28px 28px 24px;position:relative;overflow:hidden;}
+  .card-big::after{content:'';position:absolute;bottom:0;right:0;width:80px;height:80px;background:var(--gold);opacity:.08;border-radius:50%;transform:translate(30px,30px);}
+  .card-big .cb-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .card-big h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#fff;line-height:1.3;margin-bottom:10px;}
+  .card-big p{font-size:13px;color:#8a99b8;line-height:1.6;margin-bottom:16px;}
+  .card-big .meta{font-family:'DM Mono',monospace;font-size:10px;color:#4a5568;letter-spacing:.05em;}
+  .card-big .read-btn{display:inline-block;margin-top:14px;background:var(--gold);color:var(--deep-blue);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;font-weight:600;}
+  .card-big .read-btn:hover{background:#fff;text-decoration:none;}
+  .card-stack{display:flex;flex-direction:column;gap:12px;}
+  .card-sm{background:#fff;border:1px solid var(--border);padding:16px 18px;flex:1;}
+  .card-sm .cs-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+  .card-sm h3{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:6px;}
+  .card-sm .cs-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);letter-spacing:.04em;}
+  .themes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+  .theme-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px;}
+  .theme-card h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+  .theme-card .tc-count{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);}
+  .theme-card.policy{border-top-color:var(--teal);}
+  .theme-card.security{border-top-color:var(--rust);}
+  .theme-card.infra{border-top-color:#6a1b9a;}
+  .theme-card.ecosystem{border-top-color:#2e7d32;}
+  .theme-card.geo{border-top-color:#1565c0;}
+  .archive-table{width:100%;border-collapse:collapse;}
+  .archive-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-grey);background:var(--light-grey);padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
+  .archive-table td{padding:12px 14px;border-bottom:1px solid var(--border);background:#fff;font-size:13px;vertical-align:top;}
+  .archive-table tr:last-child td{border-bottom:none;}
+  .archive-table tr.is-new td{background:#fffbf0;}
+  .archive-table td a{color:var(--teal);font-weight:500;}
+  .ed-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;background:var(--ink);color:var(--cream);padding:2px 7px;white-space:nowrap;}
+  .ed-badge.new{background:var(--gold);color:var(--ink);}
+  .tag-pill{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;background:var(--teal-light);color:var(--teal);padding:1px 6px;margin-right:4px;margin-top:3px;border-radius:2px;}
+  .tag-pill.policy{background:#fef3e2;color:#9a6210;}
+  .tag-pill.security{background:#fbe9e6;color:var(--rust);}
+  .tag-pill.infra{background:#f3e5f5;color:#6a1b9a;}
+  /* Weekly grid */
   .edition-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
   .ed-card{background:#fff;border:1px solid var(--border);display:flex;flex-direction:column;transition:box-shadow .15s;position:relative;overflow:hidden;}
   .ed-card:hover{box-shadow:3px 3px 0 var(--ink);}
@@ -58,6 +80,7 @@
   .ec-link{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);border:1px solid var(--teal);padding:5px 12px;align-self:flex-start;transition:all .12s;}
   .ec-link:hover{background:var(--teal);color:#fff;text-decoration:none;}
   .ec-link.disabled{color:var(--mid-grey);border-color:var(--border);pointer-events:none;}
+  /* What's in each report */
   .sections-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
   .section-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px;}
   .section-card h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
@@ -66,12 +89,7 @@
   .section-card.s2{border-top-color:var(--rust);}
   .section-card.s3{border-top-color:#2e7d32;}
   .section-card.s4{border-top-color:#1565c0;}
-  .archive-table{width:100%;border-collapse:collapse;margin-top:4px;}
-  .archive-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-grey);background:var(--light-grey);padding:9px 14px;text-align:left;border-bottom:2px solid var(--border);}
-  .archive-table td{padding:11px 14px;border-bottom:1px solid var(--border);background:#fff;font-size:13px;vertical-align:middle;}
-  .archive-table tr:last-child td{border-bottom:none;}
-  .archive-table tr.is-new td{background:#fffbf0;}
-  .archive-table td a{color:var(--teal);font-weight:500;}
+  /* Archive full table (weekly mode) */
   .at-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;padding:2px 7px;white-space:nowrap;display:inline-block;}
   .at-badge.ink{background:var(--ink);color:var(--cream);}
   .at-badge.gold{background:var(--gold);color:var(--ink);font-weight:600;}
@@ -80,12 +98,14 @@
   footer{background:var(--ink);color:#7a8294;text-align:center;padding:32px 24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;}
   footer strong{color:#c8d4e8;}footer a{color:#7a8294;}footer a:hover{color:var(--gold);}
   .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin-top:10px;}
-  @media(max-width:700px){.latest-feature{grid-template-columns:1fr;}.edition-grid{grid-template-columns:1fr 1fr;}.sections-grid{grid-template-columns:1fr 1fr;}.hero-stats{gap:20px;}}
+  @media(max-width:700px){.featured{grid-template-columns:1fr;}.edition-grid{grid-template-columns:1fr 1fr;}.themes{grid-template-columns:1fr 1fr;}.sections-grid{grid-template-columns:1fr 1fr;}.hero-stats{gap:20px;}}
   @media(max-width:480px){.edition-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
+
+<!-- NAV -->
 <nav>
   <a href="../index.html" style="text-decoration:none;">
     <div class="nav-brand">The Weekly African Lens<span>.</span></div>
@@ -98,87 +118,68 @@
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <div class="over">AI Weekly Intelligence Series</div>
   <h1>AI Weekly<br>African Lens</h1>
   <div class="tag">Institutional-Grade Intelligence · Every Tuesday · 06:00 SAST</div>
   <div class="hero-stats">
-    <div><div class="hs-val">13</div><div class="hs-lbl">Editions</div></div>
+    <div><div class="hs-val">12</div><div class="hs-lbl">Editions</div></div>
     <div><div class="hs-val">54</div><div class="hs-lbl">Nations</div></div>
-    <div><div class="hs-val">130+</div><div class="hs-lbl">Developments Ranked</div></div>
+    <div><div class="hs-val">110+</div><div class="hs-lbl">Developments Ranked</div></div>
     <div><div class="hs-val">Q1–Q2</div><div class="hs-lbl">2026 Coverage</div></div>
   </div>
 </div>
 
 <div class="main">
 
+<!-- ── WEEKLY INDEX MODE ───────────────────────────────── -->
+
   <div class="sec-label">§ Latest Edition</div>
-  <div class="latest-feature">
-    <div class="feat-big">
-      <div class="fb-label">AI Weekly Intelligence · Edition #AIW-026-13 · NEW</div>
-      <h2>After the Audit</h2>
-      <p>South Africa's independent panel confirmed a substantive revision mandate at the Parliamentary briefing. Indaba² Addis produced the first government-research interface in Ethiopian AI history. China's MofCOM counter-positioned on DRC minerals ahead of Korea's 9 June Seoul session. AIMS resolved oversubscription with a principled three-tier governance decision. Morocco emerges as the contrarian AI hub thesis.</p>
-      <div class="fb-meta">Week of 2 June 2026 · Window: 26 May → 2 Jun 2026 · 10 developments ranked</div>
-      <a class="read-btn" href="aiw-026-13.html">Read Full Report →</a>
+  <div class="featured">
+    <div class="card-big">
+      <div class="cb-type">AI Weekly Intelligence · Edition #AIW-026-12 · NEW</div>
+      <h2>The Governance Quality Audit — South Africa's Policy Reset, Nigeria's Senate Delivers, and a Continent Takes Notes</h2>
+      <p>South Africa's AI policy withdrawal enters its reconstruction phase: seven-member panel active, January 2027 comment target confirmed, two officials suspended. Nigeria's Senate committee recommends a risk-tiered framework with concurrent NITDA-NDPC oversight and a 12-month incident registry pilot. Kenya publishes Africa's first responsible AI drafting guidance. Angola enters the governance frame. The week governance demonstrated that failure and institutional competence are not opposites.</p>
+      <div class="meta">19 May → 25 May 2026</div>
+      <a class="read-btn" href="aiw-026-12.html">Read Full Report →</a>
     </div>
-    <div class="feat-stack">
-      <div class="feat-sm">
-        <div class="fs-label">Prior Edition · AIW-026-12</div>
-        <h3>The Governance Quality Audit — South Africa's Policy Reset, Nigeria's Senate Delivers</h3>
-        <div class="fs-meta">25 May 2026 · SA Policy Withdrawn · Nigeria Senate Framework · Kenya CA Guidance · Angola</div>
-      </div>
-      <div class="feat-sm">
-        <div class="fs-label">Prior Edition · AIW-026-11</div>
+    <div class="card-stack">
+      <div class="card-sm">
+        <div class="cs-type">Prior Edition · AIW-026-11</div>
         <h3>Before the Hearings — Nigeria's AI Governance Endgame and the Infrastructure Counter-Surge</h3>
-        <div class="fs-meta">18 May 2026 · Nigeria Hearings · Egypt $800M · Cassava Accra · DRC–Korea</div>
+        <div class="cs-meta">18 May 2026 · Nigeria Hearings · Egypt $800M Compute · Cassava Accra · DRC…</div>
       </div>
-      <div class="feat-sm">
-        <div class="fs-label">Prior Edition · AIW-026-10</div>
+      <div class="card-sm">
+        <div class="cs-type">Prior Edition · AIW-026-10</div>
         <h3>The Consultation Week — Who Writes Africa's AI Rules?</h3>
-        <div class="fs-meta">11 May 2026 · DRC Minerals Leverage · SA Comment Gap · Ethiopia $40M · DeepSeek Hausa</div>
+        <div class="cs-meta">11 May 2026 · DRC Minerals Leverage · SA Comment Gap · Ethiopia $40M · Dee…</div>
       </div>
     </div>
   </div>
 
   <div class="sec-label">§ All Editions — AI Weekly Intelligence</div>
   <div class="edition-grid">
-
-    <!-- AIW-026-13 -->
     <div class="ed-card is-new">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge new">NEW</span>
-          <span class="ec-num">AIW-026-13</span>
-        </div>
-        <h3>After the Audit</h3>
-        <div class="ec-theme">SA Panel Mandate · Indaba² Addis · China-DRC Counter · AIMS Governance · Morocco Hub Thesis</div>
-        <div class="ec-date">2 June 2026 · 10 developments</div>
-        <a class="ec-link" href="aiw-026-13.html">Read Report →</a>
-      </div>
-    </div>
-
-    <!-- AIW-026-12 -->
-    <div class="ed-card is-available">
-      <div class="ec-stripe"></div>
-      <div class="ec-body">
-        <div class="ec-top">
-          <span class="ec-badge live">Available</span>
+          <span class="ec-badge new">
+NEW          </span>
           <span class="ec-num">AIW-026-12</span>
         </div>
         <h3>The Governance Quality Audit</h3>
-        <div class="ec-theme">SA Policy Withdrawn · Nigeria Senate Framework · Kenya CA Guidance · Angola Strategy · IFC $1.2B</div>
+        <div class="ec-theme">SA Policy Reset · Nigeria Risk-Tier · Kenya CA Guidance · Angola Strategy · IFC $1.2B</div>
         <div class="ec-date">25 May 2026 · 10 developments</div>
         <a class="ec-link" href="aiw-026-12.html">Read Report →</a>
       </div>
     </div>
-
-    <!-- AIW-026-11 -->
     <div class="ed-card is-available">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge live">Available</span>
+          <span class="ec-badge live">
+Available          </span>
           <span class="ec-num">AIW-026-11</span>
         </div>
         <h3>Before the Hearings</h3>
@@ -187,13 +188,12 @@
         <a class="ec-link" href="aiw-026-11.html">Read Report →</a>
       </div>
     </div>
-
-    <!-- AIW-026-10 -->
     <div class="ed-card is-available">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge live">Available</span>
+          <span class="ec-badge live">
+Available          </span>
           <span class="ec-num">AIW-026-10</span>
         </div>
         <h3>The Consultation Week</h3>
@@ -202,13 +202,12 @@
         <a class="ec-link" href="aiw-026-10.html">Read Report →</a>
       </div>
     </div>
-
-    <!-- AIW-026-09 -->
     <div class="ed-card is-available">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge live">Available</span>
+          <span class="ec-badge live">
+Available          </span>
           <span class="ec-num">AIW-026-09</span>
         </div>
         <h3>The Deployment Quarter</h3>
@@ -217,13 +216,12 @@
         <a class="ec-link" href="aiw-026-09.html">Read Report →</a>
       </div>
     </div>
-
-    <!-- AIW-026-08 -->
     <div class="ed-card is-available">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge live">Available</span>
+          <span class="ec-badge live">
+Available          </span>
           <span class="ec-num">AIW-026-08</span>
         </div>
         <h3>The Post-GITEX Reckoning</h3>
@@ -232,13 +230,12 @@
         <a class="ec-link" href="aiw-026-08.html">Read Report →</a>
       </div>
     </div>
-
-    <!-- AIW-026-07 -->
     <div class="ed-card is-available">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge live">Available</span>
+          <span class="ec-badge live">
+Available          </span>
           <span class="ec-num">AIW-026-07</span>
         </div>
         <h3>The Policy Moment Arrives</h3>
@@ -247,13 +244,12 @@
         <a class="ec-link" href="aiw-026-07.html">Read Report →</a>
       </div>
     </div>
-
-    <!-- AIW-026-06 -->
     <div class="ed-card is-available">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge live">Available</span>
+          <span class="ec-badge live">
+Available          </span>
           <span class="ec-num">AIW-026-06</span>
         </div>
         <h3>South Africa's AI Policy Lands</h3>
@@ -262,13 +258,12 @@
         <a class="ec-link" href="aiw-026-06.html">Read Report →</a>
       </div>
     </div>
-
-    <!-- AIW-026-05 -->
     <div class="ed-card is-available">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge live">Available</span>
+          <span class="ec-badge live">
+Available          </span>
           <span class="ec-num">AIW-026-05</span>
         </div>
         <h3>Infrastructure Ahead of Governance</h3>
@@ -277,13 +272,12 @@
         <a class="ec-link" href="aiw-026-05.html">Read Report →</a>
       </div>
     </div>
-
-    <!-- AIW-026-04 -->
     <div class="ed-card is-coming">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge soon">Coming Soon</span>
+          <span class="ec-badge soon">
+Coming Soon          </span>
           <span class="ec-num">AIW-026-04</span>
         </div>
         <h3>The Week Everything Converged</h3>
@@ -292,13 +286,12 @@
         <span class="ec-link disabled">Coming Soon</span>
       </div>
     </div>
-
-    <!-- AIW-026-03 -->
     <div class="ed-card is-available">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge live">Available</span>
+          <span class="ec-badge live">
+Available          </span>
           <span class="ec-num">AIW-026-03</span>
         </div>
         <h3>The Sovereignty Inflection</h3>
@@ -307,13 +300,12 @@
         <a class="ec-link" href="aiw-026-03.html">Read Report →</a>
       </div>
     </div>
-
-    <!-- AIW-026-02 -->
     <div class="ed-card is-coming">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge soon">Coming Soon</span>
+          <span class="ec-badge soon">
+Coming Soon          </span>
           <span class="ec-num">AIW-026-02</span>
         </div>
         <h3>Governance Week</h3>
@@ -322,13 +314,12 @@
         <span class="ec-link disabled">Coming Soon</span>
       </div>
     </div>
-
-    <!-- AIW-026-01 -->
     <div class="ed-card is-coming">
       <div class="ec-stripe"></div>
       <div class="ec-body">
         <div class="ec-top">
-          <span class="ec-badge soon">Coming Soon</span>
+          <span class="ec-badge soon">
+Coming Soon          </span>
           <span class="ec-num">AIW-026-01</span>
         </div>
         <h3>Launch Week</h3>
@@ -337,8 +328,7 @@
         <span class="ec-link disabled">Coming Soon</span>
       </div>
     </div>
-
-  </div><!-- /edition-grid -->
+  </div>
 
   <div class="sec-label">§ What's in Every Edition</div>
   <div class="sections-grid">
@@ -357,87 +347,106 @@
     <thead><tr><th>Edition</th><th>Window</th><th>Theme</th><th>Status</th></tr></thead>
     <tbody>
       <tr class="is-new">
-        <td><span class="at-badge gold">AIW-026-13</span></td>
-        <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">26 May → 2 Jun 2026</td>
-        <td><strong>After the Audit</strong> · SA Panel Mandate Confirmed · Indaba² Addis · China-DRC Counter-Positioning · AIMS Governance · Morocco Hub Thesis</td>
-        <td><a href="aiw-026-13.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a></td>
-      </tr>
-      <tr>
-        <td><span class="at-badge teal">AIW-026-12</span></td>
+        <td><span class="at-badge gold">AIW-026-12</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">19 → 25 May 2026</td>
-        <td>The Governance Quality Audit · SA Policy Withdrawn · Nigeria Senate Framework · Kenya CA Guidance · Angola Strategy · IFC $1.2B</td>
-        <td><a href="aiw-026-12.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a></td>
+        <td><strong>The Governance Quality Audit</strong> · SA Policy Reset · Nigeria Risk-Tier · Kenya CA Guidance · Angola Strategy · IFC $1.2B</td>
+        <td>
+          <a href="aiw-026-12.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a>
+        </td>
       </tr>
       <tr>
-        <td><span class="at-badge ink">AIW-026-11</span></td>
+        <td><span class="at-badge teal">AIW-026-11</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">12 → 18 May 2026</td>
         <td>Before the Hearings · Nigeria Hearings · Egypt $800M Compute · Cassava Accra · DRC–Korea · SA Civil Society</td>
-        <td><a href="aiw-026-11.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a></td>
+        <td>
+          <a href="aiw-026-11.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a>
+        </td>
       </tr>
       <tr>
         <td><span class="at-badge ink">AIW-026-10</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">05 → 11 May 2026</td>
         <td>The Consultation Week · DRC Minerals Leverage · SA Comment Gap · Ethiopia $40M · DeepSeek Hausa · M-Pesa 32M</td>
-        <td><a href="aiw-026-10.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a></td>
+        <td>
+          <a href="aiw-026-10.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a>
+        </td>
       </tr>
       <tr>
         <td><span class="at-badge ink">AIW-026-09</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">28 Apr → 04 May 2026</td>
         <td>The Deployment Quarter · M-Pesa AI Trial · Ethiopia GERD · Cassava SA Metrics · Rwanda Sandbox</td>
-        <td><a href="aiw-026-09.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a></td>
+        <td>
+          <a href="aiw-026-09.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a>
+        </td>
       </tr>
       <tr>
         <td><span class="at-badge ink">AIW-026-08</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">21 → 27 Apr 2026</td>
         <td>The Post-GITEX Reckoning · SA Comment Opens · Morocco Nexus · Nigeria Senate Review · Abidjan IXP · Korea-UCT</td>
-        <td><a href="aiw-026-08.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a></td>
+        <td>
+          <a href="aiw-026-08.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a>
+        </td>
       </tr>
       <tr>
         <td><span class="at-badge ink">AIW-026-07</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">14 → 21 Apr 2026</td>
         <td>The Policy Moment Arrives · SA Gazette Published · AU PSC AI Security · GITEX Delivers · Language AI Gap · IMF Warning</td>
-        <td><a href="aiw-026-07.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a></td>
+        <td>
+          <a href="aiw-026-07.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a>
+        </td>
       </tr>
       <tr>
         <td><span class="at-badge ink">AIW-026-06</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">08 → 14 Apr 2026</td>
         <td>South Africa's AI Policy Lands · SA AI Policy Gazetted · Morocco Nexus $1.28B · GITEX $5B Pipeline · Mauritius FAIR</td>
-        <td><a href="aiw-026-06.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a></td>
+        <td>
+          <a href="aiw-026-06.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a>
+        </td>
       </tr>
       <tr>
         <td><span class="at-badge ink">AIW-026-05</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">31 Mar → 07 Apr 2026</td>
         <td>Infrastructure Ahead of Governance · Equinix R7.5B · Nigeria Bill Misses Deadline · GITEX Africa Opens · ERA 2026</td>
-        <td><a href="aiw-026-05.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a></td>
+        <td>
+          <a href="aiw-026-05.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a>
+        </td>
       </tr>
       <tr>
         <td><span class="at-badge grey">AIW-026-04</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">24 → 31 Mar 2026</td>
         <td>The Week Everything Converged · Nigeria Bill Deadline · SA Gazette · $2B Surveillance · TECNO EllaClaw · GITEX Preview</td>
-        <td><span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span></td>
+        <td>
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
+        </td>
       </tr>
       <tr>
         <td><span class="at-badge ink">AIW-026-03</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">17 → 24 Mar 2026</td>
         <td>The Sovereignty Inflection · Cassava AI Factory · NVIDIA GTC Vera Rubin · Kenya AI Bill · $2.1B Surveillance · BAFAI</td>
-        <td><a href="aiw-026-03.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a></td>
+        <td>
+          <a href="aiw-026-03.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a>
+        </td>
       </tr>
       <tr>
         <td><span class="at-badge grey">AIW-026-02</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">10 → 17 Mar 2026</td>
         <td>Governance Week · Microsoft vs DeepSeek · SA AI Policy · IFF 2026 Kigali · Nigeria Surveillance Bill</td>
-        <td><span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span></td>
+        <td>
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
+        </td>
       </tr>
       <tr>
         <td><span class="at-badge grey">AIW-026-01</span></td>
         <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">03 → 10 Mar 2026</td>
         <td>Launch Week · Google 13 African Languages · Smile ID 69% AI Fraud · US-China AI Competition</td>
-        <td><span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span></td>
+        <td>
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
+        </td>
       </tr>
     </tbody>
   </table>
 
-</div><!-- /main -->
+
+</div>
 
 <footer>
   <p><strong>The Weekly African Lens</strong> · AI · Machine Learning · Data Science · Across 54 Nations</p>
