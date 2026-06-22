@@ -1,221 +1,340 @@
+{% macro edition_card(ed, prefix, read_label) %}
+<div class="ed-card is-{{ ed.status }}">
+  <div class="ec-stripe"></div>
+  <div class="ec-body">
+    <div class="ec-top">
+      {% if ed.status == 'new' %}
+      <span class="ec-badge new">NEW</span>
+      {% elif ed.status == 'available' %}
+      <span class="ec-badge live">Available</span>
+      {% else %}
+      <span class="ec-badge soon">Coming Soon</span>
+      {% endif %}
+      <span class="ec-num">{{ ed.id }}</span>
+    </div>
+    <h3>{{ ed.title }}</h3>
+    <div class="ec-theme">{{ ed.themes_line }}</div>
+    <div class="ec-date">
+      {{ ed.date }}
+      {% if ed.word_count %} · ~{{ ed.word_count }} words{% elif ed.developments %} · {{ ed.developments }} developments{% endif %}
+    </div>
+    {% if ed.status == 'coming' %}
+    <span class="ec-link disabled">Coming Soon</span>
+    {% else %}
+    <a class="ec-link" href="{{ prefix }}{{ ed.file }}">{{ read_label }}</a>
+    {% endif %}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro archive_row(ed, prefix) %}
+<tr class="{% if ed.status == 'new' %}is-new{% endif %}">
+  <td><span class="at-badge {{ ed.badge }}">{{ ed.id }}</span></td>
+  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">{{ ed.window_short }}</td>
+  <td>{% if ed.status == 'new' %}<strong>{{ ed.title }}</strong> · {% endif %}{{ ed.themes_line }}</td>
+  <td>
+    {% if ed.status == 'coming' %}
+    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
+    {% else %}
+    <a href="{{ prefix }}{{ ed.file }}" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
+    {% endif %}
+  </td>
+</tr>
+{% endmacro %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{% if page_mode == "weekly" %}
-<title>AI Weekly Intelligence — The Weekly African Lens</title>
-{% else %}
-<title>The Weekly African Lens — Intelligence Archive</title>
-{% endif %}
+<title>
+  {% if page_mode == 'monthly' %}AIW African Lens Monthly Intelligence Review — Archive
+  {% elif page_mode == 'weekly' %}AIW African Lens — Weekly Archive (Volume I, Closed)
+  {% else %}AIW African Lens — Full Intelligence Archive
+  {% endif %}
+</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#0e0e0e;--cream:#faf7f2;--gold:#c8922a;--gold-light:#f0d898;--rust:#b84c2a;--teal:#1a6b5e;--teal-light:#e3f2ee;--border:#d8d0c4;--mid-grey:#7a7570;--light-grey:#ede9e3;--deep-blue:#0a1628;}
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.7;}
-  a{color:var(--teal);text-decoration:none;}a:hover{text-decoration:underline;}
-  nav{background:var(--deep-blue);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-  .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:#fff;letter-spacing:-.01em;}
-  .nav-brand span{color:var(--gold);}
-  .nav-links{display:flex;gap:24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
-  .nav-links a{color:#8a99b8;}.nav-links a:hover,.nav-links a.active{color:var(--gold);text-decoration:none;}
-  .hero{background:var(--ink);padding:52px 32px 40px;text-align:center;}
-  .hero .over{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
-  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,52px);font-weight:900;color:#fff;line-height:1;letter-spacing:-.02em;margin-bottom:12px;}
-  .hero .tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7a8ca8;}
-  .hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:28px;}
-  .hs-val{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);font-weight:700;}
-  .hs-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#8a99b8;margin-top:2px;}
-  .main{max-width:900px;margin:0 auto;padding:0 24px 60px;}
-  .sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid-grey);border-bottom:2px solid var(--ink);padding-bottom:10px;margin:48px 0 24px;}
-  .featured{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-bottom:16px;}
-  .card-big{background:var(--deep-blue);padding:28px 28px 24px;position:relative;overflow:hidden;}
-  .card-big::after{content:'';position:absolute;bottom:0;right:0;width:80px;height:80px;background:var(--gold);opacity:.08;border-radius:50%;transform:translate(30px,30px);}
-  .card-big .cb-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-  .card-big h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#fff;line-height:1.3;margin-bottom:10px;}
-  .card-big p{font-size:13px;color:#8a99b8;line-height:1.6;margin-bottom:16px;}
-  .card-big .meta{font-family:'DM Mono',monospace;font-size:10px;color:#4a5568;letter-spacing:.05em;}
-  .card-big .read-btn{display:inline-block;margin-top:14px;background:var(--gold);color:var(--deep-blue);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;font-weight:600;}
-  .card-big .read-btn:hover{background:#fff;text-decoration:none;}
-  .card-stack{display:flex;flex-direction:column;gap:12px;}
-  .card-sm{background:#fff;border:1px solid var(--border);padding:16px 18px;flex:1;}
-  .card-sm .cs-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
-  .card-sm h3{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:6px;}
-  .card-sm .cs-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);letter-spacing:.04em;}
-  .themes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
-  .theme-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px;}
-  .theme-card h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
-  .theme-card .tc-count{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);}
-  .theme-card.policy{border-top-color:var(--teal);}
-  .theme-card.security{border-top-color:var(--rust);}
-  .theme-card.infra{border-top-color:#6a1b9a;}
-  .theme-card.ecosystem{border-top-color:#2e7d32;}
-  .theme-card.geo{border-top-color:#1565c0;}
-  .archive-table{width:100%;border-collapse:collapse;}
-  .archive-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-grey);background:var(--light-grey);padding:10px 14px;text-align:left;border-bottom:2px solid var(--border);}
-  .archive-table td{padding:12px 14px;border-bottom:1px solid var(--border);background:#fff;font-size:13px;vertical-align:top;}
-  .archive-table tr:last-child td{border-bottom:none;}
-  .archive-table tr.is-new td{background:#fffbf0;}
-  .archive-table td a{color:var(--teal);font-weight:500;}
-  .ed-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;background:var(--ink);color:var(--cream);padding:2px 7px;white-space:nowrap;}
-  .ed-badge.new{background:var(--gold);color:var(--ink);}
-  .tag-pill{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;background:var(--teal-light);color:var(--teal);padding:1px 6px;margin-right:4px;margin-top:3px;border-radius:2px;}
-  .tag-pill.policy{background:#fef3e2;color:#9a6210;}
-  .tag-pill.security{background:#fbe9e6;color:var(--rust);}
-  .tag-pill.infra{background:#f3e5f5;color:#6a1b9a;}
-  /* Weekly grid */
-  .edition-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  .ed-card{background:#fff;border:1px solid var(--border);display:flex;flex-direction:column;transition:box-shadow .15s;position:relative;overflow:hidden;}
-  .ed-card:hover{box-shadow:3px 3px 0 var(--ink);}
-  .ed-card .ec-stripe{height:3px;background:var(--ink);}
-  .ed-card.is-new .ec-stripe{background:var(--gold);}
-  .ed-card.is-available .ec-stripe{background:var(--teal);}
-  .ed-card.is-coming .ec-stripe{background:var(--border);}
-  .ed-card .ec-body{padding:18px 18px 14px;flex:1;display:flex;flex-direction:column;}
-  .ec-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-  .ec-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;white-space:nowrap;}
-  .ec-badge.new{background:var(--gold);color:var(--ink);font-weight:600;}
-  .ec-badge.live{background:var(--teal);color:#fff;}
-  .ec-badge.soon{background:var(--light-grey);color:var(--mid-grey);}
-  .ec-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);letter-spacing:.04em;}
-  .ed-card h3{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;line-height:1.35;color:var(--ink);margin-bottom:8px;flex:1;}
-  .ec-theme{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);letter-spacing:.04em;line-height:1.5;margin-bottom:10px;}
-  .ec-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);letter-spacing:.06em;margin-bottom:14px;}
-  .ec-link{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);border:1px solid var(--teal);padding:5px 12px;align-self:flex-start;transition:all .12s;}
-  .ec-link:hover{background:var(--teal);color:#fff;text-decoration:none;}
-  .ec-link.disabled{color:var(--mid-grey);border-color:var(--border);pointer-events:none;}
-  /* What's in each report */
-  .sections-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
-  .section-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px;}
-  .section-card h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
-  .section-card p{font-size:11.5px;color:var(--mid-grey);line-height:1.5;}
-  .section-card.s1{border-top-color:var(--teal);}
-  .section-card.s2{border-top-color:var(--rust);}
-  .section-card.s3{border-top-color:#2e7d32;}
-  .section-card.s4{border-top-color:#1565c0;}
-  /* Archive full table (weekly mode) */
-  .at-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;padding:2px 7px;white-space:nowrap;display:inline-block;}
-  .at-badge.ink{background:var(--ink);color:var(--cream);}
-  .at-badge.gold{background:var(--gold);color:var(--ink);font-weight:600;}
-  .at-badge.teal{background:var(--teal);color:#fff;}
-  .at-badge.grey{background:var(--light-grey);color:var(--mid-grey);}
-  footer{background:var(--ink);color:#7a8294;text-align:center;padding:32px 24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;}
-  footer strong{color:#c8d4e8;}footer a{color:#7a8294;}footer a:hover{color:var(--gold);}
-  .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin-top:10px;}
-  @media(max-width:700px){.featured{grid-template-columns:1fr;}.edition-grid{grid-template-columns:1fr 1fr;}.themes{grid-template-columns:1fr 1fr;}.sections-grid{grid-template-columns:1fr 1fr;}.hero-stats{gap:20px;}}
-  @media(max-width:480px){.edition-grid{grid-template-columns:1fr;}}
+  :root {
+    --ink: #0e0e0e; --cream: #faf7f2; --gold: #c8922a; --rust: #b84c2a;
+    --teal: #1a6b5e; --teal-light: #e3f2ee; --border: #d8d0c4;
+    --mid-grey: #7a7570; --light-grey: #ede9e3; --deep-blue: #0a1628;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; line-height: 1.7; }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── NAV ── */
+  nav { background: var(--deep-blue); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 18px; color: #fff; }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; flex-wrap: wrap; }
+  .nav-links a { color: #8a99b8; }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); text-decoration: none; }
+
+  /* ── HERO ── */
+  .hero { background: var(--ink); padding: 60px 32px 48px; text-align: center; }
+  .hero .over { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px,7vw,64px); font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .hero .tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #7a8ca8; margin-bottom: 28px; }
+  .hero-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 32px; }
+  .hero-stat .val { font-family: 'Playfair Display', serif; font-size: 30px; color: var(--gold); font-weight: 700; }
+  .hero-stat .lbl { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a99b8; margin-top: 4px; }
+
+  /* ── MAIN / SECTION LABEL ── */
+  .main { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+  .sec-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid-grey); border-bottom: 2px solid var(--ink); padding-bottom: 10px; margin: 48px 0 24px; }
+
+  /* ── FEATURED / LATEST ── */
+  .featured, .latest-feature { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .card-big, .feat-big { background: var(--deep-blue); padding: 28px 28px 24px; position: relative; overflow: hidden; }
+  .card-big::after, .feat-big::after { content: ''; position: absolute; bottom: -30px; right: -30px; width: 120px; height: 120px; background: var(--gold); opacity: 0.08; border-radius: 50%; }
+  .cb-type, .fb-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .card-big h2, .feat-big h2 { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 900; color: #fff; line-height: 1.3; margin-bottom: 10px; }
+  .card-big p, .feat-big p { font-size: 13px; color: #8a99b8; line-height: 1.6; margin-bottom: 14px; }
+  .meta, .fb-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: #4a5568; letter-spacing: 0.05em; }
+  .read-btn { display: inline-block; margin-top: 14px; background: var(--gold); color: var(--deep-blue); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 16px; font-weight: 600; }
+  .read-btn:hover { background: #fff; text-decoration: none; }
+
+  .card-stack, .feat-stack { display: flex; flex-direction: column; gap: 12px; }
+  .card-sm, .feat-sm { background: #fff; border: 1px solid var(--border); padding: 16px 18px; flex: 1; }
+  .cs-type, .fs-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+  .card-sm h3, .feat-sm h3 { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 6px; }
+  .cs-meta, .fs-meta { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); letter-spacing: 0.04em; }
+
+  /* ── EDITION GRID ── */
+  .edition-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .ed-card { background: #fff; border: 1px solid var(--border); display: flex; flex-direction: column; transition: box-shadow 0.15s; position: relative; overflow: hidden; }
+  .ed-card:hover { box-shadow: 3px 3px 0 var(--ink); }
+  .ec-stripe { height: 3px; background: var(--ink); }
+  .ed-card.is-new .ec-stripe { background: var(--gold); }
+  .ed-card.is-available .ec-stripe { background: var(--teal); }
+  .ed-card.is-coming .ec-stripe { background: var(--border); }
+  .ec-body { padding: 18px 18px 14px; flex: 1; display: flex; flex-direction: column; }
+  .ec-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .ec-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; white-space: nowrap; }
+  .ec-badge.new { background: var(--gold); color: var(--ink); font-weight: 600; }
+  .ec-badge.live { background: var(--teal); color: #fff; }
+  .ec-badge.soon { background: var(--light-grey); color: var(--mid-grey); }
+  .ec-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); letter-spacing: 0.04em; }
+  .ed-card h3 { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; line-height: 1.35; color: var(--ink); margin-bottom: 8px; flex: 1; }
+  .ec-theme { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); letter-spacing: 0.04em; line-height: 1.5; margin-bottom: 10px; }
+  .ec-date { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); letter-spacing: 0.06em; margin-bottom: 14px; }
+  .ec-link { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); border: 1px solid var(--teal); padding: 5px 12px; align-self: flex-start; transition: all 0.12s; }
+  .ec-link:hover { background: var(--teal); color: #fff; text-decoration: none; }
+  .ec-link.disabled { color: var(--mid-grey); border-color: var(--border); pointer-events: none; }
+
+  /* ── SECTIONS-GRID ("what's inside") ── */
+  .sections-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+  .section-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--gold); padding: 14px 16px; }
+  .section-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .section-card p { font-size: 11.5px; color: var(--mid-grey); line-height: 1.5; }
+  .section-card.s1 { border-top-color: var(--teal); }
+  .section-card.s2 { border-top-color: var(--rust); }
+  .section-card.s3 { border-top-color: #2e7d32; }
+  .section-card.s4 { border-top-color: #1565c0; }
+
+  /* ── THEMES GRID (archive mode only) ── */
+  .themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+  .theme-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--gold); padding: 14px 16px; }
+  .theme-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .theme-card .tc-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); }
+  .theme-card.policy { border-top-color: var(--teal); }
+  .theme-card.security { border-top-color: var(--rust); }
+  .theme-card.infra { border-top-color: #6a1b9a; }
+  .theme-card.ecosystem { border-top-color: #2e7d32; }
+  .theme-card.geo { border-top-color: #1565c0; }
+
+  /* ── ARCHIVE TABLE ── */
+  .archive-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  .archive-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 9px 14px; text-align: left; border-bottom: 2px solid var(--border); }
+  .archive-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); background: #fff; font-size: 13px; vertical-align: top; }
+  .archive-table tr:last-child td { border-bottom: none; }
+  .archive-table tr.is-new td { background: #fffbf0; }
+  .archive-table td a { color: var(--teal); font-weight: 500; }
+  .at-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; padding: 2px 7px; white-space: nowrap; display: inline-block; }
+  .at-badge.ink { background: var(--ink); color: var(--cream); }
+  .at-badge.gold { background: var(--gold); color: var(--ink); font-weight: 600; }
+  .at-badge.teal { background: var(--teal); color: #fff; }
+  .at-badge.grey { background: var(--light-grey); color: var(--mid-grey); }
+  .ed-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; background: var(--ink); color: var(--cream); padding: 2px 7px; white-space: nowrap; }
+  .tag-pill { display: inline-block; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.06em; background: var(--teal-light); color: var(--teal); padding: 1px 6px; margin-right: 4px; margin-top: 3px; border-radius: 2px; }
+  .tag-pill.policy { background: #fef3e2; color: #9a6210; }
+  .tag-pill.security { background: #fbe9e6; color: var(--rust); }
+  .tag-pill.infra { background: #f3e5f5; color: #6a1b9a; }
+
+  /* ── CLOSED-VOLUME BANNER (weekly mode) ── */
+  .closed-banner { background: var(--light-grey); border: 1px solid var(--border); border-left: 4px solid var(--gold); padding: 16px 22px; margin-bottom: 24px; font-size: 13px; color: #3a3530; line-height: 1.6; }
+  .closed-banner strong { color: var(--ink); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--ink); color: #7a8294; text-align: center; padding: 32px 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; }
+  footer strong { color: #c8d4e8; }
+  footer a { color: #7a8294; }
+  footer a:hover { color: var(--gold); }
+  .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
+
+  @media (max-width: 700px) {
+    .featured, .latest-feature { grid-template-columns: 1fr; }
+    .edition-grid { grid-template-columns: 1fr 1fr; }
+    .sections-grid, .themes { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 20px; }
+  }
+  @media (max-width: 480px) {
+    .edition-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
-{% set latest = weekly[0] %}
-{% set prev_editions = weekly[1:3] %}
-
-<!-- NAV -->
-{% if page_mode == "weekly" %}
 <nav>
-  <a href="../index.html" style="text-decoration:none;">
-    <div class="nav-brand">The Weekly African Lens<span>.</span></div>
+  <a href="{% if page_mode == 'archive' %}index.html{% else %}../index.html{% endif %}" style="text-decoration:none;">
+    <div class="nav-brand">AIW African Lens<span>.</span></div>
   </a>
   <div class="nav-links">
-    <a href="../index.html">Archive</a>
-    <a href="index.html" class="active">AI Weekly</a>
-    <a href="../editions/index.html">Daily Editions</a>
+    <a href="{% if page_mode == 'archive' %}index.html{% else %}../index.html{% endif %}" {% if page_mode == 'archive' %}class="active"{% endif %}>Archive</a>
+    <a href="{% if page_mode == 'monthly' %}index.html{% elif page_mode == 'archive' %}monthly/index.html{% else %}../monthly/index.html{% endif %}" {% if page_mode == 'monthly' %}class="active"{% endif %}>Monthly Review</a>
+    <a href="{% if page_mode == 'weekly' %}index.html{% elif page_mode == 'archive' %}weekly/index.html{% else %}../weekly/index.html{% endif %}" {% if page_mode == 'weekly' %}class="active"{% endif %}>Weekly Archive (Vol. I)</a>
+    <a href="{% if page_mode == 'archive' %}editions/index.html{% else %}../editions/index.html{% endif %}">Daily Editions</a>
     <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe</a>
   </div>
 </nav>
-{% else %}
-<nav>
-  <div class="nav-brand">The Weekly African Lens<span>.</span></div>
-  <div class="nav-links">
-    <a href="index.html">Archive</a>
-    <a href="weekly/index.html">AI Weekly</a>
-    <a href="editions/index.html">Daily Editions</a>
-    <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe</a>
-  </div>
-</nav>
-{% endif %}
 
-<!-- HERO -->
+{% if page_mode == 'monthly' %}
+
 <div class="hero">
-  <div class="over">{% if page_mode == "weekly" %}AI Weekly Intelligence Series{% else %}Africa's AI Intelligence Archive{% endif %}</div>
-  <h1>{% if page_mode == "weekly" %}AI Weekly<br>African Lens{% else %}The Weekly<br>African Lens{% endif %}</h1>
-  <div class="tag">{% if page_mode == "weekly" %}Institutional-Grade Intelligence · Every Tuesday · 06:00 SAST{% else %}AI · Machine Learning · Data Science · Across 54 Nations{% endif %}</div>
+  <div class="over">AIW Monthly Intelligence Review</div>
+  <h1>Monthly<br>Intelligence Review</h1>
+  <div class="tag">Institutional-Grade Intelligence · Last Wednesday of the Month · 06:00 SAST</div>
   <div class="hero-stats">
-    {% if page_mode == "weekly" %}
-    <div><div class="hs-val">{{ stats.weekly_total }}</div><div class="hs-lbl">Editions</div></div>
-    <div><div class="hs-val">{{ site.nations }}</div><div class="hs-lbl">Nations</div></div>
-    <div><div class="hs-val">{{ stats.developments_ranked }}</div><div class="hs-lbl">Developments Ranked</div></div>
-    <div><div class="hs-val">Q1–Q2</div><div class="hs-lbl">2026 Coverage</div></div>
-    {% else %}
-    <div><div class="hs-val">{{ stats.daily_editions }}</div><div class="hs-lbl">Daily Editions</div></div>
-    <div><div class="hs-val">{{ site.nations }}</div><div class="hs-lbl">Nations Covered</div></div>
-    <div><div class="hs-val">{{ stats.weekly_total }}</div><div class="hs-lbl">AI Weekly Reports</div></div>
-    <div><div class="hs-val">Q1–Q2</div><div class="hs-lbl">2026 Coverage</div></div>
-    {% endif %}
+    <div class="hero-stat"><div class="val">{{ stats.monthly_total | default(monthly|length) }}</div><div class="lbl">Issues Published</div></div>
+    <div class="hero-stat"><div class="val">{{ site.nations }}</div><div class="lbl">Nations Covered</div></div>
+    <div class="hero-stat"><div class="val">10.6K–16.2K</div><div class="lbl">Words per Issue</div></div>
+    <div class="hero-stat"><div class="val">{{ site.coverage }}</div><div class="lbl">Coverage Period</div></div>
   </div>
 </div>
 
 <div class="main">
 
-{% if page_mode == "weekly" %}
-<!-- ── WEEKLY INDEX MODE ───────────────────────────────── -->
-
-  <div class="sec-label">§ Latest Edition</div>
-  <div class="featured">
-    <div class="card-big">
-      <div class="cb-type">AI Weekly Intelligence · Edition #{{ latest.id }} · NEW</div>
-      <h2>{{ latest.title }}{% if latest.subtitle %} — {{ latest.subtitle }}{% endif %}</h2>
-      <p>{{ latest.summary }}</p>
-      <div class="meta">{{ latest.window }}</div>
-      <a class="read-btn" href="{{ latest.file }}">Read Full Report →</a>
+  <div class="sec-label">§ Latest Issue</div>
+  {% if monthly %}
+  <div class="latest-feature">
+    <div class="feat-big">
+      <div class="fb-label">AIW Monthly Intelligence Review · Issue #{{ monthly[0].id }} · NEW</div>
+      <h2>{{ monthly[0].title }}{% if monthly[0].subtitle %} — {{ monthly[0].subtitle }}{% endif %}</h2>
+      <p>{{ monthly[0].summary }}</p>
+      <div class="fb-meta">{{ monthly[0].date }}{% if monthly[0].window %} · Window: {{ monthly[0].window }}{% endif %}{% if monthly[0].word_count %} · ~{{ monthly[0].word_count }} words{% endif %}</div>
+      <a class="read-btn" href="{{ monthly[0].file }}">Read Full Issue →</a>
     </div>
-    <div class="card-stack">
-      {% for ed in prev_editions %}
-      <div class="card-sm">
-        <div class="cs-type">Prior Edition · {{ ed.id }}</div>
-        <h3>{{ ed.title }}{% if ed.subtitle %} — {{ ed.subtitle }}{% endif %}</h3>
-        <div class="cs-meta">{{ ed.date }}{% if ed.themes_line %} · {{ ed.themes_line[:60] }}…{% endif %}</div>
+    <div class="feat-stack">
+      {% for ed in monthly[1:4] if ed.status != 'coming' %}
+      <div class="feat-sm">
+        <div class="fs-label">Prior Issue · {{ ed.id }}</div>
+        <h3>{{ ed.title }}</h3>
+        <div class="fs-meta">{{ ed.date }}{% if ed.themes_line %} · {{ ed.themes_line }}{% endif %}</div>
       </div>
       {% endfor %}
     </div>
   </div>
+  {% else %}
+  <p style="font-size:13px;color:var(--mid-grey);">No monthly issues published yet — the first is in production. See the Weekly Archive (Volume I) for the publication's prior cadence.</p>
+  {% endif %}
 
-  <div class="sec-label">§ All Editions — AI Weekly Intelligence</div>
+  <div class="sec-label">§ All Issues — Monthly Intelligence Review</div>
   <div class="edition-grid">
-    {% for ed in weekly %}
-    <div class="ed-card is-{{ ed.status }}">
-      <div class="ec-stripe"></div>
-      <div class="ec-body">
-        <div class="ec-top">
-          <span class="ec-badge {% if ed.status == 'new' %}new{% elif ed.status == 'available' %}live{% else %}soon{% endif %}">
-            {% if ed.status == 'new' %}NEW{% elif ed.status == 'available' %}Available{% else %}Coming Soon{% endif %}
-          </span>
-          <span class="ec-num">{{ ed.id }}</span>
-        </div>
-        <h3>{{ ed.title }}</h3>
-        <div class="ec-theme">{{ ed.themes_line }}</div>
-        <div class="ec-date">{{ ed.date }}{% if ed.developments %} · {{ ed.developments }} developments{% endif %}</div>
-        {% if ed.status != 'coming' %}
-        <a class="ec-link" href="{{ ed.file }}">Read Report →</a>
-        {% else %}
-        <span class="ec-link disabled">Coming Soon</span>
-        {% endif %}
-      </div>
-    </div>
+    {% for ed in monthly %}
+    {{ edition_card(ed, '', 'Read Issue →') }}
     {% endfor %}
   </div>
 
-  <div class="sec-label">§ What's in Every Edition</div>
+  <div class="sec-label">§ What's in Every Issue</div>
   <div class="sections-grid">
-    <div class="section-card s1"><h4>Executive Summary</h4><p>9–11 signals, no noise. What actually mattered this week, concisely stated.</p></div>
-    <div class="section-card"><h4>Key Developments</h4><p>Ranked items with full analysis — TECH_AUDIT verdicts, MULTI_VECTOR verification, and strategic implications.</p></div>
-    <div class="section-card s2"><h4>Risks &amp; Threats</h4><p>RED_TEAM contrarian stress-tests. Bubble flags. What the consensus view is getting wrong.</p></div>
+    <div class="section-card s1"><h4>Editor's Thesis</h4><p>One falsifiable argument about where the stack is heading — tracked against last month's thesis before stating a new one.</p></div>
+    <div class="section-card"><h4>Executive Brief</h4><p>5–7 items, each self-contained: what happened, why it matters, what to watch.</p></div>
+    <div class="section-card s2"><h4>Signals &amp; Metrics</h4><p>The standing KPI dashboard — capital flows, compute capacity, deployment counts — with month-over-month trend.</p></div>
+    <div class="section-card s3"><h4>Deep Research Essays</h4><p>One or two single-topic essays, 2,500+ words each, built to reward a full read.</p></div>
+    <div class="section-card"><h4>Engineering Frontier</h4><p>Power, chips, and connectivity as one technical narrative — real units, no hand-waving.</p></div>
+    <div class="section-card s4"><h4>Commercial Strategy</h4><p>Market structure, capital flow interpretation, and build/buy/partner framing for operators.</p></div>
+    <div class="section-card"><h4>Policy &amp; Geopolitics</h4><p>Regulatory trajectory plus a RAND-style map of external actors' leverage and interest.</p></div>
+    <div class="section-card s1"><h4>African Builders</h4><p>2–3 rigorous profiles of the people building and governing the stack — not press-release journalism.</p></div>
+    <div class="section-card"><h4>Models, Papers &amp; Repositories</h4><p>A standing benchmark board and repository-health tracker, updated monthly rather than narrated fresh each time.</p></div>
+    <div class="section-card s2"><h4>Scenarios &amp; Forecasts</h4><p>2–4 falsifiable, probability-banded scenarios, carried forward until they resolve.</p></div>
+    <div class="section-card"><h4>Reading List</h4><p>5–10 annotated items a well-read subscriber probably has not already seen.</p></div>
+  </div>
+
+  <div class="sec-label">§ Full Archive — Monthly Intelligence Review</div>
+  <table class="archive-table">
+    <thead><tr><th>Issue</th><th>Window</th><th>Theme</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for ed in monthly %}
+      {{ archive_row(ed, '') }}
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+{% elif page_mode == 'weekly' %}
+
+<div class="hero">
+  <div class="over">Volume I — Closed Archive</div>
+  <h1>Weekly<br>African Lens</h1>
+  <div class="tag">AI Weekly Intelligence · Superseded by the Monthly Intelligence Review</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="val">{{ stats.weekly_total | default(weekly|length) }}</div><div class="lbl">Editions</div></div>
+    <div class="hero-stat"><div class="val">{{ site.nations }}</div><div class="lbl">Nations</div></div>
+    <div class="hero-stat"><div class="val">{{ stats.developments_ranked }}</div><div class="lbl">Developments Ranked</div></div>
+    <div class="hero-stat"><div class="val">Vol. I</div><div class="lbl">Closed Archive</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="closed-banner">
+    <strong>This archive is closed.</strong> AIW African Lens moved to a monthly cadence with a deepened eleven-section
+    format; the weekly series above ({{ weekly|length }} editions) is preserved for reference and is not being added to.
+    For current coverage, see the <a href="../monthly/index.html">Monthly Intelligence Review</a>.
+  </div>
+
+  <div class="sec-label">§ Final / Latest Edition</div>
+  {% if weekly %}
+  <div class="latest-feature">
+    <div class="feat-big">
+      <div class="fb-label">AI Weekly Intelligence · Edition #{{ weekly[0].id }}</div>
+      <h2>{{ weekly[0].title }}{% if weekly[0].subtitle %} — {{ weekly[0].subtitle }}{% endif %}</h2>
+      <p>{{ weekly[0].summary }}</p>
+      <div class="fb-meta">{{ weekly[0].date }}{% if weekly[0].window %} · Window: {{ weekly[0].window }}{% endif %}</div>
+      <a class="read-btn" href="{{ weekly[0].file }}">Read Final Edition →</a>
+    </div>
+    <div class="feat-stack">
+      {% for ed in weekly[1:4] if ed.status != 'coming' %}
+      <div class="feat-sm">
+        <div class="fs-label">Prior Edition · {{ ed.id }}</div>
+        <h3>{{ ed.title }}</h3>
+        <div class="fs-meta">{{ ed.date }}{% if ed.themes_line %} · {{ ed.themes_line }}{% endif %}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="sec-label">§ All Editions — Volume I</div>
+  <div class="edition-grid">
+    {% for ed in weekly %}
+    {{ edition_card(ed, '', 'Read Report →') }}
+    {% endfor %}
+  </div>
+
+  <div class="sec-label">§ What Was in Every Weekly Edition</div>
+  <div class="sections-grid">
+    <div class="section-card s1"><h4>Executive Summary</h4><p>9–11 signals, no noise. What actually mattered that week, concisely stated.</p></div>
+    <div class="section-card"><h4>Key Developments</h4><p>Ranked items with full analysis — TECH_AUDIT verdicts, MULTI_VECTOR verification, strategic implications.</p></div>
+    <div class="section-card s2"><h4>Risks &amp; Threats</h4><p>RED_TEAM contrarian stress-tests. Bubble flags. What the consensus view was getting wrong.</p></div>
     <div class="section-card s3"><h4>Opportunities</h4><p>DELTA_ANALYSIS winner tiers. Specific, time-bounded actions for founders, investors, and policymakers.</p></div>
-    <div class="section-card"><h4>Market Signals</h4><p>Capital flow analysis. Deal structures. Data points the investment community should be pricing.</p></div>
-    <div class="section-card s4"><h4>Strategic Insights</h4><p>TREND_MAPPER macro narrative updates. Four-week trailing context. What the sequence tells us.</p></div>
+    <div class="section-card"><h4>Market Signals</h4><p>Capital flow analysis. Deal structures. Data points the investment community should have been pricing.</p></div>
+    <div class="section-card s4"><h4>Strategic Insights</h4><p>TREND_MAPPER macro narrative updates. Four-week trailing context.</p></div>
     <div class="section-card"><h4>Research &amp; Institutional</h4><p>Reports, papers, and conference findings with direct relevance to African AI deployment.</p></div>
-    <div class="section-card"><h4>Events Calendar</h4><p>Forward-looking Q2 calendar with strategic significance ratings for every listed event.</p></div>
+    <div class="section-card"><h4>Events Calendar</h4><p>Forward-looking calendar with strategic significance ratings for every listed event.</p></div>
   </div>
 
   <div class="sec-label">§ Full Archive</div>
@@ -223,46 +342,73 @@
     <thead><tr><th>Edition</th><th>Window</th><th>Theme</th><th>Status</th></tr></thead>
     <tbody>
       {% for ed in weekly %}
-      <tr{% if ed.status == 'new' %} class="is-new"{% endif %}>
-        <td><span class="at-badge {{ ed.badge }}">{{ ed.id }}</span></td>
-        <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">{{ ed.window_short }}</td>
-        <td>{% if ed.status == 'new' %}<strong>{{ ed.title }}</strong>{% else %}{{ ed.title }}{% endif %}{% if ed.themes_line %} · {{ ed.themes_line }}{% endif %}</td>
-        <td>
-          {% if ed.status != 'coming' %}
-          <a href="{{ ed.file }}" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;">Read →</a>
-          {% else %}
-          <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
-          {% endif %}
-        </td>
-      </tr>
+      {{ archive_row(ed, '') }}
       {% endfor %}
     </tbody>
   </table>
 
-{% else %}
-<!-- ── ARCHIVE MODE ───────────────────────────────────── -->
+</div>
 
-  <div class="sec-label">§ Latest — AI Weekly Intelligence</div>
+{% else %}
+
+<div class="hero">
+  <div class="over">Africa's AI Intelligence Archive</div>
+  <h1>AIW African<br>Lens</h1>
+  <div class="tag">AI · Machine Learning · Data Science · Across 54 Nations</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="val">{{ stats.monthly_total | default(monthly|length) }}</div><div class="lbl">Monthly Issues</div></div>
+    <div class="hero-stat"><div class="val">{{ stats.weekly_total | default(weekly|length) }}</div><div class="lbl">Weekly Editions (Vol. I)</div></div>
+    <div class="hero-stat"><div class="val">{{ stats.daily_editions }}</div><div class="lbl">Daily Editions</div></div>
+    <div class="hero-stat"><div class="val">{{ site.nations }}</div><div class="lbl">Nations Covered</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="sec-label">§ Latest — AIW African Lens</div>
   <div class="featured">
+    {% if monthly %}
     <div class="card-big">
-      <div class="cb-type">AI Weekly Intelligence · Edition #{{ latest.id }} · NEW</div>
-      <h2>{{ latest.title }}{% if latest.subtitle %} — {{ latest.subtitle }}{% endif %}</h2>
-      <p>{{ latest.summary }}</p>
-      <div class="meta">Week of {{ latest.date }} · Window: {{ latest.window }}</div>
-      <a class="read-btn" href="weekly/{{ latest.file }}">Read Full Report →</a>
+      <div class="cb-type">AIW Monthly Intelligence Review · Issue #{{ monthly[0].id }} · NEW</div>
+      <h2>{{ monthly[0].title }}{% if monthly[0].subtitle %} — {{ monthly[0].subtitle }}{% endif %}</h2>
+      <p>{{ monthly[0].summary }}</p>
+      <div class="meta">{{ monthly[0].date }}{% if monthly[0].window %} · Window: {{ monthly[0].window }}{% endif %}</div>
+      <a class="read-btn" href="monthly/{{ monthly[0].file }}">Read Full Issue →</a>
     </div>
+    {% else %}
+    <div class="card-big">
+      <div class="cb-type">AIW Monthly Intelligence Review</div>
+      <h2>First Issue in Production</h2>
+      <p>The Monthly Intelligence Review launches shortly — see the Weekly Archive (Volume I) for the publication's prior cadence in the meantime.</p>
+    </div>
+    {% endif %}
     <div class="card-stack">
-      {% for ed in prev_editions %}
+      {% if monthly|length > 1 and monthly[1].status != 'coming' %}
       <div class="card-sm">
-        <div class="cs-type">Weekly Intelligence · {{ ed.id }}</div>
-        <h3>{{ ed.title }}{% if ed.subtitle %} — {{ ed.subtitle }}{% endif %}</h3>
-        <div class="cs-meta">{{ ed.date }}</div>
+        <div class="cs-type">Monthly Review · {{ monthly[1].id }}</div>
+        <h3>{{ monthly[1].title }}</h3>
+        <div class="cs-meta">{{ monthly[1].date }}</div>
       </div>
-      {% endfor %}
+      {% endif %}
+      {% if weekly %}
+      <div class="card-sm">
+        <div class="cs-type">Weekly Archive, Vol. I (closed) · {{ weekly[0].id }}</div>
+        <h3>{{ weekly[0].title }}</h3>
+        <div class="cs-meta">{{ weekly[0].date }} — final edition</div>
+      </div>
+      {% endif %}
+      {% if daily %}
+      <div class="card-sm">
+        <div class="cs-type">Daily Edition · {{ daily[0].id }}</div>
+        <h3>{{ daily[0].headline }}</h3>
+        <div class="cs-meta">{{ daily[0].date }}</div>
+      </div>
+      {% endif %}
     </div>
   </div>
 
-  <div class="sec-label">§ Recurring Macro Themes — Q1–Q2 2026</div>
+  {% if themes %}
+  <div class="sec-label">§ Recurring Macro Themes</div>
   <div class="themes">
     {% for theme in themes %}
     <div class="theme-card {{ theme.css }}">
@@ -271,67 +417,60 @@
     </div>
     {% endfor %}
   </div>
+  {% endif %}
 
+  {% if monthly %}
+  <div class="sec-label">§ Full Archive — Monthly Intelligence Review</div>
+  <table class="archive-table">
+    <thead><tr><th>Issue</th><th>Window</th><th>Theme</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for ed in monthly %}
+      {{ archive_row(ed, 'monthly/') }}
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  <div class="sec-label">§ Full Archive — Weekly Archive, Volume I (Closed)</div>
+  <table class="archive-table">
+    <thead><tr><th>Edition</th><th>Window</th><th>Theme</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for ed in weekly %}
+      {{ archive_row(ed, 'weekly/') }}
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if daily %}
   <div class="sec-label">§ Full Archive — Daily Editions</div>
   <table class="archive-table">
     <thead><tr><th>Edition</th><th>Date</th><th>Lead Story</th><th>Tags</th></tr></thead>
     <tbody>
-      {% for ed in daily %}
+      {% for d in daily %}
       <tr>
-        <td><span class="ed-badge">{{ ed.id }}</span></td>
-        <td>{{ ed.date }}</td>
-        <td><a href="{{ ed.file }}">{{ ed.headline }}</a></td>
-        <td>
-          {% for tag in ed.tags %}
-          <span class="tag-pill {{ tag.css }}">{{ tag.label }}</span>
-          {% endfor %}
-        </td>
+        <td><span class="ed-badge">{{ d.id }}</span></td>
+        <td>{{ d.date }}</td>
+        <td><a href="{{ d.file }}">{{ d.headline }}</a></td>
+        <td>{% for t in d.tags %}<span class="tag-pill {{ t.css }}">{{ t.label }}</span>{% endfor %}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-
-  <div class="sec-label">§ AI Weekly Intelligence — Archive</div>
-  <table class="archive-table">
-    <thead><tr><th>Edition</th><th>Week</th><th>Theme</th><th>Link</th></tr></thead>
-    <tbody>
-      {% for ed in weekly %}
-      <tr{% if ed.status == 'new' %} style="background:#fffbf0;"{% endif %}>
-        <td><span class="ed-badge{% if ed.status == 'new' %} new{% endif %}">{{ ed.id }}</span></td>
-        <td>{{ ed.window_short }}</td>
-        <td>{% if ed.status == 'new' %}<strong>{{ ed.title }} · {{ ed.themes_line }}</strong>{% else %}{{ ed.title }} · {{ ed.themes_line }}{% endif %}</td>
-        <td>
-          {% if ed.status != 'coming' %}
-          <a href="weekly/{{ ed.file }}">Read →</a>
-          {% else %}
-          <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-{% endif %}
+  {% endif %}
 
 </div>
 
+{% endif %}
+
 <footer>
-  <p><strong>The Weekly African Lens</strong> · AI · Machine Learning · Data Science · Across 54 Nations</p>
-  <p style="margin-top:8px;">{% if page_mode == "weekly" %}AI Weekly Intelligence · Published every Tuesday at 06:00 SAST{% else %}Published at 6:00 AM SAST · Archive hosted on GitHub Pages{% endif %} · © 2026 The Weekly African Lens</p>
-  <div class="footer-links">
-    {% if page_mode == "weekly" %}
-    <a href="../privacy.html">Privacy Policy</a>
-    <a href="../terms.html">Terms of Use</a>
-    <a href="../editorial.html">Editorial Standards</a>
+  <p><strong>AIW African Lens</strong> · AI · Machine Learning · Data Science · Across 54 Nations</p>
+  <p style="margin-top:8px;">Monthly Intelligence Review · Published the last Wednesday of every month, 06:00 SAST · © 2026 AIW African Lens</p>
+  <p style="margin-top:10px;display:flex;justify-content:center;flex-wrap:wrap;gap:16px;">
+    <a href="{% if page_mode == 'archive' %}privacy.html{% else %}../privacy.html{% endif %}">Privacy Policy</a>
+    <a href="{% if page_mode == 'archive' %}terms.html{% else %}../terms.html{% endif %}">Terms of Use</a>
+    <a href="{% if page_mode == 'archive' %}editorial.html{% else %}../editorial.html{% endif %}">Editorial Standards</a>
     <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe on Substack</a>
-    {% else %}
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms of Use</a>
-    <a href="editorial.html">Editorial Standards</a>
-    <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe</a>
-    {% endif %}
-  </div>
+  </p>
 </footer>
 
 </body>
