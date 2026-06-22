@@ -19,7 +19,6 @@ AIW African Lens — Weekly Archive (Volume I, Closed)
   a { color: var(--teal); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  /* ── NAV ── */
   nav { background: var(--deep-blue); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
   .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 18px; color: #fff; }
   .nav-brand span { color: var(--gold); }
@@ -27,7 +26,6 @@ AIW African Lens — Weekly Archive (Volume I, Closed)
   .nav-links a { color: #8a99b8; }
   .nav-links a:hover, .nav-links a.active { color: var(--gold); text-decoration: none; }
 
-  /* ── HERO ── */
   .hero { background: var(--ink); padding: 60px 32px 48px; text-align: center; }
   .hero .over { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
   .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px,7vw,64px); font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.02em; margin-bottom: 16px; }
@@ -36,11 +34,9 @@ AIW African Lens — Weekly Archive (Volume I, Closed)
   .hero-stat .val { font-family: 'Playfair Display', serif; font-size: 30px; color: var(--gold); font-weight: 700; }
   .hero-stat .lbl { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a99b8; margin-top: 4px; }
 
-  /* ── MAIN / SECTION LABEL ── */
   .main { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
   .sec-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid-grey); border-bottom: 2px solid var(--ink); padding-bottom: 10px; margin: 48px 0 24px; }
 
-  /* ── FEATURED / LATEST ── */
   .featured, .latest-feature { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px; margin-bottom: 16px; }
   .card-big, .feat-big { background: var(--deep-blue); padding: 28px 28px 24px; position: relative; overflow: hidden; }
   .card-big::after, .feat-big::after { content: ''; position: absolute; bottom: -30px; right: -30px; width: 120px; height: 120px; background: var(--gold); opacity: 0.08; border-radius: 50%; }
@@ -57,7 +53,6 @@ AIW African Lens — Weekly Archive (Volume I, Closed)
   .card-sm h3, .feat-sm h3 { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 6px; }
   .cs-meta, .fs-meta { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); letter-spacing: 0.04em; }
 
-  /* ── EDITION GRID ── */
   .edition-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .ed-card { background: #fff; border: 1px solid var(--border); display: flex; flex-direction: column; transition: box-shadow 0.15s; position: relative; overflow: hidden; }
   .ed-card:hover { box-shadow: 3px 3px 0 var(--ink); }
@@ -79,7 +74,6 @@ AIW African Lens — Weekly Archive (Volume I, Closed)
   .ec-link:hover { background: var(--teal); color: #fff; text-decoration: none; }
   .ec-link.disabled { color: var(--mid-grey); border-color: var(--border); pointer-events: none; }
 
-  /* ── SECTIONS-GRID ("what's inside") ── */
   .sections-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
   .section-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--gold); padding: 14px 16px; }
   .section-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
@@ -89,7 +83,6 @@ AIW African Lens — Weekly Archive (Volume I, Closed)
   .section-card.s3 { border-top-color: #2e7d32; }
   .section-card.s4 { border-top-color: #1565c0; }
 
-  /* ── THEMES GRID (archive mode only) ── */
   .themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
   .theme-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--gold); padding: 14px 16px; }
   .theme-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
@@ -100,7 +93,6 @@ AIW African Lens — Weekly Archive (Volume I, Closed)
   .theme-card.ecosystem { border-top-color: #2e7d32; }
   .theme-card.geo { border-top-color: #1565c0; }
 
-  /* ── ARCHIVE TABLE ── */
   .archive-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
   .archive-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 9px 14px; text-align: left; border-bottom: 2px solid var(--border); }
   .archive-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); background: #fff; font-size: 13px; vertical-align: top; }
@@ -118,11 +110,9 @@ AIW African Lens — Weekly Archive (Volume I, Closed)
   .tag-pill.security { background: #fbe9e6; color: var(--rust); }
   .tag-pill.infra { background: #f3e5f5; color: #6a1b9a; }
 
-  /* ── CLOSED-VOLUME BANNER (weekly mode) ── */
   .closed-banner { background: var(--light-grey); border: 1px solid var(--border); border-left: 4px solid var(--gold); padding: 16px 22px; margin-bottom: 24px; font-size: 13px; color: #3a3530; line-height: 1.6; }
   .closed-banner strong { color: var(--ink); }
 
-  /* ── FOOTER ── */
   footer { background: var(--ink); color: #7a8294; text-align: center; padding: 32px 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; }
   footer strong { color: #c8d4e8; }
   footer a { color: #7a8294; }
