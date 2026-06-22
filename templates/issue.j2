@@ -3,194 +3,265 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ e.edition_id }} — {{ e.title }}: {{ e.title_sub }} · AI Weekly African Lens</title>
+<title>{{ e.edition_id }} — {{ e.title }}{% if e.title_sub %}: {{ e.title_sub }}{% endif %} · AIW African Lens Monthly Intelligence Review</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink:#0e0e0e;--cream:#faf7f2;--gold:#c8922a;--gold-light:#f0d898;
-    --rust:#b84c2a;--teal:#1a6b5e;--teal-light:#e3f2ee;
-    --border:#d8d0c4;--mid-grey:#7a7570;--light-grey:#ede9e3;
-    --deep-blue:#0a1628;--deep-blue-mid:#0f2040;
+    --ink: #0e0e0e;
+    --cream: #faf7f2;
+    --gold: #c8922a;
+    --gold-light: #f0d898;
+    --rust: #b84c2a;
+    --teal: #1a6b5e;
+    --teal-light: #e3f2ee;
+    --border: #d8d0c4;
+    --mid-grey: #7a7570;
+    --light-grey: #ede9e3;
+    --deep-blue: #0a1628;
+    --deep-blue-mid: #0f2040;
+    --hybrid: #5e35b1;
+    --hybrid-light: #ede7f6;
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.7;}
-  a{color:var(--teal);text-decoration:none;}a:hover{text-decoration:underline;}
-  nav{background:var(--deep-blue);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(200,146,42,0.2);}
-  .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:#fff;}
-  .nav-brand span{color:var(--gold);}
-  .nav-links{display:flex;gap:24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;}
-  .nav-links a{color:#8a99b8;}.nav-links a:hover{color:var(--gold);text-decoration:none;}
-  .masthead{background:var(--deep-blue);padding:64px 32px 52px;position:relative;overflow:hidden;}
-  .masthead::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border:1px solid rgba(200,146,42,0.12);border-radius:50%;}
-  .masthead::after{content:'';position:absolute;top:-20px;right:-20px;width:180px;height:180px;border:1px solid rgba(200,146,42,0.08);border-radius:50%;}
-  .masthead-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
-  .mh-series{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:16px;}
-  .mh-series::after{content:'';flex:1;height:1px;background:rgba(200,146,42,0.3);max-width:120px;}
-  .masthead h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,52px);font-weight:900;color:#fff;line-height:1.08;letter-spacing:-.02em;margin-bottom:20px;max-width:700px;}
-  .masthead h1 em{font-style:italic;color:var(--gold);}
-  .mh-deck{font-size:15px;color:#8a99b8;line-height:1.65;max-width:620px;margin-bottom:28px;}
-  .mh-meta-row{display:flex;align-items:center;gap:24px;flex-wrap:wrap;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;color:#4a5a78;}
-  .mh-meta-row .dot{color:rgba(200,146,42,0.4);}
-  .mh-signals{display:flex;gap:20px;margin-top:32px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.06);flex-wrap:wrap;}
-  .mh-sig{display:flex;flex-direction:column;gap:3px;}
-  .mh-sig-val{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--gold);line-height:1;}
-  .mh-sig-lbl{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#4a5a78;}
-  .toc-bar{background:var(--deep-blue-mid);border-bottom:1px solid rgba(200,146,42,0.15);}
-  .toc-inner{max-width:860px;margin:0 auto;padding:0 32px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
-  .toc-inner::-webkit-scrollbar{display:none;}
-  .toc-item{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#5a6a88;padding:12px 16px;white-space:nowrap;border-right:1px solid rgba(255,255,255,0.04);}
-  .toc-item:first-child{padding-left:0;}.toc-item a{color:inherit;}.toc-item:hover a{color:var(--gold);}
-  .main{max-width:860px;margin:0 auto;padding:0 24px 80px;}
-  .sec{display:flex;align-items:center;gap:12px;margin:56px 0 28px;}
-  .sec-num{font-family:'Playfair Display',serif;font-size:11px;font-weight:700;color:var(--gold);min-width:24px;}
-  .sec-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid-grey);}
-  .sec-line{flex:1;height:1px;background:var(--border);}
-  .sec::after{content:'';height:2px;width:40px;background:var(--ink);display:block;}
-  .opening-frame{background:var(--ink);padding:32px 36px;position:relative;overflow:hidden;margin-bottom:8px;}
-  .opening-frame::before{content:'"';font-family:'Playfair Display',serif;font-size:200px;color:rgba(200,146,42,0.06);position:absolute;top:-40px;left:20px;line-height:1;font-weight:900;}
-  .opening-frame p{font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.75;color:#c8d4e8;position:relative;z-index:1;max-width:720px;}
-  .opening-frame p strong,.opening-frame strong{color:var(--gold-light);font-weight:600;}
-  .signal-card{border:1px solid var(--border);background:#fff;margin-bottom:2px;position:relative;overflow:hidden;}
-  .signal-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ink);}
-  .sc-border-1::before{background:var(--gold);}
-  .sc-border-2::before{background:var(--teal);}
-  .sc-border-3::before{background:var(--rust);}
-  .sc-border-4::before{background:#6a1b9a;}
-  .sc-border-5::before{background:#1565c0;}
-  .sc-border-1 .sc-rank{color:rgba(200,146,42,0.18);}
-  .sc-inner{padding:24px 28px 24px 32px;}
-  .sc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:12px;}
-  .sc-rank{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--light-grey);line-height:1;min-width:44px;}
-  .sc-tags{display:flex;gap:6px;flex-wrap:wrap;}
-  .sc-tag{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:2px;}
-  .tag-policy{background:var(--teal-light);color:var(--teal);}
-  .tag-infra{background:#f3e5f5;color:#6a1b9a;}
-  .tag-geo{background:#e3f2fd;color:#1565c0;}
-  .tag-tech{background:#fef3e2;color:#9a6210;}
-  .tag-security{background:#fbe9e6;color:var(--rust);}
-  .tag-ecosystem{background:#e8f5e9;color:#2e7d32;}
-  .tag-research{background:#ede7f6;color:#5e35b1;}
-  .tag-capital{background:#e0f7fa;color:#00695c;}
-  .sc-head{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;line-height:1.3;color:var(--ink);margin-bottom:14px;}
-  .sc-body{font-size:14.5px;line-height:1.75;color:#2a2520;}
-  .sc-body p{margin-bottom:12px;}.sc-body p:last-child{margin-bottom:0;}
-  .sc-body strong{color:var(--ink);font-weight:600;}
-  .sc-tier{display:flex;gap:6px;align-items:center;margin-bottom:4px;}
-  .tier-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-  .t1{background:#3b82f6;}.t2{background:var(--gold);}.t3{background:var(--rust);}
-  .tier-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid-grey);}
-  .sc-analysis{padding:18px 20px;margin-top:16px;background:var(--light-grey);border-left:2px solid var(--border);}
-  .sc-analysis .sa-row{margin-bottom:14px;}.sc-analysis .sa-row:last-child{margin-bottom:0;}
-  .sc-analysis .sa-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px;}
-  .sa-label.l1{color:#3b82f6;}.sa-label.l2{color:var(--gold);}.sa-label.l3{color:var(--rust);}
-  .sc-analysis p{font-size:13px;line-height:1.65;color:#2a2520;}
-  .layer-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-  .layer-card{background:#fff;border:1px solid var(--border);padding:20px 22px;}
-  .layer-full{grid-column:1 / -1;}
-  .lc-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);}
-  .lc-icon{font-size:20px;line-height:1;}
-  .lc-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-grey);}
-  .lc-name{font-size:14px;font-weight:600;color:var(--ink);}
-  .lc-signal-count{margin-left:auto;font-family:'DM Mono',monospace;font-size:9px;color:var(--mid-grey);background:var(--light-grey);padding:2px 8px;}
-  .lc-highlight{background:var(--ink);color:var(--cream);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;padding:5px 10px;margin-bottom:12px;display:inline-block;}
-  .layer-card .lc-body{font-size:13.5px;line-height:1.7;color:#2a2520;}
-  .layer-card .lc-body p{margin-bottom:10px;}.layer-card .lc-body p:last-child{margin-bottom:0;}
-  .layer-card .lc-body strong{color:var(--ink);font-weight:600;}
-  .policy-block{background:#fff;border:1px solid var(--border);border-top:3px solid var(--teal);padding:24px 26px;margin-bottom:10px;}
-  .pb-head{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:12px;}
-  .pb-body{font-size:14px;line-height:1.75;color:#2a2520;}
-  .pb-body p{margin-bottom:12px;}.pb-body p:last-child{margin-bottom:0;}
-  .pb-body strong{color:var(--ink);font-weight:600;}
-  .status-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px;}
-  .status-pill{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:2px;}
-  .sp-active{background:var(--teal-light);color:var(--teal);}
-  .sp-pending{background:#fef3e2;color:#9a6210;}
-  .sp-watch{background:#fbe9e6;color:var(--rust);}
-  .convergence-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px;}
-  .convergence-table th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid-grey);background:var(--light-grey);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);}
-  .convergence-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;}
-  .convergence-table tr:last-child td{border-bottom:none;}
-  .research-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:10px;}
-  .rr-card{background:#fff;border:1px solid var(--border);border-top:3px solid #5e35b1;padding:20px 22px;}
-  .rr-card.global{border-top-color:#1565c0;}
-  .rr-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#5e35b1;margin-bottom:10px;}
-  .rr-card.global .rr-type{color:#1565c0;}
-  .rr-card h3{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.35;}
-  .rr-card .rr-body{font-size:13px;line-height:1.7;color:#2a2520;}
-  .rr-card .rr-body p{margin-bottom:10px;}.rr-card .rr-body p:last-child{margin-bottom:0;}
-  .fragility-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--rust);margin-bottom:10px;}
-  .frag-header{padding:14px 20px;background:#fdf2f0;border-bottom:1px solid #f0cbc4;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
-  .frag-id{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);}
-  .frag-badges{display:flex;gap:6px;flex-wrap:wrap;}
-  .frag-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;padding:2px 8px;background:#fbe9e6;color:var(--rust);}
-  .frag-badge.impact-high{background:#b71c1c;color:#fff;}
-  .frag-badge.prob-med{background:#fef3e2;color:#9a6210;}
-  .frag-body{padding:18px 20px;}
-  .frag-body h4{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:10px;}
-  .frag-body .frag-prose{font-size:13.5px;line-height:1.7;color:#2a2520;}
-  .frag-body .frag-prose p{margin-bottom:10px;}.frag-body .frag-prose p:last-child{margin-bottom:0;}
-  .frag-mitigation{background:#f0faf5;border:1px solid #b2dfdb;padding:12px 16px;margin-top:8px;}
-  .frag-mitigation .fm-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:5px;}
-  .frag-mitigation .mit-prose{font-size:12.5px;color:#1a4a3a;line-height:1.65;}
-  .frag-mitigation .mit-prose p{margin-bottom:8px;}.frag-mitigation .mit-prose p:last-child{margin-bottom:0;}
-  .contrarian-card{background:var(--deep-blue);padding:24px 28px;margin-bottom:10px;position:relative;overflow:hidden;}
-  .contrarian-card::after{content:'≠';font-family:'Playfair Display',serif;font-size:180px;color:rgba(200,146,42,0.05);position:absolute;right:20px;top:-20px;line-height:1;font-weight:900;}
-  .cc-inner{position:relative;z-index:1;}
-  .cc-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
-  .cc-consensus{background:rgba(255,255,255,0.05);padding:12px 16px;margin-bottom:14px;border-left:2px solid rgba(255,255,255,0.1);}
-  .cc-consensus-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#4a5a78;margin-bottom:5px;}
-  .cc-consensus p{font-size:13px;color:#6a7a98;line-height:1.6;}
-  .cc-position h4{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:12px;}
-  .cc-body-prose{font-size:14px;color:#8a99b8;line-height:1.7;}
-  .cc-body-prose p{margin-bottom:10px;}.cc-body-prose p:last-child{margin-bottom:0;}
-  .cc-evidence-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;margin-top:14px;}
-  .cc-evidence-text{font-size:13px;color:#8a99b8;line-height:1.7;}
-  .cc-falsify{background:rgba(200,146,42,0.08);border:1px solid rgba(200,146,42,0.15);padding:10px 14px;margin-top:14px;}
-  .cc-falsify-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(200,146,42,0.6);margin-bottom:4px;}
-  .cc-falsify p{font-size:12.5px;color:#8a8068;line-height:1.6;}
-  .spotlight-card{background:#fff;border:1px solid var(--border);margin-bottom:10px;overflow:hidden;}
-  .sc-flag-bar{height:4px;}
-  .spotlight-header{padding:18px 24px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
-  .sh-country{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--ink);}
-  .sh-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);letter-spacing:.06em;margin-top:3px;}
-  .sh-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
-  .sh-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;padding:2px 8px;background:var(--light-grey);color:var(--mid-grey);}
-  .spotlight-body{padding:20px 24px;}
-  .spotlight-body .sp-prose{font-size:14px;line-height:1.75;color:#2a2520;}
-  .spotlight-body .sp-prose p{margin-bottom:14px;}.spotlight-body .sp-prose p:last-child{margin-bottom:0;}
-  .spotlight-body .sp-prose strong{color:var(--ink);font-weight:600;}
-  .spotlight-sub{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid-grey);margin:16px 0 8px;}
-  .forward-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-  .fw-card{background:#fff;border:1px solid var(--border);padding:16px 18px;}
-  .fw-date{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--gold);margin-bottom:6px;}
-  .fw-card h4{font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:6px;}
-  .fw-card p{font-size:12px;color:var(--mid-grey);line-height:1.55;}
-  .editorial-note{background:var(--light-grey);border:1px solid var(--border);padding:18px 22px;margin-top:48px;font-size:12px;color:var(--mid-grey);line-height:1.65;}
-  .en-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-grey);margin-bottom:8px;}
-  footer{background:var(--ink);color:#7a8294;text-align:center;padding:36px 24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;}
-  footer strong{color:#c8d4e8;}footer a{color:#7a8294;}footer a:hover{color:var(--gold);}
-  .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;margin-top:12px;}
-  @media(max-width:680px){
-    .layer-grid{grid-template-columns:1fr;}
-    .research-grid{grid-template-columns:1fr;}
-    .forward-grid{grid-template-columns:1fr 1fr;}
-    .masthead{padding:40px 20px 36px;}
-    .main{padding:0 16px 60px;}
-    nav{padding:12px 18px;}
-    .opening-frame{padding:24px 22px;}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; line-height: 1.7; }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--deep-blue); padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px; position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid rgba(200,146,42,0.2);
   }
-  @media(max-width:480px){.forward-grid{grid-template-columns:1fr;}}
+  .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 18px; color: #fff; }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-links a { color: #8a99b8; }
+  .nav-links a:hover { color: var(--gold); text-decoration: none; }
+
+  /* ── MASTHEAD ── */
+  .masthead { background: var(--deep-blue); padding: 64px 32px 52px; position: relative; overflow: hidden; }
+  .masthead::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border: 1px solid rgba(200,146,42,0.12); border-radius: 50%; }
+  .masthead::after { content: ''; position: absolute; top: -20px; right: -20px; width: 180px; height: 180px; border: 1px solid rgba(200,146,42,0.08); border-radius: 50%; }
+  .masthead-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+  .mh-series { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 16px; }
+  .mh-series::after { content: ''; flex: 1; height: 1px; background: rgba(200,146,42,0.3); max-width: 120px; }
+  .masthead h1 { font-family: 'Playfair Display', serif; font-size: clamp(30px,5vw,52px); font-weight: 900; color: #fff; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 20px; max-width: 720px; }
+  .masthead h1 em { font-style: italic; color: var(--gold); }
+  .mh-deck { font-size: 15px; color: #8a99b8; line-height: 1.65; max-width: 640px; margin-bottom: 28px; }
+  .mh-meta-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: #4a5a78; }
+  .mh-meta-row .dot { color: rgba(200,146,42,0.4); }
+  .mh-signals { display: flex; gap: 20px; margin-top: 32px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; }
+  .mh-sig { display: flex; flex-direction: column; gap: 3px; }
+  .mh-sig-val { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .mh-sig-lbl { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #4a5a78; }
+
+  /* ── TOC ── */
+  .toc-bar { background: var(--deep-blue-mid); border-bottom: 1px solid rgba(200,146,42,0.15); }
+  .toc-inner { max-width: 860px; margin: 0 auto; padding: 0 32px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .toc-inner::-webkit-scrollbar { display: none; }
+  .toc-item { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #5a6a88; padding: 12px 14px; white-space: nowrap; border-right: 1px solid rgba(255,255,255,0.04); }
+  .toc-item:first-child { padding-left: 0; }
+  .toc-item a { color: inherit; }
+  .toc-item:hover a { color: var(--gold); }
+
+  /* ── MAIN / SECTION LABELS ── */
+  .main { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+  .sec { display: flex; align-items: center; gap: 12px; margin: 56px 0 28px; }
+  .sec-num { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 700; color: var(--gold); min-width: 24px; }
+  .sec-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid-grey); }
+  .sec-line { flex: 1; height: 1px; background: var(--border); }
+  .sec::after { content: ''; height: 2px; width: 40px; background: var(--ink); display: block; }
+  .sec-model { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.08em; color: var(--border); text-transform: uppercase; }
+
+  /* ── §1 OPENING FRAME / THESIS ── */
+  .opening-frame { background: var(--ink); padding: 32px 36px; position: relative; overflow: hidden; margin-bottom: 14px; }
+  .opening-frame::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 200px; color: rgba(200,146,42,0.06); position: absolute; top: -40px; left: 20px; line-height: 1; font-weight: 900; }
+  .opening-frame p { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.75; color: #c8d4e8; position: relative; z-index: 1; max-width: 720px; }
+  .thesis-support { font-size: 14.5px; line-height: 1.75; color: #2a2520; margin-bottom: 14px; }
+  .thesis-support p { margin-bottom: 12px; }
+  .thesis-falsify { background: var(--light-grey); border-left: 2px solid var(--border); padding: 14px 18px; margin-bottom: 12px; }
+  .tf-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 5px; }
+  .thesis-falsify p { font-size: 13px; color: #2a2520; }
+  .thesis-verdict { border: 1px solid var(--border); padding: 14px 18px; }
+  .thesis-verdict p { font-size: 13px; color: #2a2520; margin-top: 6px; }
+  .tv-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; }
+  .verdict-confirmed .tv-badge { background: var(--teal-light); color: var(--teal); }
+  .verdict-revised .tv-badge { background: #fef3e2; color: #9a6210; }
+  .verdict-abandoned .tv-badge { background: #fbe9e6; color: var(--rust); }
+  .verdict-na .tv-badge { background: var(--light-grey); color: var(--mid-grey); }
+
+  /* ── §2 EXECUTIVE BRIEF ── */
+  .brief-item { background: #fff; border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 8px; display: flex; gap: 14px; }
+  .brief-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--light-grey); min-width: 30px; }
+  .brief-body h4 { font-size: 14.5px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .brief-row { font-size: 13px; line-height: 1.6; margin-bottom: 4px; }
+  .brief-row .br-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-right: 6px; }
+  .number-of-month { background: var(--deep-blue); padding: 18px 22px; margin-top: 6px; }
+  .notm-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .notm-value { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #fff; }
+  .notm-context { font-size: 12.5px; color: #8a99b8; margin-top: 6px; }
+
+  /* ── §3 SIGNALS & METRICS ── */
+  .kpi-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .kpi-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .kpi-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; }
+  .kpi-table tr:last-child td { border-bottom: none; }
+  .kpi-val { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 15px; }
+  .trend-up { color: var(--teal); } .trend-down { color: var(--rust); } .trend-flat { color: var(--mid-grey); }
+  .kpi-note { font-size: 11.5px; color: var(--mid-grey); }
+  .metric-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--gold); padding: 16px 20px; margin-bottom: 8px; }
+  .metric-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .metric-card .mc-body { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .coverage-note { font-size: 12px; color: var(--mid-grey); font-style: italic; border-left: 2px solid var(--border); padding-left: 12px; }
+
+  /* ── §4 DEEP RESEARCH ESSAYS ── */
+  .essay-card { background: #fff; border: 1px solid var(--border); padding: 32px 32px 28px; margin-bottom: 24px; }
+  .essay-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .sc-tag { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; }
+  .tag-policy { background: var(--teal-light); color: var(--teal); }
+  .tag-infra { background: #f3e5f5; color: #6a1b9a; }
+  .tag-geo { background: #e3f2fd; color: #1565c0; }
+  .tag-tech { background: #fef3e2; color: #9a6210; }
+  .tag-security { background: #fbe9e6; color: var(--rust); }
+  .tag-ecosystem { background: #e8f5e9; color: #2e7d32; }
+  .tag-research { background: var(--hybrid-light); color: var(--hybrid); }
+  .tag-capital { background: #e0f7fa; color: #00695c; }
+  .essay-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; line-height: 1.25; margin-bottom: 10px; }
+  .essay-dek { font-size: 15px; color: var(--mid-grey); line-height: 1.6; margin-bottom: 20px; }
+  .essay-body { font-size: 15px; line-height: 1.8; color: #2a2520; }
+  .essay-body p { margin-bottom: 14px; }
+  .essay-evidence, .essay-counter, .essay-implications { margin-top: 18px; padding: 16px 20px; background: var(--light-grey); border-left: 2px solid var(--border); font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .ee-label, .ec-label, .ei-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 8px; }
+  .essay-falsify { margin-top: 18px; padding: 14px 18px; background: #fff; border: 1px solid var(--border); }
+  .ef-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rust); margin-bottom: 5px; }
+  .essay-falsify p { font-size: 13px; }
+  .essay-meta { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); margin-top: 14px; text-align: right; }
+
+  /* ── §5 ENGINEERING FRONTIER / §6 COMMERCIAL STRATEGY (shared layer-grid / policy-block) ── */
+  .layer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .layer-card { background: #fff; border: 1px solid var(--border); padding: 18px 20px; }
+  .layer-card h4 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .layer-card .lc-body { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .dependency-watch { background: var(--ink); color: var(--cream); padding: 14px 18px; font-size: 12.5px; line-height: 1.6; }
+  .dw-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+
+  .policy-block { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--teal); padding: 22px 24px; margin-bottom: 10px; }
+  .pb-head { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+  .pb-body { font-size: 14px; line-height: 1.75; color: #2a2520; }
+  .pb-body p { margin-bottom: 12px; }
+  .pb-body p:last-child { margin-bottom: 0; }
+
+  /* ── §7 POLICY & GEOPOLITICS ── */
+  .actor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .actor-card { background: #fff; border: 1px solid var(--border); padding: 14px 18px; }
+  .actor-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+  .actor-row { font-size: 12.5px; margin-bottom: 5px; line-height: 1.55; }
+  .actor-row .ar-label { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid-grey); display: block; }
+  .convergence-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12.5px; }
+  .convergence-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .convergence-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.55; }
+  .convergence-table tr:last-child td { border-bottom: none; }
+  .branch-points { list-style: none; }
+  .branch-points li { background: var(--light-grey); border-left: 2px solid var(--gold); padding: 10px 14px; margin-bottom: 6px; font-size: 13px; }
+
+  /* ── §8 AFRICAN BUILDERS ── */
+  .builder-card { background: #fff; border: 1px solid var(--border); margin-bottom: 10px; overflow: hidden; }
+  .builder-bar { height: 4px; }
+  .builder-header { padding: 16px 22px 12px; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+  .builder-name { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 900; }
+  .builder-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); margin-top: 3px; }
+  .builder-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  .b-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.06em; padding: 2px 8px; background: var(--light-grey); color: var(--mid-grey); }
+  .builder-body { padding: 16px 22px 20px; }
+  .builder-sub { font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin: 12px 0 6px; }
+  .builder-sub:first-child { margin-top: 0; }
+  .builder-body p { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .sourcing-tag { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); float: right; }
+
+  /* ── §9 MODELS, PAPERS & REPOSITORIES ── */
+  .benchmark-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12.5px; }
+  .benchmark-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+  .benchmark-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  .benchmark-table tr.changed td { background: #fffbf0; }
+  .benchmark-table tr.changed td:first-child { border-left: 2px solid var(--gold); }
+  .repo-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--hybrid); padding: 14px 18px; margin-bottom: 8px; }
+  .repo-card h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .repo-card p { font-size: 13px; line-height: 1.65; color: #2a2520; }
+  .dark-zones { font-size: 12px; color: var(--mid-grey); font-style: italic; margin-top: 10px; }
+
+  /* ── §10 SCENARIOS & FORECASTS ── */
+  .scenario-card { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--ink); margin-bottom: 12px; }
+  .scenario-fragility { border-left-color: var(--rust); }
+  .scenario-contrarian { border-left-color: var(--gold); }
+  .scenario-hybrid { border-left-color: var(--hybrid); }
+  .scenario-header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .scenario-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; }
+  .scenario-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .sb-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; background: var(--light-grey); color: var(--mid-grey); }
+  .sb-badge.prob-low { background: var(--teal-light); color: var(--teal); }
+  .sb-badge.prob-medium { background: #fef3e2; color: #9a6210; }
+  .sb-badge.prob-high { background: #fbe9e6; color: var(--rust); }
+  .scenario-body { padding: 18px 20px; }
+  .sc-row { margin-bottom: 14px; }
+  .sc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 6px; }
+  .sc-row p, .sc-indicators p { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .response-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .response-col { background: var(--light-grey); padding: 12px 14px; }
+  .rc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+  .response-col p { font-size: 12.5px; line-height: 1.6; color: #2a2520; }
+  .sc-indicators { background: #fffbf0; border: 1px solid var(--border); padding: 12px 16px; }
+  .scenario-followup { background: #fff; border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 8px; }
+  .sf-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 10px; }
+  .scenario-followup ul { list-style: none; }
+  .scenario-followup li { font-size: 13px; line-height: 1.65; padding: 6px 0; border-bottom: 1px solid var(--light-grey); }
+  .scenario-followup li:last-child { border-bottom: none; }
+
+  /* ── §11 READING LIST ── */
+  .reading-list { list-style: none; counter-reset: rl; }
+  .reading-list li { counter-increment: rl; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .reading-list li:last-child { border-bottom: none; }
+  .reading-list li::before { content: counter(rl) '.'; font-family: 'DM Mono', monospace; color: var(--gold); margin-right: 8px; }
+  .reading-list a { font-weight: 600; color: var(--ink); }
+  .rl-meta { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid-grey); }
+  .rl-annotation { font-size: 13px; color: #2a2520; margin-top: 4px; margin-left: 18px; line-height: 1.6; }
+
+  /* ── EDITORIAL NOTE / FOOTER ── */
+  .editorial-note { background: var(--light-grey); border: 1px solid var(--border); padding: 18px 22px; margin-top: 48px; font-size: 12px; color: var(--mid-grey); line-height: 1.65; }
+  .en-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 8px; }
+  footer { background: var(--ink); color: #7a8294; text-align: center; padding: 36px 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; }
+  footer strong { color: #c8d4e8; }
+  footer a { color: #7a8294; }
+  footer a:hover { color: var(--gold); }
+  .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 12px; }
+
+  @media (max-width: 780px) {
+    .layer-grid { grid-template-columns: 1fr; }
+    .actor-grid { grid-template-columns: 1fr; }
+    .response-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 680px) {
+    .masthead { padding: 40px 20px 36px; }
+    .main { padding: 0 16px 60px; }
+    nav { padding: 12px 18px; }
+    .opening-frame { padding: 24px 22px; }
+    .essay-card { padding: 22px 20px; }
+  }
 </style>
 </head>
 <body>
 
+<!-- AIW BUILD QA — total words ~{{ e.word_count_report.total }} (target {{ e.word_count_report.target_low }}–{{ e.word_count_report.target_high }}) — {{ e.word_count_report.status }} -->
+
 <nav>
   <a href="../index.html" style="text-decoration:none;">
-    <div class="nav-brand">The Weekly African Lens<span>.</span></div>
+    <div class="nav-brand">AIW African Lens<span>.</span></div>
   </a>
   <div class="nav-links">
     <a href="../index.html">Archive</a>
-    <a href="index.html">AI Weekly</a>
+    <a href="index.html">Monthly Review</a>
+    <a href="../weekly/index.html">Weekly Archive (Vol. I)</a>
     <a href="../editions/index.html">Daily Editions</a>
     <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe</a>
   </div>
@@ -199,149 +270,216 @@
 <div class="masthead">
   <div class="masthead-inner">
     <div class="mh-series">
-      AI Weekly Intelligence &nbsp;·&nbsp; Edition #{{ e.edition_id }} &nbsp;·&nbsp; NEW
+      AIW Monthly Intelligence Review &nbsp;·&nbsp; {{ e.edition_id }}
     </div>
-    <h1>{{ e.title }}<br><em>{{ e.title_sub }}</em></h1>
-    <p class="mh-deck">{{ e.deck }}</p>
+    <h1>{{ e.title }}{% if e.title_sub %}<br><em>{{ e.title_sub }}</em>{% endif %}</h1>
+    {% if e.deck %}<p class="mh-deck">{{ e.deck }}</p>{% endif %}
     <div class="mh-meta-row">
-      <span>Week of {{ e.date }}</span>
+      <span>{{ e.date }}</span>
+      {% if e.window_start and e.window_end %}
       <span class="dot">·</span>
       <span>Window: {{ e.window_start }} → {{ e.window_end }}</span>
-      <span class="dot">·</span>
-      <span>{{ e.developments_count }} Developments Ranked</span>
-      <span class="dot">·</span>
-      <span>Published 06:00 SAST</span>
-    </div>
-    <div class="mh-signals">
-      <div class="mh-sig"><div class="mh-sig-val">{{ e.developments_count }}</div><div class="mh-sig-lbl">Ranked Developments</div></div>
-      <div class="mh-sig"><div class="mh-sig-val">{{ e.nations_covered }}</div><div class="mh-sig-lbl">Nations Covered</div></div>
-      <div class="mh-sig"><div class="mh-sig-val">5</div><div class="mh-sig-lbl">AI Stack Layers</div></div>
-      {% if e.sa_comment_days_remaining > 0 %}
-      <div class="mh-sig"><div class="mh-sig-val">{{ e.sa_comment_days_remaining }}</div><div class="mh-sig-lbl">Days Left — SA Comment</div></div>
       {% endif %}
+      <span class="dot">·</span>
+      <span>Published 06:00 SAST, last Wednesday of the month</span>
     </div>
+    {% if e.masthead_stats %}
+    <div class="mh-signals">
+      {% for stat in e.masthead_stats %}
+      <div class="mh-sig"><div class="mh-sig-val">{{ stat.value }}</div><div class="mh-sig-lbl">{{ stat.label }}</div></div>
+      {% endfor %}
+    </div>
+    {% endif %}
   </div>
 </div>
 
 <div class="toc-bar">
   <div class="toc-inner">
-    <div class="toc-item"><a href="#opening">§1 Opening</a></div>
-    <div class="toc-item"><a href="#signals">§2 Top 5 Signals</a></div>
-    <div class="toc-item"><a href="#layers">§3 By Layer</a></div>
-    <div class="toc-item"><a href="#policy">§4 Policy Watch</a></div>
-    <div class="toc-item"><a href="#research">§5 Research Radar</a></div>
-    <div class="toc-item"><a href="#fragility">§6 Fragility Index</a></div>
-    <div class="toc-item"><a href="#contrarian">§7 Contrarian Bets</a></div>
-    <div class="toc-item"><a href="#spotlight">§8 Country Spotlight</a></div>
-    <div class="toc-item"><a href="#forward">§9 Forward Look</a></div>
+    <div class="toc-item"><a href="#thesis">§1 Thesis</a></div>
+    <div class="toc-item"><a href="#brief">§2 Brief</a></div>
+    <div class="toc-item"><a href="#signals">§3 Signals</a></div>
+    <div class="toc-item"><a href="#essays">§4 Essays</a></div>
+    <div class="toc-item"><a href="#engineering">§5 Engineering</a></div>
+    <div class="toc-item"><a href="#commercial">§6 Commercial</a></div>
+    <div class="toc-item"><a href="#policy">§7 Policy</a></div>
+    <div class="toc-item"><a href="#builders">§8 Builders</a></div>
+    <div class="toc-item"><a href="#research">§9 Research</a></div>
+    <div class="toc-item"><a href="#scenarios">§10 Scenarios</a></div>
+    <div class="toc-item"><a href="#reading">§11 Reading</a></div>
   </div>
 </div>
 
 <div class="main">
 
-  <div class="sec" id="opening">
-    <span class="sec-num">§1</span>
-    <span class="sec-title">Opening Frame</span>
-    <div class="sec-line"></div>
+  <!-- §1 EDITOR'S THESIS -->
+  <div class="sec" id="thesis">
+    <span class="sec-num">§1</span><span class="sec-title">Editor's Thesis</span><div class="sec-line"></div>
   </div>
   <div class="opening-frame">
-    {{ e.opening_frame_html | safe }}
+    {{ e.thesis.statement_html }}
   </div>
-
-  <div class="sec" id="signals">
-    <span class="sec-num">§2</span>
-    <span class="sec-title">Top 5 Signals — Ranked by Strategic Importance</span>
-    <div class="sec-line"></div>
+  <div class="thesis-support">
+    {{ e.thesis.evidence_html }}
+    {{ e.thesis.implications_html }}
   </div>
+  {% if e.thesis.falsification %}
+  <div class="thesis-falsify">
+    <div class="tf-label">What Would Make This Wrong</div>
+    <p>{{ e.thesis.falsification }}</p>
+  </div>
+  {% endif %}
+  {% if e.thesis.last_month_verdict %}
+  <div class="thesis-verdict {{ e.thesis.verdict_css }}">
+    <span class="tv-badge">Last Month's Thesis — {{ e.thesis.last_month_verdict }}</span>
+    <p>{{ e.thesis.last_month_verdict_text }}</p>
+  </div>
+  {% endif %}
 
-  {% for signal in e.signals %}
-  <div class="signal-card sc-border-{{ loop.index }}">
-    <div class="sc-inner">
-      <div class="sc-top">
-        <span class="sc-rank">{{ signal.rank_str }}</span>
-        <div class="sc-tags">
-          {% for tag in signal.tags %}
-          <span class="sc-tag {{ tag.css }}">{{ tag.label }}</span>
-          {% endfor %}
-        </div>
-      </div>
-      <div class="sc-head">{{ signal.title }}</div>
-      <div class="sc-body">{{ signal.body_html | safe }}</div>
-      <div class="sc-analysis">
-        <div class="sa-row">
-          <div class="sc-tier"><div class="tier-dot t1"></div><div class="tier-label">1st Order</div></div>
-          <div class="sa-label l1"></div>
-          <p>{{ signal.analysis_1 }}</p>
-        </div>
-        <div class="sa-row">
-          <div class="sc-tier"><div class="tier-dot t2"></div><div class="tier-label">2nd Order</div></div>
-          <div class="sa-label l2"></div>
-          <p>{{ signal.analysis_2 }}</p>
-        </div>
-        <div class="sa-row">
-          <div class="sc-tier"><div class="tier-dot t3"></div><div class="tier-label">3rd Order</div></div>
-          <div class="sa-label l3"></div>
-          <p>{{ signal.analysis_3 }}</p>
-        </div>
-      </div>
+  <!-- §2 EXECUTIVE BRIEF -->
+  <div class="sec" id="brief">
+    <span class="sec-num">§2</span><span class="sec-title">Executive Brief</span><div class="sec-line"></div>
+  </div>
+  {% for item in e.executive_brief.briefs %}
+  <div class="brief-item">
+    <div class="brief-num">{{ "%02d"|format(loop.index) }}</div>
+    <div class="brief-body">
+      <h4>{{ item.headline }}</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>{{ item.what_happened }}</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>{{ item.why_it_matters }}</div>
+      <div class="brief-row"><span class="br-label">Watch</span>{{ item.watch }}</div>
     </div>
   </div>
   {% endfor %}
-
-  <div class="sec" id="layers">
-    <span class="sec-num">§3</span>
-    <span class="sec-title">By AI Stack Layer</span>
-    <div class="sec-line"></div>
+  {% if e.executive_brief.number_of_month.value %}
+  <div class="number-of-month">
+    <div class="notm-label">The Number of the Month</div>
+    <div class="notm-value">{{ e.executive_brief.number_of_month.value }}</div>
+    {% if e.executive_brief.number_of_month.label %}<div class="notm-context">{{ e.executive_brief.number_of_month.label }} — {{ e.executive_brief.number_of_month.context }}</div>{% endif %}
   </div>
+  {% endif %}
+
+  <!-- §3 SIGNALS & METRICS -->
+  <div class="sec" id="signals">
+    <span class="sec-num">§3</span><span class="sec-title">Signals &amp; Metrics</span><div class="sec-line"></div>
+  </div>
+  {% if e.signals_metrics.kpis %}
+  <table class="kpi-table">
+    <thead><tr><th>Metric</th><th>This Month</th><th>Trend</th><th>Trailing 3-Mo Avg</th><th>Note</th></tr></thead>
+    <tbody>
+      {% for kpi in e.signals_metrics.kpis %}
+      <tr>
+        <td>{{ kpi.label }}</td>
+        <td class="kpi-val">{{ kpi.value }}</td>
+        <td class="{{ kpi.trend_css }}">{{ kpi.trend_symbol }}</td>
+        <td>{{ kpi.trailing_3mo_avg }}</td>
+        <td class="kpi-note">{{ kpi.note }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  {% for m in e.signals_metrics.metrics_of_month %}
+  <div class="metric-card">
+    <h4>Metric of the Month — {{ m.title }}</h4>
+    <div class="mc-body">{{ m.body_html }}</div>
+  </div>
+  {% endfor %}
+  {% if e.signals_metrics.coverage_note %}
+  <p class="coverage-note">{{ e.signals_metrics.coverage_note }}</p>
+  {% endif %}
+
+  <!-- §4 DEEP RESEARCH ESSAYS -->
+  <div class="sec" id="essays">
+    <span class="sec-num">§4</span><span class="sec-title">Deep Research Essays</span><div class="sec-line"></div>
+  </div>
+  {% for essay in e.deep_research_essays %}
+  <div class="essay-card">
+    {% if essay.tags %}
+    <div class="essay-tags">
+      {% for tag in essay.tags %}<span class="sc-tag {{ tag.css|default('tag-research') }}">{{ tag.label|default(tag) }}</span>{% endfor %}
+    </div>
+    {% endif %}
+    <h2 class="essay-title">{{ essay.title }}</h2>
+    {% if essay.dek %}<p class="essay-dek">{{ essay.dek }}</p>{% endif %}
+    <div class="essay-body">
+      {{ essay.hook_html }}
+      {{ essay.context_stakes_html }}
+      {{ essay.core_argument_html }}
+    </div>
+    {% if essay.evidence_chain_html %}
+    <div class="essay-evidence"><div class="ee-label">Evidence</div>{{ essay.evidence_chain_html }}</div>
+    {% endif %}
+    {% if essay.counterargument_html %}
+    <div class="essay-counter"><div class="ec-label">The Strongest Counterargument</div>{{ essay.counterargument_html }}</div>
+    {% endif %}
+    {% if essay.strategic_implications_html %}
+    <div class="essay-implications"><div class="ei-label">Strategic Implications</div>{{ essay.strategic_implications_html }}</div>
+    {% endif %}
+    {% if essay.falsification %}
+    <div class="essay-falsify"><div class="ef-label">What Would Change This View</div><p>{{ essay.falsification }}</p></div>
+    {% endif %}
+    <div class="essay-meta">~{{ essay.word_count }} words</div>
+  </div>
+  {% endfor %}
+
+  <!-- §5 ENGINEERING FRONTIER -->
+  <div class="sec" id="engineering">
+    <span class="sec-num">§5</span><span class="sec-title">Engineering Frontier</span><div class="sec-line"></div>
+  </div>
+  {% if e.engineering_frontier.opening_html %}<div class="thesis-support">{{ e.engineering_frontier.opening_html }}</div>{% endif %}
   <div class="layer-grid">
-    {% for layer in e.layers %}
-    <div class="layer-card{% if loop.last %} layer-full{% endif %}">
-      <div class="lc-header">
-        <span class="lc-icon">{{ layer.symbol }}</span>
-        <div>
-          <div class="lc-label">Layer {{ layer.number }}</div>
-          <div class="lc-name">{{ layer.name }}</div>
-        </div>
-        <span class="lc-signal-count">{{ layer.signal_count }}</span>
-      </div>
-      <div class="lc-highlight">{{ layer.highlight }}</div>
-      <div class="lc-body">{{ layer.body_html | safe }}</div>
+    <div class="layer-card"><h4>⚡ Power</h4><div class="lc-body">{{ e.engineering_frontier.power_html }}</div></div>
+    <div class="layer-card"><h4>🧱 Compute</h4><div class="lc-body">{{ e.engineering_frontier.compute_html }}</div></div>
+    <div class="layer-card"><h4>🌐 Connectivity</h4><div class="lc-body">{{ e.engineering_frontier.connectivity_html }}</div></div>
+  </div>
+  {% if e.engineering_frontier.dependency_watch %}
+  <div class="dependency-watch"><div class="dw-label">Dependency Watch — for Scenarios &amp; Forecasts</div>{{ e.engineering_frontier.dependency_watch }}</div>
+  {% endif %}
+
+  <!-- §6 COMMERCIAL STRATEGY -->
+  <div class="sec" id="commercial">
+    <span class="sec-num">§6</span><span class="sec-title">Commercial Strategy</span><div class="sec-line"></div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-body">{{ e.commercial_strategy.lead_html }}</div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-head">Capital Flow Read</div>
+    <div class="pb-body">{{ e.commercial_strategy.capital_flow_read_html }}</div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-head">Competitive Structure</div>
+    <div class="pb-body">{{ e.commercial_strategy.competitive_structure_html }}</div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-head">For the Operator — Build / Buy / Partner</div>
+    <div class="pb-body">{{ e.commercial_strategy.for_operator_html }}</div>
+  </div>
+
+  <!-- §7 POLICY & GEOPOLITICS -->
+  <div class="sec" id="policy">
+    <span class="sec-num">§7</span><span class="sec-title">Policy &amp; Geopolitics</span><div class="sec-line"></div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-body">{{ e.policy_geopolitics.lead_html }}</div>
+  </div>
+  {% if e.policy_geopolitics.actor_map %}
+  <div class="actor-grid">
+    {% for a in e.policy_geopolitics.actor_map %}
+    <div class="actor-card">
+      <div class="actor-name">{{ a.actor }}</div>
+      <div class="actor-row"><span class="ar-label">Instrument</span>{{ a.instrument }}</div>
+      <div class="actor-row"><span class="ar-label">African Counterpart Leverage</span>{{ a.leverage }}</div>
+      <div class="actor-row"><span class="ar-label">Degrees of Freedom</span>{{ a.degrees_of_freedom }}</div>
     </div>
     {% endfor %}
   </div>
-
-  <div class="sec" id="policy">
-    <span class="sec-num">§4</span>
-    <span class="sec-title">Policy &amp; Regulation Watch</span>
-    <div class="sec-line"></div>
-  </div>
-
-  <div class="policy-block">
-    <div class="status-row">
-      {% for pill in e.policy_status_pills %}
-      <span class="status-pill {{ pill.css }}">{{ pill.label }}</span>
-      {% endfor %}
-    </div>
-    <div class="pb-head">{{ e.policy_head }}</div>
-    <div class="pb-body">{{ e.policy_body_1_html | safe }}</div>
-  </div>
-
-  <div class="policy-block">
-    <div class="pb-body">{{ e.policy_body_2_html | safe }}</div>
-  </div>
-
-  {% if e.convergence_rows %}
+  {% endif %}
+  {% if e.policy_geopolitics.convergence_rows %}
   <table class="convergence-table">
-    <thead>
-      <tr>
-        <th>Country</th>
-        <th>Policy Status</th>
-        <th>Key Development This Week</th>
-        <th>Convergence Signal</th>
-      </tr>
-    </thead>
+    <thead><tr><th>Country</th><th>Policy Status</th><th>Key Development</th><th>Convergence Signal</th></tr></thead>
     <tbody>
-      {% for row in e.convergence_rows %}
+      {% for row in e.policy_geopolitics.convergence_rows %}
       <tr>
         <td><strong>{{ row.country }}</strong></td>
         <td>{{ row.status }}</td>
@@ -352,145 +490,151 @@
     </tbody>
   </table>
   {% endif %}
-
-  <div class="sec" id="research">
-    <span class="sec-num">§5</span>
-    <span class="sec-title">Research Radar</span>
-    <div class="sec-line"></div>
-  </div>
-  <div class="research-grid">
-    <div class="rr-card">
-      <div class="rr-type">African-Led Research</div>
-      <h3>{{ e.research_african.head }}</h3>
-      <div class="rr-body">{{ e.research_african.body_html | safe }}</div>
-    </div>
-    <div class="rr-card global">
-      <div class="rr-type">Global Research — African Impact</div>
-      <h3>{{ e.research_global.head }}</h3>
-      <div class="rr-body">{{ e.research_global.body_html | safe }}</div>
-    </div>
-  </div>
-
-  <div class="sec" id="fragility">
-    <span class="sec-num">§6</span>
-    <span class="sec-title">Fragility Index</span>
-    <div class="sec-line"></div>
-  </div>
-  {% for frag in e.fragility_items %}
-  <div class="fragility-card">
-    <div class="frag-header">
-      <span class="frag-id">{{ frag.frag_id }} · {{ frag.domain }}</span>
-      <div class="frag-badges">
-        <span class="frag-badge {{ frag.impact_css }}">Impact: {{ frag.impact }}</span>
-        <span class="frag-badge {{ frag.prob_css }}">Probability: {{ frag.probability }}</span>
-        <span class="frag-badge">Horizon: {{ frag.horizon }}</span>
-      </div>
-    </div>
-    <div class="frag-body">
-      <h4>{{ frag.title }}</h4>
-      <div class="frag-prose">{{ frag.body_html | safe }}</div>
-      <div class="frag-mitigation">
-        <div class="fm-label">Mitigation Path</div>
-        <div class="mit-prose">{{ frag.mitigation_html | safe }}</div>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
-
-  <div class="sec" id="contrarian">
-    <span class="sec-num">§7</span>
-    <span class="sec-title">Contrarian Bets</span>
-    <div class="sec-line"></div>
-  </div>
-  {% for cb in e.contrarian_items %}
-  <div class="contrarian-card">
-    <div class="cc-inner">
-      <div class="cc-type">Contrarian Bet · {{ cb.cb_type }}</div>
-      <div class="cc-consensus">
-        <div class="cc-consensus-label">The Consensus View</div>
-        <p>{{ cb.consensus }}</p>
-      </div>
-      <div class="cc-position">
-        <h4>{{ cb.position_head }}</h4>
-        <div class="cc-body-prose">{{ cb.position_body_html | safe }}</div>
-      </div>
-      <div class="cc-evidence-label">Evidence</div>
-      <div class="cc-evidence-text">{{ cb.evidence }}</div>
-      <div class="cc-falsify">
-        <div class="cc-falsify-label">What Would Falsify This Position</div>
-        <p>{{ cb.falsification }}</p>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
-
-  <div class="sec" id="spotlight">
-    <span class="sec-num">§8</span>
-    <span class="sec-title">Country Spotlight</span>
-    <div class="sec-line"></div>
-  </div>
-  {% for spot in e.spotlights %}
-  <div class="spotlight-card">
-    <div class="sc-flag-bar" style="{{ spot.flag_style }}"></div>
-    <div class="spotlight-header">
-      <div>
-        <div class="sh-country">{{ spot.country }}</div>
-        <div class="sh-sub">{{ spot.subtitle }}</div>
-        <div class="sh-badges">
-          {% for badge in spot.badges %}
-          <span class="sh-badge">{{ badge }}</span>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-    <div class="spotlight-body">
-      <div class="spotlight-sub">State of Play</div>
-      <div class="sp-prose">{{ spot.state_of_play_html | safe }}</div>
-      <div class="spotlight-sub">What Changed This Week</div>
-      <div class="sp-prose">{{ spot.what_changed_html | safe }}</div>
-      <div class="spotlight-sub">Strategic Outlook</div>
-      <div class="sp-prose">{{ spot.outlook_html | safe }}</div>
-    </div>
-  </div>
-  {% endfor %}
-
-  <div class="sec" id="forward">
-    <span class="sec-num">§9</span>
-    <span class="sec-title">Forward Look — Strategic Calendar</span>
-    <div class="sec-line"></div>
-  </div>
-  <div class="forward-grid">
-    {% for fw in e.forward_items %}
-    <div class="fw-card">
-      <div class="fw-date">{{ fw.date }}</div>
-      <h4>{{ fw.title }}</h4>
-      <p>{{ fw.body }}</p>
-    </div>
+  {% if e.policy_geopolitics.branch_points %}
+  <ul class="branch-points">
+    {% for bp in e.policy_geopolitics.branch_points %}
+    <li>{{ bp }}</li>
     {% endfor %}
-  </div>
+  </ul>
+  {% endif %}
 
-  {% if e.editorial_note %}
-  <div class="editorial-note">
-    <div class="en-label">Editorial Note — {{ e.edition_id }}</div>
-    <p>{{ e.editorial_note }}</p>
+  <!-- §8 AFRICAN BUILDERS -->
+  <div class="sec" id="builders">
+    <span class="sec-num">§8</span><span class="sec-title">African Builders</span><div class="sec-line"></div>
+  </div>
+  {% for b in e.african_builders %}
+  <div class="builder-card">
+    <div class="builder-bar" style="{{ b.flag_style }}"></div>
+    <div class="builder-header">
+      <div>
+        <div class="builder-name">{{ b.name }}</div>
+        <div class="builder-meta">{{ b.role }}{% if b.country %} · {{ b.country }}{% endif %}{% if b.layer %} · {{ b.layer }}{% endif %}</div>
+        {% if b.badges %}
+        <div class="builder-badges">{% for badge in b.badges %}<span class="b-badge">{{ badge }}</span>{% endfor %}</div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="builder-body">
+      <div class="builder-sub">Who{% if b.sourcing %}<span class="sourcing-tag">Sourcing: {{ b.sourcing }}</span>{% endif %}</div>
+      {{ b.who_html }}
+      <div class="builder-sub">Why It Matters Beyond Them</div>
+      {{ b.why_it_matters_html }}
+      <div class="builder-sub">The Bet</div>
+      {{ b.the_bet_html }}
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- §9 MODELS, PAPERS & REPOSITORIES -->
+  <div class="sec" id="research">
+    <span class="sec-num">§9</span><span class="sec-title">Models, Papers &amp; Repositories</span><div class="sec-line"></div>
+  </div>
+  <div class="thesis-support">{{ e.models_papers_repos.lead_html }}</div>
+  {% if e.models_papers_repos.benchmark_board.rows %}
+  <table class="benchmark-table">
+    <thead>
+      <tr>
+        <th>Language</th>
+        {% for col in e.models_papers_repos.benchmark_board.columns %}<th>{{ col }}</th>{% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in e.models_papers_repos.benchmark_board.rows %}
+      <tr class="{% if row.changed %}changed{% endif %}">
+        <td>{{ row.language }}</td>
+        {% for val in row.cells %}<td>{{ val }}</td>{% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  {% if e.models_papers_repos.benchmark_note_html %}<div class="thesis-support">{{ e.models_papers_repos.benchmark_note_html }}</div>{% endif %}
+  {% for r in e.models_papers_repos.repository_health %}
+  <div class="repo-card">
+    <h4>Repository Health — {{ r.name }}</h4>
+    {{ r.body_html }}
+  </div>
+  {% endfor %}
+  {% if e.models_papers_repos.dark_zones %}
+  <p class="dark-zones">Dark zones: {{ e.models_papers_repos.dark_zones }}</p>
+  {% endif %}
+
+  <!-- §10 SCENARIOS & FORECASTS -->
+  <div class="sec" id="scenarios">
+    <span class="sec-num">§10</span><span class="sec-title">Scenarios &amp; Forecasts</span><div class="sec-line"></div>
+  </div>
+  {% for s in e.scenarios_forecasts.scenarios %}
+  <div class="scenario-card {{ s.type_css }}">
+    <div class="scenario-header">
+      <span class="scenario-name">{{ s.name }}</span>
+      <div class="scenario-badges">
+        <span class="sb-badge">{{ s.type }}</span>
+        <span class="sb-badge {{ s.prob_css }}">{{ s.probability_band }}</span>
+        <span class="sb-badge">{{ s.time_horizon }}</span>
+      </div>
+    </div>
+    <div class="scenario-body">
+      <div class="sc-row"><div class="sc-label">Trigger Conditions</div>{{ s.trigger_conditions_html }}</div>
+      <div class="sc-row"><div class="sc-label">Stack-Wide Cascade</div>{{ s.stack_cascade_html }}</div>
+      <div class="sc-label">Response Options</div>
+      <div class="response-grid">
+        <div class="response-col"><div class="rc-label">Investor</div>{{ s.response_options.investor_html }}</div>
+        <div class="response-col"><div class="rc-label">Policymaker</div>{{ s.response_options.policymaker_html }}</div>
+        <div class="response-col"><div class="rc-label">Builder</div>{{ s.response_options.builder_html }}</div>
+      </div>
+      <div class="sc-indicators"><div class="sc-label">Early Indicators — Confirm or Deny</div>{{ s.early_indicators_html }}</div>
+    </div>
+  </div>
+  {% endfor %}
+  {% if e.scenarios_forecasts.watchlist_update %}
+  <div class="scenario-followup">
+    <div class="sf-label">Watchlist Update — Carried Forward</div>
+    <ul>{% for w in e.scenarios_forecasts.watchlist_update %}<li>{{ w }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+  {% if e.scenarios_forecasts.resolved_this_month %}
+  <div class="scenario-followup">
+    <div class="sf-label">Resolved This Month</div>
+    <ul>{% for r in e.scenarios_forecasts.resolved_this_month %}<li>{{ r }}</li>{% endfor %}</ul>
   </div>
   {% endif %}
 
-</div>
+  <!-- §11 READING LIST -->
+  <div class="sec" id="reading">
+    <span class="sec-num">§11</span><span class="sec-title">Reading List</span><div class="sec-line"></div>
+  </div>
+  <ol class="reading-list">
+    {% for item in e.reading_list %}
+    <li>
+      <a href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+      <span class="rl-meta">— {{ item.source }}{% if item.date %}, {{ item.date }}{% endif %}</span>
+      <div class="rl-annotation">{{ item.annotation_html }}</div>
+    </li>
+    {% endfor %}
+  </ol>
+
+  {% if e.editorial_note_html %}
+  <div class="editorial-note">
+    <div class="en-label">Editorial Note — {{ e.edition_id }}</div>
+    {{ e.editorial_note_html }}
+  </div>
+  {% endif %}
+
+</div><!-- /main -->
 
 <footer>
-  <p><strong>AI Weekly African Lens — Edition {{ e.edition_id }}</strong></p>
-  <p style="margin-top:6px;">Week of {{ e.date }} · Window: {{ e.window_start }} → {{ e.window_end }} · Published 06:00 SAST</p>
+  <p><strong>AIW African Lens Monthly Intelligence Review — {{ e.edition_id }}</strong></p>
+  <p style="margin-top:6px;">{{ e.date }}{% if e.window_start and e.window_end %} · Window: {{ e.window_start }} → {{ e.window_end }}{% endif %} · Published 06:00 SAST</p>
   <div class="footer-links">
-    <a href="index.html">All Weekly Editions</a>
-    <a href="../editions/index.html">Daily Editions</a>
+    <a href="index.html">All Monthly Editions</a>
+    <a href="../weekly/index.html">Weekly Archive (Vol. I)</a>
     <a href="../index.html">Full Archive</a>
     {% if e.prev_edition %}<a href="{{ e.prev_edition }}">← {{ e.prev_edition_id }}</a>{% endif %}
-    {% if e.next_edition %}<a href="{{ e.next_edition }}">{{ e.next_edition }} →</a>{% endif %}
+    {% if e.next_edition %}<a href="{{ e.next_edition }}">Next Edition →</a>{% endif %}
     <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe on Substack</a>
   </div>
-  <p style="margin-top:16px;">The Weekly African Lens · AI · Machine Learning · Data Science · Across 54 Nations</p>
-  <p style="margin-top:6px;">© 2026 The Weekly African Lens · Archive hosted on GitHub Pages</p>
+  <p style="margin-top:16px;">AIW African Lens · AI · Machine Learning · Data Science · Across 54 Nations</p>
+  <p style="margin-top:6px;">© {{ e.date.split(' ')[-1] if e.date else '2026' }} AIW African Lens · Archive hosted on GitHub Pages</p>
 </footer>
 
 </body>
