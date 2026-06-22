@@ -27,7 +27,6 @@
   a { color: var(--teal); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  /* ── NAV ── */
   nav {
     background: var(--deep-blue); padding: 14px 32px;
     display: flex; align-items: center; justify-content: space-between;
@@ -40,7 +39,6 @@
   .nav-links a { color: #8a99b8; }
   .nav-links a:hover { color: var(--gold); text-decoration: none; }
 
-  /* ── MASTHEAD ── */
   .masthead { background: var(--deep-blue); padding: 64px 32px 52px; position: relative; overflow: hidden; }
   .masthead::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border: 1px solid rgba(200,146,42,0.12); border-radius: 50%; }
   .masthead::after { content: ''; position: absolute; top: -20px; right: -20px; width: 180px; height: 180px; border: 1px solid rgba(200,146,42,0.08); border-radius: 50%; }
@@ -57,7 +55,6 @@
   .mh-sig-val { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold); line-height: 1; }
   .mh-sig-lbl { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #4a5a78; }
 
-  /* ── TOC ── */
   .toc-bar { background: var(--deep-blue-mid); border-bottom: 1px solid rgba(200,146,42,0.15); }
   .toc-inner { max-width: 860px; margin: 0 auto; padding: 0 32px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
   .toc-inner::-webkit-scrollbar { display: none; }
@@ -66,7 +63,6 @@
   .toc-item a { color: inherit; }
   .toc-item:hover a { color: var(--gold); }
 
-  /* ── MAIN / SECTION LABELS ── */
   .main { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
   .sec { display: flex; align-items: center; gap: 12px; margin: 56px 0 28px; }
   .sec-num { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 700; color: var(--gold); min-width: 24px; }
@@ -75,7 +71,6 @@
   .sec::after { content: ''; height: 2px; width: 40px; background: var(--ink); display: block; }
   .sec-model { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.08em; color: var(--border); text-transform: uppercase; }
 
-  /* ── §1 OPENING FRAME / THESIS ── */
   .opening-frame { background: var(--ink); padding: 32px 36px; position: relative; overflow: hidden; margin-bottom: 14px; }
   .opening-frame::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 200px; color: rgba(200,146,42,0.06); position: absolute; top: -40px; left: 20px; line-height: 1; font-weight: 900; }
   .opening-frame p { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.75; color: #c8d4e8; position: relative; z-index: 1; max-width: 720px; }
@@ -92,7 +87,6 @@
   .verdict-abandoned .tv-badge { background: #fbe9e6; color: var(--rust); }
   .verdict-na .tv-badge { background: var(--light-grey); color: var(--mid-grey); }
 
-  /* ── §2 EXECUTIVE BRIEF ── */
   .brief-item { background: #fff; border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 8px; display: flex; gap: 14px; }
   .brief-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--light-grey); min-width: 30px; }
   .brief-body h4 { font-size: 14.5px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
@@ -103,7 +97,6 @@
   .notm-value { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #fff; }
   .notm-context { font-size: 12.5px; color: #8a99b8; margin-top: 6px; }
 
-  /* ── §3 SIGNALS & METRICS ── */
   .kpi-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
   .kpi-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
   .kpi-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; }
@@ -116,7 +109,6 @@
   .metric-card .mc-body { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
   .coverage-note { font-size: 12px; color: var(--mid-grey); font-style: italic; border-left: 2px solid var(--border); padding-left: 12px; }
 
-  /* ── §4 DEEP RESEARCH ESSAYS ── */
   .essay-card { background: #fff; border: 1px solid var(--border); padding: 32px 32px 28px; margin-bottom: 24px; }
   .essay-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
   .sc-tag { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; }
@@ -139,7 +131,6 @@
   .essay-falsify p { font-size: 13px; }
   .essay-meta { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); margin-top: 14px; text-align: right; }
 
-  /* ── §5 ENGINEERING FRONTIER / §6 COMMERCIAL STRATEGY (shared layer-grid / policy-block) ── */
   .layer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
   .layer-card { background: #fff; border: 1px solid var(--border); padding: 18px 20px; }
   .layer-card h4 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
@@ -153,7 +144,6 @@
   .pb-body p { margin-bottom: 12px; }
   .pb-body p:last-child { margin-bottom: 0; }
 
-  /* ── §7 POLICY & GEOPOLITICS ── */
   .actor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
   .actor-card { background: #fff; border: 1px solid var(--border); padding: 14px 18px; }
   .actor-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 14px; margin-bottom: 8px; }
@@ -166,7 +156,6 @@
   .branch-points { list-style: none; }
   .branch-points li { background: var(--light-grey); border-left: 2px solid var(--gold); padding: 10px 14px; margin-bottom: 6px; font-size: 13px; }
 
-  /* ── §8 AFRICAN BUILDERS ── */
   .builder-card { background: #fff; border: 1px solid var(--border); margin-bottom: 10px; overflow: hidden; }
   .builder-bar { height: 4px; }
   .builder-header { padding: 16px 22px 12px; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
@@ -180,7 +169,6 @@
   .builder-body p { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
   .sourcing-tag { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); float: right; }
 
-  /* ── §9 MODELS, PAPERS & REPOSITORIES ── */
   .benchmark-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12.5px; }
   .benchmark-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
   .benchmark-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
@@ -191,7 +179,6 @@
   .repo-card p { font-size: 13px; line-height: 1.65; color: #2a2520; }
   .dark-zones { font-size: 12px; color: var(--mid-grey); font-style: italic; margin-top: 10px; }
 
-  /* ── §10 SCENARIOS & FORECASTS ── */
   .scenario-card { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--ink); margin-bottom: 12px; }
   .scenario-fragility { border-left-color: var(--rust); }
   .scenario-contrarian { border-left-color: var(--gold); }
@@ -218,7 +205,6 @@
   .scenario-followup li { font-size: 13px; line-height: 1.65; padding: 6px 0; border-bottom: 1px solid var(--light-grey); }
   .scenario-followup li:last-child { border-bottom: none; }
 
-  /* ── §11 READING LIST ── */
   .reading-list { list-style: none; counter-reset: rl; }
   .reading-list li { counter-increment: rl; padding: 12px 0; border-bottom: 1px solid var(--border); }
   .reading-list li:last-child { border-bottom: none; }
@@ -227,7 +213,6 @@
   .rl-meta { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid-grey); }
   .rl-annotation { font-size: 13px; color: #2a2520; margin-top: 4px; margin-left: 18px; line-height: 1.6; }
 
-  /* ── EDITORIAL NOTE / FOOTER ── */
   .editorial-note { background: var(--light-grey); border: 1px solid var(--border); padding: 18px 22px; margin-top: 48px; font-size: 12px; color: var(--mid-grey); line-height: 1.65; }
   .en-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 8px; }
   footer { background: var(--ink); color: #7a8294; text-align: center; padding: 36px 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; }
@@ -307,7 +292,6 @@
 
 <div class="main">
 
-  <!-- §1 EDITOR'S THESIS -->
   <div class="sec" id="thesis">
     <span class="sec-num">§1</span><span class="sec-title">Editor's Thesis</span><div class="sec-line"></div>
   </div>
@@ -350,7 +334,6 @@ penalty it would have a year ago.</p>
     <p>This is the completed pass of AIW-2026-06's Editor's Thesis, now incorporating signals collected through the 21 June validation freeze. There remains no Volume I thesis to carry forward; tracking begins here and continues into AIW-2026-07.</p>
   </div>
 
-  <!-- §2 EXECUTIVE BRIEF -->
   <div class="sec" id="brief">
     <span class="sec-num">§2</span><span class="sec-title">Executive Brief</span><div class="sec-line"></div>
   </div>
@@ -404,7 +387,6 @@ penalty it would have a year ago.</p>
     <div class="notm-value">≈7 weeks</div>
 <div class="notm-context">AIMS pre-print to commercial product — Against an 18–24 month benchmark-to-commercial lag this publication established as typical for African AI research (AIW-026-10) — this issue's essay asks why this case broke that rule.</div>  </div>
 
-  <!-- §3 SIGNALS & METRICS -->
   <div class="sec" id="signals">
     <span class="sec-num">§3</span><span class="sec-title">Signals &amp; Metrics</span><div class="sec-line"></div>
   </div>
@@ -468,7 +450,6 @@ product" normally implies.</p></div>
   </div>
   <p class="coverage-note">No validated signals this window from the Horn of Africa, Central Africa outside the DRC, or any North African country besides Egypt. The Horn of Africa gap is notable given Ethiopia's prominence in recent editions — flagged for the perception layer's July collection window.</p>
 
-  <!-- §4 DEEP RESEARCH ESSAYS -->
   <div class="sec" id="essays">
     <span class="sec-num">§4</span><span class="sec-title">Deep Research Essays</span><div class="sec-line"></div>
   </div>
@@ -565,7 +546,6 @@ any funding announcement.</p></div>
     <div class="essay-meta">~859 words</div>
   </div>
 
-  <!-- §5 ENGINEERING FRONTIER -->
   <div class="sec" id="engineering">
     <span class="sec-num">§5</span><span class="sec-title">Engineering Frontier</span><div class="sec-line"></div>
   </div>
@@ -600,7 +580,6 @@ waiting on any new local capacity.</p></div></div>
   </div>
   <div class="dependency-watch"><div class="dw-label">Dependency Watch — for Scenarios &amp; Forecasts</div>Gulf-routed GPU procurement remains a standing single-point dependency for facility-scale African AI infrastructure (Egypt, and by extension any government following the same compliance-routing logic). AIMS's compute-efficiency methodology is a partial, use-case-specific counter-pressure on that dependency — it does not reduce the need for GPU-scale facilities, but it does demonstrate that not every category of African AI deployment requires one. See Scenario 1, revised below.</div>
 
-  <!-- §6 COMMERCIAL STRATEGY -->
   <div class="sec" id="commercial">
     <span class="sec-num">§6</span><span class="sec-title">Commercial Strategy</span><div class="sec-line"></div>
   </div>
@@ -645,7 +624,6 @@ if you want credibility and network access ahead of the broader field<br />
 trial's July results.</p></div>
   </div>
 
-  <!-- §7 POLICY & GEOPOLITICS -->
   <div class="sec" id="policy">
     <span class="sec-num">§7</span><span class="sec-title">Policy &amp; Geopolitics</span><div class="sec-line"></div>
   </div>
@@ -720,7 +698,6 @@ to the cost of being seen avoiding the test.</p></div>
     <li>South Africa's panel's September parliamentary status briefing — does the DCDT disclose substantively, or only confirm the timeline again?</li>
   </ul>
 
-  <!-- §8 AFRICAN BUILDERS -->
   <div class="sec" id="builders">
     <span class="sec-num">§8</span><span class="sec-title">African Builders</span><div class="sec-line"></div>
   </div>
@@ -793,7 +770,6 @@ publication should be honest that both outcomes remain live.</p>
     </div>
   </div>
 
-  <!-- §9 MODELS, PAPERS & REPOSITORIES -->
   <div class="sec" id="research">
     <span class="sec-num">§9</span><span class="sec-title">Models, Papers &amp; Repositories</span><div class="sec-line"></div>
   </div>
@@ -836,7 +812,6 @@ ahead of a methodology's own formal field trial.</p>
   </div>
   <p class="dark-zones">Dark zones: Tigrinya, Oromo, and Somali remain without any commercial model coverage despite Masakhane's benchmark datasets existing for all three since AIW-026-10; unchanged this window.</p>
 
-  <!-- §10 SCENARIOS & FORECASTS -->
   <div class="sec" id="scenarios">
     <span class="sec-num">§10</span><span class="sec-title">Scenarios &amp; Forecasts</span><div class="sec-line"></div>
   </div>
@@ -915,7 +890,6 @@ decisive test; no ECOWAS peer-country citation has yet occurred.</p></div>
     <ul><li><p>South Africa AI policy participation imbalance (carried from AIW-026-10/11/12): remains superseded by the policy's April withdrawal; tracking resumes when the January 2027 revised draft opens for comment.</p></li><li><p>DRC–Korea Seoul outcome (carried as an open branch point from AIW-026-13): partially resolved — Korea's opening position is now on record and includes technology transfer; full resolution awaits signed terms in a subsequent session.</p></li></ul>
   </div>
 
-  <!-- §11 READING LIST -->
   <div class="sec" id="reading">
     <span class="sec-num">§11</span><span class="sec-title">Reading List</span><div class="sec-line"></div>
   </div>
