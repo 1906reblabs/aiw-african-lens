@@ -1,323 +1,74 @@
-# AI Weekly African Lens
+# AIW African Lens Monthly Intelligence Review
 
-**Institutional-grade intelligence tracking Africa's AI stack across 54 nations.**
+**Institutional-grade intelligence on Africa's AI stack.** Published the last Wednesday of every month at 06:00 SAST.
 
-Published every Tuesday at 06:00 SAST · Hosted at [simphiwemlotshwa.substack.com](https://simphiwemlotshwa.substack.com/) · Deployed via GitHub Pages
+This repository contains the editorial pipeline, build system, and published archive for AIW African Lens. As of the transition date, the publication has moved from a weekly cadence (Volume I, AIW-026-01 through AIW-026-13) to a monthly format (Volume II, beginning AIW-2026-07) with a substantially deepened eleven-section issue structure. See `MIGRATION_NOTES_weekly_to_monthly.md` for the full transition record.
 
----
+## What This Publication Is
+A monthly intelligence review tracking AI policy, infrastructure, capital, research, and geopolitics across all 54 African Union member states, targeting investors, policymakers, technology executives, researchers, and founders. Benchmarked editorially against Bloomberg Intelligence, MIT Technology Review, Stratechery, McKinsey Technology Trends, SemiAnalysis, and RAND — see `SKILL_monthly_editorial_architecture.md` for the full rationale and section-by-section model mapping.
 
-## What This Is
+## Issue Structure (Volume II)
+1. Editor's Thesis
+2. Executive Brief
+3. Signals & Metrics
+4. Deep Research Essays (1–2)
+5. Engineering Frontier
+6. Commercial Strategy
+7. Policy & Geopolitics
+8. African Builders
+9. Models, Papers & Repositories
+10. Scenarios & Forecasts
+11. Reading List
 
-AI Weekly African Lens is a weekly intelligence publication covering artificial intelligence, machine learning, and data science developments across all 54 African Union member states. Each edition ranks 10 developments by strategic importance, applies first/second/third-order analysis across Africa's five-layer AI stack, and delivers fragility assessments, contrarian bets, country spotlights, and a forward events calendar.
-
-The publication does not aggregate news. It produces intelligence — analysis that changes how a sophisticated reader thinks or acts, not a summary of what happened.
-
-**Current archive:** AIW-026-01 through AIW-026-12 · March–May 2026
-
----
+Target length: ~10,600–16,200 words per issue.
 
 ## Repository Structure
-
 ```
-aiw-african-lens/
-│
-├── content/
-│   ├── issues/                  # Per-edition content files (YAML frontmatter)
-│   │   ├── aiw-026-12-content.md
-│   │   ├── aiw-026-11-content.md
-│   │   └── ...
-│   └── registry.yaml            # Master editions index — source of truth for all index pages
-│
-├── templates/
-│   ├── issue.j2                 # Jinja2 template for individual edition HTML
-│   └── index.j2                 # Jinja2 template for archive and weekly index pages
-│
-├── docs/                        # Built output — served by GitHub Pages
-│   ├── index.html               # Root archive index
-│   ├── weekly/
-│   │   ├── index.html           # Weekly editions index
-│   │   ├── aiw-026-12.html
-│   │   └── ...
-│   └── editions/                # Daily editions (hand-authored)
-│
-├── afi_parser.py                # Content parser — YAML → template context
-├── build.py                     # Build orchestrator
-├── requirements.txt
-└── .github/workflows/build.yml  # CI: auto-build and deploy on push to main
+content/
+  registry.yaml                 — master index of all editions (weekly archive + monthly going forward)
+  issues/
+    aiw-026-NN-content.md       — Volume I weekly content files (archived)
+    aiw-2026-MM-content.md      — Volume II monthly content files (new schema — see below)
+templates/
+  issue.j2                      — HTML template (requires update for 11-section monthly schema — see below)
+  index.j2                      — archive/index page template
+afi_parser.py                   — YAML → template-context parser (requires field-processor updates)
+build.py                        — build orchestrator (CLI: issue / index / all)
+.github/workflows/build.yml     — GitHub Actions: auto-build on push, commits docs/ output
 ```
 
----
+## Editorial Pipeline (Agent Architecture)
+The publication is produced by a multi-agent reasoning pipeline run via Claude with a structured set of skill files, one per agent role. Skill files live at the project root and are read by the operating Claude session before any task in that agent's domain.
 
-## The Build Pipeline
+**Perception layer** (continuous signal collection): `SKILL_geo_scraper_agent.md`, `SKILL_policy_regulation_agent.md`, `SKILL_research_harvester_agent.md`, `SKILL_startup_capital_tracker.md`, `SKILL_infra_signals_agent.md` — cadence updated for monthly via `SKILL_perception_layer_monthly_addendum.md`.
 
-Content is authored as structured YAML-frontmatter Markdown files. The build system separates editorial intelligence from HTML construction.
+**Validation layer:** `SKILL_research_analyst_agent.md` — cadence updated via the same addendum.
 
-```
-aiw-026-12-content.md          (editorial — structured YAML + Markdown prose)
-        ↓  afi_parser.py
-Template context dict           (Python — validates, processes, converts MD → HTML)
-        ↓  Jinja2
-aiw-026-12.html                 (output — publication-ready HTML)
-        ↓  GitHub Pages
-Live at /weekly/aiw-026-12.html
-```
+**Domain analysis layer:** `SKILL_engineering_frontier_agent.md`, `SKILL_commercial_strategy_agent.md`, `SKILL_policy_geopolitics_strategist.md`, `SKILL_models_papers_repositories_agent.md`.
 
-### Build Commands
+**Strategic/narrative layer:** `SKILL_scenarios_forecasts_agent.md`, `SKILL_deep_research_essay_agent.md`, `SKILL_african_builders_agent.md`, `SKILL_reading_list_curator_agent.md`.
 
-```bash
-# Build a single edition
-python build.py issue content/issues/aiw-026-12-content.md
+**Summary layer:** `SKILL_executive_brief_agent.md`, `SKILL_editors_thesis_agent.md`.
 
-# Rebuild both index pages from the registry
-python build.py index
+**Orchestration:** `SKILL_synthesis_agent_v2.md` (Editor-in-Chief AI) — sequences all of the above per the production calendar in `SKILL_monthly_editorial_architecture.md`, then hands the assembled draft to the human operator.
 
-# Build everything (stale-check by default)
-python build.py all
+See `MIGRATION_NOTES_weekly_to_monthly.md` for the full mapping from the original weekly-format skill files to the new architecture, including which originals are retained as live methodology references inside the new files.
 
-# Force rebuild everything regardless of timestamps
-python build.py all --force
+## Production Calendar (per issue)
+Day 1–21: continuous signal collection. T-14d: essay topic shortlist. T-10d: validation freeze, domain analysis begins. T-7d: scenarios/essay/profiles drafted. T-4d: full synthesis. T-2d: human review. Last Wednesday: publish. Full detail in `SKILL_monthly_editorial_architecture.md`.
 
-# Override output directory
-python build.py all --out /custom/output/dir
-```
+## Required Engineering Changes (Not Yet Implemented)
+The eleven-section monthly structure requires changes to the build pipeline beyond the editorial skill files in this repository:
 
-### Installation
+1. **`afi_parser.py`** — add field processors for the new content-file sections (`editors_thesis`, `executive_brief`, `signals_metrics`, `deep_research_essays` [list], `engineering_frontier`, `commercial_strategy`, `policy_geopolitics`, `african_builders` [list], `models_papers_repos`, `scenarios_forecasts` [list], `reading_list` [list]), replacing/extending the Volume I processors (`_process_signals`, `_process_layers`, etc.).
+2. **`templates/issue.j2`** — new monthly layout template; the existing weekly template's section ordering and visual hierarchy (signal-card, layer-grid, fragility-card, contrarian-card components) can largely be reused/relabeled for the new section names, but the eleven-section sequence and the standing Benchmark Board / KPI table components are new.
+3. **`content/registry.yaml`** — add a `monthly:` list alongside the existing `weekly:` list, or migrate to a unified schema with a `cadence: weekly | monthly` field per entry, to keep the Volume I archive browsable alongside Volume II.
+4. **Edition numbering** — registry and file-naming conventions move from `aiw-026-NN` to `aiw-YYYY-MM`.
 
-```bash
-git clone https://github.com/1906reblabs/aiw-african-lens.git
-cd aiw-african-lens
-pip install -r requirements.txt
-python build.py all
-```
+These are available as a follow-up engineering task — ask to have `afi_parser.py`, `build.py`, and `templates/issue.j2` updated directly once the new content schema is finalized.
 
-**Python 3.11+ required.** Dependencies: `jinja2`, `pyyaml`, `markdown`.
+## Monetisation Context
+This restructuring supports the publication's existing monetisation plans (institutional subscription tiers, sponsored country spotlights, bespoke briefs). The standing KPI table in Signals & Metrics is the seed of the previously planned Annual Pan-African AI Index — see `SKILL_monthly_editorial_architecture.md`, Monetisation Note.
 
----
-
-## Publishing a New Edition
-
-### Step 1 — Author the content file
-
-Create `content/issues/aiw-026-XX-content.md` using the YAML-frontmatter schema. Copy the most recent edition as your template. Required top-level fields:
-
-```yaml
----
-edition_id: AIW-026-XX
-date: "DD Month YYYY"
-window_start: "DD Month"
-window_end: "DD Month YYYY"
-title: "Edition Title"
-title_sub: "Edition Subtitle"
-deck: >
-  150-word teaser paragraph.
-developments_count: 10
-nations_covered: N
-prev_edition: aiw-026-NN.html
-prev_edition_id: AIW-026-NN
-next_edition: ""
----
-```
-
-Full schema documentation: see any existing `*-content.md` file in `content/issues/`.
-
-### Step 2 — Update the registry
-
-In `content/registry.yaml`:
-
-1. Copy the most recent `weekly:` list entry
-2. Paste it at the **top** of the list (above the previous entry)
-3. Update all fields for the new edition
-4. Set `status: "new"` and `badge: "gold"` on the new entry
-5. Change the previous top entry to `status: "available"` and `badge: "teal"`
-6. Increment `stats.weekly_total` by 1
-
-### Step 3 — Build and verify
-
-```bash
-python build.py issue content/issues/aiw-026-XX-content.md
-python build.py index
-```
-
-Open `docs/weekly/aiw-026-XX.html` and `docs/index.html` in a browser to verify rendering.
-
-### Step 4 — Commit and push
-
-```bash
-git add content/ docs/
-git commit -m "publish: AIW-026-XX — Edition Title"
-git push origin main
-```
-
-The GitHub Actions workflow (`build.yml`) runs automatically on push to `main` and rebuilds all HTML from source, committing the output to `docs/`. GitHub Pages serves from `docs/`.
-
----
-
-## Content Schema Reference
-
-Each edition content file is structured YAML with Markdown prose in multi-line string fields. The parser (`afi_parser.py`) converts all prose fields to HTML before handing the context to Jinja2.
-
-### Top-5 Signals
-
-```yaml
-signals:
-  - rank: 1
-    title: "Signal headline"
-    tags:
-      - label: "Policy"
-        css: "tag-policy"     # tag-policy | tag-infra | tag-geo | tag-tech |
-                               # tag-security | tag-ecosystem | tag-research | tag-capital
-    body: |
-      Two paragraphs of factual description. No interpretation.
-    analysis_1: >
-      1st order — what literally changed. One sentence.
-    analysis_2: >
-      2nd order — the non-obvious implication. Rewrite if a smart reader
-      could infer this in five seconds.
-    analysis_3: >
-      3rd order — what must investors, policymakers, or builders reconsider.
-      Must produce a concrete strategic implication.
-```
-
-### Layer Analyses
-
-```yaml
-layers:
-  - symbol: "⚡"         # ⚡ 🧱 🌐 🧠 🚀
-    number: "1"
-    name: "Energy"
-    signal_count: "2 signals"
-    highlight: "Short callout headline"
-    body: |
-      150–200 words of layer analysis prose.
-```
-
-### Fragility Index
-
-```yaml
-fragility_items:
-  - frag_id: "FRAG-026-XX-01"
-    domain: "Regulatory · Country"
-    impact: "Severe"               # Severe | Moderate | Minor
-    impact_css: "impact-high"      # impact-high | prob-med | ""
-    probability: "Medium"
-    prob_css: "prob-med"
-    horizon: "6–12 months"
-    title: "Fragility headline"
-    body: |
-      Description of the fragility. Precise actors, specific conditions.
-      No vague language.
-    mitigation: |
-      Concrete mitigation path. Must be actionable.
-```
-
-### Contrarian Bets
-
-```yaml
-contrarian_items:
-  - cb_id: "CB-026-XX-01"
-    cb_type: "Overlooked Country · Long-Term"
-    consensus: >
-      What everyone currently believes.
-    position_head: "The contrarian claim headline"
-    position_body: |
-      The argument. Must include mechanism for why the consensus is wrong.
-    evidence: >
-      Specific signals supporting the contrarian view.
-    falsification: >
-      What would make this position wrong. Prevents ideological lock-in.
-```
-
----
-
-## The Five-Layer AI Stack
-
-All analysis is referenced against Africa's AI stack:
-
-| # | Symbol | Layer | Domain |
-|---|--------|-------|--------|
-| 1 | ⚡ | Energy | Power generation, grid reliability, renewable energy for compute |
-| 2 | 🧱 | Chips | Semiconductors, GPU access, export controls, compute hardware |
-| 3 | 🌐 | Infrastructure | Data centres, connectivity, subsea cables, cloud regions |
-| 4 | 🧠 | Models | AI model development, NLP/CV research, foundation models |
-| 5 | 🚀 | Applications | AI products, sector deployments, commercial traction |
-
----
-
-## Editorial Standards
-
-**Voice:** Senior intelligence analyst. Not journalist, not academic, not marketer.
-
-**Default output:** Insight, not news. Every claim must answer: does this change how a sophisticated reader thinks or acts?
-
-**Three-tier analysis standard — mandatory for all signal analysis:**
-- 🔵 **1st Order** — What literally happened? (floor, not ceiling)
-- 🟡 **2nd Order** — What non-obvious implication does this create?
-- 🔴 **3rd Order** — What must investors, policymakers, or builders now reconsider?
-
-**Banned phrases:** leapfrog · African lion · the next Silicon Valley · powering Africa's AI revolution · on the continent *(as opener)* · it remains to be seen · in recent years · increasingly
-
-**Country coverage:** Editions rotate country spotlight beyond the Nigeria-Kenya-South Africa default axis. Anglophone capital-city bias is the most common failure mode in African tech coverage.
-
-**Policy vs. deployment:** A government announcing an AI strategy and a government implementing one are entirely different signals. Never conflate them.
-
----
-
-## The Agent Framework
-
-Each edition is produced through a multi-agent intelligence pipeline:
-
-| Agent | Role |
-|-------|------|
-| **Geo Scraper** | 54-country signal collection across all six African regional blocs |
-| **Policy & Regulation Agent** | Legislative and governance signal collection |
-| **Research Harvester** | Academic, lab, and conference signal collection |
-| **Startup & Capital Tracker** | Funding rounds, acquisitions, market entry/exit |
-| **Infra Signals Agent** | Energy, chips, connectivity, data centre signals |
-| **Research Analyst Agent** | Signal validation, scoring, noise removal, routing |
-| **Layer Specialists (×5)** | 1st/2nd/3rd order analysis per AI stack layer |
-| **Policy Strategist** | Regulatory deep analysis, convergence tracking |
-| **Taleb Agent** | Fragility Engine — finds what everyone else is not looking for |
-| **Thiel Agent** | Contrarian Engine — finds what the consensus is missing |
-| **Synthesis Agent** | Editor-in-Chief AI — assembles the final publication-ready report |
-
-Full agent skill files are maintained in the editorial project repository.
-
----
-
-## Archive
-
-| Edition | Window | Theme | Status |
-|---------|--------|-------|--------|
-| AIW-026-12 | 19–25 May 2026 | The Governance Quality Audit | New |
-| AIW-026-11 | 12–18 May 2026 | Before the Hearings | Available |
-| AIW-026-10 | 05–11 May 2026 | The Consultation Week | Available |
-| AIW-026-09 | 28 Apr–04 May 2026 | The Deployment Quarter | Available |
-| AIW-026-08 | 21–27 Apr 2026 | The Post-GITEX Reckoning | Available |
-| AIW-026-07 | 14–21 Apr 2026 | The Policy Moment Arrives | Available |
-| AIW-026-06 | 08–14 Apr 2026 | South Africa's AI Policy Lands | Available |
-| AIW-026-05 | 31 Mar–07 Apr 2026 | Infrastructure Ahead of Governance | Available |
-| AIW-026-04 | 24–31 Mar 2026 | The Week Everything Converged | Coming Soon |
-| AIW-026-03 | 17–24 Mar 2026 | The Sovereignty Inflection | Available |
-| AIW-026-02 | 10–17 Mar 2026 | Governance Week | Coming Soon |
-| AIW-026-01 | 03–10 Mar 2026 | Launch Week | Coming Soon |
-
----
-
-## Deployment
-
-The repository uses GitHub Pages served from the `docs/` directory on `main`. The GitHub Actions workflow (`.github/workflows/build.yml`) triggers on any push to `main` that touches `content/`, `templates/`, `afi_parser.py`, or `build.py` — rebuilding all HTML and committing the output automatically.
-
-Manual rebuilds can be triggered via the GitHub Actions UI using the `workflow_dispatch` event.
-
----
-
-## Subscribe
-
-New editions published every Tuesday at 06:00 SAST.
-
-**Substack:** [simphiwemlotshwa.substack.com](https://simphiwemlotshwa.substack.com/)
-
----
-
-*AI Weekly African Lens — Intelligence, not aggregation.*  
-*© 2026 The Weekly African Lens · 54 Nations · Q1–Q2 2026 Coverage*
+## Other Properties
+A separate publication, `ekurhuleni-underground`, is maintained in a separate repository and is out of scope for this migration.
