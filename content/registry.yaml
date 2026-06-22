@@ -1,24 +1,37 @@
-# AI Weekly Lens — Editions Registry
+# AIW African Lens — Editions Registry
 # File: content/registry.yaml
-# ─────────────────────────────────
-# HOW TO ADD A NEW EDITION
-# 1. Copy the top weekly: entry below
+# ─────────────────────────────────────────────────────────────────────────────
+# Volume II (monthly) is the active, primary series. Volume I (weekly) is
+# closed — preserved below for archival reference, not added to going forward.
+#
+# HOW TO ADD A NEW MONTHLY ISSUE
+# 1. Copy the top `monthly:` entry below
+# 2. Paste it ABOVE the current first entry
+# 3. Set status: "new" and badge: "gold"
+# 4. Change the previous top entry to status: "available", badge: "teal"
+#    (and downgrade any older "teal" entries to "ink", same convention as below)
+# 5. Increment stats.monthly_total by 1
+#
+# HOW TO ADD A NEW WEEKLY EDITION (historical — Volume I is closed)
+# 1. Copy the top `weekly:` entry below
 # 2. Paste it ABOVE the current first entry
 # 3. Set status: "new" and badge: "gold"
 # 4. Change previous top entry to status: "available", badge: "teal"
 # 5. Increment stats.weekly_total by 1
+# ─────────────────────────────────────────────────────────────────────────────
 
 # ── SITE ──────────────────────────────────────────────────────────────────────
 site:
-  brand: "The Weekly African Lens"
+  brand: "AIW African Lens"
   substack: "https://simphiwemlotshwa.substack.com/"
-  coverage: "Q1–Q2"
+  coverage: "Q1–Q3"
   nations: 54
 
 # ── STATS ─────────────────────────────────────────────────────────────────────
 stats:
   daily_editions: "21+"
   weekly_total: 13
+  monthly_total: 2
   developments_ranked: "110+"
 
 # ── MACRO THEMES ──────────────────────────────────────────────────────────────
@@ -41,24 +54,67 @@ themes:
   - title: "Deep Tech Ecosystem Building"
     count: "8+ editions · BAFAI · ADTF · Indaba · Angola"
     css: "ecosystem"
+  # NOTE: counts above are from Volume I (weekly) and have not yet been
+  # reconciled against AIW-2026-07's actual content. Revisit once two or
+  # three monthly issues exist and the per-theme signal density is clearer.
 
-# ── WEEKLY EDITIONS (newest first) ────────────────────────────────────────────
-weekly:
-
-  - id: "AIW-026-13"
+# ── MONTHLY ISSUES (newest first) — Volume II, active series ──────────────────
+monthly:
+  - id: "AIW-2026-06"
     status: "new"
     badge: "gold"
+    volume: "II"
+    issue_number: 1
+    date: "24 June 2026"
+    window: "3 June → 24 June 2026"
+    window_short: "3 → 24 Jun 2026"
+    title: "The Inaugural Monthly Review"
+    subtitle: "A Pilot Issue Ahead of the Standard Cycle"
+    summary: >
+      A deliberately scoped pilot — the first issue under the new eleven-
+      section monthly architecture, published within three weeks of Volume
+      I's close rather than waiting a full production cycle. Shorter than
+      future issues by design. The lead essay argues Gulf sovereign capital
+      is becoming Africa's default AI infrastructure financier — and asks
+      who that capital is actually building for.
+    themes_line: "Gulf Capital Thesis · Nigeria NITDA-NDPC Model · DRC-Korea-China Minerals · Egypt Ecosystem Gap"
+    # word_count intentionally omitted — content/issues/aiw-2026-06-content.md
+    # is still the abbreviated pipeline-validation draft (~3,500–3,600 words)
+    # and still has 2 essays/2 scenarios/2 profiles against an agreed pilot
+    # target of ~1 essay/2 scenarios/1–2 profiles, ~4,000–6,000 words.
+    # Add word_count once the real pilot content is generated and trimmed.
+    file: "aiw-2026-06.html"
+
+  - id: "AIW-2026-07"
+    status: "coming"
+    badge: "grey"
+    volume: "II"
+    issue_number: 2
+    date: "29 July 2026"
+    window: "25 June → 29 July 2026"
+    window_short: "25 Jun → 29 Jul 2026"
+    title: "First Full-Cycle Issue — In Production"
+    subtitle: ""
+    summary: ""
+    themes_line: "Full standard cadence resumes — T-14/T-10/T-7/T-4/T-2 production calendar"
+    file: "aiw-2026-07.html"
+
+# ── WEEKLY EDITIONS (newest first) — Volume I, closed archive ─────────────────
+weekly:
+  - id: "AIW-026-13"
+    status: "available"
+    badge: "ink"
     date: "02 June 2026"
     window: "26 May → 02 June 2026"
     window_short: "26 May → 02 June 2026"
     title: "After the Audit"
-    subtitle: "South Africa's Panel Mandate Confirmed, Indaba² Activates a Research-Governkment Interface, the DRC Brief Generates Competition"
+    subtitle: "South Africa's Panel Mandate Confirmed, Indaba² Activates a Research-Government Interface, the DRC Brief Generates Competition"
     summary: >
       South Africa's independent review panel has a mandate for substantive policy revision — not citation cleanup. That disclosure, made at Minister Malatsi's Parliamentary briefing on 26 May, resolves the most consequential open question in African AI governance: whether the January 2027 document will be a corrected version of a flawed original or a rebuilt framework. Deep Learning Indaba² in Addis Ababa produced the first formal government-research interface in Ethiopian AI history, including seven exploratory research grants and a named liaison position at AAU. China's Ministry of Commerce issued a pre-emptive statement on DRC minerals four days before Korea's 9 June Seoul session — confirming the leverage play is producing the multi-capital competition it was designed to generate. AIMS navigated oversubscription with a governance decision the continent should replicate. The week after the audit: institutions demonstrating capacity.
     themes_line: "SA Policy Reset · Nigeria Risk-Tier · Kenya CA Guidance · Angola Strategy · IFC $1.2B"
     developments: 10
     file: "aiw-026-13.html"
-    
+
   - id: "AIW-026-12"
     status: "available"
     badge: "teal"
