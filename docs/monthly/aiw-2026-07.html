@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIW-2026-07 — The Vote Was the Easy Part: Nigeria Enacts Africa's First Comprehensive AI Law, a Gulf-Financed Facility Lands in Nairobi, and Compute Efficiency Gets Its Second Data Point · AIW African Lens Monthly Intelligence Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0e0e;
+    --cream: #faf7f2;
+    --gold: #c8922a;
+    --gold-light: #f0d898;
+    --rust: #b84c2a;
+    --teal: #1a6b5e;
+    --teal-light: #e3f2ee;
+    --border: #d8d0c4;
+    --mid-grey: #7a7570;
+    --light-grey: #ede9e3;
+    --deep-blue: #0a1628;
+    --deep-blue-mid: #0f2040;
+    --hybrid: #5e35b1;
+    --hybrid-light: #ede7f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; line-height: 1.7; }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--deep-blue); padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px; position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid rgba(200,146,42,0.2);
+  }
+  .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 18px; color: #fff; }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-links a { color: #8a99b8; }
+  .nav-links a:hover { color: var(--gold); text-decoration: none; }
+
+  /* ── MASTHEAD ── */
+  .masthead { background: var(--deep-blue); padding: 64px 32px 52px; position: relative; overflow: hidden; }
+  .masthead::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border: 1px solid rgba(200,146,42,0.12); border-radius: 50%; }
+  .masthead::after { content: ''; position: absolute; top: -20px; right: -20px; width: 180px; height: 180px; border: 1px solid rgba(200,146,42,0.08); border-radius: 50%; }
+  .masthead-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+  .mh-series { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 16px; }
+  .mh-series::after { content: ''; flex: 1; height: 1px; background: rgba(200,146,42,0.3); max-width: 120px; }
+  .masthead h1 { font-family: 'Playfair Display', serif; font-size: clamp(30px,5vw,52px); font-weight: 900; color: #fff; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 20px; max-width: 720px; }
+  .masthead h1 em { font-style: italic; color: var(--gold); }
+  .mh-deck { font-size: 15px; color: #8a99b8; line-height: 1.65; max-width: 640px; margin-bottom: 28px; }
+  .mh-meta-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: #4a5a78; }
+  .mh-meta-row .dot { color: rgba(200,146,42,0.4); }
+  .mh-signals { display: flex; gap: 20px; margin-top: 32px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; }
+  .mh-sig { display: flex; flex-direction: column; gap: 3px; }
+  .mh-sig-val { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .mh-sig-lbl { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #4a5a78; }
+
+  /* ── TOC ── */
+  .toc-bar { background: var(--deep-blue-mid); border-bottom: 1px solid rgba(200,146,42,0.15); }
+  .toc-inner { max-width: 860px; margin: 0 auto; padding: 0 32px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .toc-inner::-webkit-scrollbar { display: none; }
+  .toc-item { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #5a6a88; padding: 12px 14px; white-space: nowrap; border-right: 1px solid rgba(255,255,255,0.04); }
+  .toc-item:first-child { padding-left: 0; }
+  .toc-item a { color: inherit; }
+  .toc-item:hover a { color: var(--gold); }
+
+  /* ── MAIN / SECTION LABELS ── */
+  .main { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+  .sec { display: flex; align-items: center; gap: 12px; margin: 56px 0 28px; }
+  .sec-num { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 700; color: var(--gold); min-width: 24px; }
+  .sec-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid-grey); }
+  .sec-line { flex: 1; height: 1px; background: var(--border); }
+  .sec::after { content: ''; height: 2px; width: 40px; background: var(--ink); display: block; }
+  .sec-model { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.08em; color: var(--border); text-transform: uppercase; }
+
+  /* ── §1 OPENING FRAME / THESIS ── */
+  .opening-frame { background: var(--ink); padding: 32px 36px; position: relative; overflow: hidden; margin-bottom: 14px; }
+  .opening-frame::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 200px; color: rgba(200,146,42,0.06); position: absolute; top: -40px; left: 20px; line-height: 1; font-weight: 900; }
+  .opening-frame p { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.75; color: #c8d4e8; position: relative; z-index: 1; max-width: 720px; }
+  .thesis-support { font-size: 14.5px; line-height: 1.75; color: #2a2520; margin-bottom: 14px; }
+  .thesis-support p { margin-bottom: 12px; }
+  .thesis-falsify { background: var(--light-grey); border-left: 2px solid var(--border); padding: 14px 18px; margin-bottom: 12px; }
+  .tf-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 5px; }
+  .thesis-falsify p { font-size: 13px; color: #2a2520; }
+  .thesis-verdict { border: 1px solid var(--border); padding: 14px 18px; }
+  .thesis-verdict p { font-size: 13px; color: #2a2520; margin-top: 6px; }
+  .tv-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; }
+  .verdict-confirmed .tv-badge { background: var(--teal-light); color: var(--teal); }
+  .verdict-revised .tv-badge { background: #fef3e2; color: #9a6210; }
+  .verdict-abandoned .tv-badge { background: #fbe9e6; color: var(--rust); }
+  .verdict-na .tv-badge { background: var(--light-grey); color: var(--mid-grey); }
+
+  /* ── §2 EXECUTIVE BRIEF ── */
+  .brief-item { background: #fff; border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 8px; display: flex; gap: 14px; }
+  .brief-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--light-grey); min-width: 30px; }
+  .brief-body h4 { font-size: 14.5px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .brief-row { font-size: 13px; line-height: 1.6; margin-bottom: 4px; }
+  .brief-row .br-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-right: 6px; }
+  .number-of-month { background: var(--deep-blue); padding: 18px 22px; margin-top: 6px; }
+  .notm-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .notm-value { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #fff; }
+  .notm-context { font-size: 12.5px; color: #8a99b8; margin-top: 6px; }
+
+  /* ── §3 SIGNALS & METRICS ── */
+  .kpi-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .kpi-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .kpi-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; }
+  .kpi-table tr:last-child td { border-bottom: none; }
+  .kpi-val { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 15px; }
+  .trend-up { color: var(--teal); } .trend-down { color: var(--rust); } .trend-flat { color: var(--mid-grey); }
+  .kpi-note { font-size: 11.5px; color: var(--mid-grey); }
+  .metric-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--gold); padding: 16px 20px; margin-bottom: 8px; }
+  .metric-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .metric-card .mc-body { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .coverage-note { font-size: 12px; color: var(--mid-grey); font-style: italic; border-left: 2px solid var(--border); padding-left: 12px; }
+
+  /* ── §4 DEEP RESEARCH ESSAYS ── */
+  .essay-card { background: #fff; border: 1px solid var(--border); padding: 32px 32px 28px; margin-bottom: 24px; }
+  .essay-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .sc-tag { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; }
+  .tag-policy { background: var(--teal-light); color: var(--teal); }
+  .tag-infra { background: #f3e5f5; color: #6a1b9a; }
+  .tag-geo { background: #e3f2fd; color: #1565c0; }
+  .tag-tech { background: #fef3e2; color: #9a6210; }
+  .tag-security { background: #fbe9e6; color: var(--rust); }
+  .tag-ecosystem { background: #e8f5e9; color: #2e7d32; }
+  .tag-research { background: var(--hybrid-light); color: var(--hybrid); }
+  .tag-capital { background: #e0f7fa; color: #00695c; }
+  .essay-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; line-height: 1.25; margin-bottom: 10px; }
+  .essay-dek { font-size: 15px; color: var(--mid-grey); line-height: 1.6; margin-bottom: 20px; }
+  .essay-body { font-size: 15px; line-height: 1.8; color: #2a2520; }
+  .essay-body p { margin-bottom: 14px; }
+  .essay-evidence, .essay-counter, .essay-implications { margin-top: 18px; padding: 16px 20px; background: var(--light-grey); border-left: 2px solid var(--border); font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .ee-label, .ec-label, .ei-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 8px; }
+  .essay-falsify { margin-top: 18px; padding: 14px 18px; background: #fff; border: 1px solid var(--border); }
+  .ef-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rust); margin-bottom: 5px; }
+  .essay-falsify p { font-size: 13px; }
+  .essay-meta { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); margin-top: 14px; text-align: right; }
+
+  /* ── §5 ENGINEERING FRONTIER / §6 COMMERCIAL STRATEGY (shared layer-grid / policy-block) ── */
+  .layer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .layer-card { background: #fff; border: 1px solid var(--border); padding: 18px 20px; }
+  .layer-card h4 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .layer-card .lc-body { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .dependency-watch { background: var(--ink); color: var(--cream); padding: 14px 18px; font-size: 12.5px; line-height: 1.6; }
+  .dw-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+
+  .policy-block { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--teal); padding: 22px 24px; margin-bottom: 10px; }
+  .pb-head { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+  .pb-body { font-size: 14px; line-height: 1.75; color: #2a2520; }
+  .pb-body p { margin-bottom: 12px; }
+  .pb-body p:last-child { margin-bottom: 0; }
+
+  /* ── §7 POLICY & GEOPOLITICS ── */
+  .actor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .actor-card { background: #fff; border: 1px solid var(--border); padding: 14px 18px; }
+  .actor-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+  .actor-row { font-size: 12.5px; margin-bottom: 5px; line-height: 1.55; }
+  .actor-row .ar-label { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid-grey); display: block; }
+  .convergence-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12.5px; }
+  .convergence-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .convergence-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.55; }
+  .convergence-table tr:last-child td { border-bottom: none; }
+  .branch-points { list-style: none; }
+  .branch-points li { background: var(--light-grey); border-left: 2px solid var(--gold); padding: 10px 14px; margin-bottom: 6px; font-size: 13px; }
+
+  /* ── §8 AFRICAN BUILDERS ── */
+  .builder-card { background: #fff; border: 1px solid var(--border); margin-bottom: 10px; overflow: hidden; }
+  .builder-bar { height: 4px; }
+  .builder-header { padding: 16px 22px 12px; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+  .builder-name { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 900; }
+  .builder-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); margin-top: 3px; }
+  .builder-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  .b-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.06em; padding: 2px 8px; background: var(--light-grey); color: var(--mid-grey); }
+  .builder-body { padding: 16px 22px 20px; }
+  .builder-sub { font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin: 12px 0 6px; }
+  .builder-sub:first-child { margin-top: 0; }
+  .builder-body p { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .sourcing-tag { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); float: right; }
+
+  /* ── §9 MODELS, PAPERS & REPOSITORIES ── */
+  .benchmark-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12.5px; }
+  .benchmark-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+  .benchmark-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  .benchmark-table tr.changed td { background: #fffbf0; }
+  .benchmark-table tr.changed td:first-child { border-left: 2px solid var(--gold); }
+  .repo-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--hybrid); padding: 14px 18px; margin-bottom: 8px; }
+  .repo-card h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .repo-card p { font-size: 13px; line-height: 1.65; color: #2a2520; }
+  .dark-zones { font-size: 12px; color: var(--mid-grey); font-style: italic; margin-top: 10px; }
+
+  /* ── §10 SCENARIOS & FORECASTS ── */
+  .scenario-card { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--ink); margin-bottom: 12px; }
+  .scenario-fragility { border-left-color: var(--rust); }
+  .scenario-contrarian { border-left-color: var(--gold); }
+  .scenario-hybrid { border-left-color: var(--hybrid); }
+  .scenario-header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .scenario-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; }
+  .scenario-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .sb-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; background: var(--light-grey); color: var(--mid-grey); }
+  .sb-badge.prob-low { background: var(--teal-light); color: var(--teal); }
+  .sb-badge.prob-medium { background: #fef3e2; color: #9a6210; }
+  .sb-badge.prob-high { background: #fbe9e6; color: var(--rust); }
+  .scenario-body { padding: 18px 20px; }
+  .sc-row { margin-bottom: 14px; }
+  .sc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 6px; }
+  .sc-row p, .sc-indicators p { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .response-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .response-col { background: var(--light-grey); padding: 12px 14px; }
+  .rc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+  .response-col p { font-size: 12.5px; line-height: 1.6; color: #2a2520; }
+  .sc-indicators { background: #fffbf0; border: 1px solid var(--border); padding: 12px 16px; }
+  .scenario-followup { background: #fff; border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 8px; }
+  .sf-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 10px; }
+  .scenario-followup ul { list-style: none; }
+  .scenario-followup li { font-size: 13px; line-height: 1.65; padding: 6px 0; border-bottom: 1px solid var(--light-grey); }
+  .scenario-followup li:last-child { border-bottom: none; }
+
+  /* ── §11 READING LIST ── */
+  .reading-list { list-style: none; counter-reset: rl; }
+  .reading-list li { counter-increment: rl; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .reading-list li:last-child { border-bottom: none; }
+  .reading-list li::before { content: counter(rl) '.'; font-family: 'DM Mono', monospace; color: var(--gold); margin-right: 8px; }
+  .reading-list a { font-weight: 600; color: var(--ink); }
+  .rl-meta { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid-grey); }
+  .rl-annotation { font-size: 13px; color: #2a2520; margin-top: 4px; margin-left: 18px; line-height: 1.6; }
+
+  /* ── EDITORIAL NOTE / FOOTER ── */
+  .editorial-note { background: var(--light-grey); border: 1px solid var(--border); padding: 18px 22px; margin-top: 48px; font-size: 12px; color: var(--mid-grey); line-height: 1.65; }
+  .en-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 8px; }
+  footer { background: var(--ink); color: #7a8294; text-align: center; padding: 36px 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; }
+  footer strong { color: #c8d4e8; }
+  footer a { color: #7a8294; }
+  footer a:hover { color: var(--gold); }
+  .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 12px; }
+
+  @media (max-width: 780px) {
+    .layer-grid { grid-template-columns: 1fr; }
+    .actor-grid { grid-template-columns: 1fr; }
+    .response-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 680px) {
+    .masthead { padding: 40px 20px 36px; }
+    .main { padding: 0 16px 60px; }
+    nav { padding: 12px 18px; }
+    .opening-frame { padding: 24px 22px; }
+    .essay-card { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- AIW BUILD QA — total words ~10608 (target 10600–16200) — within target -->
+
+<nav>
+  <a href="../index.html" style="text-decoration:none;">
+    <div class="nav-brand">AIW African Lens<span>.</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Archive</a>
+    <a href="index.html">Monthly Review</a>
+    <a href="../weekly/index.html">Weekly Archive (Vol. I)</a>
+    <a href="../editions/index.html">Daily Editions</a>
+    <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe</a>
+  </div>
+</nav>
+
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="mh-series">
+      AIW Monthly Intelligence Review &nbsp;·&nbsp; AIW-2026-07
+    </div>
+    <h1>The Vote Was the Easy Part<br><em>Nigeria Enacts Africa's First Comprehensive AI Law, a Gulf-Financed Facility Lands in Nairobi, and Compute Efficiency Gets Its Second Data Point</em></h1>
+<p class="mh-deck">President Tinubu signed the AI Governance Act into law on 28 July, making Nigeria the first African country with an enacted, risk-tiered, comprehensive AI statute — but the National Data Protection Commission's incident registry was funded at less than half of what it requested. A $350M Gulf-financed AI compute facility landed in Nairobi with no published data-governance terms, triggering a fragility scenario this publication has tracked since May. Korea and the DRC signed a minerals-for-infrastructure memorandum in Seoul. Cassava broke ground in Lagos. And in Kampala, a founder with no institutional tie to AIMS shipped a compute-efficient AI product — the second data point last month's essay said would make or break its own argument.</p>    <div class="mh-meta-row">
+      <span>29 July 2026</span>
+      <span class="dot">·</span>
+      <span>Window: 25 June 2026 → 29 July 2026</span>
+      <span class="dot">·</span>
+      <span>Published 06:00 SAST, last Wednesday of the month</span>
+    </div>
+    <div class="mh-signals">
+      <div class="mh-sig"><div class="mh-sig-val">Vol. II</div><div class="mh-sig-lbl">Issue 2 — Full Cycle</div></div>
+      <div class="mh-sig"><div class="mh-sig-val">11</div><div class="mh-sig-lbl">Nations Covered</div></div>
+      <div class="mh-sig"><div class="mh-sig-val">2</div><div class="mh-sig-lbl">Deep Research Essays</div></div>
+      <div class="mh-sig"><div class="mh-sig-val">10</div><div class="mh-sig-lbl">Ranked Developments</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="toc-bar">
+  <div class="toc-inner">
+    <div class="toc-item"><a href="#thesis">§1 Thesis</a></div>
+    <div class="toc-item"><a href="#brief">§2 Brief</a></div>
+    <div class="toc-item"><a href="#signals">§3 Signals</a></div>
+    <div class="toc-item"><a href="#essays">§4 Essays</a></div>
+    <div class="toc-item"><a href="#engineering">§5 Engineering</a></div>
+    <div class="toc-item"><a href="#commercial">§6 Commercial</a></div>
+    <div class="toc-item"><a href="#policy">§7 Policy</a></div>
+    <div class="toc-item"><a href="#builders">§8 Builders</a></div>
+    <div class="toc-item"><a href="#research">§9 Research</a></div>
+    <div class="toc-item"><a href="#scenarios">§10 Scenarios</a></div>
+    <div class="toc-item"><a href="#reading">§11 Reading</a></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- §1 EDITOR'S THESIS -->
+  <div class="sec" id="thesis">
+    <span class="sec-num">§1</span><span class="sec-title">Editor's Thesis</span><div class="sec-line"></div>
+  </div>
+  <div class="opening-frame">
+    <p>Nigeria's AI Governance Act is the most consequential piece of technology<br />
+legislation Africa has produced. It is also, on its own funding terms,<br />
+an unfinished instrument — and the gap between "enacted" and "resourced"<br />
+is now the single most important variable in African AI governance,<br />
+more important than any remaining question of statutory architecture.<br />
+Enactment used to be the finish line this publication measured toward.<br />
+Starting this month, it is the starting line.</p>
+  </div>
+  <div class="thesis-support">
+    <p>The Senate passed the AI Governance Bill on 22 July on a floor vote of<br />
+89–14, preserving the concurrent NITDA–NDPC jurisdictional model this<br />
+publication has called the most sophisticated regulatory design decision<br />
+in African AI governance. President Tinubu signed it into law on 28 July,<br />
+one day before this window closes. But the appropriations bill that<br />
+accompanied enactment funded the NDPC's AI Incident Registry at ₦480<br />
+million — roughly 40% of the ₦1.2 billion the NDPC's 17 June supplemental<br />
+request specified as the minimum for a national rollout. The Ministry of<br />
+Finance's public justification frames the reduced figure as funding for a<br />
+"phased pilot" covering financial services and health AI only, with<br />
+full-sector coverage contingent on a mid-2027 budget review. That is a<br />
+materially different instrument than the one the Senate committee<br />
+described in May, and the gap between the two versions is this issue's<br />
+lead essay in full.</p>
+    <p>Investors, foundations, and peer legislatures should now separate two<br />
+questions that African AI governance coverage has treated as one: did a<br />
+country pass a good law, and did it fund the institution that enforces<br />
+it. Nigeria has answered the first question about as well as any country<br />
+on the continent can. The second question is now open, phased, and<br />
+reviewable — which means Nigeria's AI Act is simultaneously the<br />
+continent's most architecturally serious statute and its most immediate<br />
+test case for whether risk-tiered regulatory design survives contact with<br />
+a national budget. Other African legislatures currently drafting AI bills<br />
+— Ghana, Senegal, Tanzania — should treat the appropriations outcome, not<br />
+the floor vote, as the reference case worth studying.</p>
+<p>The distinction matters beyond Nigeria specifically because it reframes<br />
+what "governance maturity" should be measured against across this<br />
+publication's entire country-tracking exercise. A country that enacts an<br />
+ambitious law and underfunds it has arguably produced a worse outcome,<br />
+for the citizens the law is meant to protect, than a country that enacts<br />
+a narrower law fully resourced to do exactly what it says. This<br />
+publication has not previously applied that discipline consistently —<br />
+South Africa's withdrawn policy was assessed largely on substantive<br />
+content, Kenya's guidance on its replicability, without asking in either<br />
+case what a fully-funded version of each instrument would cost and<br />
+whether that cost was ever seriously budgeted. Nigeria's appropriations<br />
+gap is the clearest opportunity yet to build funding adequacy into this<br />
+publication's own standing assessment framework going forward, not just<br />
+into this month's thesis.</p>
+  </div>
+  <div class="thesis-falsify">
+    <div class="tf-label">What Would Make This Wrong</div>
+    <p>This thesis is wrong if the phased NDPC registry performs adequately within its reduced scope through the mid-2027 review and receives full funding on schedule — in which case phased funding was prudent sequencing, not underfunding, and the distinction this thesis draws between enactment and resourcing would have been a false alarm rather than the correct diagnostic. This publication commits to reporting that outcome plainly in the mid-2027 issue nearest the review date, whichever way it resolves.</p>
+  </div>
+  <div class="thesis-verdict verdict-confirmed">
+    <span class="tv-badge">Last Month's Thesis — Confirmed</span>
+    <p>June's thesis held that institutions choosing to be tested in public, rather than avoiding the test, constituted a lower-risk governance posture than being untested. That posture continued this window: the NDPC's funding request went through a public appropriations process rather than a closed one, Kenya's Communications Authority now has a second country (Zambia, publicly, this window — see Executive Brief) citing its guidance, and Korea converted its Seoul opening position into a signed instrument rather than letting the diplomatic optics lapse. Where June's thesis under-specified is the funding question: it treated "asking to be funded" as sufficient evidence of institutional health. This month's evidence — the request was made, but only 40% of it was granted — shows that the public test can be passed procedurally while still failing on substance. That refinement, not a reversal, is what this month's thesis carries forward. One further wrinkle worth logging for the record: June's thesis was silent on Kenya's Konza facility, which had not yet been announced. Read against this month's evidence, Konza is the clearest counter-case June's framing did not anticipate — an institution that, so far, has chosen silence over disclosure, and whose eventual response to that choice will be a genuine test of whether the "tested in public" framing generalises beyond the specific institutions June happened to examine.</p>
+  </div>
+
+  <!-- §2 EXECUTIVE BRIEF -->
+  <div class="sec" id="brief">
+    <span class="sec-num">§2</span><span class="sec-title">Executive Brief</span><div class="sec-line"></div>
+  </div>
+  <div class="brief-item">
+    <div class="brief-num">01</div>
+    <div class="brief-body">
+      <h4>Nigeria enacts Africa's first comprehensive, risk-tiered AI law — with its enforcement arm funded at 40% of request</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>The Senate passed the AI Governance Bill 89–14 on 22 July; President Tinubu signed it into law on 28 July. The accompanying appropriations bill funded the NDPC's incident registry at ₦480 million against a ₦1.2 billion request, restructured as a financial-services-and-health-only pilot pending a mid-2027 review. The concurrent NITDA/NDPC jurisdictional model survived the floor vote without amendment, preserving the architecture this publication has tracked as the bill's central design strength since May.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>It is the first enacted comprehensive AI statute on the continent, and the first live test of whether Nigeria's architecturally sophisticated concurrent-jurisdiction model can function on a fraction of its intended budget.</div>
+      <div class="brief-row"><span class="br-label">Watch</span>NDPC registry intake volumes against its reduced scope over the first two quarters, and whether the mid-2027 review is scheduled with binding criteria or left discretionary.</div>
+    </div>
+  </div>
+  <div class="brief-item">
+    <div class="brief-num">02</div>
+    <div class="brief-body">
+      <h4>A $350M Gulf-financed AI compute facility lands in Nairobi with no published data-governance terms</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>Kenya's ICT Ministry and a Gulf-based investment vehicle confirmed a $350M AI compute facility for the Konza Technopolis on 9 July, following the same sovereign-wealth financing structure this publication documented in Egypt and Morocco — but without the transparency commitments Kenya's own AI deployment register has otherwise established as the national norm. The Ministry's briefing materials disclose neither the counterparty's identity nor the facility's data-governance terms, a gap this publication was able to close for Egypt's comparable deal by the following month's edition.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>This is the third African government to accept this financing structure without published governance terms, meeting the exact trigger condition this publication's Scenarios & Forecasts section set in June — and it lands in the one country whose regulatory reputation the deal now sits in tension with.</div>
+      <div class="brief-row"><span class="br-label">Watch</span>Whether Kenya's Communications Authority applies its own deployment-register disclosure requirements to the facility, and whether that application becomes the precedent other African regulators use against their own Gulf-financed projects.</div>
+    </div>
+  </div>
+  <div class="brief-item">
+    <div class="brief-num">03</div>
+    <div class="brief-body">
+      <h4>Korea and the DRC sign a minerals-for-infrastructure MOU in Seoul</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>On 14 July, South Korea's Ministry of Trade and the DRC's Ministry of Mines signed a non-binding memorandum covering guaranteed coltan and cobalt supply, a pilot AI-relevant data centre co-located in Lubumbashi, and a Korean-funded digital skills institute — going beyond the technology-transfer language Korea previewed at the 9 June preliminary session. The MOU specifies a 12-month construction window for the Lubumbashi pilot, an unusually concrete timeline for a non-binding instrument of this kind.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>It is the first signed instrument to emerge from the DRC's May minerals brief, converting five months of diplomatic positioning into an actual — if non-binding — commitment, and it sets a reference price for whatever China or others offer next.</div>
+      <div class="brief-row"><span class="br-label">Watch</span>Whether the Lubumbashi data centre pilot breaks ground within the MOU's stated 12-month window, given this publication's standing concern about DRC implementation capacity.</div>
+    </div>
+  </div>
+  <div class="brief-item">
+    <div class="brief-num">04</div>
+    <div class="brief-body">
+      <h4>Cassava breaks ground in Lagos — three confirmed nodes, concentration risk rising with the footprint</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>Cassava Technologies held a ground-breaking ceremony for its Lagos data centre on 21 July, with the Lagos State government, a Nigerian fintech, and an international health NGO confirmed as anchor tenants — the same three-category pattern established in Johannesburg and Accra. The Lekki Free Trade Zone site placement mirrors Cassava's SEZ-adjacent siting strategy in both prior nodes, and Phase 1 is targeted for Q3 2027, a longer timeline than Accra's due to site-preparation complexity Cassava attributes to the Lagos parcel specifically.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>The anchor-tenant model is now confirmed repeatable across three distinct national regulatory environments, but a three-node footprint sharpens the single-operator concentration risk this publication's Scenarios & Forecasts section has carried since May.</div>
+      <div class="brief-row"><span class="br-label">Watch</span>Cassava's own public statements on interoperability commitments, which the AU's draft Digital Infrastructure Framework may soon require of any operator crossing a continental compute-share threshold.</div>
+    </div>
+  </div>
+  <div class="brief-item">
+    <div class="brief-num">05</div>
+    <div class="brief-body">
+      <h4>A non-network founder in Kampala ships a compute-efficient AI product — the second data point</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>Joseph Kintu, founder of a Kampala-based maternal health startup with no prior institutional connection to AIMS or its trial-partner network, launched a diagnostic-support product on 8 July built directly on AIMS's open-source distillation methodology, downloaded from the public repository rather than through any partner channel. The product reached a paying pilot with two clinic networks within roughly six weeks of the download, a timeline close to the seven weeks this publication documented for the Tanzanian case in June.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>June's Deep Research Essay set an explicit falsification condition: if no founder outside the AIMS trial-partner network shipped a product before the formal field trial began, the Tanzanian case was a one-off enabled by network proximity, not evidence of a structurally faster commercialisation clock for compute-efficiency research. Kintu's product is that outside data point.</div>
+      <div class="brief-row"><span class="br-label">Watch</span>Whether a third, geographically unrelated case emerges by the September issue, which would move this from a confirmed data point to a genuine pattern.</div>
+    </div>
+  </div>
+  <div class="brief-item">
+    <div class="brief-num">06</div>
+    <div class="brief-body">
+      <h4>Zambia publishes its own responsible-AI drafting guidance, citing Kenya by name</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>ZICTA converted its 18 June internal circular into a public 9-page guidance document on 16 July, explicitly modelled on and crediting CA Kenya's May guidance. The document adopts CA Kenya's core disclosure, verification, and record-management provisions with only minor adaptation to ZICTA's own institutional structure, and is the first public governance document by any African regulator to name and credit a peer institution's prior work in this way.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>It is the first confirmed public, cross-border replication of an African AI governance norm that had no legislative mandate behind it — the exact mechanism the June Contrarian Bet argued would outpace formal legislative diffusion.</div>
+      <div class="brief-row"><span class="br-label">Watch</span>Whether a third country cites either Kenya's or Zambia's guidance before the September issue, which is the threshold this publication set for treating the pattern as continental rather than bilateral.</div>
+    </div>
+  </div>
+  <div class="number-of-month">
+    <div class="notm-label">The Number of the Month</div>
+    <div class="notm-value">40%</div>
+<div class="notm-context">NDPC incident registry funding shortfall — Share of the National Data Protection Commission's requested ₦1.2 billion budget that was actually appropriated — the number that defines this month's thesis about the gap between enactment and resourcing.</div>  </div>
+
+  <!-- §3 SIGNALS & METRICS -->
+  <div class="sec" id="signals">
+    <span class="sec-num">§3</span><span class="sec-title">Signals &amp; Metrics</span><div class="sec-line"></div>
+  </div>
+  <table class="kpi-table">
+    <thead><tr><th>Metric</th><th>This Month</th><th>Trend</th><th>Trailing 3-Mo Avg</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Total AI capital invested across Africa (USD, trailing window)</td>
+        <td class="kpi-val">$1.5B</td>
+        <td class="trend-up">▲</td>
+        <td>$1.05B</td>
+        <td class="kpi-note">Partech Africa's Q2 2026 estimate, cross-checked against AVCA deal data; continues the diversification trend the IFC's Q1 report first documented, though see this section's capital-flow read below for the concentration caveat this figure alone obscures.</td>
+      </tr>
+      <tr>
+        <td>Countries receiving ≥$1M AI investment</td>
+        <td class="kpi-val">16</td>
+        <td class="trend-up">▲</td>
+        <td>11</td>
+        <td class="kpi-note">Uganda and Zambia cross the threshold for the first time this window, both linked to AIMS-methodology and governance-guidance activity respectively rather than to venture or infrastructure capital.</td>
+      </tr>
+      <tr>
+        <td>AI laws/regulations — Enacted vs. Proposed vs. Consultation (net change)</td>
+        <td class="kpi-val">+1 / -1 / 0</td>
+        <td class="trend-up">▲</td>
+        <td>—</td>
+        <td class="kpi-note">Nigeria moves from Proposed to Enacted — the first movement into the Enacted column this publication has recorded since tracking began.</td>
+      </tr>
+      <tr>
+        <td>Announced AI compute capacity added (GPU-equivalent units)</td>
+        <td class="kpi-val">≈78,000</td>
+        <td class="trend-up">▲</td>
+        <td>64,000</td>
+        <td class="kpi-note">Kenya's Konza facility adds an estimated, unverified 14,000 GPU-equivalent units on top of Egypt's 64,000 — the first Sub-Saharan facility to approach North African facility-scale, pending independent confirmation of the underlying procurement contract.</td>
+      </tr>
+      <tr>
+        <td>AI deployments at >1M active users (cumulative)</td>
+        <td class="kpi-val">3</td>
+        <td class="trend-flat">—</td>
+        <td>3</td>
+        <td class="kpi-note">No new threshold crossing this window; M-Pesa's fraud-detection system remains the largest confirmed African AI deployment by user count, with no reported regression across five consecutive production months.</td>
+      </tr>
+      <tr>
+        <td>Papers/preprints with African institutional affiliation (tracked this window)</td>
+        <td class="kpi-val">53</td>
+        <td class="trend-up">▲</td>
+        <td>41</td>
+        <td class="kpi-note">Second month of the standing instrument; up from 41 in June. AIMS field-trial-linked output accounts for roughly a third of the increase, with the remainder spread across the six primary partner institutions' own independent research pipelines.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="metric-card">
+    <h4>Metric of the Month — Kenya's Gulf-financed facility is the third data point on a scenario this publication flagged as medium probability in June</h4>
+    <div class="mc-body"><p>In June, this publication's Scenarios &amp; Forecasts section set an<br />
+explicit trigger: a third African government, beyond Egypt and<br />
+Morocco, announcing a compute facility above $300M on Gulf-sovereign<br />
+terms with no published data-governance disclosure, before any<br />
+African development finance institution co-financed a comparable<br />
+facility. Kenya's Konza announcement meets that trigger precisely —<br />
+$350M, no published terms, and neither the AfDB nor Afreximbank has<br />
+yet announced co-financing at this scale for any African AI facility.<br />
+The scenario has moved from "watch" to "confirmed"; what happens next<br />
+is a different question, addressed in this issue's Scenarios &amp;<br />
+Forecasts section and its second Deep Research Essay.</p></div>
+  </div>
+  <div class="metric-card">
+    <h4>Metric of the Month — The registry funding gap, expressed as a share, is larger than the share of the Act's own text devoted to enforcement</h4>
+    <div class="mc-body"><p>The AI Governance Act's enforcement provisions occupy roughly 22% of<br />
+its total statutory text, by this publication's own count of the<br />
+gazetted version — a proportion broadly comparable to Kenya's and<br />
+South Africa's respective draft frameworks. The NDPC's registry<br />
+funding shortfall, at 60% below request, is nearly three times that<br />
+proportion. The mismatch is illustrative rather than dispositive:<br />
+statutory emphasis and appropriations outcomes are decided by<br />
+different institutions on different timelines, and a well-drafted<br />
+enforcement chapter does not guarantee matching resourcing any more<br />
+than a thin one guarantees underfunding. But the size of the gap<br />
+between the two numbers is exactly the kind of quantified anomaly<br />
+this section exists to surface before it disappears into general<br />
+commentary about the Act's passage.</p></div>
+  </div>
+  <p class="coverage-note">No validated signals this window from Central Africa outside the DRC, or from the Maghreb outside Morocco and Egypt. Coverage of Southern African countries beyond South Africa remains thin — Zambia is the exception this month, entering the frame through governance rather than infrastructure or capital. Flagged again for the perception layer's August collection window. The perception layer's own coverage-audit protocol, described in SKILL_geo_scraper_agent.md, calls for escalation when a region records zero signals across a rolling four-week window; Central Africa outside the DRC now meets that threshold and is formally escalated for August sourcing priority rather than simply noted here as in prior issues. West Africa outside Nigeria and Ghana also remains thinly covered relative to its population and AI-relevant activity, a gap this publication attributes to source-language bias toward Anglophone outlets that the geo-scraper agent's Francophone quota, described in its own skill file, has not yet closed in practice.</p>
+
+  <!-- §4 DEEP RESEARCH ESSAYS -->
+  <div class="sec" id="essays">
+    <span class="sec-num">§4</span><span class="sec-title">Deep Research Essays</span><div class="sec-line"></div>
+  </div>
+  <div class="essay-card">
+    <div class="essay-tags">
+<span class="sc-tag tag-policy">Policy</span><span class="sc-tag tag-policy">Nigeria</span><span class="sc-tag tag-ecosystem">Ecosystem</span>    </div>
+    <h2 class="essay-title">Nigeria's AI Act Is Law. Whether It Works Depends on Money the Vote Didn't Guarantee</h2>
+<p class="essay-dek">Concurrent jurisdiction was the right regulatory architecture. Appropriations, not statutory design, is now the variable that decides whether it functions.</p>    <div class="essay-body">
+      <p>On 28 July, President Bola Tinubu signed the AI Governance Act into law<br />
+at Aso Rock, flanked by the ministers who had spent five months arguing<br />
+over which agency should hold which power. The signing ceremony ran<br />
+eleven minutes. The appropriations line that funds the law's only<br />
+citizen-facing accountability mechanism — the AI Incident Registry — at<br />
+40% of what its own regulator said it needed was not mentioned once.</p>
+      <p>This publication has followed the NITDA–NDPC jurisdictional question<br />
+since May as the defining fault line in Nigerian AI governance, and has<br />
+argued consistently that the Senate committee's concurrent-jurisdiction<br />
+resolution — NITDA for registration and classification, NDPC for<br />
+data-scale enforcement — was more architecturally sophisticated than<br />
+any comparable African AI framework, including implicit comparisons to<br />
+the EU's own AI Office/DPA split. That architecture survived the floor<br />
+vote intact. The open question this essay addresses is different: does<br />
+good architecture matter if the agency responsible for its most novel<br />
+accountability instrument can only afford to run it at less than half<br />
+scale.</p>
+      <p>Three things happened in the appropriations process that deserve more<br />
+scrutiny than the floor vote itself received. First, the Ministry of<br />
+Finance's own budget note — obtained via a Freedom of Information<br />
+request filed by Paradigm Initiative and shared with this publication<br />
+— frames the ₦480 million allocation not as underfunding but as<br />
+"phased scope," restricting the registry's live jurisdiction to<br />
+financial services and health AI, the two sectors with the highest<br />
+existing regulatory density and therefore, implicitly, the lowest<br />
+marginal cost of registry integration. That is a coherent<br />
+sequencing argument. It is also, functionally, indistinguishable from<br />
+underfunding until the mid-2027 review actually expands scope — a<br />
+review whose criteria the appropriations bill does not specify.</p>
+<p>Second, the NDPC's own 17 June request was itself already a compromise:<br />
+it modelled a phased national rollout designed to avoid the exact<br />
+volume-overload failure mode this publication flagged as the registry's<br />
+central operational risk back in AIW-026-11 — the concern that<br />
+Nigeria's data-protection regulator, which processes roughly 2,400<br />
+complaints a year, could receive an order of magnitude more AI incident<br />
+reports in its first month than it has ever handled in a year. A<br />
+registry funded at 40% of an already-conservative request is not simply<br />
+a smaller version of the same instrument; it is an instrument whose<br />
+margin for the exact failure mode it was designed around has been cut<br />
+before it has processed a single report.</p>
+<p>Third — and this is the detail the floor-vote coverage missed<br />
+entirely — the concurrent-jurisdiction model's core strength was that<br />
+NITDA and NDPC were assigned genuinely distinct competences rather than<br />
+split authority over the same one. That architectural clarity does not<br />
+buy immunity from a shared constraint: both agencies now depend on the<br />
+same finance ministry for implementation budget in future cycles, and<br />
+the ministry has just demonstrated, in its first opportunity to do so,<br />
+that it will fund a phased fraction of what a regulator requests rather<br />
+than the full request. Any assessment of Nigeria's AI Act's durability<br />
+now has to model NITDA's future registration-system budget through the<br />
+same discount the NDPC's registry has just received, not assume NITDA's<br />
+registration mandate — cheaper to run, more legible to political<br />
+leadership — will be spared the same treatment indefinitely.</p>
+<p>Nigeria's own regulatory history offers a fourth data point this essay<br />
+would be incomplete without. The Central Bank's cashless-policy<br />
+enforcement apparatus, launched in 2012 with a fully-scoped national<br />
+mandate and a fraction of the staffing later analyses concluded it<br />
+needed, took roughly six years and two separate supplemental<br />
+appropriations before enforcement capacity caught up with statutory<br />
+scope — a lag during which enforcement was, by the Central Bank's own<br />
+later admission, functionally selective rather than comprehensive.<br />
+The NDPC's registry is not repeating that exact mistake; phasing the<br />
+scope down to match the initial budget, rather than funding a national<br />
+mandate at unsustainable staffing ratios, is the more disciplined of<br />
+the two approaches available. But it borrows the same underlying<br />
+assumption — that a follow-on appropriations cycle will complete what<br />
+the first one started — and that assumption has a mixed record in<br />
+Nigerian financial regulation specifically. The NDPC has one advantage<br />
+the Central Bank's 2012 cashless unit did not: a publicly reported FOI<br />
+disclosure trail, active civil-society tracking through Paradigm<br />
+Initiative, and a publication willing to check the 2027 review date<br />
+against what actually happens. Whether that visibility changes the<br />
+historical pattern, rather than merely documenting a repeat of it, is<br />
+precisely the question this publication intends to answer in real<br />
+time rather than retrospectively.</p>
+    </div>
+    <div class="essay-evidence"><div class="ee-label">Evidence</div><p>Senate floor vote, 22 July, 89–14, concurrent NITDA/NDPC model intact;<br />
+Presidential assent, 28 July; Ministry of Finance appropriations note<br />
+obtained via Paradigm Initiative FOI request, ₦480 million against the<br />
+NDPC's ₦1.2 billion supplemental request filed 17 June (AIW-2026-06);<br />
+NDPC's approximately 2,400 annual data-protection complaint volume<br />
+cited as the registry's original operational-capacity concern<br />
+(AIW-026-11, AIW-026-13); mid-2027 review referenced in the<br />
+appropriations bill without stated binding criteria as of this<br />
+edition's close.</p></div>
+    <div class="essay-counter"><div class="ec-label">The Strongest Counterargument</div><p>The strongest case against this essay's framing is that phased,<br />
+sector-limited rollout is standard and prudent practice for any novel<br />
+regulatory instrument, and that treating it as underfunding rather than<br />
+sequencing reflects impatience rather than analysis. Financial<br />
+services and health are plausibly the two sectors where AI incident<br />
+reporting infrastructure is most urgently needed and most feasible to<br />
+build first — banks and hospitals already operate under compliance<br />
+regimes that make incident reporting a familiar organisational<br />
+behaviour, unlike, say, agricultural AI deployment among informal-sector<br />
+users. A registry that works well for two sectors and expands on<br />
+schedule is arguably a better outcome than one launched nationally and<br />
+immediately overwhelmed. This essay's thesis would be wrong to treat<br />
+"phased" as a euphemism if the phasing genuinely reflects capacity-<br />
+building logic rather than budgetary limitation dressed as policy.</p>
+<p>A fair reading also has to acknowledge that Eze's own original design,<br />
+per the profile in this issue's African Builders section, already<br />
+contemplated some form of phasing before the appropriations process<br />
+narrowed it further — meaning the finance ministry's decision is best<br />
+read as a more aggressive version of a sequencing logic the NDPC had<br />
+itself proposed, not an imposition of an entirely foreign constraint on<br />
+an otherwise fully-scoped design. Where this essay's framing still<br />
+holds, even accounting for that nuance, is in the gap between the<br />
+NDPC's own preferred sequencing and the finance ministry's actual<br />
+allocation — a compromise-on-a-compromise that the "prudent phasing"<br />
+defence explains less convincingly the further the final number drifts<br />
+from what the designing agency itself requested.</p></div>
+    <div class="essay-implications"><div class="ei-label">Strategic Implications</div><p>For Nigerian civil society and Paradigm Initiative specifically: the<br />
+mid-2027 review is now the single highest-leverage intervention point<br />
+in Nigerian AI governance, and its criteria — currently unspecified —<br />
+should be the object of sustained advocacy well before the review date<br />
+arrives, not after. For other African legislatures currently drafting<br />
+AI bills — this publication has tracked active drafting processes in<br />
+Ghana, Senegal, and Tanzania — the lesson is to build funding triggers<br />
+and review criteria directly into statutory text rather than leaving<br />
+them to a separate appropriations process that a different set of<br />
+political incentives governs. For investors in Nigerian AI companies:<br />
+the practical regulatory environment through 2027 is the two-sector<br />
+phased regime, not the nationally-scoped one described in most<br />
+coverage of the Act's passage — model compliance costs and enforcement<br />
+exposure accordingly, sector by sector, rather than assuming uniform<br />
+national enforcement capacity exists.</p>
+<p>For development finance institutions specifically, the NDPC funding<br />
+gap is a more addressable problem than most African AI governance<br />
+shortfalls this publication has documented, precisely because it is<br />
+quantified, time-bound, and tied to a published review date rather<br />
+than an open-ended institutional capacity deficit. A grant or<br />
+technical-assistance commitment sized to close some portion of the<br />
+₦720 million gap between what the NDPC requested and what it received<br />
+would be a legible, measurable intervention with a built-in evaluation<br />
+point in the mid-2027 review — a rarer combination in African<br />
+governance financing than it should be, and one this publication<br />
+expects at least one DFI to recognise before the review date arrives.</p></div>
+    <div class="essay-falsify"><div class="ef-label">What Would Change This View</div><p>This argument is wrong if the phased registry demonstrably performs well within its two-sector scope through the mid-2027 review — no reported backlog, credible incident data collected, and it results in full-scope funding being granted on or ahead of schedule. That outcome would validate the sequencing defence in the counterargument above and would mean this essay mistook prudent phasing for a funding failure.</p></div>
+    <div class="essay-meta">~1404 words</div>
+  </div>
+  <div class="essay-card">
+    <div class="essay-tags">
+<span class="sc-tag tag-research">Models</span><span class="sc-tag tag-infra">Infrastructure</span><span class="sc-tag tag-capital">Capital</span>    </div>
+    <h2 class="essay-title">The Second Data Point</h2>
+<p class="essay-dek">A Kampala founder with no ties to AIMS just tested this publication's own thesis about compute-efficiency research — while a very different, very expensive model for African AI infrastructure landed forty miles away in Nairobi.</p>    <div class="essay-body">
+      <p>Last month, this publication argued that the seven-week gap between<br />
+AIMS's open-source release and a Tanzanian founder's commercial product<br />
+might represent a structurally different commercialisation clock for<br />
+compute-efficiency research — and then conceded, in the same essay,<br />
+that the founder's University of Dar es Salaam ties made the case<br />
+ungeneralisable on its own. We set an explicit falsification condition:<br />
+a second founder, outside the trial network, would need to ship before<br />
+the pattern could be called anything more than a well-positioned<br />
+individual's head start. On 8 July, Joseph Kintu shipped.</p>
+      <p>Kintu's product — a maternal-health diagnostic-support tool for rural<br />
+Ugandan clinics — has no institutional link to AIMS's six primary or<br />
+three associate trial-partner universities. He downloaded the<br />
+open-source distillation methodology from the public repository in<br />
+late June, adapted it to a maternal-health imaging dataset his small<br />
+team had already assembled, and launched a paying pilot with two<br />
+clinic networks within roughly six weeks. That is close to the seven-<br />
+week Tanzanian timeline, achieved by someone with none of the network<br />
+proximity that made the first case easy to dismiss as an outlier. At<br />
+the same time, and geographically not far away, Kenya's government<br />
+confirmed a $350 million Gulf-financed AI compute facility that will<br />
+take eighteen months to build and whose governance terms remain<br />
+undisclosed. The two stories are not simply parallel; they are<br />
+alternative bets on how African AI capability should be built, playing<br />
+out in the same quarter, in neighbouring countries.</p>
+      <p>The Kampala case strengthens, without fully proving, last month's<br />
+thesis. A second founder outside the trial network, in a different<br />
+country, working in a different clinical domain than the Tanzanian<br />
+case, reaching market on a comparable timeline, is meaningfully more<br />
+evidence than one data point — but it is still two data points, and<br />
+this essay is not prepared to call two a trend. What it is prepared to<br />
+argue is narrower and, we think, more useful: compute-efficiency<br />
+research has now demonstrated, twice, that it can convert from<br />
+open-source release to commercial deployment without an intervening<br />
+capital raise, a government partnership, or an institutional<br />
+affiliation of any kind. That is a genuinely different commercialisation<br />
+pathway than African AI has produced before, and it is worth taking<br />
+seriously as a category even before a third data point arrives.</p>
+<p>Set that pathway against Kenya's Konza facility. The Gulf-financed<br />
+model this publication has tracked since Egypt's May announcement<br />
+requires nine-figure capital commitments, multi-year construction<br />
+timelines, sovereign-level diplomatic relationships, and — per the<br />
+contrarian bet this publication ran in AIW-026-11 — an ecosystem of<br />
+trained researchers and commercial developers that does not yet exist<br />
+in sufficient depth to utilise the compute once it is built. The<br />
+compute-efficiency pathway requires none of that. It requires an<br />
+engineer, a laptop, a dataset, and a repository. These are not<br />
+competing theories of the same phenomenon; they are two different<br />
+answers to the question of what African AI capability-building should<br />
+prioritise, and they are being tested simultaneously with no<br />
+coordination between them, in the same region, funded by entirely<br />
+different logics.</p>
+<p>The essay's own bias should be stated plainly: the compute-efficiency<br />
+pathway is more interesting to write about because it is unexpected<br />
+and because this publication has now had a small role in tracking it<br />
+from pre-print to two commercial launches. That is not the same as it<br />
+being more important. Kenya's facility, if it is utilised — a real<br />
+"if," per the Egypt contrarian bet — will represent orders of magnitude<br />
+more aggregate compute capacity than every compute-efficiency product<br />
+combined. The honest comparison is not which pathway wins; it is that<br />
+African governments and investors are currently allocating attention<br />
+and capital asymmetrically toward the capital-intensive pathway<br />
+relative to the evidence base each pathway has actually produced this<br />
+year.</p>
+<p>There is a version of this argument that has been made before, in a<br />
+different register, in African infrastructure debates generally: that<br />
+the continent has historically been urged to choose between grid-scale<br />
+power investment and distributed off-grid solar, and that the<br />
+framing itself — pick one — was usually a mistake, since both ended up<br />
+mattering in different contexts and at different timescales. The<br />
+compute question may resolve the same way. Facility-scale compute is<br />
+plausibly necessary for training genuinely novel foundation models on<br />
+African data at competitive scale, a capability compute-efficiency<br />
+methodologies do not currently replace and were not designed to. But<br />
+the evidence this quarter is specific: for narrow, well-defined<br />
+deployment problems — a maternal-health diagnostic tool, an<br />
+agricultural advisory product — compute-efficient inference is<br />
+already sufficient, already cheaper, and already shipping, while<br />
+facility-scale compute for equivalent narrow use cases would be<br />
+underutilising an asset built for a different job. Conflating "African<br />
+AI needs more compute" with "every African AI product needs<br />
+facility-scale compute" is the specific error this essay is trying to<br />
+name, not a claim that infrastructure investment is misguided in<br />
+general.</p>
+    </div>
+    <div class="essay-evidence"><div class="ee-label">Evidence</div><p>Kintu's Kampala launch, 8 July, no prior AIMS institutional affiliation<br />
+confirmed via direct outreach to AIMS's field-trial administration<br />
+office; approximately six-week timeline from open-source download to<br />
+paying pilot with two clinic networks; AIMS repository fork count of<br />
+241 as of 24 July, up from 174 on 21 June (AIW-2026-06); Kenya's Konza<br />
+facility, $350M, announced 9 July, 14,000 GPU-equivalent unit estimate<br />
+per Ministry of ICT briefing materials, no data-governance terms<br />
+published as of this edition's close; Egypt ecosystem-gap contrarian<br />
+bet and its evidentiary basis (AIW-026-11) as the standing comparator<br />
+for infrastructure-first capability-building risk.</p></div>
+    <div class="essay-counter"><div class="ec-label">The Strongest Counterargument</div><p>The strongest objection is that comparing a single maternal-health<br />
+diagnostic pilot to a national-scale compute facility is a category<br />
+error dressed up as an insight — Kintu's product may never scale<br />
+beyond two clinic networks, while Konza's compute, once operational,<br />
+will be available to any Kenyan or East African developer regardless<br />
+of whether utilisation initially lags. Infrastructure is a shared,<br />
+durable asset; a single founder's product is not. A more honest<br />
+framing might be that the two pathways are complementary rather than<br />
+competing — compute-efficiency methodologies produce the low-cost<br />
+products that eventually justify utilising facility-scale compute for<br />
+training and fine-tuning at larger scale, rather than replacing the<br />
+need for it. This essay's asymmetric-attention argument understates<br />
+how early both pathways are; declaring an allocation imbalance after<br />
+two data points on one side and one facility announcement on the other<br />
+may be premature by the standard this publication otherwise holds<br />
+itself to elsewhere in this issue.</p>
+<p>There is also a scale objection worth taking seriously on its own<br />
+terms: even if ten more Kintus emerge by year end, their combined<br />
+economic footprint would likely remain a rounding error against<br />
+Konza's $350M capital commitment, and an attention-allocation argument<br />
+built on economic footprint alone would favour the facility decisively.<br />
+This essay's position survives that objection only by defining<br />
+"attention" as something other than proportional-to-capital-deployed —<br />
+specifically, as proportional-to-evidence-of-what-actually-works for a<br />
+given class of problem. Readers who reject that definition of what<br />
+attention should track will reasonably reject this essay's central<br />
+claim, and this publication does not think that rejection is<br />
+unreasonable, only that it is a different question than the one this<br />
+essay is asking.</p></div>
+    <div class="essay-implications"><div class="ei-label">Strategic Implications</div><p>For development finance institutions: a compute-efficiency grant or<br />
+fellowship programme costs a rounding error of what a single<br />
+facility-scale investment does, and this quarter's evidence suggests<br />
+the return-on-attention, if not yet return-on-capital, favours funding<br />
+more Kintus before the third data point arrives to make the case<br />
+obvious to everyone. For Kenya's Communications Authority specifically:<br />
+applying the same AI deployment register disclosure standard to Konza<br />
+that the CA already requires of domestic AI operators would resolve<br />
+the internal contradiction between Kenya's governance reputation and<br />
+its newest infrastructure deal, and would be the cheapest credibility<br />
+recovery available to any African regulator this quarter. For<br />
+builders: geographic and institutional proximity to an AIMS trial<br />
+partner is no longer a precondition for using the methodology<br />
+commercially — the repository is genuinely public, and the Kampala<br />
+case is the proof.</p>
+<p>For this publication specifically, the implication is methodological:<br />
+the September issue should treat "does a third non-network founder<br />
+emerge" as a tracked, dated question rather than an incidental update,<br />
+the same discipline this publication already applies to the Thesis<br />
+Tracker and Scenario Watchlist. A pattern this publication itself<br />
+partly helped surface, by writing about the first case prominently<br />
+enough that a second founder may plausibly have read the coverage<br />
+before shipping, deserves the same rigour about its own influence on<br />
+the outcome that any external analyst would apply to a self-reinforcing<br />
+signal.</p></div>
+    <div class="essay-falsify"><div class="ef-label">What Would Change This View</div><p>This argument is wrong, in its comparative form, if Konza's compute utilisation ramps to meaningful capacity within its first operational year while no third non-network compute-efficiency founder emerges — in which case the capital-intensive pathway would have proven itself faster than the compute-efficiency pathway proved its own generalisability, reversing the attention-allocation argument this essay makes.</p></div>
+    <div class="essay-meta">~1454 words</div>
+  </div>
+
+  <!-- §5 ENGINEERING FRONTIER -->
+  <div class="sec" id="engineering">
+    <span class="sec-num">§5</span><span class="sec-title">Engineering Frontier</span><div class="sec-line"></div>
+  </div>
+<div class="thesis-support"><p>This window's defining engineering fact is the arrival of Sub-Saharan<br />
+Africa's first facility-scale Gulf-financed compute commitment — Kenya's<br />
+Konza project, at $350M and roughly 14,000 GPU-equivalent units, is an<br />
+order of magnitude smaller than Egypt's Cairo facility but is the first<br />
+of its kind south of the Sahara, and it lands in a market whose existing<br />
+governance reputation makes its lack of published terms more conspicuous<br />
+than the same silence would be elsewhere. Alongside it, Cassava's Lagos<br />
+groundbreaking completes a three-node Sub-Saharan footprint built on a<br />
+fundamentally different financing logic — telco, government, and NGO<br />
+anchor tenancy rather than sovereign patient capital — giving this<br />
+publication its clearest side-by-side comparison yet of the two<br />
+financing models competing for the continent's compute-infrastructure<br />
+future. A third, much smaller thread belongs in this section too: AIMS's<br />
+field trial commencing across six countries this month with zero<br />
+dedicated infrastructure spend of its own, using standard commercial<br />
+cloud capacity end to end, which is the cheapest engineering story in<br />
+this issue by a wide margin and arguably the most consequential one for<br />
+near-term African AI deployment economics.</p></div>  <div class="layer-grid">
+    <div class="layer-card"><h4>⚡ Power</h4><div class="lc-body"><p>No material new Sub-Saharan power signal this window; Kenya's Olkaria V<br />
+Phase 2 geothermal expansion remains the enabling condition cited in the<br />
+Konza Technopolis site selection, per the Ministry of ICT's own briefing<br />
+materials, extending the same power-reliability logic that made Nairobi<br />
+a viable AI infrastructure site in the first place (AIW-026-10). Egypt's<br />
+New Administrative Capital dedicated-grid arrangement remains unchanged.<br />
+No new renewable-energy PPA involving an AI-relevant counterparty was<br />
+validated this window.</p>
+<p>The Konza site's power story is worth one further sentence of caution:<br />
+Olkaria V's 72MW addition, flagged as significant when it crossed the AI<br />
+infrastructure viability threshold in May, is a geothermal expansion<br />
+serving the entire Nairobi industrial corridor, not a dedicated grid<br />
+connection comparable to Egypt's New Administrative Capital arrangement.<br />
+Whether Konza's power draw at full build-out competes with, rather than<br />
+complements, the same capacity increase that made the site attractive in<br />
+the first place is a question the Ministry's briefing materials do not<br />
+address, and one this publication will track as construction proceeds.<br />
+Kenya Power and Lighting Company has not published a dedicated supply<br />
+agreement for Konza specifically, which means the facility's power<br />
+provisioning currently rests on the same general grid-capacity assumption<br />
+that every other industrial user in the corridor shares, rather than on<br />
+any facility-specific guarantee — a materially different arrangement<br />
+than the dedicated, contractually guaranteed supply Egypt's New<br />
+Administrative Capital facility secured before construction began.</p></div></div>
+    <div class="layer-card"><h4>🧱 Compute</h4><div class="lc-body"><p>Konza's 14,000 GPU-equivalent unit estimate, per Ministry of ICT<br />
+briefing materials, would make it the largest single compute commitment<br />
+in East Africa by a wide margin, though the figure has not been<br />
+independently verified against a signed procurement contract as of this<br />
+edition's close. The Ministry has not disclosed the Gulf counterparty's<br />
+identity, the hardware generation, or the procurement routing — a<br />
+disclosure gap that stands in contrast to Egypt's ADQ-confirmed,<br />
+H100-class, UAE-export-compliance-routed procurement structure, which<br />
+this publication was able to specify in detail by AIW-2026-06. AIMS's<br />
+compute-efficiency methodology continues to demonstrate the inverse<br />
+proposition: the Kampala and Tanzanian products both run on standard<br />
+commercial cloud infrastructure requiring no dedicated procurement at<br />
+all.</p>
+<p>The absence of a disclosed hardware generation matters beyond simple<br />
+transparency: without it, no independent analyst — this publication<br />
+included — can verify whether the 14,000-unit figure refers to current-<br />
+generation H100-class accelerators, older A100-class hardware being<br />
+repriced into the African market as "AI compute" without matching<br />
+capability claims, or some blended fleet. Egypt's disclosure of its own<br />
+hardware generation is precisely what allowed this publication to assess<br />
+its export-control routing mechanism in detail; Kenya's non-disclosure<br />
+forecloses that same analysis, which is itself informative about how<br />
+differently the two deals were structured for public accountability.</p></div></div>
+    <div class="layer-card"><h4>🌐 Connectivity</h4><div class="lc-body"><p>Cassava's Lagos groundbreaking, 21 July, targets a Q3 2027 Phase 1<br />
+completion — a longer timeline than Accra's Q1 2027 target, which<br />
+Cassava's public statement attributes to Lagos site-preparation<br />
+complexity rather than any change in the underlying anchor-tenant<br />
+commitments. The Abidjan Internet Exchange Point recorded no new<br />
+throughput milestones this window; the two Ivorian applications<br />
+previously flagged as routing inference traffic through it now report a<br />
+combined 410,000 active users, up from approximately 340,000 in June.</p>
+<p>The Lagos site itself sits within the Lekki Free Trade Zone rather than<br />
+a standard commercial parcel — a choice that mirrors Cassava's Tema<br />
+Special Economic Zone placement in Accra and reinforces the pattern this<br />
+publication flagged in AIW-026-11: infrastructure investors planning<br />
+African data-centre timelines should treat SEZ-equivalent customs and<br />
+power-guarantee frameworks as a primary site-selection variable, not a<br />
+secondary one, given how consistently Cassava's own timeline advantages<br />
+have tracked to exactly this kind of zone placement across three<br />
+separate national jurisdictions now.</p></div></div>
+  </div>
+  <div class="dependency-watch"><div class="dw-label">Dependency Watch — for Scenarios &amp; Forecasts</div>The Gulf-routed compute dependency this publication first flagged around Egypt's procurement structure is now a three-country pattern (Egypt, Morocco, Kenya), meeting the exact trigger this publication's own Scenarios & Forecasts section set in June. Kenya's version of the dependency is structurally worse than Egypt's on transparency grounds specifically, since Kenya has an existing AI deployment-register norm the facility appears not to be subject to. See Scenario 1, revised below, and this issue's second Deep Research Essay.</div>
+
+  <!-- §6 COMMERCIAL STRATEGY -->
+  <div class="sec" id="commercial">
+    <span class="sec-num">§6</span><span class="sec-title">Commercial Strategy</span><div class="sec-line"></div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-body"><p>Two commercial-strategy stories define this window, and they pull in<br />
+opposite directions on capital intensity. Partech Africa's Q2 2026<br />
+estimate puts continental AI investment at roughly $1.5B, up from the<br />
+IFC's $1.2B Q1 figure, with Uganda and Zambia crossing the $1M threshold<br />
+for the first time — Uganda via the compute-efficiency pathway this<br />
+issue's second essay covers at length, Zambia via governance-adjacent<br />
+technical-assistance capital rather than product investment. Meanwhile<br />
+Kenya's $350M Konza commitment represents, on its own, close to a<br />
+quarter of the entire continent's quarterly investment total in a single<br />
+undisclosed-terms facility.</p>
+<p>Reading the two stories together rather than separately is the point.<br />
+A single infrastructure line item now approaches a quarter of tracked<br />
+quarterly capital while requiring none of the diligence disclosure a<br />
+$1M product investment would face from even a modestly rigorous African<br />
+venture fund — a scale-versus-scrutiny imbalance that should concern<br />
+anyone using aggregate investment totals as a proxy for ecosystem health<br />
+without decomposing what kind of capital is actually driving the number.</p></div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-head">Capital Flow Read</div>
+    <div class="pb-body"><p>The composition story from June continues: Nigeria, Kenya, and South<br />
+Africa's combined share of tracked AI capital has fallen further this<br />
+quarter, though the denominator effect of Konza's own scale complicates<br />
+a clean read — a single large infrastructure commitment in Kenya both<br />
+diversifies the country list and re-concentrates the capital-weighted<br />
+total in familiar hands, depending on which metric an investor prioritises.<br />
+The more durable diversification signal is Uganda and Zambia's<br />
+threshold-crossing, since both arrived through mechanisms — a self-funded<br />
+product launch and a governance guidance-adoption process — that do not<br />
+depend on any single large capital allocator's continued attention.</p>
+<p>A useful discipline for any investor reading Africa-wide AI capital<br />
+totals going forward: strip out any single facility commitment above<br />
+$200M before assessing diversification trends, since one Gulf-financed<br />
+project can single-handedly reverse or exaggerate a quarter's<br />
+concentration reading in either direction. Applying that filter to this<br />
+quarter's $1.5B figure leaves roughly $1.15B in venture, DFI, and<br />
+smaller infrastructure capital — a total that shows genuine<br />
+country-count diversification even after the adjustment, which is the<br />
+more reliable trend of the two.</p></div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-head">Competitive Structure</div>
+    <div class="pb-body"><p>Cassava's three-node footprint (Johannesburg, Accra, Lagos) is now the<br />
+clearest moat of its kind on the continent — no competitor has matched<br />
+the anchor-tenant replication pattern across three distinct regulatory<br />
+environments, and none has yet announced an intention to try at<br />
+comparable scale. The compute-efficiency moat, by contrast, is explicitly<br />
+non-durable in the conventional sense: Kintu's Kampala product faces no<br />
+meaningful switching-cost barrier from a well-resourced competitor who<br />
+downloads the same repository, which means its defensibility rests<br />
+entirely on execution speed, clinical data relationships, and<br />
+distribution — a genuinely different competitive logic than<br />
+infrastructure moats reward, and one operators should not conflate when<br />
+building a strategy around either.</p>
+<p>A third competitive structure is emerging that neither the June nor the<br />
+prior weekly editions fully named: governance-guidance authorship itself<br />
+is becoming a form of soft institutional moat. CA Kenya's drafting<br />
+guidance, now cited publicly by Zambia, gives Kenya a first-mover<br />
+position in shaping continental AI governance norms that costs nothing<br />
+to produce and compounds in influence with every subsequent citation —<br />
+a moat available only to regulators, not companies, but one worth<br />
+naming alongside the two commercial patterns above since it is shaping<br />
+the environment both commercial models operate within.</p></div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-head">For the Operator — Build / Buy / Partner</div>
+    <div class="pb-body"><p>Build: on AIMS's open methodology if your target use case can tolerate a<br />
+thin technical moat in exchange for near-zero capital intensity — the<br />
+Kampala case demonstrates this now works twice, in two different<br />
+clinical domains, with no institutional head start required. Buy: into<br />
+Cassava's Lagos, Accra, or Johannesburg capacity as an anchor tenant if<br />
+your workload needs dedicated compute, data residency, or the<br />
+credibility of an established anchor-tenant relationship. Partner: with<br />
+a Gulf-sovereign vehicle directly only with eyes open to the<br />
+disclosure-gap pattern this publication has now documented across three<br />
+countries — and budget for the reputational and regulatory-alignment<br />
+risk that gap carries, particularly in a market like Kenya where the<br />
+absence of disclosure is more visible than it would be elsewhere.</p>
+<p>A fourth posture worth naming explicitly, since it does not fit neatly<br />
+into build/buy/partner: engage, meaning fund or second technical staff<br />
+into an existing open research effort like AIMS rather than building a<br />
+proprietary product on top of it. That posture captures none of the<br />
+commercial upside a Kintu-style product might generate, but it is the<br />
+only one of the four that directly increases the odds of a third and<br />
+fourth non-network data point emerging elsewhere on the continent — the<br />
+single development this publication would consider the strongest<br />
+possible confirmation of the pattern this issue's second essay is<br />
+tracking. Operators weighing all four postures simultaneously, rather<br />
+than choosing one exclusively, should note that they are not mutually<br />
+exclusive at portfolio level: a DFI or corporate venture arm could<br />
+reasonably buy into one Cassava node for dedicated workloads, engage<br />
+AIMS through a modest research grant, and build a thin product layer on<br />
+the compute-efficiency methodology, all within a single budget cycle<br />
+and at a combined capital outlay smaller than one Gulf-financed<br />
+facility's rounding error.</p></div>
+  </div>
+
+  <!-- §7 POLICY & GEOPOLITICS -->
+  <div class="sec" id="policy">
+    <span class="sec-num">§7</span><span class="sec-title">Policy &amp; Geopolitics</span><div class="sec-line"></div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-body"><p>This window produced the continent's first enacted comprehensive AI law,<br />
+its first signed DRC minerals-diplomacy instrument, and its first<br />
+confirmed public cross-border citation of an African AI governance<br />
+guidance document — three separate governance-maturity markers arriving<br />
+in the same five weeks. It also produced the clearest tension yet<br />
+between a country's AI governance reputation and its AI infrastructure<br />
+financing choices, in Kenya specifically, where a $350M facility now<br />
+sits uneasily beside a regulator otherwise known for exactly the kind of<br />
+disclosure the facility lacks.</p>
+<p>Read across the four storylines below, a pattern emerges that this<br />
+publication has not stated explicitly before: African AI governance is<br />
+increasingly producing its most consequential outcomes not at the moment<br />
+of announcement or even enactment, but at a second, quieter moment —<br />
+an appropriations line, a disclosure decision, a construction deadline —<br />
+that receives a fraction of the coverage the announcement itself did.<br />
+This issue's Executive Brief and both essays are, in different ways, an<br />
+attempt to correct that imbalance by tracking the second moment as<br />
+closely as the first.</p></div>
+  </div>
+  <div class="actor-grid">
+    <div class="actor-card">
+      <div class="actor-name">South Korea</div>
+      <div class="actor-row"><span class="ar-label">Instrument</span>Signed non-binding MOU with the DRC, 14 July, covering mineral supply guarantees, a pilot Lubumbashi data centre co-location, and a Korean-funded digital skills institute.</div>
+      <div class="actor-row"><span class="ar-label">African Counterpart Leverage</span>First mover among the DRC brief's four addressees to convert diplomatic positioning into a signed instrument, setting the reference terms any subsequent Chinese, US, or EU offer will be compared against.</div>
+      <div class="actor-row"><span class="ar-label">Degrees of Freedom</span>Korea's offer now has to be delivered, not just proposed — the 12-month data-centre construction window in the MOU is a self-imposed deadline that will be the first test of whether Seoul's differentiated offer produces differentiated implementation.</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-name">Gulf states (via the undisclosed Konza counterparty)</div>
+      <div class="actor-row"><span class="ar-label">Instrument</span>Third confirmed sovereign-patient-capital AI compute commitment in Africa, following Egypt and Morocco, structured without public disclosure of counterparty identity or data-governance terms.</div>
+      <div class="actor-row"><span class="ar-label">African Counterpart Leverage</span>Kenya's need for facility-scale compute to match its Sub-Saharan infrastructure ambitions outweighs, for now, any leverage Kenya might otherwise exert to demand the transparency terms its own domestic AI governance regime requires of others.</div>
+      <div class="actor-row"><span class="ar-label">Degrees of Freedom</span>Kenya retains formal regulatory authority to apply its AI deployment register to the facility at any point — the question is institutional will, not legal capacity, which is a different and more addressable constraint than the ones Egypt or Morocco face.</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-name">China</div>
+      <div class="actor-row"><span class="ar-label">Instrument</span>No new public statement on DRC minerals or digital infrastructure cooperation since the 29 May MofCOM bilateral reaffirmation; no response yet to the signed Seoul MOU as of this edition's close, despite the MOU's terms having been public for two weeks by this edition's window close.</div>
+      <div class="actor-row"><span class="ar-label">African Counterpart Leverage</span>China's existing $4B+ committed infrastructure position in the DRC remains, on paper, larger than anything Korea has yet committed under the Seoul MOU — its continued silence may reflect confidence that scale alone preserves its position without requiring a matching counter-offer, a calculation this publication has no independent way to verify beyond observing the silence itself.</div>
+      <div class="actor-row"><span class="ar-label">Degrees of Freedom</span>A prolonged non-response through a second Seoul-DRC session, expected before the September issue per the MOU's own review cadence, would itself become informative — either confirming China views its position as secure, or signalling a genuine, if unannounced, reassessment is underway that has simply not yet reached public communication.</div>
+    </div>
+  </div>
+  <table class="convergence-table">
+    <thead><tr><th>Country</th><th>Policy Status</th><th>Key Development</th><th>Convergence Signal</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Nigeria</strong></td>
+        <td>AI Governance Act enacted 28 July</td>
+        <td>Concurrent NITDA/NDPC model intact; incident registry funded at 40% of request, restructured as a two-sector phased pilot with a mid-2027 review</td>
+        <td>↑ First enacted comprehensive African AI law — funding execution is now the story, not statutory design</td>
+      </tr>
+      <tr>
+        <td><strong>Kenya</strong></td>
+        <td>AI deployment register operational; new $350M Gulf-financed facility outside its disclosure norms</td>
+        <td>Konza facility announced 9 July, no published data-governance terms; CA Kenya has not yet stated whether the register applies</td>
+        <td>↓ Governance-reputation tension — the facility contradicts Kenya's own transparency norm</td>
+      </tr>
+      <tr>
+        <td><strong>South Africa</strong></td>
+        <td>Policy withdrawn — panel active, September Parliamentary briefing pending</td>
+        <td>No new public disclosure this window; panel remains on its published ToR timeline per DCDT's prior confirmation</td>
+        <td>→ Steady — SADC governance vacuum continues, now entering its fourth month</td>
+      </tr>
+      <tr>
+        <td><strong>Zambia</strong></td>
+        <td>Published its own responsible-AI drafting guidance, 16 July</td>
+        <td>Explicitly modelled on and credits CA Kenya's May guidance — first public cross-border citation this publication has confirmed</td>
+        <td>↑ Confirms the norm-replication pattern the June Contrarian Bet forecast</td>
+      </tr>
+      <tr>
+        <td><strong>DRC</strong></td>
+        <td>Minerals diplomacy — Seoul MOU signed</td>
+        <td>Non-binding MOU covers mineral supply, pilot Lubumbashi data centre, Korean-funded skills institute; 12-month construction window self-imposed</td>
+        <td>↑ Leverage play converts to a signed instrument — implementation capacity remains the open question</td>
+      </tr>
+      <tr>
+        <td><strong>Uganda</strong></td>
+        <td>No AI-specific legislation — first commercial AI product of note</td>
+        <td>Kintu's AIMS-methodology maternal-health product launches 8 July with no prior institutional AI-policy engagement</td>
+        <td>→ New entrant to the tracking map via commercial activity rather than governance</td>
+      </tr>
+    </tbody>
+  </table>
+  <ul class="branch-points">
+    <li>NDPC registry mid-2027 review — will binding scope-expansion criteria be published before the review date, or will it remain a discretionary Finance Ministry decision?</li>
+    <li>CA Kenya's response to the Konza facility — does Kenya apply its own deployment-register disclosure standard, and does that decision become a template other regulators cite?</li>
+    <li>Lubumbashi data centre construction — does groundbreaking occur within the Seoul MOU's stated 12-month window, the first concrete test of DRC implementation capacity this publication has flagged repeatedly since May?</li>
+    <li>China's response to the signed Seoul MOU — silence through a second Korea-DRC session would itself be a data point on how Beijing is pricing the DRC's newly demonstrated diplomatic leverage.</li>
+  </ul>
+
+  <!-- §8 AFRICAN BUILDERS -->
+  <div class="sec" id="builders">
+    <span class="sec-num">§8</span><span class="sec-title">African Builders</span><div class="sec-line"></div>
+  </div>
+  <div class="builder-card">
+    <div class="builder-bar" style="background: linear-gradient(to right, #008751 33%, #fff 33%, #fff 66%, #008751 66%);"></div>
+    <div class="builder-header">
+      <div>
+        <div class="builder-name">Ngozi Eze</div>
+        <div class="builder-meta">Director of Enforcement Design, National Data Protection Commission · Nigeria · Policy & Governance</div>
+        <div class="builder-badges"><span class="b-badge">Built the Phased Registry Proposal</span><span class="b-badge">Funded at 40% of Request</span></div>
+      </div>
+    </div>
+    <div class="builder-body">
+      <div class="builder-sub">Who<span class="sourcing-tag">Sourcing: Direct</span></div>
+      <p>Eze led the NDPC's technical design of the AI Incident Registry,<br />
+including the 17 June supplemental budget submission this publication<br />
+has tracked since AIW-2026-06. Her original design modelled a phased<br />
+national rollout specifically to avoid the volume-overload risk this<br />
+publication flagged as the registry's central operational threat. The<br />
+appropriations bill funded a narrower two-sector version of that design<br />
+than she requested.</p>
+      <div class="builder-sub">Why It Matters Beyond Them</div>
+      <p>Eze's registry is the first African AI accountability instrument to be<br />
+designed, requested, funded, and immediately constrained within a<br />
+single five-month window this publication has documented start to<br />
+finish — an unusually complete case study in how African AI governance<br />
+instruments move from proposal to lived budgetary reality, including<br />
+the compromises that reality imposes on even well-designed proposals.<br />
+Few African regulatory instruments of any kind have this level of<br />
+public documentation attached to their first budget cycle, which is<br />
+itself partly a function of Eze's own decision to make the original<br />
+design methodology public rather than treating it as internal working<br />
+material — a transparency choice that predates, and arguably enabled,<br />
+the FOI disclosure that surfaced the funding gap this issue covers.</p>
+      <div class="builder-sub">The Bet</div>
+      <p>Eze's implicit bet is that a working two-sector registry will generate<br />
+the evidence needed to win full funding at the mid-2027 review, rather<br />
+than being quietly narrowed further or left permanently phased. That<br />
+bet is genuinely live: this publication cannot yet confirm whether the<br />
+review criteria will reward demonstrated function or simply reflect<br />
+whatever the next budget cycle's political priorities happen to be —<br />
+a real limitation on how much credit her design deserves until the<br />
+review date arrives. If the bet pays off, Eze's phased-design approach<br />
+becomes a template other resource-constrained African regulators<br />
+reach for by default; if it does not, it becomes a cautionary case<br />
+study in how quickly a disciplined phasing strategy can calcify into<br />
+permanent underfunding once the initial policy attention has moved on.</p>
+    </div>
+  </div>
+  <div class="builder-card">
+    <div class="builder-bar" style="background: linear-gradient(to right, #000000 20%, #FCDC04 20%, #FCDC04 40%, #D90000 40%, #D90000 60%, #000000 60%, #000000 80%, #FCDC04 80%);"></div>
+    <div class="builder-header">
+      <div>
+        <div class="builder-name">Joseph Kintu</div>
+        <div class="builder-meta">Founder, Lweza Health AI · Uganda · Models & Applications</div>
+        <div class="builder-badges"><span class="b-badge">Second AIMS-Methodology Product</span><span class="b-badge">No Prior Network Tie</span><span class="b-badge">Self-Funded</span></div>
+      </div>
+    </div>
+    <div class="builder-body">
+      <div class="builder-sub">Who<span class="sourcing-tag">Sourcing: Direct</span></div>
+      <p>Kintu launched a maternal-health diagnostic-support product on 8 July,<br />
+built on AIMS's open-source compute-efficient distillation methodology,<br />
+downloaded directly from the public repository with no prior<br />
+institutional connection to AIMS or its trial-partner network. His<br />
+small team adapted the methodology to a maternal-health imaging<br />
+dataset assembled independently, reaching a paying pilot with two<br />
+clinic networks within roughly six weeks.</p>
+      <div class="builder-sub">Why It Matters Beyond Them</div>
+      <p>Kintu is the specific data point this publication's own June essay<br />
+said would determine whether the Tanzanian commercialisation case was<br />
+a genuine pattern or a network-proximity artefact. His product is the<br />
+first confirmed instance of the AIMS methodology reaching commercial<br />
+deployment through pure open-source propagation, with no partner<br />
+channel, government relationship, or funding round involved at any<br />
+stage. Uganda itself has no meaningful prior presence in this<br />
+publication's country coverage — its appearance here, via a founder<br />
+rather than a government announcement, is itself a small illustration<br />
+of the point this issue's second essay makes about which<br />
+capability-building pathway requires which kind of institutional<br />
+attention to surface in the first place.</p>
+      <div class="builder-sub">The Bet</div>
+      <p>Kintu's bet is that compute-efficient inference costs make a<br />
+maternal-health diagnostic tool commercially viable at price points<br />
+rural Ugandan clinic networks can actually pay, without needing<br />
+venture capital to subsidise unit economics until scale arrives. It is<br />
+the same bet Amani Mwakasege made in Tanzania in June, made<br />
+independently, by someone with no knowledge of Mwakasege's specific<br />
+approach beyond the public repository both of them used. Whether that<br />
+bet holds at a third or fourth clinic network, beyond the two Kintu<br />
+has already signed, is the near-term test; whether it holds at<br />
+national scale against better-capitalised competitors who might now<br />
+copy the same open methodology is the harder, longer-horizon one.</p>
+    </div>
+  </div>
+  <div class="builder-card">
+    <div class="builder-bar" style="background: linear-gradient(to bottom, #000000 25%, #BB0000 25%, #BB0000 50%, #ffffff 50%, #ffffff 75%, #006600 75%);"></div>
+    <div class="builder-header">
+      <div>
+        <div class="builder-name">David Chege</div>
+        <div class="builder-meta">Senior Data Governance Officer, Communications Authority of Kenya · Kenya · Policy & Infrastructure</div>
+        <div class="builder-badges"><span class="b-badge">Deployment Register Architect</span><span class="b-badge">Konza Disclosure Question Unresolved</span></div>
+      </div>
+    </div>
+    <div class="builder-body">
+      <div class="builder-sub">Who<span class="sourcing-tag">Sourcing: Third-party</span></div>
+      <p>Chege was the CA's lead technical architect for the AI deployment<br />
+register that gave Kenya its reputation as the continent's most<br />
+operationally transparent AI regulator, per this publication's own<br />
+assessment since AIW-026-11. This profile is built from the CA's<br />
+public register documentation and prior public remarks rather than a<br />
+direct interview; the CA has not yet issued a formal statement on<br />
+whether the register's disclosure requirements apply to the Konza<br />
+facility.</p>
+      <div class="builder-sub">Why It Matters Beyond Them</div>
+      <p>Chege's own instrument is the one whose credibility the Konza<br />
+facility's non-disclosure now tests. Whether the CA applies its<br />
+existing standard to a government-endorsed infrastructure project, or<br />
+makes an unstated exception for it, will be read across the continent<br />
+as evidence of whether Kenya's transparency norm is a genuine<br />
+institutional commitment or a policy that applies only to actors with<br />
+less leverage than a national infrastructure priority. Zambia's public<br />
+citation of CA Kenya's separate drafting guidance this same window<br />
+raises the stakes further: a regulator whose norms are actively being<br />
+imported elsewhere on the continent has more to lose from an<br />
+unexplained double standard than one operating in relative obscurity.</p>
+      <div class="builder-sub">The Bet</div>
+      <p>The bet implicit in treating this as a genuine test, rather than a<br />
+foregone conclusion either way, is that institutional norms are<br />
+actually contestable in real time — that Chege's register was not<br />
+designed with an unstated carve-out for state-endorsed projects, and<br />
+that its application to Konza is a live administrative decision rather<br />
+than a settled one. This publication cannot yet confirm which reading<br />
+is correct, and treats both as open until the CA states a position.<br />
+The absence of a stated position at the time of this edition's close<br />
+is itself worth noting: institutions that intend to apply a standard<br />
+consistently rarely need six weeks of silence to say so.</p>
+    </div>
+  </div>
+
+  <!-- §9 MODELS, PAPERS & REPOSITORIES -->
+  <div class="sec" id="research">
+    <span class="sec-num">§9</span><span class="sec-title">Models, Papers &amp; Repositories</span><div class="sec-line"></div>
+  </div>
+  <div class="thesis-support"><p>AIMS's compute-efficient distillation methodology produced this window's<br />
+single most consequential research-to-commerce data point: a second,<br />
+fully independent commercial deployment, in Uganda, with no institutional<br />
+tie to the trial network. The formal six-country field trial also<br />
+commenced in July as scheduled, producing its first weeks of production<br />
+data across the six primary partner countries — early enough that<br />
+results are preliminary, but notable because none of the trial's own<br />
+formal deployments have yet matched the two informal, self-funded<br />
+products that reached market ahead of it.</p>
+<p>Masakhane's community also produced a smaller but structurally relevant<br />
+update this window, covered in the repository health entry below —<br />
+relevant because it bears on the dark-zone languages this section has<br />
+tracked without movement since May, and because it illustrates a<br />
+different, slower-moving model of African AI research infrastructure<br />
+than AIMS's rapid commercialisation pattern.</p></div>
+  <table class="benchmark-table">
+    <thead>
+      <tr>
+        <th>Language</th>
+<th>DeepSeek</th><th>Google Gemini</th><th>Microsoft Copilot</th><th>Leading African-led model</th>      </tr>
+    </thead>
+    <tbody>
+      <tr class="">
+        <td>Hausa (~80M)</td>
+<td>Conversational fluency (V3, May 2026)</td><td>Functional</td><td>Limited</td><td>Masakhane dataset — pre-commercial</td>      </tr>
+      <tr class="">
+        <td>Amharic (~30M)</td>
+<td>Conversational fluency (V3, May 2026)</td><td>Functional</td><td>None confirmed</td><td>Indaba² research community, pre-benchmark</td>      </tr>
+      <tr class="">
+        <td>Arabic — MSA</td>
+<td>Strong (global model)</td><td>Strong (global model)</td><td>Strong (global model)</td><td>AUC compute-efficient lab — early stage</td>      </tr>
+      <tr class="changed">
+        <td>Luganda (~11M)</td>
+<td>None confirmed</td><td>None confirmed</td><td>None confirmed</td><td>Lweza Health AI — task-specific, not general-purpose</td>      </tr>
+    </tbody>
+  </table>
+<div class="thesis-support"><p>Luganda is added to the standing board this issue, reflecting Kintu's<br />
+Kampala product — though the entry carries an important caveat the table<br />
+itself cannot express: Lweza Health AI is a task-specific diagnostic<br />
+tool, not a general-purpose Luganda-language model, and its addition here<br />
+tracks commercial AI activity in a new language market rather than a<br />
+genuine capability benchmark. The three existing rows are unchanged<br />
+carry-forwards.</p></div>  <div class="repo-card">
+    <h4>Repository Health — AIMS Compute-Efficient Distillation</h4>
+    <p>241 forks as of 24 July, up from 174 on 21 June — continued growth,<br />
+though the rate of increase has moderated slightly from the prior<br />
+month's acceleration, consistent with a maturing rather than viral<br />
+adoption curve. The formal field trial's July commencement across<br />
+six primary-partner countries has not yet produced a confirmed<br />
+commercial deployment from within the trial's own structure,<br />
+making Kintu's outside-network product the more commercially<br />
+advanced case despite having none of the trial's institutional<br />
+support.</p>
+  </div>
+  <div class="repo-card">
+    <h4>Repository Health — Masakhane Tigrinya-Somali-Oromo Benchmark Suite</h4>
+    <p>No new commercial model activity against any of the three benchmark<br />
+languages this window, extending a pattern this publication has<br />
+now tracked without movement since the datasets were first released<br />
+in May (AIW-026-10). Masakhane's own community update this window<br />
+was methodological rather than commercial — an expanded evaluation<br />
+protocol covering code-switched Tigrinya-Amharic text, common in<br />
+real-world Ethiopian digital communication but absent from the<br />
+original benchmark design. The update improves the benchmark's<br />
+realism without changing the underlying commercialisation gap this<br />
+section has flagged in every issue since its introduction: a usable<br />
+evaluation standard existing for eighteen months without attracting<br />
+commercial investment is itself the more important story than any<br />
+single technical refinement to that standard.</p>
+  </div>
+  <p class="dark-zones">Dark zones: Tigrinya, Oromo, and Somali remain without commercial model coverage despite Masakhane's benchmark datasets existing for all three since AIW-026-10. Swahili, spoken by roughly 200 million people across East Africa, remains commoditised across major providers but has produced no African-led model of comparable capability — a gap notable precisely because it sits adjacent to this window's Kenya and Uganda coverage.</p>
+
+  <!-- §10 SCENARIOS & FORECASTS -->
+  <div class="sec" id="scenarios">
+    <span class="sec-num">§10</span><span class="sec-title">Scenarios &amp; Forecasts</span><div class="sec-line"></div>
+  </div>
+  <div class="scenario-card scenario-fragility">
+    <div class="scenario-header">
+      <span class="scenario-name">Gulf-Routed Compute Becomes the Default — and the Leverage Point — for African AI Infrastructure</span>
+      <div class="scenario-badges">
+        <span class="sb-badge">Fragility</span>
+        <span class="sb-badge prob-high">High</span>
+        <span class="sb-badge">Near 3–12mo</span>
+      </div>
+    </div>
+    <div class="scenario-body">
+      <div class="sc-row"><div class="sc-label">Trigger Conditions</div><p>Originally: a third African government, beyond Egypt and Morocco,<br />
+announcing a facility above $300M on Gulf-sovereign terms with no<br />
+published data-governance terms, before any African DFI co-financed<br />
+a comparable facility. Kenya's Konza announcement meets this<br />
+condition exactly. The scenario is now confirmed as triggered;<br />
+probability band raised from Medium to High to reflect that the<br />
+pattern is established rather than merely possible, and the<br />
+scenario's remaining uncertainty shifts to consequence rather than<br />
+occurrence. A revised trigger for the scenario's next phase is set<br />
+here explicitly: a fourth such facility, in a fourth country, before<br />
+the September issue, which would confirm the pattern as a<br />
+continental default rather than a three-country cluster.</p></div>
+      <div class="sc-row"><div class="sc-label">Stack-Wide Cascade</div><p>Chips and Infrastructure layers directly, now across two-thirds of<br />
+the continent's largest announced facilities. Policy &amp; Geopolitics<br />
+indirectly, via the specific tension this window surfaced in Kenya<br />
+between an established transparency norm and a new infrastructure<br />
+commitment that does not meet it — a cascade effect the original<br />
+June framing did not anticipate, since it assumed the pattern would<br />
+recur in markets without Kenya's specific governance reputation.<br />
+Commercial Strategy is now also directly implicated: this issue's<br />
+capital-flow analysis shows a single facility of this type capable<br />
+of distorting continental investment totals on its own, which means<br />
+the scenario's recurrence has measurable effects on how reliably<br />
+this publication's own Signals &amp; Metrics dashboard can be read<br />
+quarter to quarter.</p></div>
+      <div class="sc-label">Response Options</div>
+      <div class="response-grid">
+        <div class="response-col"><div class="rc-label">Investor</div><p>Treat Gulf-financed facility-scale infrastructure as a distinct asset class with a now-established, not merely hypothetical, disclosure-gap pattern — price the governance opacity into risk assessments as a base rate, not an exception, and strip such commitments out before reading continental capital-flow totals for diversification signal.</p></div>
+        <div class="response-col"><div class="rc-label">Policymaker</div><p>Kenya's Communications Authority has the clearest opportunity of any African regulator to date to resolve this scenario's core tension by applying its own existing deployment-register standard to Konza — a decision entirely within its stated authority and, per this issue's Executive Brief, one the CA has had six weeks to make without yet doing so.</p></div>
+        <div class="response-col"><div class="rc-label">Builder</div><p>Where facility-scale compute becomes available in your market through this financing pattern, evaluate access terms independently of the facility's public framing — the absence of published governance terms is now a base-rate expectation, not a red flag specific to any one deal, and should be priced into any commercial dependency on the facility accordingly.</p></div>
+      </div>
+      <div class="sc-indicators"><div class="sc-label">Early Indicators — Confirm or Deny</div><p>Watch CA Kenya's public statement, if any, on whether the deployment<br />
+register applies to Konza; watch for a fourth Gulf-financed<br />
+announcement in a new country before the September issue; watch for<br />
+any AfDB or Afreximbank compute-infrastructure commitment above<br />
+$300M, which remains entirely absent as of this edition's close and<br />
+would be the clearest counter-signal available. A formal parliamentary<br />
+question on the Konza facility's terms, from any Kenyan MP, would<br />
+also be a meaningful early indicator that the disclosure gap has<br />
+become a live domestic political issue rather than a specialist<br />
+concern confined to this publication's own coverage.</p></div>
+    </div>
+  </div>
+  <div class="scenario-card scenario-contrarian">
+    <div class="scenario-header">
+      <span class="scenario-name">Nigeria's Concurrent-Jurisdiction Model Becomes the West African Regulatory Template</span>
+      <div class="scenario-badges">
+        <span class="sb-badge">Contrarian</span>
+        <span class="sb-badge prob-medium">Medium</span>
+        <span class="sb-badge">Medium 1–3yr</span>
+      </div>
+    </div>
+    <div class="scenario-body">
+      <div class="sc-row"><div class="sc-label">Trigger Conditions</div><p>Nigeria's incident registry survives its first operational period<br />
+with a funded, credible path to full-scope expansion, and at least<br />
+one other ECOWAS country explicitly cites Nigeria's competence-based<br />
+NITDA/NDPC split as a design reference. The Act's enactment on 28<br />
+July is a necessary but not sufficient step toward this trigger;<br />
+the phased, reduced-scope funding introduces new uncertainty this<br />
+scenario did not carry in June, when the model's viability depended<br />
+only on the Senate vote outcome. Probability band held at Medium<br />
+rather than raised, reflecting that enactment resolved one source of<br />
+uncertainty (will it pass) while introducing another (will it be<br />
+funded adequately to demonstrate success worth replicating).</p></div>
+      <div class="sc-row"><div class="sc-label">Stack-Wide Cascade</div><p>Policy &amp; Geopolitics primarily. Commercial Strategy secondarily —<br />
+Nigerian AI company valuations may see a smaller regulatory-clarity<br />
+premium than a fully-funded enactment would have produced, since<br />
+"enacted but phased" carries more residual uncertainty for investors<br />
+modelling compliance exposure than "enacted and resourced" would.<br />
+The Models, Papers &amp; Repositories layer is affected only at the<br />
+margins: none of this quarter's AIMS-methodology commercial activity<br />
+touches Nigeria directly, meaning the Act's phased enforcement has<br />
+no bearing on the compute-efficiency pathway this issue otherwise<br />
+tracks closely — a useful reminder that not every scenario cascades<br />
+through every layer, and forcing one that does not would misrepresent<br />
+the analysis.</p></div>
+      <div class="sc-label">Response Options</div>
+      <div class="response-grid">
+        <div class="response-col"><div class="rc-label">Investor</div><p>Distinguish the statutory-clarity premium, which Nigeria has now earned, from the enforcement-certainty premium, which remains conditional on the mid-2027 review outcome — price them separately rather than as one event, and revisit the pricing once the first quarter of registry intake data becomes available around October.</p></div>
+        <div class="response-col"><div class="rc-label">Policymaker</div><p>Ghanaian, Senegalese, and Tanzanian drafters currently working on AI bills should study the appropriations outcome as closely as the statutory architecture, since Nigeria's experience shows the two can diverge significantly even within a single legislative cycle — and should consider writing minimum-funding floors directly into bill text rather than trusting a subsequent appropriations process.</p></div>
+        <div class="response-col"><div class="rc-label">Builder</div><p>Nigerian AI companies operating in financial services or health — the registry's live-scope sectors — should treat compliance obligations as materially more immediate than companies in other sectors, where the registry's authority remains pending the 2027 review, and should not assume the phased scope is permanent in either direction.</p></div>
+      </div>
+      <div class="sc-indicators"><div class="sc-label">Early Indicators — Confirm or Deny</div><p>The mid-2027 review's published criteria, once available; any<br />
+ECOWAS-peer legislative citation of Nigeria's model before the<br />
+September issue; NDPC registry intake data for its first full<br />
+operational quarter, expected to begin reporting around October.<br />
+A second, independent indicator worth tracking: whether NITDA's own<br />
+registration-system budget in the next appropriations cycle receives<br />
+full funding or the same proportional discount the NDPC's registry<br />
+did, which would confirm or complicate the essay's argument that<br />
+both agencies now share a common finance-ministry constraint<br />
+regardless of their distinct statutory competences.</p></div>
+    </div>
+  </div>
+  <div class="scenario-card scenario-fragility">
+    <div class="scenario-header">
+      <span class="scenario-name">The Seoul MOU Tests DRC Implementation Capacity Within a Self-Imposed Deadline</span>
+      <div class="scenario-badges">
+        <span class="sb-badge">Fragility</span>
+        <span class="sb-badge prob-medium">Medium</span>
+        <span class="sb-badge">Near 3–12mo</span>
+      </div>
+    </div>
+    <div class="scenario-body">
+      <div class="sc-row"><div class="sc-label">Trigger Conditions</div><p>The Lubumbashi pilot data centre component of the 14 July Korea-DRC<br />
+MOU either breaks ground within its stated 12-month window or does<br />
+not. This publication has flagged DRC implementation capacity —<br />
+distinct from DRC negotiating leverage, which the minerals brief<br />
+clearly demonstrated — as a standing structural concern since the<br />
+China-DRC infrastructure cooperation audits referenced in prior<br />
+editions. The Seoul MOU is the first instrument specific enough,<br />
+with a stated enough timeline, to test that concern directly rather<br />
+than assess it in the abstract.</p></div>
+      <div class="sc-row"><div class="sc-label">Stack-Wide Cascade</div><p>Infrastructure and Chips layers in the DRC specifically; Policy &amp;<br />
+Geopolitics continentally, since a successful Lubumbashi build would<br />
+become the reference case other resource-rich, infrastructure-poor<br />
+African countries cite when negotiating similar minerals-for-<br />
+infrastructure arrangements, while a stalled one would validate this<br />
+publication's standing capacity concerns and likely chill similar<br />
+deals elsewhere. There is a secondary Commercial Strategy cascade<br />
+worth naming: a functioning Lubumbashi facility would be the first<br />
+AI-relevant data centre in Central Africa outside a handful of<br />
+much smaller deployments, and its success or failure will shape how<br />
+investors price AI infrastructure risk across the entire ECCAS<br />
+region, not just the DRC specifically.</p></div>
+      <div class="sc-label">Response Options</div>
+      <div class="response-grid">
+        <div class="response-col"><div class="rc-label">Investor</div><p>Treat the 12-month construction window as the primary near-term catalyst for any DRC infrastructure or minerals-adjacent exposure — a missed deadline is a more informative signal than continued diplomatic statements from either party, and should trigger an immediate reassessment of any related regional exposure.</p></div>
+        <div class="response-col"><div class="rc-label">Policymaker</div><p>The African Development Bank and World Bank technical-assistance offer this publication proposed in AIW-026-13 remains the highest-leverage available intervention, and remains, as of this edition, unconfirmed as accepted or deployed — a six-week-old recommendation with no visible institutional response is itself worth flagging to both institutions directly.</p></div>
+        <div class="response-col"><div class="rc-label">Builder</div><p>Korean firms (Samsung, SK Hynix specifically, given their stated interest in DRC mineral supply security) with an operational stake in the MOU's success should be watched for any independent technical-assistance or project-management commitments beyond the government-to-government terms already disclosed, since private-sector involvement would meaningfully change the implementation-capacity risk profile this scenario tracks.</p></div>
+      </div>
+      <div class="sc-indicators"><div class="sc-label">Early Indicators — Confirm or Deny</div><p>Any groundbreaking announcement, procurement contract, or public<br />
+construction-schedule disclosure for the Lubumbashi site before the<br />
+September issue; any statement from China's Ministry of Commerce<br />
+responding to the signed MOU, which has been notably absent as of<br />
+this edition's close. A DRC government budget allocation toward its<br />
+own share of the pilot's costs, if the MOU requires one, would be a<br />
+meaningful early indicator of Kinshasa's own commitment level,<br />
+distinct from Korea's — this publication has not yet been able to<br />
+confirm whether the MOU specifies any DRC-side capital contribution<br />
+at all, which is itself worth flagging as an open question.</p></div>
+    </div>
+  </div>
+  <div class="scenario-followup">
+    <div class="sf-label">Watchlist Update — Carried Forward</div>
+    <ul><li><p>Cassava single-operator concentration risk (carried from AIW-026-10/11, AIW-2026-06): now a confirmed three-node footprint following the Lagos groundbreaking — probability of the concentration scenario mattering in practice continues to rise with each additional node, even as each individual node's sovereignty case remains sound. The AU's Digital Infrastructure Framework, still in draft as of this edition, remains the only mechanism that could formally address this before Cassava's footprint grows further.</p></li><li><p>Ethiopia AI Strategy political-cycle fragility (carried from AIW-026-10): unchanged this window — no new budget-cycle test has occurred since the Government AI Research Liaison position was confirmed at AAU in May. This publication expects the first real test to arrive with Ethiopia's own next budget cycle, not before.</p></li></ul>
+  </div>
+  <div class="scenario-followup">
+    <div class="sf-label">Resolved This Month</div>
+    <ul><li><p>DRC–Korea Seoul outcome (carried from AIW-2026-06 as partially resolved): fully resolved into a signed non-binding MOU on 14 July, including terms — mineral supply guarantees, pilot data centre, skills institute — that go beyond the technology-transfer language previewed at the 9 June preliminary session. Tracking now shifts to implementation, captured in the new Scenario 3 above, with the 12-month Lubumbashi construction window as the next concrete checkpoint.</p></li><li><p>Gulf-routed compute default scenario (carried from AIW-2026-06 as an open Medium-probability watch item): trigger condition met via Kenya's Konza announcement; formally moved from watchlist to confirmed, active scenario above with a revised High probability band, and now explicitly linked to this issue's second Deep Research Essay for the fuller strategic analysis this shift in status warrants.</p></li></ul>
+  </div>
+
+  <!-- §11 READING LIST -->
+  <div class="sec" id="reading">
+    <span class="sec-num">§11</span><span class="sec-title">Reading List</span><div class="sec-line"></div>
+  </div>
+  <ol class="reading-list">
+    <li>
+      <a href="https://example.org/nigeria-ai-act-2026" target="_blank">AI Governance Act 2026 — Full Text as Assented</a>
+      <span class="rl-meta">— Federal Republic of Nigeria Official Gazette, 28 July 2026</span>
+      <div class="rl-annotation"><p>The primary source for this issue's lead essay — read the appropriations schedule in Part VII alongside the enforcement provisions in Part III, not in isolation, to see the funding gap this issue tracks. Most commentary on the Act's passage has read Part III alone and missed the story entirely.</p></div>
+    </li>
+    <li>
+      <a href="https://example.org/konza-ai-facility-briefing" target="_blank">Konza Technopolis AI Compute Facility — Ministry Briefing Materials</a>
+      <span class="rl-meta">— Kenya Ministry of Information, Communications and the Digital Economy, 9 July 2026</span>
+      <div class="rl-annotation"><p>Notably silent on financing counterparty and data-governance terms — the silence itself is the most informative part of the document for anyone tracking the Gulf-capital pattern this issue covers, and worth comparing directly against Egypt's far more disclosure-heavy equivalent from May.</p></div>
+    </li>
+    <li>
+      <a href="https://example.org/drc-korea-mou-seoul" target="_blank">DRC–Republic of Korea Memorandum of Understanding on Strategic Minerals and Digital Infrastructure Cooperation</a>
+      <span class="rl-meta">— Republic of Korea Ministry of Trade, Industry and Energy, 14 July 2026</span>
+      <div class="rl-annotation"><p>The Lubumbashi data-centre annex, not the headline minerals terms, is the section worth close reading — its construction-timeline language is unusually specific for a non-binding instrument, and specific enough that this publication has built an entire scenario around whether it is honoured.</p></div>
+    </li>
+    <li>
+      <a href="https://www.aims.ac.za/" target="_blank">AIMS Compute-Efficient Distillation — Field Trial Month One Progress Note</a>
+      <span class="rl-meta">— African Institute for Mathematical Sciences, 22 July 2026</span>
+      <div class="rl-annotation"><p>The trial's own formal deployments remain earlier-stage than the two informal commercial products this issue covers — worth reading precisely because it complicates rather than confirms the pattern, a useful corrective against reading this issue's essay as more triumphant than the underlying evidence supports.</p></div>
+    </li>
+    <li>
+      <a href="https://example.org/nigeria-fintech-enforcement-2026" target="_blank">Nigeria's Appropriations Process and Regulatory Capacity: A Decade of Fintech Precedent, Revisited</a>
+      <span class="rl-meta">— Nigerian financial-regulation case literature, 2018–2026, various, updated</span>
+      <div class="rl-annotation"><p>The historical analogy this publication has used since AIW-026-11 for exactly this month's NDPC funding outcome — the update volume added following Nigeria's AI Act enactment is the most current version available, and the closest published comparator for how the 2027 review might actually unfold.</p></div>
+    </li>
+    <li>
+      <a href="https://example.org/voluntary-norm-diffusion-africa" target="_blank">Regional Diffusion of Voluntary Governance Norms Without Legislative Mandate</a>
+      <span class="rl-meta">— Comparative African regulatory-practice literature, 2021–2026, various</span>
+      <div class="rl-annotation"><p>Useful background for assessing whether Zambia's public citation of Kenya's guidance is the start of a genuine continental pattern or remains a two-country phenomenon — the POPIA diffusion case this literature covers is the closest available precedent, for better and worse.</p></div>
+    </li>
+  </ol>
+
+  <div class="editorial-note">
+    <div class="en-label">Editorial Note — AIW-2026-07</div>
+    <p>This is AIW-2026-07, the first issue produced through the complete T-14/T-10/T-7/T-4/T-2 production calendar described in SKILL_monthly_editorial_architecture.md, following AIW-2026-06's deliberately scoped pilot. Country coverage this issue includes Nigeria, Kenya, South Africa, the DRC, South Korea, Zambia, and — for the first time in this publication's history — Uganda, introduced through commercial AI activity rather than a policy or infrastructure announcement. The publication's standing commitment to rotating coverage beyond the Nigeria–Kenya–South Africa axis continues to be tracked deliberately rather than assumed; readers who want the full country-by-country ledger since Volume I began can request it directly. The Thesis Tracker and Scenario Watchlist, both introduced in AIW-2026-06, are now live continuity devices — this issue renders a verdict on June's thesis before stating its own, and carries forward, resolves, and revises every scenario opened in the prior two issues, per the Continuity Device Audit in SKILL_synthesis_agent_v2.md.<br />
+A note on this issue's own self-scrutiny: both Deep Research Essays this month engage directly with a prior claim this publication made — one about institutional self-correction as a governance signal, one about a falsification condition this publication itself set for its own June argument. That degree of self-reference is a deliberate editorial choice, not an accident of subject matter. A publication that tracks falsifiable theses and probability-banded scenarios across issues has an obligation to actually revisit them under the same scrutiny applied to any external actor's claims, and this issue is an attempt to hold that standard in practice for the first time at full length rather than only in the abbreviated Thesis Tracker verdict format. Next month's issue will assess whether that self-scrutiny discipline held or drifted back toward simple narrative continuity.</p>
+  </div>
+
+</div><!-- /main -->
+
+<footer>
+  <p><strong>AIW African Lens Monthly Intelligence Review — AIW-2026-07</strong></p>
+  <p style="margin-top:6px;">29 July 2026 · Window: 25 June 2026 → 29 July 2026 · Published 06:00 SAST</p>
+  <div class="footer-links">
+    <a href="index.html">All Monthly Editions</a>
+    <a href="../weekly/index.html">Weekly Archive (Vol. I)</a>
+    <a href="../index.html">Full Archive</a>
+<a href="aiw-2026-06.html">← AIW-2026-06</a>    <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe on Substack</a>
+  </div>
+  <p style="margin-top:16px;">AIW African Lens · AI · Machine Learning · Data Science · Across 54 Nations</p>
+  <p style="margin-top:6px;">© 2026 AIW African Lens · Archive hosted on GitHub Pages</p>
+</footer>
+
+</body>
+</html>
