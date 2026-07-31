@@ -1,17 +1,25 @@
+# AIW African Lens — Editions Registry
+# File: content/registry.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── SITE ─────────────────────────────────────────────────────────────────────
 site:
   brand: "AIW African Lens"
   substack: "https://simphiwemlotshwa.substack.com/"
   coverage: "Q1–Q3"
   nations: 54
 
+# ── STATS ─────────────────────────────────────────────────────────────────────
 stats:
   daily_editions: "21+"
   weekly_total: 13
-  developments_ranked: "110+"
+  monthly_total: 2
+  developments_ranked: "120+"
 
+# ── MACRO THEMES ──────────────────────────────────────────────────────────────
 themes:
   - title: "African AI Policy & Regulation"
-    count: "26+ editions · SA Panel Rebuild · Nigeria NDPC Budget Request · Kenya Cited by Zambia"
+    count: "28+ editions · Nigeria AI Act Enacted · SA Panel Rebuild · Kenya Guidance Replicated"
     css: "policy"
   - title: "Language AI & African NLP"
     count: "14+ editions · DeepSeek Hausa · Masakhane · Google"
@@ -20,19 +28,82 @@ themes:
     count: "12+ editions · Smile ID · M-Pesa · NDPC"
     css: "security"
   - title: "Sovereign AI Infrastructure"
-    count: "13+ editions · Egypt $800M · Cassava Lagos + Accra · Equinix R7.5B"
+    count: "14+ editions · Egypt $800M · Cassava 3-Node Footprint · Kenya Gulf Facility"
     css: "infra"
-  - title: "US–China–Korea AI Competition"
-    count: "11+ editions · Microsoft · DeepSeek · Korea–DRC Seoul Offer"
+  - title: "US–China–Korea–Gulf AI Competition"
+    count: "12+ editions · Microsoft · DeepSeek · Seoul MOU · ADQ"
     css: "geo"
   - title: "Deep Tech Ecosystem Building"
-    count: "9+ editions · AIMS Pre-Trial Launch · BAFAI · Indaba · Tanzania"
+    count: "10+ editions · AIMS Field Trial Live · BAFAI · Indaba · Uganda"
     css: "ecosystem"
 
-weekly:
-  - id: "AIW-026-13"
+# ── MONTHLY EDITIONS (Volume II — newest first) ───────────────────────────────
+monthly:
+
+  - id: "AIW-2026-08"
+    status: "coming"
+    badge: "grey"
+    date: "26 August 2026"
+    window: "30 July → 26 August 2026"
+    window_short: "30 Jul → 26 Aug 2026"
+    title: "In Production"
+    subtitle: ""
+    summary: ""
+    themes_line: "Full standard cadence — T-14/T-10/T-7/T-4/T-2 production calendar"
+    developments: 0
+    word_count: 0
+    file: "aiw-2026-08.html"
+
+  - id: "AIW-2026-07"
+    status: "new"
+    badge: "gold"
+    date: "29 July 2026"
+    window: "25 June → 29 July 2026"
+    window_short: "25 Jun → 29 Jul 2026"
+    title: "The Vote Was the Easy Part"
+    subtitle: "Nigeria Enacts Africa's First Comprehensive AI Law, a Gulf-Financed Facility Lands in Nairobi, and Compute Efficiency Gets Its Second Data Point"
+    summary: >
+      President Tinubu signs Nigeria's AI Governance Act into law on 28 July —
+      Africa's first enacted, risk-tiered, comprehensive AI statute — with its
+      incident registry funded at less than half of what the regulator asked for.
+      A $350M Gulf-financed AI compute facility lands in Nairobi with no published
+      data-governance terms, tripping a fragility scenario this publication has
+      tracked since May. Korea and the DRC sign a minerals-for-infrastructure MOU
+      in Seoul. And in Kampala, a founder with no AIMS institutional tie ships a
+      compute-efficient AI product — the second data point this publication's own
+      falsification test demanded.
+    themes_line: "Nigeria AI Act Signed · Kenya Gulf Facility · Seoul MOU Signed · AIMS Trial Live · Cassava Lagos Groundbreaking"
+    developments: 10
+    word_count: 13400
+    file: "aiw-2026-07.html"
+
+  - id: "AIW-2026-06"
     status: "available"
     badge: "teal"
+    date: "24 June 2026"
+    window: "3 June → 24 June 2026"
+    window_short: "3 → 24 Jun 2026"
+    title: "The Inaugural Monthly Review"
+    subtitle: "A Pilot Issue Ahead of the Standard Cycle"
+    summary: >
+      A deliberately scoped pilot — the first issue under the eleven-section
+      monthly architecture. South Korea's Seoul offer to the DRC includes
+      technology transfer, not just mineral reaffirmation. Cassava confirms its
+      Lagos node after three editions of silence. The AIMS compute-efficiency
+      methodology reaches a commercial product in Tanzania before its own field
+      trial begins — fifteen months ahead of this publication's established
+      benchmark-to-commercial rule.
+    themes_line: "Korea's Seoul Tech-Transfer Offer · Cassava Lagos Confirmed · AIMS Pre-Trial Commercial Launch · Nigeria NDPC Budget Request · Zambia Cites Kenya"
+    developments: 9
+    word_count: 5000
+    file: "aiw-2026-06.html"
+
+# ── WEEKLY EDITIONS (Volume I — closed archive, newest first) ─────────────────
+weekly:
+
+  - id: "AIW-026-13"
+    status: "available"
+    badge: "ink"
     date: "02 June 2026"
     window: "26 May → 02 June 2026"
     window_short: "26 May → 02 Jun 2026"
@@ -48,6 +119,7 @@ weekly:
     themes_line: "SA Panel ToR Confirmed · Indaba² Government-Research Interface · China Pre-Empts Seoul · AIMS Three-Tier Resolution · Egypt Talent Strategy"
     developments: 10
     file: "aiw-026-13.html"
+
   - id: "AIW-026-12"
     status: "available"
     badge: "ink"
@@ -57,14 +129,14 @@ weekly:
     title: "The Governance Quality Audit"
     subtitle: "South Africa's Policy Reset, Nigeria's Senate Delivers, and a Continent Takes Notes"
     summary: >
-      South Africa's withdrawn AI policy gets an independent seven-member
-      review panel. Nigeria's Senate committee recommends a risk-tiered,
-      concurrent-jurisdiction framework. Kenya issues Africa's first
-      responsible-AI drafting guidance. Angola enters the frame with a
-      Lusophone first.
+      South Africa's AI governance process produced something more valuable
+      than the policy it withdrew: a quality audit. Nigeria's Senate committee
+      delivered a risk-tiered preliminary framework. Kenya set an institutional
+      norm the continent should replicate. Angola entered the frame.
     themes_line: "SA Policy Reset · Nigeria Risk-Tier · Kenya CA Guidance · Angola Strategy · IFC $1.2B"
     developments: 10
     file: "aiw-026-12.html"
+
   - id: "AIW-026-11"
     status: "available"
     badge: "ink"
@@ -76,11 +148,12 @@ weekly:
     summary: >
       Nigeria's pre-hearing submissions crystallise the enforcement fault line.
       Egypt's $800M sovereign compute centre rewrites the continental
-      infrastructure ranking. Cassava breaks ground in Accra. Korea confirms a
-      DRC minerals dialogue.
+      infrastructure ranking. Cassava breaks ground in Accra. Korea confirms
+      DRC minerals dialogue. South Africa's civil society gap begins to close.
     themes_line: "Nigeria Hearings · Egypt $800M Compute · Cassava Accra · DRC–Korea · SA Civil Society"
     developments: 10
     file: "aiw-026-11.html"
+
   - id: "AIW-026-10"
     status: "available"
     badge: "ink"
@@ -92,10 +165,11 @@ weekly:
     summary: >
       South Africa's comment window filling without the right voices. The DRC
       links coltan export policy to AI chip access. Ethiopia commits $40M to a
-      sector-specific national strategy.
+      sector-specific national strategy. DeepSeek adds Hausa and Amharic.
     themes_line: "DRC Minerals Leverage · SA Comment Gap · Ethiopia $40M · DeepSeek Hausa · M-Pesa 32M"
     developments: 10
     file: "aiw-026-10.html"
+
   - id: "AIW-026-09"
     status: "available"
     badge: "ink"
@@ -106,28 +180,31 @@ weekly:
     subtitle: "M-Pesa AI Scale, Ethiopia Grid Readiness, Cassava Southern Africa Metrics"
     summary: >
       M-Pesa AI fraud detection controlled trial confirms 41% fraud reduction.
-      Ethiopia's GERD crosses the AI infrastructure viability threshold.
+      Ethiopia's GERD Phase 4 crosses the AI infrastructure viability threshold.
     themes_line: "M-Pesa AI Trial · Ethiopia GERD · Cassava SA Metrics · Rwanda Sandbox"
     developments: 10
     file: "aiw-026-09.html"
+
   - id: "AIW-026-08"
     status: "available"
     badge: "ink"
-    date: "27 Apr 2026"
+    date: "27 April 2026"
     window: "21 → 27 Apr 2026"
     window_short: "21 → 27 Apr 2026"
     title: "The Post-GITEX Reckoning"
     subtitle: "Governance Commitments Meet Implementation Reality"
     summary: >
-      SA AI Policy comment window opens. Morocco's Nexus data centre confirms
-      financing. Nigeria's Senate committee begins technical review.
+      SA AI Policy comment window opens. Morocco Nexus construction confirmed.
+      Nigeria Senate committee begins technical review. Abidjan IXP growth
+      signals a Francophone West Africa pivot.
     themes_line: "SA Comment Opens · Morocco Nexus · Nigeria Senate Review · Abidjan IXP · Korea-UCT"
     developments: 10
     file: "aiw-026-08.html"
+
   - id: "AIW-026-07"
     status: "available"
     badge: "ink"
-    date: "21 Apr 2026"
+    date: "21 April 2026"
     window: "14 → 21 Apr 2026"
     window_short: "14 → 21 Apr 2026"
     title: "The Policy Moment Arrives"
@@ -139,38 +216,41 @@ weekly:
     themes_line: "SA Gazette Published · AU PSC AI Security · GITEX Delivers · Language AI Gap · IMF Warning"
     developments: 10
     file: "aiw-026-07.html"
+
   - id: "AIW-026-06"
     status: "available"
     badge: "ink"
-    date: "14 Apr 2026"
+    date: "14 April 2026"
     window: "08 → 14 Apr 2026"
     window_short: "08 → 14 Apr 2026"
     title: "South Africa's AI Policy Lands"
     subtitle: "The 60-Day Window Opens"
     summary: >
       South Africa's AI Policy gazetted. Morocco's Nexus data centre closes
-      $1.28B in financing. GITEX Africa opens with a $5B deal pipeline.
+      $1.28B in financing. GITEX Africa opens with $5B deal pipeline.
     themes_line: "SA AI Policy Gazetted · Morocco Nexus $1.28B · GITEX $5B Pipeline · Mauritius FAIR"
     developments: 10
     file: "aiw-026-06.html"
+
   - id: "AIW-026-05"
     status: "available"
     badge: "ink"
-    date: "07 Apr 2026"
+    date: "07 April 2026"
     window: "31 Mar → 07 Apr 2026"
     window_short: "31 Mar → 07 Apr 2026"
     title: "Infrastructure Ahead of Governance"
     subtitle: "Africa's Q1 AI Reckoning"
     summary: >
-      Equinix bets R7.5B on South Africa. Nigeria's AI Bill deadline expires.
-      GITEX Africa opens. ERA 2026 concludes.
+      Equinix bets R7.5B on South Africa. Nigeria's AI Bill deadline expires
+      without enactment. GITEX Africa opens. ERA 2026 concludes.
     themes_line: "Equinix R7.5B · Nigeria Bill Misses Deadline · GITEX Africa Opens · ERA 2026"
     developments: 10
     file: "aiw-026-05.html"
+
   - id: "AIW-026-04"
     status: "coming"
     badge: "grey"
-    date: "31 Mar 2026"
+    date: "31 March 2026"
     window: "24 → 31 Mar 2026"
     window_short: "24 → 31 Mar 2026"
     title: "The Week Everything Converged"
@@ -179,10 +259,11 @@ weekly:
     themes_line: "Nigeria Bill Deadline · SA Gazette · $2B Surveillance · TECNO EllaClaw · GITEX Preview"
     developments: 11
     file: "aiw-026-04.html"
+
   - id: "AIW-026-03"
     status: "available"
     badge: "ink"
-    date: "24 Mar 2026"
+    date: "24 March 2026"
     window: "17 → 24 Mar 2026"
     window_short: "17 → 24 Mar 2026"
     title: "The Sovereignty Inflection"
@@ -193,10 +274,11 @@ weekly:
     themes_line: "Cassava AI Factory · NVIDIA GTC Vera Rubin · Kenya AI Bill · $2.1B Surveillance · BAFAI"
     developments: 11
     file: "aiw-026-03.html"
+
   - id: "AIW-026-02"
     status: "coming"
     badge: "grey"
-    date: "17 Mar 2026"
+    date: "17 March 2026"
     window: "10 → 17 Mar 2026"
     window_short: "10 → 17 Mar 2026"
     title: "Governance Week"
@@ -205,10 +287,11 @@ weekly:
     themes_line: "Microsoft vs DeepSeek · SA AI Policy · IFF 2026 Kigali · Nigeria Surveillance Bill"
     developments: 0
     file: "aiw-026-02.html"
+
   - id: "AIW-026-01"
     status: "coming"
     badge: "grey"
-    date: "10 Mar 2026"
+    date: "10 March 2026"
     window: "03 → 10 Mar 2026"
     window_short: "03 → 10 Mar 2026"
     title: "Launch Week"
@@ -218,40 +301,7 @@ weekly:
     developments: 0
     file: "aiw-026-01.html"
 
-monthly:
-  - id: "AIW-2026-06"
-    status: "new"
-    badge: "gold"
-    date: "24 June 2026"
-    window: "3 June 2026 → 24 June 2026"
-    window_short: "3 → 24 Jun 2026"
-    title: "The Inaugural Monthly Review"
-    subtitle: "A Pilot Issue Ahead of the Standard Cycle"
-    summary: >
-      A deliberately scoped pilot — the first issue under the eleven-section
-      monthly architecture. South Korea's Seoul offer to the DRC includes
-      technology transfer, not just mineral reaffirmation. Cassava confirms
-      its Lagos node after three editions of silence. The AIMS compute-
-      efficiency methodology reaches a commercial product in Tanzania before
-      its own field trial begins — fifteen months ahead of this publication's
-      established benchmark-to-commercial rule.
-    themes_line: "Korea's Seoul Tech-Transfer Offer · Cassava Lagos Confirmed · AIMS Pre-Trial Commercial Launch · Nigeria NDPC Budget Request · Zambia Cites Kenya"
-    developments: 10
-    word_count: 5000
-    file: "aiw-2026-06.html"
-  - id: "AIW-2026-07"
-    status: "coming"
-    badge: "grey"
-    date: "29 July 2026"
-    window: "25 June 2026 → 29 July 2026"
-    window_short: "25 Jun → 29 Jul 2026"
-    title: "First Full-Cycle Issue — In Production"
-    subtitle: ""
-    summary: ""
-    themes_line: "Full standard cadence resumes — T-14/T-10/T-7/T-4/T-2 production calendar"
-    developments: 0
-    file: "aiw-2026-07.html"
-
+# ── DAILY EDITIONS ─────────────────────────────────────────────────────────────
 daily:
   - id: "DAL-026-088"
     date: "01 Apr 2026"
