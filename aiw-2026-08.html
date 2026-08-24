@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIW-2026-08 — The Compute Race Outpaces the Governance Race · AIW African Lens Monthly Intelligence Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0e0e;
+    --cream: #faf7f2;
+    --gold: #c8922a;
+    --gold-light: #f0d898;
+    --rust: #b84c2a;
+    --teal: #1a6b5e;
+    --teal-light: #e3f2ee;
+    --border: #d8d0c4;
+    --mid-grey: #7a7570;
+    --light-grey: #ede9e3;
+    --deep-blue: #0a1628;
+    --deep-blue-mid: #0f2040;
+    --hybrid: #5e35b1;
+    --hybrid-light: #ede7f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; line-height: 1.7; }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  nav {
+    background: var(--deep-blue); padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px; position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid rgba(200,146,42,0.2);
+  }
+  .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 18px; color: #fff; }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-links a { color: #8a99b8; }
+  .nav-links a:hover { color: var(--gold); text-decoration: none; }
+
+  .masthead { background: var(--deep-blue); padding: 64px 32px 52px; position: relative; overflow: hidden; }
+  .masthead::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border: 1px solid rgba(200,146,42,0.12); border-radius: 50%; }
+  .masthead::after { content: ''; position: absolute; top: -20px; right: -20px; width: 180px; height: 180px; border: 1px solid rgba(200,146,42,0.08); border-radius: 50%; }
+  .masthead-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+  .mh-series { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 16px; }
+  .mh-series::after { content: ''; flex: 1; height: 1px; background: rgba(200,146,42,0.3); max-width: 120px; }
+  .masthead h1 { font-family: 'Playfair Display', serif; font-size: clamp(30px,5vw,50px); font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; max-width: 720px; }
+  .masthead h1 em { font-style: italic; color: var(--gold); }
+  .mh-deck { font-size: 15px; color: #8a99b8; line-height: 1.65; max-width: 660px; margin-bottom: 28px; }
+  .mh-meta-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: #4a5a78; }
+  .mh-meta-row .dot { color: rgba(200,146,42,0.4); }
+  .mh-signals { display: flex; gap: 20px; margin-top: 32px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; }
+  .mh-sig { display: flex; flex-direction: column; gap: 3px; }
+  .mh-sig-val { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .mh-sig-lbl { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #4a5a78; }
+
+  .provenance-banner { background: #fffbf0; border-bottom: 3px solid var(--gold); padding: 16px 32px; }
+  .provenance-inner { max-width: 860px; margin: 0 auto; font-size: 12.5px; line-height: 1.6; color: #4a3f2e; }
+  .provenance-inner strong { color: var(--ink); }
+
+  .toc-bar { background: var(--deep-blue-mid); border-bottom: 1px solid rgba(200,146,42,0.15); }
+  .toc-inner { max-width: 860px; margin: 0 auto; padding: 0 32px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .toc-inner::-webkit-scrollbar { display: none; }
+  .toc-item { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #5a6a88; padding: 12px 14px; white-space: nowrap; border-right: 1px solid rgba(255,255,255,0.04); }
+  .toc-item:first-child { padding-left: 0; }
+  .toc-item a { color: inherit; }
+  .toc-item:hover a { color: var(--gold); }
+
+  .main { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+  .sec { display: flex; align-items: center; gap: 12px; margin: 56px 0 28px; }
+  .sec-num { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 700; color: var(--gold); min-width: 24px; }
+  .sec-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid-grey); }
+  .sec-line { flex: 1; height: 1px; background: var(--border); }
+  .sec::after { content: ''; height: 2px; width: 40px; background: var(--ink); display: block; }
+
+  .opening-frame { background: var(--ink); padding: 32px 36px; position: relative; overflow: hidden; margin-bottom: 14px; }
+  .opening-frame::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 200px; color: rgba(200,146,42,0.06); position: absolute; top: -40px; left: 20px; line-height: 1; font-weight: 900; }
+  .opening-frame p { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.75; color: #c8d4e8; position: relative; z-index: 1; max-width: 720px; }
+  .thesis-support { font-size: 14.5px; line-height: 1.75; color: #2a2520; margin-bottom: 14px; }
+  .thesis-support p { margin-bottom: 12px; }
+  .thesis-falsify { background: var(--light-grey); border-left: 2px solid var(--border); padding: 14px 18px; margin-bottom: 12px; }
+  .tf-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 5px; }
+  .thesis-falsify p { font-size: 13px; color: #2a2520; }
+  .thesis-verdict { border: 1px solid var(--border); padding: 14px 18px; }
+  .thesis-verdict p { font-size: 13px; color: #2a2520; margin-top: 6px; }
+  .tv-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; }
+  .verdict-na .tv-badge { background: var(--light-grey); color: var(--mid-grey); }
+
+  .brief-item { background: #fff; border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 8px; display: flex; gap: 14px; }
+  .brief-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--light-grey); min-width: 30px; }
+  .brief-body h4 { font-size: 14.5px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .brief-row { font-size: 13px; line-height: 1.6; margin-bottom: 4px; }
+  .brief-row .br-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-right: 6px; }
+  .brief-source { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--mid-grey); margin-top: 6px; }
+  .number-of-month { background: var(--deep-blue); padding: 18px 22px; margin-top: 6px; }
+  .notm-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .notm-value { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #fff; }
+  .notm-context { font-size: 12.5px; color: #8a99b8; margin-top: 6px; }
+
+  .kpi-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .kpi-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .kpi-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; }
+  .kpi-table tr:last-child td { border-bottom: none; }
+  .kpi-val { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 15px; }
+  .kpi-note { font-size: 11.5px; color: var(--mid-grey); }
+  .metric-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--gold); padding: 16px 20px; margin-bottom: 8px; }
+  .metric-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .metric-card .mc-body { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .coverage-note { font-size: 12px; color: var(--mid-grey); font-style: italic; border-left: 2px solid var(--border); padding-left: 12px; }
+
+  .essay-card { background: #fff; border: 1px solid var(--border); padding: 32px 32px 28px; margin-bottom: 24px; }
+  .essay-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .sc-tag { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; }
+  .tag-policy { background: var(--teal-light); color: var(--teal); }
+  .tag-infra { background: #f3e5f5; color: #6a1b9a; }
+  .tag-geo { background: #e3f2fd; color: #1565c0; }
+  .tag-security { background: #fbe9e6; color: var(--rust); }
+  .tag-capital { background: #e0f7fa; color: #00695c; }
+  .essay-title { font-family: 'Playfair Display', serif; font-size: 25px; font-weight: 900; line-height: 1.25; margin-bottom: 10px; }
+  .essay-dek { font-size: 15px; color: var(--mid-grey); line-height: 1.6; margin-bottom: 20px; }
+  .essay-body { font-size: 15px; line-height: 1.8; color: #2a2520; }
+  .essay-body p { margin-bottom: 14px; }
+  .essay-evidence, .essay-counter, .essay-implications { margin-top: 18px; padding: 16px 20px; background: var(--light-grey); border-left: 2px solid var(--border); font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .ee-label, .ec-label, .ei-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 8px; }
+  .essay-meta { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); margin-top: 14px; text-align: right; }
+
+  .layer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .layer-card { background: #fff; border: 1px solid var(--border); padding: 18px 20px; }
+  .layer-card h4 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .layer-card .lc-body { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .dependency-watch { background: var(--ink); color: var(--cream); padding: 14px 18px; font-size: 12.5px; line-height: 1.6; }
+  .dw-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+
+  .policy-block { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--teal); padding: 22px 24px; margin-bottom: 10px; }
+  .pb-head { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+  .pb-body { font-size: 14px; line-height: 1.75; color: #2a2520; }
+  .pb-body p { margin-bottom: 12px; }
+  .pb-body p:last-child { margin-bottom: 0; }
+
+  .actor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .actor-card { background: #fff; border: 1px solid var(--border); padding: 14px 18px; }
+  .actor-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+  .actor-row { font-size: 12.5px; margin-bottom: 5px; line-height: 1.55; }
+  .actor-row .ar-label { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid-grey); display: block; }
+  .convergence-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12.5px; }
+  .convergence-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .convergence-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.55; }
+  .convergence-table tr:last-child td { border-bottom: none; }
+  .branch-points { list-style: none; }
+  .branch-points li { background: var(--light-grey); border-left: 2px solid var(--gold); padding: 10px 14px; margin-bottom: 6px; font-size: 13px; }
+
+  .builder-card { background: #fff; border: 1px solid var(--border); margin-bottom: 10px; overflow: hidden; }
+  .builder-bar { height: 4px; }
+  .builder-header { padding: 16px 22px 12px; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+  .builder-name { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 900; }
+  .builder-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); margin-top: 3px; }
+  .builder-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  .b-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.06em; padding: 2px 8px; background: var(--light-grey); color: var(--mid-grey); }
+  .builder-body { padding: 16px 22px 20px; }
+  .builder-sub { font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin: 12px 0 6px; }
+  .builder-sub:first-child { margin-top: 0; }
+  .builder-body p { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .sourcing-tag { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); float: right; }
+
+  .repo-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--hybrid); padding: 14px 18px; margin-bottom: 8px; }
+  .repo-card h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .repo-card p { font-size: 13px; line-height: 1.65; color: #2a2520; }
+  .dark-zones { font-size: 12px; color: var(--mid-grey); font-style: italic; margin-top: 10px; }
+
+  .scenario-card { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--ink); margin-bottom: 12px; }
+  .scenario-fragility { border-left-color: var(--rust); }
+  .scenario-contrarian { border-left-color: var(--gold); }
+  .scenario-header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .scenario-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; }
+  .scenario-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .sb-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; background: var(--light-grey); color: var(--mid-grey); }
+  .sb-badge.prob-low { background: var(--teal-light); color: var(--teal); }
+  .sb-badge.prob-medium { background: #fef3e2; color: #9a6210; }
+  .sb-badge.prob-high { background: #fbe9e6; color: var(--rust); }
+  .scenario-body { padding: 18px 20px; }
+  .sc-row { margin-bottom: 14px; }
+  .sc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 6px; }
+  .sc-row p, .sc-indicators p { font-size: 13.5px; line-height: 1.7; color: #2a2520; }
+  .sc-indicators { background: #fffbf0; border: 1px solid var(--border); padding: 12px 16px; }
+
+  .reading-list { list-style: none; counter-reset: rl; }
+  .reading-list li { counter-increment: rl; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .reading-list li:last-child { border-bottom: none; }
+  .reading-list li::before { content: counter(rl) '.'; font-family: 'DM Mono', monospace; color: var(--gold); margin-right: 8px; }
+  .reading-list a { font-weight: 600; color: var(--ink); }
+  .rl-meta { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid-grey); }
+  .rl-annotation { font-size: 13px; color: #2a2520; margin-top: 4px; margin-left: 18px; line-height: 1.6; }
+
+  .editorial-note { background: var(--light-grey); border: 1px solid var(--border); padding: 18px 22px; margin-top: 48px; font-size: 12px; color: var(--mid-grey); line-height: 1.65; }
+  .en-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 8px; }
+  footer { background: var(--ink); color: #7a8294; text-align: center; padding: 36px 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; }
+  footer strong { color: #c8d4e8; }
+  footer a { color: #7a8294; }
+  footer a:hover { color: var(--gold); }
+  .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 12px; }
+
+  @media (max-width: 780px) {
+    .layer-grid { grid-template-columns: 1fr; }
+    .actor-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 680px) {
+    .masthead { padding: 40px 20px 36px; }
+    .main { padding: 0 16px 60px; }
+    nav { padding: 12px 18px; }
+    .opening-frame { padding: 24px 22px; }
+    .essay-card { padding: 22px 20px; }
+    .provenance-banner { padding: 14px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- AIW BUILD QA — real-facts edition, unaudited against fictional-continuity word targets — see Editorial Note -->
+
+<nav>
+  <a href="../index.html" style="text-decoration:none;">
+    <div class="nav-brand">AIW African Lens<span>.</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Archive</a>
+    <a href="index.html">Monthly Review</a>
+    <a href="../weekly/index.html">Weekly Archive (Vol. I)</a>
+    <a href="../editions/index.html">Daily Editions</a>
+    <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe</a>
+  </div>
+</nav>
+
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="mh-series">
+      AIW Monthly Intelligence Review &nbsp;·&nbsp; AIW-2026-08
+    </div>
+    <h1>The Compute Race Outpaces<br>the Governance Race</h1>
+    <p class="mh-deck">Real capital is now moving into African AI infrastructure at a scale no policy framework on the continent has kept pace with. Nvidia and Cassava Technologies are mid-build on a $700M, five-country GPU rollout. Egypt has licensed a $400M data centre and is coordinating a national compute strategy across three ministries. Morocco has broken ground on a $1.2B AI Factory outside Casablanca. Kenya has drafted a national AI policy and is negotiating a second OpenAI Academy for Nairobi. Meanwhile South Africa's AI policy remains withdrawn and unpublished nine months after a citation scandal forced its recall, Nigeria's flagship AI-adjacent bill has missed two announced deadlines, and INTERPOL says AI now drives more than half of Africa's reported cybercrime. This edition is built entirely from verified public reporting — official statements, regulatory filings, and named news sources — rather than the scenario-planning format of prior editions. See the Editorial Note.</p>
+    <div class="mh-meta-row">
+      <span>26 August 2026</span>
+      <span class="dot">·</span>
+      <span>State of play as of 22 August 2026</span>
+      <span class="dot">·</span>
+      <span>Published 06:00 SAST, last Wednesday of the month</span>
+    </div>
+    <div class="mh-signals">
+      <div class="mh-sig"><div class="mh-sig-val">7</div><div class="mh-sig-lbl">Nations Covered</div></div>
+      <div class="mh-sig"><div class="mh-sig-val">100%</div><div class="mh-sig-lbl">Sourced to Named Reporting</div></div>
+      <div class="mh-sig"><div class="mh-sig-val">$2.3B+</div><div class="mh-sig-lbl">Verified Infra Commitments Cited</div></div>
+      <div class="mh-sig"><div class="mh-sig-val">1</div><div class="mh-sig-lbl">Deep Research Essay</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="provenance-banner">
+  <div class="provenance-inner">
+    <strong>A note on sourcing before you read further:</strong> every factual claim in this edition is drawn from public reporting — government statements, company announcements, regulatory filings, and named outlets (Reuters, Bloomberg, CNBC Africa, TechCabal Insights, Mining.com, INTERPOL, the OECD, and others cited by name throughout). No signal, scenario, quote, or person in this edition is invented. Where a figure is an estimate or projection rather than a confirmed outcome, that is stated explicitly. This is a change from the production method used in prior editions of this publication — see the Editorial Note at the foot of this issue.
+  </div>
+</div>
+
+<div class="toc-bar">
+  <div class="toc-inner">
+    <div class="toc-item"><a href="#thesis">§1 Thesis</a></div>
+    <div class="toc-item"><a href="#brief">§2 Brief</a></div>
+    <div class="toc-item"><a href="#signals">§3 Signals</a></div>
+    <div class="toc-item"><a href="#essay">§4 Essay</a></div>
+    <div class="toc-item"><a href="#engineering">§5 Engineering</a></div>
+    <div class="toc-item"><a href="#commercial">§6 Commercial</a></div>
+    <div class="toc-item"><a href="#policy">§7 Policy</a></div>
+    <div class="toc-item"><a href="#builders">§8 Builders</a></div>
+    <div class="toc-item"><a href="#research">§9 Research</a></div>
+    <div class="toc-item"><a href="#scenarios">§10 Scenarios</a></div>
+    <div class="toc-item"><a href="#reading">§11 Reading</a></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="sec" id="thesis"><span class="sec-num">§1</span><span class="sec-title">Editor's Thesis</span><div class="sec-line"></div></div>
+  <div class="opening-frame">
+    <p>Africa's AI infrastructure buildout has stopped being aspirational. Nvidia's money, Microsoft's money, Gulf-adjacent capital in Morocco and Egypt, and Chinese vendor financing in Zambia are now in the ground or under signed contract across at least six countries. Africa's AI governance buildout has not kept the same pace: South Africa's national policy has sat withdrawn since April, Nigeria's flagship digital-economy bill has missed two self-imposed deadlines, and INTERPOL now says AI-enabled crime is outrunning the law-enforcement capacity built to police it. The gap between the two curves — capital deployed versus rules written — is this month's story, and it is a real one, not a modelled scenario.</p>
+  </div>
+  <div class="thesis-support">
+    <p>The infrastructure evidence is concrete and dated: Nvidia and Cassava Technologies' $700M GPU rollout, first announced March 2025, delivered its initial 3,000-GPU tranche to South Africa in June 2025 and is now mid-build on the remaining 12,000 GPUs across Egypt, Nigeria, Kenya and Morocco. Egypt's National Telecommunications Regulatory Authority licensed a $400M data-centre project to Hassan Allam Holding in June 2026, days after Egypt's electricity, ICT and investment ministries met to coordinate a national data-centre strategy. Morocco broke ground in April 2026 on a 12-billion-dirham (roughly $1.2B) AI Factory outside Casablanca targeting 36 megawatts of capacity by the end of 2027. None of this required a finished AI law in any of the three countries.</p>
+    <p>The governance evidence is just as concrete, and just as dated: South Africa's Draft National AI Policy was gazetted for public comment on 8 April 2026 and withdrawn on 26 April after News24 found fabricated academic citations in its reference list — a real scandal, independently confirmed by Reuters/CNBC Africa and South African legal commentary from Baker McKenzie and Fasken. A seven-member independent panel chaired by Professor Benjamin Rosman of the University of the Witwatersrand is now rebuilding the document, with Cabinet resubmission targeted for November 2026 and public comment reopening only in January 2027 — nine months after the original withdrawal. Nigeria's National Digital Economy and E-Governance Bill, expected by Bloomberg and Tech Hive Advisory to pass by the end of Q1 and then Q2 2026 respectively, remained a proposed framework as of the most recent legal commentary available, with no confirmed passage date. Meanwhile INTERPOL's African Cyberthreat Assessment Report 2026, released 3 August 2026, found AI now enables 55% of reported African cybercrime and that 92% of surveyed law-enforcement agencies lack AI-specific readiness.</p>
+  </div>
+  <div class="thesis-falsify">
+    <div class="tf-label">What Would Make This Wrong</div>
+    <p>This thesis is wrong if South Africa's independent panel delivers a revised policy to Cabinet on or ahead of its stated November 2026 target and the January 2027 comment window opens as planned — in which case the "governance is lagging" framing would need to be revised to "governance is slower but not stalled." It is also wrong if Nigeria's Digital Economy and E-Governance Bill passes before this publication's next edition, closing the gap between announced deadlines and actual enactment that has defined its 2026 trajectory so far.</p>
+  </div>
+  <div class="thesis-verdict verdict-na">
+    <span class="tv-badge">Continuity Note</span>
+    <p>Prior editions of this publication (through AIW-2026-07) were produced as an illustrative scenario-planning exercise and did not track verifiable real-world events. There is therefore no genuine prior thesis to render a verdict on. The Thesis Tracker and Scenario Watchlist restart, in earnest, with this edition. See the Editorial Note for the full explanation.</p>
+  </div>
+
+  <div class="sec" id="brief"><span class="sec-num">§2</span><span class="sec-title">Executive Brief</span><div class="sec-line"></div></div>
+
+  <div class="brief-item">
+    <div class="brief-num">01</div>
+    <div class="brief-body">
+      <h4>South Africa's AI policy remains withdrawn; the rebuild panel is now past its fourth month of work</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>The Draft National AI Policy, gazetted 8 April 2026 and withdrawn 26 April after fabricated citations were found in its reference list, is being rebuilt by a seven-member independent panel chaired by Prof. Benjamin Rosman of Wits University. Minister Solly Malatsi told Parliament the revised policy is targeted for Cabinet by November 2026, with public comment reopening January 2027.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>South Africa is the only major African economy to have had a national AI policy publicly gazetted and then withdrawn over an AI-generated content failure — a governance case study now cited in South African legal commentary as a cautionary example for every other country drafting AI policy with AI-assisted tools.</div>
+      <div class="brief-row"><span class="br-label">Watch</span>Whether the panel's Cabinet submission holds to the November 2026 date, and whether the two officials placed on precautionary suspension over the citation failure are formally cleared or disciplined before then.</div>
+      <div class="brief-source">Sources: Reuters/CNBC Africa (26 May 2026); The Citizen; Jacaranda FM; iAfrica.com; contemporaneous South African news coverage</div>
+    </div>
+  </div>
+
+  <div class="brief-item">
+    <div class="brief-num">02</div>
+    <div class="brief-body">
+      <h4>Nvidia and Cassava's five-country GPU rollout is mid-build, with Egypt, Nigeria, Kenya and Morocco next</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>The $700M partnership, announced March 2025, delivered its first 3,000 Nvidia GPUs to a Cassava-built facility in South Africa in June 2025. Cassava says a further 12,000 GPUs will be deployed across Egypt, Nigeria, Kenya and Morocco over the following three to four years, alongside an MoU giving over 3,000 South African AI professionals GPU-cluster access.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>This is Nvidia's first direct infrastructure investment on the African continent, and it is structured as private-sector execution rather than state-led financing — a different model from the Chinese vendor-financed data centres appearing elsewhere on the continent (see Zambia, below).</div>
+      <div class="brief-row"><span class="br-label">Watch</span>Which of the four remaining countries receives the next confirmed GPU tranche, and whether Cassava discloses site-level progress at the country level rather than only the continental total.</div>
+      <div class="brief-source">Sources: iAfrica.com; Tech In Africa; Intelligent CIO Africa; Technology Magazine; Data Centre Magazine</div>
+    </div>
+  </div>
+
+  <div class="brief-item">
+    <div class="brief-num">03</div>
+    <div class="brief-body">
+      <h4>INTERPOL: AI now drives 55% of reported cybercrime in Africa; losses have doubled since 2024</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>INTERPOL's African Cyberthreat Assessment Report 2026, released 3 August 2026 and covering 36 member countries, found AI is enabling the majority of reported cybercrime on the continent, with financial losses reaching $484M since 2024 — roughly double the prior figure. The report found 92% of surveyed agencies lack AI-specific readiness.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>The report explicitly flags that Africa's principal continental cybercrime instrument, the AU's Malabo Convention, was drafted on early-2010s legal definitions and has no explicit coverage of AI-driven social engineering or automated attack tooling.</div>
+      <div class="brief-row"><span class="br-label">Watch</span>Whether the AU or individual member states move to amend or supplement the Malabo Convention in response; several African states are also parties to the newer UN Convention against Cybercrime, which coverage of the report notes also lacks AI-specific enforcement mechanisms.</div>
+      <div class="brief-source">Sources: INTERPOL (3 August 2026); Bloomberg (4 August 2026); legal-affairs coverage of the report</div>
+    </div>
+  </div>
+
+  <div class="brief-item">
+    <div class="brief-num">04</div>
+    <div class="brief-body">
+      <h4>Kenya publishes a draft national AI policy and is negotiating a second African OpenAI Academy for Nairobi</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>Kenya's State Department for ICT and the Digital Economy published a draft "Artificial Intelligence and Other Emerging Technologies Policy, 2026" in July 2026, setting out a risk-based, lifecycle governance approach. Separately, President William Ruto disclosed in June 2026 that discussions with OpenAI CEO Sam Altman, held on the margins of the G7 Leaders' Summit, covered establishing Nairobi as the site of the first OpenAI Academy in Eastern Africa — the second such academy on the continent after the University of Lagos.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>Kenya is now running policy drafting, compute-infrastructure courtship (a roughly 100MW G42-linked facility, a Microsoft-G42 $1B package including an Azure East Africa Cloud Region, and an Oracle Cloud region via iXAfrica) and AI-talent diplomacy in parallel — a more coordinated sequencing than most peer economies have managed.</div>
+      <div class="brief-row"><span class="br-label">Watch</span>Whether the OpenAI Academy talks, still described as early-stage with no signed agreement, convert to a formal announcement, and whether Kenya's draft policy proceeds to a public-comment stage with a firm date.</div>
+      <div class="brief-source">Sources: Kenya State Department for ICT (July 2026 draft policy); iAfrica.com; TechTrends Media; CIO Africa</div>
+    </div>
+  </div>
+
+  <div class="brief-item">
+    <div class="brief-num">05</div>
+    <div class="brief-body">
+      <h4>Egypt licenses a $400M data centre and moves to coordinate a national compute strategy across three ministries</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>Egypt's National Telecommunications Regulatory Authority granted Hassan Allam Holding a licence for a $400M first-phase data-centre and cloud-computing project, confirmed in June 2026. Days earlier, Egypt's Ministries of Electricity and Renewable Energy, Communications and Information Technology, and Investment and Foreign Trade met at the New Administrative Capital to begin coordinating a unified national data-centre and cloud strategy, including an investment map of power-ready sites.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>Egypt's own National AI Strategy for 2025–2030 names compute access as a key enabler but does not specify how the country gets there, per analysis of the strategy text — the June ministerial coordination is the first concrete attempt to close that gap.</div>
+      <div class="brief-row"><span class="br-label">Watch</span>Whether the national data-centre strategy produces a published investment map, and whether a major hyperscaler commits to a first Egyptian region — a gap the strategy's own drafters have flagged as a competitive weakness.</div>
+      <div class="brief-source">Sources: Developing Telecoms (16 June 2026); Middle East Observer (21 June 2026); Middle East AI News (22 June 2026)</div>
+    </div>
+  </div>
+
+  <div class="brief-item">
+    <div class="brief-num">06</div>
+    <div class="brief-body">
+      <h4>The DRC's cobalt leverage keeps hardening: export controls, state stockpiles, and a $9B US-backed consortium stake</h4>
+      <div class="brief-row"><span class="br-label">What happened</span>The DRC — source of roughly 70–80% of the world's mined cobalt — has moved from a temporary 2025 export suspension to an ARECOMS-managed quota regime and, most recently, tighter restrictions on copper and cobalt exports aimed at boosting domestic processing. Kinshasa has separately announced plans for state-controlled stockpiles of cobalt, coltan and germanium, explicitly citing their use in semiconductors, fibre optics, infrared systems and defence technology. In February 2026 the US-backed Orion Critical Mineral Consortium agreed a $9B deal for a 40% stake in Glencore's Mutanda Mining and Kamoto Copper operations.</div>
+      <div class="brief-row"><span class="br-label">Why it matters</span>Every GPU shipped into Africa under the Cassava-Nvidia, Egypt, Morocco and Kenya buildouts described above depends on a global semiconductor supply chain whose upstream minerals increasingly run through Kinshasa's export policy, not just fabrication capacity elsewhere.</div>
+      <div class="brief-row"><span class="br-label">Watch</span>Cobalt price movement (already up from roughly $21,000/tonne in early 2025 to over $56,000/tonne) as a leading indicator of how tightly the DRC's quota regime is binding, and whether other producers meaningfully dilute Kinshasa's leverage.</div>
+      <div class="brief-source">Sources: Mining.com (27 June 2026); Geomechanics.io (26 June 2026); IEA Global Critical Minerals Outlook 2026; OpenDemocracy (21 April 2026)</div>
+    </div>
+  </div>
+
+  <div class="number-of-month">
+    <div class="notm-label">The Number of the Month</div>
+    <div class="notm-value">55%</div>
+    <div class="notm-context">Share of reported African cybercrime that INTERPOL attributes to AI-enabled tooling, per its African Cyberthreat Assessment Report 2026 (released 3 August 2026) — the clearest, most recent continental data point on the security cost of the same technology this issue's infrastructure stories are racing to build.</div>
+  </div>
+
+  <div class="sec" id="signals"><span class="sec-num">§3</span><span class="sec-title">Signals &amp; Metrics</span><div class="sec-line"></div></div>
+  <table class="kpi-table">
+    <thead><tr><th>Metric</th><th>Value</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>African tech funding, H1 2026 (TechCabal Insights / Africa: The Big Deal)</td>
+        <td class="kpi-val">$1.44B</td>
+        <td class="kpi-note">146 disclosed deals (down from 252 in H1 2025); $818M equity, $614M debt, $9M grants. A single large e-mobility round materially shaped the total.</td>
+      </tr>
+      <tr>
+        <td>Competing full-year projection (Disrupt Africa, 11th Funding Report)</td>
+        <td class="kpi-val">~$1.28B</td>
+        <td class="kpi-note">Disrupt Africa's narrower methodology recorded a 40% year-on-year Q2 2026 decline and projects roughly 156 funded startups for the full year, versus 178 in 2025 — a materially more cautious read than TechCabal's, worth noting as a live methodological divergence.</td>
+      </tr>
+      <tr>
+        <td>African cybercrime losses attributable to AI-enabled tooling, since 2024</td>
+        <td class="kpi-val">$484M</td>
+        <td class="kpi-note">INTERPOL African Cyberthreat Assessment Report 2026; described as roughly double the prior figure.</td>
+      </tr>
+      <tr>
+        <td>Verified/announced infrastructure capital cited in this issue</td>
+        <td class="kpi-val">$2.3B+</td>
+        <td class="kpi-note">$700M (Cassava-Nvidia, 5-country) + $400M (Egypt, Phase 1) + ~$1.2B (Morocco AI Factory, 12bn MAD). Excludes the Microsoft-G42 Kenya package and Zambia-Huawei facility, both announced without a single disclosed topline figure in the sources reviewed for this edition.</td>
+      </tr>
+      <tr>
+        <td>Q1 2026 country funding leaders (TechCabal Insights)</td>
+        <td class="kpi-val">Egypt $154M / SA $134M</td>
+        <td class="kpi-note">Kenya and Nigeria rounded out the top four; fintech and sustainable infrastructure remained the dominant sectors.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="metric-card">
+    <h4>Metric of the Month — Two credible trackers, two different pictures of the same half-year</h4>
+    <div class="mc-body"><p>TechCabal Insights and Disrupt Africa both track African startup funding and both are credible, widely cited sources — and they told meaningfully different stories about H1 2026. TechCabal's $1.44B figure, boosted by a single large round, reads as roughly flat year-on-year. Disrupt Africa's narrower count found a 40% year-on-year decline in Q2 specifically and is projecting the weakest full year since 2023. Neither tracker is wrong; they simply count differently (deal-size thresholds, debt inclusion, and grant treatment all vary). The practical lesson for anyone using a single headline African funding number this year: check which tracker produced it before citing the trend.</p></div>
+  </div>
+  <p class="coverage-note">This edition's research pass, conducted via public web search on 22 August 2026, found substantially deeper English-language coverage of Nigeria, Kenya, South Africa, Egypt, Morocco and the DRC than of Central Africa (outside the DRC), Francophone West Africa, or the Horn of Africa. That imbalance is a real property of the available English-language source base at the time of writing, not an editorial choice, and should be read as a limitation of this edition rather than a claim about where AI activity is actually concentrated.</p>
+
+  <div class="sec" id="essay"><span class="sec-num">§4</span><span class="sec-title">Deep Research Essay</span><div class="sec-line"></div></div>
+  <div class="essay-card">
+    <div class="essay-tags">
+      <span class="sc-tag tag-geo">Geopolitics</span><span class="sc-tag tag-infra">Infrastructure</span><span class="sc-tag tag-capital">Capital</span>
+    </div>
+    <h2 class="essay-title">The Continent Building the Chips Is Not the Continent Selling the Cobalt — Yet</h2>
+    <p class="essay-dek">Every African AI infrastructure announcement this year sits downstream of a mineral export policy written in Kinshasa. That fact has been true for years. What changed in 2026 is that the DRC started acting on it.</p>
+    <div class="essay-body">
+      <p>Read Egypt's $400M data-centre licence, Morocco's $1.2B AI Factory, and the Cassava-Nvidia five-country GPU rollout as three separate national success stories and you miss the thing they share: every GPU, every server rack, every piece of AI-ready compute landing in Cairo, Casablanca, Lagos, Nairobi or Johannesburg this year depends on a semiconductor supply chain that runs, at its base, through cobalt, coltan and copper extracted overwhelmingly from one country that is not on that list of infrastructure winners. The Democratic Republic of Congo supplies roughly 70 to 80 percent of the world's mined cobalt, by the range of estimates in current reporting from Mining.com and the IEA's Global Critical Minerals Outlook 2026, and holds vast coltan and copper reserves alongside it. For most of the past decade, that endowment functioned as a commodity fact, priced and shipped like any other raw material. In 2026, the DRC government began treating it as a policy lever instead.</p>
+      <p>The sequence is documented and dated. A temporary cobalt export suspension in 2025 gave way to a quota regime managed by ARECOMS, the DRC's mining regulatory authority. Cobalt prices, which had fallen from nearly $95,000 a tonne in 2018 to around $21,000 in early 2025 under oversupply conditions, climbed back to just over $56,000 a tonne as the quotas bit. In April, per reporting picked up by Mining.com, Kinshasa announced plans to build state-controlled stockpiles of cobalt, coltan and germanium — funded through buybacks of mining companies' existing stock — explicitly framed around applications in semiconductors, fibre optics, infrared systems and defence technology, not just batteries and consumer electronics. Most recently, restrictions on copper and cobalt exports have tightened further, aimed at pushing more processing onto Congolese soil rather than shipping raw ore. None of this is speculative; it is a documented trajectory from a 2025 suspension, through 2025–26 quotas, to a 2026 stockpile-and-restriction policy explicitly aimed at capturing more value before the ore leaves the country.</p>
+      <p>The great powers noticed before most AI infrastructure coverage did. In February 2026 the United States hosted its first Critical Minerals Ministerial, and the US-backed Orion Critical Mineral Consortium signed a deal, reported at roughly $9 billion, to acquire a 40 percent stake in two of Glencore's largest Congolese copper and cobalt operations — Mutanda Mining and Kamoto Copper Company — with the consortium gaining rights to direct sales to nominated buyers while Glencore retained operational control. That agreement followed a June 2025 peace deal between the DRC and Rwanda that, per Foreign Policy's analysis, secured preferential US access to Congolese tantalum, gold, cobalt, copper and lithium as part of its terms. China, whose firms have spent roughly a decade building cobalt stockpiles of their own, is the implicit reference case Kinshasa's own officials cite for the value of strategic reserves. This is not a two-country story; it is now a live multi-power negotiation over the physical inputs that every AI infrastructure headline in this issue quietly assumes will keep arriving on schedule.</p>
+      <p>What this means for the African AI infrastructure buildout described elsewhere in this edition is a dependency most coverage of it does not name. Egypt's data-centre strategy, Morocco's AI Factory, and the Cassava-Nvidia rollout are all downstream consumers of a global chip supply chain whose upstream cost and availability is now more directly a function of Congolese policy than at any point in the past decade. None of the five countries in this issue's infrastructure buildout is itself a major cobalt, coltan or copper producer at DRC's scale — the leverage sits in Kinshasa, not in the countries doing the building. If the DRC's export discipline holds and cobalt prices continue climbing, or if further restrictions follow the copper and cobalt tightening already reported, the cost base underneath every AI data-centre build-out on this continent moves with it, whether or not the country doing the building has any policy lever of its own to respond with.</p>
+    </div>
+    <div class="essay-evidence"><div class="ee-label">Evidence</div><p>DRC cobalt share of global production (approx. 70–80%), IEA Global Critical Minerals Outlook 2026 and Mining.com reporting (26–27 June 2026); cobalt price trajectory ($95,000/t in 2018 to ~$21,000/t in early 2025 to over $56,000/t by mid-2026), Geomechanics.io (26 June 2026); ARECOMS quota regime and 2026 stockpile plans for cobalt, coltan and germanium, Mining.com; February 2026 US Critical Minerals Ministerial and the ~$9B Orion Consortium stake in Mutanda Mining and Kamoto Copper Company, OpenDemocracy (21 April 2026); June 2025 DRC–Rwanda peace deal terms on US mineral access, referenced in ongoing 2026 coverage; recent copper/cobalt export tightening, reporting reviewed 22 August 2026.</p></div>
+    <div class="essay-counter"><div class="ec-label">The Strongest Counterargument</div><p>The counterargument is that this dependency is old news dressed up as a new insight — analysts have flagged Congolese mineral concentration risk for AI hardware for years, and the infrastructure buildouts covered in this issue are proceeding regardless, which suggests the market has already priced the risk or judges it manageable. It's also true that cobalt's role varies by chip type and that battery and defence-sector demand, not AI-specific chip demand, is the primary driver of the price moves cited here — this essay should not be read as claiming AI demand specifically is moving cobalt prices.</p></div>
+    <div class="essay-implications"><div class="ei-label">Strategic Implications</div><p>For infrastructure investors: model DRC export-policy risk as a genuine input-cost variable for African AI infrastructure timelines, not a background geopolitical curiosity — the price trajectory above is already a five-year high. For policymakers in Egypt, Morocco, Kenya, Nigeria and South Africa: none of the national AI strategies reviewed for this edition name upstream mineral-supply exposure as a risk factor, which is a genuine gap given how directly their compute ambitions now depend on it. For readers of this publication specifically: the DRC will recur as a subject in future editions not because it hosts AI infrastructure — it does not, in the sources reviewed — but because it is the physical chokepoint underneath everyone else's.</p></div>
+    <div class="essay-meta">Grounded in named public reporting; no projection in this essay beyond what cited sources themselves state.</div>
+  </div>
+
+  <div class="sec" id="engineering"><span class="sec-num">§5</span><span class="sec-title">Engineering Frontier</span><div class="sec-line"></div></div>
+  <div class="layer-grid">
+    <div class="layer-card">
+      <h4>⚡ Power</h4>
+      <div class="lc-body"><p>Egypt's national data-centre coordination effort explicitly pairs compute planning with power planning: the June 2026 ministerial meeting at the New Administrative Capital brought Electricity and Renewable Energy together with ICT and Investment specifically to map power-ready sites before, not after, investment commitments. Nigeria's push is running the opposite way: reporting on Nigeria's first AI-focused data centres notes AI facilities can draw up to 20 times the power of conventional server halls, with operators exploring gas and geothermal alternatives to a national grid already under strain.</p></div>
+    </div>
+    <div class="layer-card">
+      <h4>🧱 Chips</h4>
+      <div class="lc-body"><p>The Cassava-Nvidia rollout (3,000 GPUs delivered to South Africa in June 2025; 12,000 more planned across Egypt, Nigeria, Kenya and Morocco) is the largest single confirmed GPU commitment in the sources reviewed. It sits, per this issue's Deep Research Essay, downstream of a DRC cobalt and coltan export regime that has hardened through 2026. No source reviewed for this edition disclosed the specific chip generation involved in the remaining four-country rollout.</p></div>
+    </div>
+    <div class="layer-card">
+      <h4>🌐 Infrastructure</h4>
+      <div class="lc-body"><p>Kenya's compute layer is now three-way contested: a roughly 100MW G42-linked facility, a Microsoft-G42 package reported at $1B including a green Azure East Africa Cloud Region and Swahili/English LLM development, and an Oracle Cloud Infrastructure region in Nairobi confirmed by iXAfrica at GITEX Kenya in May 2026. Nigeria opened what regional coverage describes as West Africa's first hyperscale-ready AI data centre in Lagos during Q2 2026, alongside a Nigeria AI Scaling Hub for shared national compute.</p></div>
+    </div>
+  </div>
+  <div class="dependency-watch">
+    <div class="dw-label">Dependency Watch</div>
+    Zambia's national AI data centre, developed with Huawei and Smart Zambia, is the one major 2026 African AI infrastructure commitment in this issue's source base that follows the state-led Chinese financing model rather than the Nvidia/Cassava private-sector model or the Gulf-adjacent sovereign-capital model seen in Morocco and Egypt — worth tracking as a third distinct financing architecture on the continent, alongside the private-capital and sovereign-capital tracks.
+  </div>
+
+  <div class="sec" id="commercial"><span class="sec-num">§6</span><span class="sec-title">Commercial Strategy</span><div class="sec-line"></div></div>
+  <div class="policy-block">
+    <div class="pb-body"><p>The clearest commercial-strategy signal this window is compositional, not aggregate: of the $818M in H1 2026 African startup equity tracked by TechCabal Insights, debt financing ($614M) is now nearly as large a share of total capital as equity — a shift TechCabal's own reporting attributes to founders in asset-heavy sectors (electric mobility, solar, lending books) choosing loans over dilution. AI-specific deal flow within that total remains modest in absolute terms: Nairobi's AethexAI raised a $3M pre-seed for customer-support and voice-automation tooling, and Morocco's Davis AI raised $5.5M for AI-driven real-estate tools. Neither approaches the scale of the infrastructure commitments covered in Section 5, underscoring that 2026's African AI capital story is an infrastructure story first and an applications-funding story a distant second.</p></div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-head">Capital Flow Read</div>
+    <div class="pb-body"><p>Egypt and South Africa led disclosed Q1 2026 country funding ($154M and $134M respectively, per TechCabal Insights), with Kenya and Nigeria close behind — a spread that roughly tracks the same four countries carrying the bulk of this issue's infrastructure commitments, suggesting capital allocators are treating policy uncertainty (acute in South Africa, chronic in Nigeria) as a secondary factor behind market size and existing compute access.</p></div>
+  </div>
+  <div class="policy-block">
+    <div class="pb-head">For the Operator — Build / Buy / Partner</div>
+    <div class="pb-body"><p>Build: African-language and sector-specific AI applications remain comparatively under-capitalised relative to infrastructure — AethexAI's and Davis AI's rounds are the only AI-labelled deals of meaningful size surfaced in this edition's research, a gap worth testing rather than assuming is structural. Buy: access to Cassava's South African GPU cluster is already available via its MoU with the South African AI Association; equivalent access in the four pending rollout countries is not yet confirmed as live. Partner: Egypt's and Kenya's parallel infrastructure-and-policy sequencing (data-centre licensing alongside active AI-policy drafting) make both markets more legible for near-term partnership than South Africa, where the underlying national policy will not exist in finalised form before 2027 at the earliest.</p></div>
+  </div>
+
+  <div class="sec" id="policy"><span class="sec-num">§7</span><span class="sec-title">Policy &amp; Geopolitics</span><div class="sec-line"></div></div>
+  <div class="policy-block">
+    <div class="pb-body"><p>Five governance threads are live and independently verifiable this window: South Africa's policy rebuild (panel active, Cabinet target November 2026); Nigeria's repeatedly-delayed Digital Economy and E-Governance Bill; Kenya's July 2026 draft AI and Emerging Technologies Policy; the AU's Continental AI Strategy, now roughly halfway through its 2025–2026 "Phase I" governance-building period ahead of a 2027 review and a 2028 implementation phase; and the DRC's minerals-leverage diplomacy, which is reshaping the geopolitical backdrop every infrastructure story in this issue sits inside.</p></div>
+  </div>
+  <div class="actor-grid">
+    <div class="actor-card">
+      <div class="actor-name">United States</div>
+      <div class="actor-row"><span class="ar-label">Instrument</span>February 2026 Critical Minerals Ministerial; ~$9B Orion Consortium stake in DRC copper/cobalt assets; preferential mineral-access terms secured via the June 2025 DRC–Rwanda peace deal.</div>
+      <div class="actor-row"><span class="ar-label">Leverage</span>Nvidia's direct $700M infrastructure commitment (via Cassava) gives Washington a private-sector commercial foothold in African AI compute independent of any government-to-government instrument.</div>
+      <div class="actor-row"><span class="ar-label">Degrees of Freedom</span>US mineral-access terms compete directly with a decade of Chinese cobalt-stockpiling strategy that DRC officials themselves cite as their model — the US is a comparatively late entrant to a market China has been positioning in for years.</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-name">Gulf-linked capital (via G42 and unspecified Gulf partners)</div>
+      <div class="actor-row"><span class="ar-label">Instrument</span>A roughly 100MW G42-linked compute facility in Kenya and a Microsoft-G42 $1B Kenya package including a green Azure East Africa Cloud Region.</div>
+      <div class="actor-row"><span class="ar-label">Leverage</span>Kenya's renewable-heavy grid and existing "Silicon Savannah" reputation give Gulf-linked capital an East African anchor point distinct from Egypt's and Morocco's North African, EU-proximate positioning.</div>
+      <div class="actor-row"><span class="ar-label">Degrees of Freedom</span>No source reviewed disclosed data-governance or workload-allocation terms for the G42-linked Kenya facility — a transparency gap this publication flags without being able to resolve from public sourcing.</div>
+    </div>
+  </div>
+  <table class="convergence-table">
+    <thead><tr><th>Country</th><th>Policy Status</th><th>Key Development</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>South Africa</strong></td>
+        <td>Policy withdrawn 26 Apr 2026; rebuild in progress</td>
+        <td>Seven-member panel (chair: Prof. Benjamin Rosman) targeting Cabinet resubmission November 2026, public comment January 2027</td>
+        <td>Two officials on precautionary suspension pending investigation</td>
+      </tr>
+      <tr>
+        <td><strong>Nigeria</strong></td>
+        <td>Digital Economy and E-Governance Bill still proposed</td>
+        <td>Originally targeted for end-March 2026 passage; a Q2 2026 target was also separately reported; no confirmed passage found in sources reviewed</td>
+        <td>National AI Strategy (NAIS) itself was published Sept 2025, ahead of the still-pending legislation</td>
+      </tr>
+      <tr>
+        <td><strong>Kenya</strong></td>
+        <td>Draft AI and Emerging Technologies Policy published July 2026</td>
+        <td>Risk-based, lifecycle governance approach; builds on Kenya National AI Strategy 2025–2030 (launched March 2025)</td>
+        <td>A separate proposed Kenya AI Bill 2026 is also referenced in reporting; status unconfirmed</td>
+      </tr>
+      <tr>
+        <td><strong>African Union</strong></td>
+        <td>Continental AI Strategy — Phase I (2025–2026) underway</td>
+        <td>Endorsed July 2024; Phase I covers governance structures, national strategies, resource mobilisation; review scheduled 2027 ahead of Phase II from 2028</td>
+        <td>55 AU member states represented in the Executive Council endorsement</td>
+      </tr>
+      <tr>
+        <td><strong>DRC</strong></td>
+        <td>No AI-specific legislation identified in sources reviewed</td>
+        <td>Minerals export policy (ARECOMS quotas, stockpile plans, tightened copper/cobalt restrictions) functioning as de facto AI-supply-chain policy</td>
+        <td>Subject of a $9B US-backed consortium stake and a June 2025 peace-deal mineral-access agreement with Rwanda</td>
+      </tr>
+    </tbody>
+  </table>
+  <ul class="branch-points">
+    <li>South Africa's Cabinet resubmission (targeted November 2026) — does the panel meet its own deadline, and does the resubmitted document pass an independent citation check this time?</li>
+    <li>Nigeria's Digital Economy and E-Governance Bill — does it pass in any form before this publication's next edition, after two already-missed target dates?</li>
+    <li>DRC copper/cobalt export policy — do further restrictions follow the recent tightening, and does the price trajectory ($56,000+/tonne as of the sources reviewed) continue climbing?</li>
+  </ul>
+
+  <div class="sec" id="builders"><span class="sec-num">§8</span><span class="sec-title">African Builders</span><div class="sec-line"></div></div>
+  <div class="builder-card">
+    <div class="builder-bar" style="background: linear-gradient(to right, #007A4D 25%, #000000 25%, #000000 30%, #007A4D 30%, #007A4D 40%, #FFB81C 40%, #FFB81C 60%, #DE3831 60%, #DE3831 70%, #007A4D 70%, #007A4D 75%, #000000 75%, #000000 80%, #007A4D 80%);"></div>
+    <div class="builder-header">
+      <div>
+        <div class="builder-name">Prof. Benjamin Rosman</div>
+        <div class="builder-meta">Chair, National AI Expert Review Panel · University of the Witwatersrand · South Africa · Policy &amp; Governance</div>
+        <div class="builder-badges"><span class="b-badge">Leading SA's AI Policy Rebuild</span><span class="b-badge">Verified — named public reporting</span></div>
+      </div>
+    </div>
+    <div class="builder-body">
+      <div class="builder-sub">Who<span class="sourcing-tag">Sourcing: Named public reporting</span></div>
+      <p>Professor Benjamin Rosman of Wits University was named by Communications and Digital Technologies Minister Solly Malatsi as chair of the seven-member National AI Expert Review Panel, formed to audit and rebuild South Africa's withdrawn Draft National AI Policy after fabricated academic citations were found in its reference list. This role and the panel's mandate — to guide the review of the withdrawn document and authenticate all references before it returns to Cabinet — were confirmed directly from Malatsi's parliamentary briefing.</p>
+      <div class="builder-sub">Why It Matters Beyond Him</div>
+      <p>South Africa's policy failure and recovery is, as of this edition, the most detailed publicly documented case of an African government catching and correcting an AI-generated content failure in a live governance process — a case now cited in South African legal and governance commentary as a reference point for other governments drafting policy with AI assistance.</p>
+      <div class="builder-sub">What This Publication Can and Cannot Confirm</div>
+      <p>Publicly available reporting confirms Prof. Rosman's role as panel chair and the panel's stated mandate and target dates. It does not provide detail on his specific technical recommendations, which have not been made public as of this edition's research window — this profile does not speculate beyond what is confirmed.</p>
+    </div>
+  </div>
+  <div class="builder-card">
+    <div class="builder-bar" style="background: linear-gradient(to bottom, #CE1126 33%, #fff 33%, #fff 66%, #000 66%);"></div>
+    <div class="builder-header">
+      <div>
+        <div class="builder-name">Ziaad Suleman</div>
+        <div class="builder-meta">CEO, Cassava Technologies South Africa &amp; Botswana · Infrastructure</div>
+        <div class="builder-badges"><span class="b-badge">Cassava–Nvidia Rollout</span><span class="b-badge">Verified — named public reporting</span></div>
+      </div>
+    </div>
+    <div class="builder-body">
+      <div class="builder-sub">Who<span class="sourcing-tag">Sourcing: Named public reporting</span></div>
+      <p>Ziaad Suleman leads Cassava Technologies' South Africa and Botswana operations and is the company's named spokesperson for its $700M Nvidia partnership, first announced March 2025. Suleman has publicly framed the deal as a correction to a pattern in which Africa has "historically contended with receiving second-rate technology," per outlets covering the partnership's June 2025 first-phase delivery of 3,000 GPUs to a Cassava-built South African facility.</p>
+      <div class="builder-sub">Why It Matters Beyond Him</div>
+      <p>Cassava's role as Nvidia's chosen African infrastructure partner — delivering localised design and build rather than Nvidia operating directly — is the private-sector-execution model this edition contrasts against the Gulf-sovereign-capital model in Morocco and Egypt and the Chinese state-linked-financing model in Zambia. Cassava's parallel MoU with the South African AI Association, giving over 3,000 AI professionals GPU-cluster access, is the clearest documented talent-access mechanism tied to any single infrastructure deal in this edition's research.</p>
+      <div class="builder-sub">What This Publication Can and Cannot Confirm</div>
+      <p>Public reporting confirms the deal structure, the South African first phase, and the four-country expansion plan (Egypt, Nigeria, Kenya, Morocco). It does not provide a confirmed timeline or sequencing for which of the four remaining countries receives the next GPU tranche — this publication will track that as it is disclosed.</p>
+    </div>
+  </div>
+
+  <div class="sec" id="research"><span class="sec-num">§9</span><span class="sec-title">Models, Papers &amp; Repositories</span><div class="sec-line"></div></div>
+  <div class="repo-card">
+    <h4>Kenya's Swahili/English LLM Development — Microsoft-G42 Partnership</h4>
+    <p>The Microsoft-G42 Kenya package reported at roughly $1B includes stated work on Swahili and English large language models alongside the green Azure East Africa Cloud Region commitment. This is the only African-language-specific model development effort surfaced in this edition's research with a named commercial backer and a dollar figure attached, though the sources reviewed did not disclose a model architecture, training-data provenance, or release timeline.</p>
+  </div>
+  <div class="repo-card">
+    <h4>Naspers/Prosus — "Africa's AI Imperative: Building Capability, Sovereignty and Scale for the Continent's Next Decade"</h4>
+    <p>Published 4 August 2026 and covered by TimesLive, this Naspers/Prosus-commissioned report argues South Africa has a narrowing window to build AI capability that reflects African languages and local realities rather than relying on technology built elsewhere — a direct research contribution to the sovereignty debate running through this issue's policy coverage. Full findings beyond the topline framing were not independently re-verified against the primary report for this edition.</p>
+  </div>
+  <p class="dark-zones">Coverage gap, stated plainly: this edition's research did not surface any named African-led foundation model, benchmark dataset, or open-source AI repository release with the level of independent, dated sourcing this section's house standard requires. That is a real limitation of the August 2026 search results reviewed, not a claim that no such work exists — African NLP and benchmark efforts referenced in this publication's earlier, illustrative editions were not independently re-verified for this edition and are omitted here rather than carried forward without fresh confirmation.</p>
+
+  <div class="sec" id="scenarios"><span class="sec-num">§10</span><span class="sec-title">Scenarios &amp; Forecasts</span><div class="sec-line"></div></div>
+  <div class="scenario-card scenario-fragility">
+    <div class="scenario-header">
+      <span class="scenario-name">DRC Export Tightening Raises African AI Infrastructure Input Costs Before Any Buildout Reaches Full Scale</span>
+      <div class="scenario-badges"><span class="sb-badge">Fragility</span><span class="sb-badge prob-medium">Medium</span><span class="sb-badge">Near-term, 3–12mo</span></div>
+    </div>
+    <div class="scenario-body">
+      <div class="sc-row"><div class="sc-label">Trigger Conditions</div><p>Further DRC copper/cobalt export restrictions beyond what has already been reported, or a cobalt price move meaningfully above the ~$56,000/tonne level cited in sources reviewed for this edition, before the Cassava-Nvidia rollout's remaining four countries receive their GPU allocations.</p></div>
+      <div class="sc-row"><div class="sc-label">Why This Is a Genuine Open Question</div><p>The DRC's trajectory through 2026 — suspension, to quotas, to stockpile plans, to tightened restrictions — has moved in one direction throughout the sources reviewed for this edition. Whether that trajectory continues, plateaus, or reverses is not something this publication can forecast from public reporting alone; it depends on decisions inside Kinshasa this publication has no visibility into.</p></div>
+      <div class="sc-indicators"><div class="sc-label">Early Indicators to Watch</div><p>Cobalt spot price movement; any further DRC government statement on export policy; disclosure (or non-disclosure) of chip-generation and cost detail in the next confirmed tranche of the Cassava-Nvidia rollout.</p></div>
+    </div>
+  </div>
+  <div class="scenario-card scenario-contrarian">
+    <div class="scenario-header">
+      <span class="scenario-name">South Africa's Policy Rebuild Becomes the Continent's Reference Case for AI-Governance Self-Correction</span>
+      <div class="scenario-badges"><span class="sb-badge">Contrarian</span><span class="sb-badge prob-medium">Medium</span><span class="sb-badge">Medium-term, 6–18mo</span></div>
+    </div>
+    <div class="scenario-body">
+      <div class="sc-row"><div class="sc-label">Trigger Conditions</div><p>The Rosman panel delivers a revised policy to Cabinet on or near its stated November 2026 target, the January 2027 public comment window opens as planned, and the revised document passes independent scrutiny (citation accuracy, substantive content) more successfully than the withdrawn April 2026 draft.</p></div>
+      <div class="sc-row"><div class="sc-label">Why This Is Worth Naming Now</div><p>South African legal commentary is already treating the withdrawal-and-rebuild process as instructive for other African governments drafting AI policy with AI-assisted tools. If the rebuild succeeds on its stated timeline, that reference-case status would likely solidify; if it slips again, the opposite lesson — that the correction mechanism itself is also slow — becomes the more durable takeaway.</p></div>
+      <div class="sc-indicators"><div class="sc-label">Early Indicators to Watch</div><p>Any interim parliamentary briefing from the panel or DCDT ahead of the November 2026 target; public statements from Prof. Rosman or panel members; whether the two suspended officials are reinstated, disciplined, or replaced.</p></div>
+    </div>
+  </div>
+
+  <div class="sec" id="reading"><span class="sec-num">§11</span><span class="sec-title">Reading List</span><div class="sec-line"></div></div>
+  <ol class="reading-list">
+    <li>
+      <span>African Cyberthreat Assessment Report 2026</span>
+      <span class="rl-meta">— INTERPOL, 3 August 2026</span>
+      <div class="rl-annotation">The primary source for this edition's cybercrime figures — 36-country survey data and the clearest available continental data point on where AI-enabled crime is outpacing law-enforcement readiness.</div>
+    </li>
+    <li>
+      <span>Africa's AI Imperative: Building Capability, Sovereignty and Scale for the Continent's Next Decade</span>
+      <span class="rl-meta">— Naspers/Prosus, reported by TimesLive, 4 August 2026</span>
+      <div class="rl-annotation">The most current sovereignty-and-capability framing available for South Africa specifically, published the same week as this edition's other August signals.</div>
+    </li>
+    <li>
+      <span>Strengthening AI Governance in Africa</span>
+      <span class="rl-meta">— OECD.AI, April 2026</span>
+      <div class="rl-annotation">A genuinely useful country-by-country table of AI strategy and governance-framework status across the continent as of April 2026 — the best single cross-country reference this edition's research turned up.</div>
+    </li>
+    <li>
+      <span>Global Critical Minerals Outlook 2026</span>
+      <span class="rl-meta">— International Energy Agency</span>
+      <div class="rl-annotation">Background for this issue's Deep Research Essay — the source for the 2026 cobalt market-deficit projection and the DRC supply-concentration figures used throughout.</div>
+    </li>
+    <li>
+      <span>Who Really Wins from the US Critical Minerals Drive?</span>
+      <span class="rl-meta">— OpenDemocracy, 21 April 2026</span>
+      <div class="rl-annotation">The clearest account available of the February 2026 US Critical Minerals Ministerial and the Orion Consortium's DRC stake, including the power-dynamics critique this edition's essay deliberately engages rather than ignores.</div>
+    </li>
+  </ol>
+
+  <div class="editorial-note">
+    <div class="en-label">Editorial Note — AIW-2026-08</div>
+    <p>This edition marks a deliberate and disclosed change in production method. AIW African Lens editions through AIW-2026-07 — including the Nigeria AI Governance Act, the Kenya "Konza" Gulf-financed facility, the DRC–Korea Seoul minerals MOU, the AIMS compute-efficiency field trial, and every named individual profiled in those editions (Ngozi Eze, Joseph Kintu, David Chege, Amani Mwakasege, Namposya Mutinta, and others) — were produced as an illustrative scenario-planning exercise in the style of an institutional intelligence review. They were not verified reporting and should not be cited as fact. This edition, AIW-2026-08, breaks from that format entirely: every claim above is drawn from named, dated public sources — official statements, regulatory filings, and named news organisations — reviewed via web search on 22 August 2026. Where this edition's coverage is thinner than prior editions (Models, Papers &amp; Repositories in particular), that is because this edition declines to state as fact anything it could not independently verify, rather than filling the gap with plausible-sounding invention. The standing 10,600–16,200 word target and the Thesis Tracker / Scenario Watchlist continuity devices, both calibrated against the illustrative editions, do not carry forward in the way they did between AIW-2026-06 and AIW-2026-07; this edition restarts both honestly rather than pretending a false continuity with fictional prior content. Readers who relied on any fact from a prior edition should treat it as fiction unless independently reconfirmed. Future editions will continue to be built from verified public sourcing.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p><strong>AIW African Lens Monthly Intelligence Review — AIW-2026-08</strong></p>
+  <p style="margin-top:6px;">26 August 2026 · State of play as of 22 August 2026 · Published 06:00 SAST</p>
+  <div class="footer-links">
+    <a href="index.html">All Monthly Editions</a>
+    <a href="../weekly/index.html">Weekly Archive (Vol. I)</a>
+    <a href="../index.html">Full Archive</a>
+    <a href="aiw-2026-07.html">← AIW-2026-07</a>
+    <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe on Substack</a>
+  </div>
+  <p style="margin-top:16px;">AIW African Lens · AI · Machine Learning · Data Science · Across 54 Nations</p>
+  <p style="margin-top:6px;">© 2026 AIW African Lens · Archive hosted on GitHub Pages</p>
+</footer>
+
+</body>
+</html>
