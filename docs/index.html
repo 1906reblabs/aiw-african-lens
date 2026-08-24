@@ -1,12 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>
-AIW African Lens — Full Intelligence Archive
-</title>
+<title>AIW African Lens — Full Intelligence Archive</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -18,16 +15,12 @@ AIW African Lens — Full Intelligence Archive
   body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; line-height: 1.7; }
   a { color: var(--teal); text-decoration: none; }
   a:hover { text-decoration: underline; }
-
-  /* ── NAV ── */
   nav { background: var(--deep-blue); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
   .nav-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 18px; color: #fff; }
   .nav-brand span { color: var(--gold); }
   .nav-links { display: flex; gap: 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; flex-wrap: wrap; }
   .nav-links a { color: #8a99b8; }
   .nav-links a:hover, .nav-links a.active { color: var(--gold); text-decoration: none; }
-
-  /* ── HERO ── */
   .hero { background: var(--ink); padding: 60px 32px 48px; text-align: center; }
   .hero .over { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
   .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px,7vw,64px); font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.02em; margin-bottom: 16px; }
@@ -35,72 +28,21 @@ AIW African Lens — Full Intelligence Archive
   .hero-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 32px; }
   .hero-stat .val { font-family: 'Playfair Display', serif; font-size: 30px; color: var(--gold); font-weight: 700; }
   .hero-stat .lbl { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a99b8; margin-top: 4px; }
-
-  /* ── MAIN / SECTION LABEL ── */
   .main { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
   .sec-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid-grey); border-bottom: 2px solid var(--ink); padding-bottom: 10px; margin: 48px 0 24px; }
-
-  /* ── FEATURED / LATEST ── */
-  .featured, .latest-feature { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px; margin-bottom: 16px; }
-  .card-big, .feat-big { background: var(--deep-blue); padding: 28px 28px 24px; position: relative; overflow: hidden; }
-  .card-big::after, .feat-big::after { content: ''; position: absolute; bottom: -30px; right: -30px; width: 120px; height: 120px; background: var(--gold); opacity: 0.08; border-radius: 50%; }
-  .cb-type, .fb-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
-  .card-big h2, .feat-big h2 { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 900; color: #fff; line-height: 1.3; margin-bottom: 10px; }
-  .card-big p, .feat-big p { font-size: 13px; color: #8a99b8; line-height: 1.6; margin-bottom: 14px; }
-  .meta, .fb-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: #4a5568; letter-spacing: 0.05em; }
+  .featured { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .card-big { background: var(--deep-blue); padding: 28px 28px 24px; position: relative; overflow: hidden; }
+  .cb-type { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .card-big h2 { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 900; color: #fff; line-height: 1.3; margin-bottom: 10px; }
+  .card-big p { font-size: 13px; color: #8a99b8; line-height: 1.6; margin-bottom: 14px; }
+  .meta { font-family: 'DM Mono', monospace; font-size: 10px; color: #4a5568; letter-spacing: 0.05em; }
   .read-btn { display: inline-block; margin-top: 14px; background: var(--gold); color: var(--deep-blue); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 16px; font-weight: 600; }
   .read-btn:hover { background: #fff; text-decoration: none; }
-
-  .card-stack, .feat-stack { display: flex; flex-direction: column; gap: 12px; }
-  .card-sm, .feat-sm { background: #fff; border: 1px solid var(--border); padding: 16px 18px; flex: 1; }
-  .cs-type, .fs-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
-  .card-sm h3, .feat-sm h3 { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 6px; }
-  .cs-meta, .fs-meta { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); letter-spacing: 0.04em; }
-
-  /* ── EDITION GRID ── */
-  .edition-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .ed-card { background: #fff; border: 1px solid var(--border); display: flex; flex-direction: column; transition: box-shadow 0.15s; position: relative; overflow: hidden; }
-  .ed-card:hover { box-shadow: 3px 3px 0 var(--ink); }
-  .ec-stripe { height: 3px; background: var(--ink); }
-  .ed-card.is-new .ec-stripe { background: var(--gold); }
-  .ed-card.is-available .ec-stripe { background: var(--teal); }
-  .ed-card.is-coming .ec-stripe { background: var(--border); }
-  .ec-body { padding: 18px 18px 14px; flex: 1; display: flex; flex-direction: column; }
-  .ec-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-  .ec-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; white-space: nowrap; }
-  .ec-badge.new { background: var(--gold); color: var(--ink); font-weight: 600; }
-  .ec-badge.live { background: var(--teal); color: #fff; }
-  .ec-badge.soon { background: var(--light-grey); color: var(--mid-grey); }
-  .ec-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); letter-spacing: 0.04em; }
-  .ed-card h3 { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; line-height: 1.35; color: var(--ink); margin-bottom: 8px; flex: 1; }
-  .ec-theme { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); letter-spacing: 0.04em; line-height: 1.5; margin-bottom: 10px; }
-  .ec-date { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); letter-spacing: 0.06em; margin-bottom: 14px; }
-  .ec-link { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); border: 1px solid var(--teal); padding: 5px 12px; align-self: flex-start; transition: all 0.12s; }
-  .ec-link:hover { background: var(--teal); color: #fff; text-decoration: none; }
-  .ec-link.disabled { color: var(--mid-grey); border-color: var(--border); pointer-events: none; }
-
-  /* ── SECTIONS-GRID ("what's inside") ── */
-  .sections-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
-  .section-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--gold); padding: 14px 16px; }
-  .section-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
-  .section-card p { font-size: 11.5px; color: var(--mid-grey); line-height: 1.5; }
-  .section-card.s1 { border-top-color: var(--teal); }
-  .section-card.s2 { border-top-color: var(--rust); }
-  .section-card.s3 { border-top-color: #2e7d32; }
-  .section-card.s4 { border-top-color: #1565c0; }
-
-  /* ── THEMES GRID (archive mode only) ── */
-  .themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
-  .theme-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--gold); padding: 14px 16px; }
-  .theme-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
-  .theme-card .tc-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); }
-  .theme-card.policy { border-top-color: var(--teal); }
-  .theme-card.security { border-top-color: var(--rust); }
-  .theme-card.infra { border-top-color: #6a1b9a; }
-  .theme-card.ecosystem { border-top-color: #2e7d32; }
-  .theme-card.geo { border-top-color: #1565c0; }
-
-  /* ── ARCHIVE TABLE ── */
+  .card-stack { display: flex; flex-direction: column; gap: 12px; }
+  .card-sm { background: #fff; border: 1px solid var(--border); padding: 16px 18px; flex: 1; }
+  .cs-type { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+  .card-sm h3 { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 6px; }
+  .cs-meta { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--mid-grey); letter-spacing: 0.04em; }
   .archive-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
   .archive-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-grey); background: var(--light-grey); padding: 9px 14px; text-align: left; border-bottom: 2px solid var(--border); }
   .archive-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); background: #fff; font-size: 13px; vertical-align: top; }
@@ -117,27 +59,13 @@ AIW African Lens — Full Intelligence Archive
   .tag-pill.policy { background: #fef3e2; color: #9a6210; }
   .tag-pill.security { background: #fbe9e6; color: var(--rust); }
   .tag-pill.infra { background: #f3e5f5; color: #6a1b9a; }
-
-  /* ── CLOSED-VOLUME BANNER (weekly mode) ── */
-  .closed-banner { background: var(--light-grey); border: 1px solid var(--border); border-left: 4px solid var(--gold); padding: 16px 22px; margin-bottom: 24px; font-size: 13px; color: #3a3530; line-height: 1.6; }
-  .closed-banner strong { color: var(--ink); }
-
-  /* ── FOOTER ── */
+  .prov-note { background: #fffbf0; border: 1px solid var(--border); border-left: 4px solid var(--gold); padding: 16px 22px; margin-bottom: 24px; font-size: 13px; color: #4a3f2e; line-height: 1.6; }
+  .prov-note strong { color: var(--ink); }
   footer { background: var(--ink); color: #7a8294; text-align: center; padding: 32px 24px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; }
   footer strong { color: #c8d4e8; }
   footer a { color: #7a8294; }
-  footer a:hover { color: var(--gold); }
   .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
-
-  @media (max-width: 700px) {
-    .featured, .latest-feature { grid-template-columns: 1fr; }
-    .edition-grid { grid-template-columns: 1fr 1fr; }
-    .sections-grid, .themes { grid-template-columns: 1fr 1fr; }
-    .hero-stats { gap: 20px; }
-  }
-  @media (max-width: 480px) {
-    .edition-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 700px) { .featured { grid-template-columns: 1fr; } .hero-stats { gap: 20px; } }
 </style>
 </head>
 <body>
@@ -148,239 +76,95 @@ AIW African Lens — Full Intelligence Archive
   </a>
   <div class="nav-links">
     <a href="index.html" class="active">Archive</a>
-    <a href="monthly/index.html" >Monthly Review</a>
-    <a href="weekly/index.html" >Weekly Archive (Vol. I)</a>
+    <a href="monthly/index.html">Monthly Review</a>
+    <a href="weekly/index.html">Weekly Archive (Vol. I)</a>
     <a href="editions/index.html">Daily Editions</a>
     <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe</a>
   </div>
 </nav>
-
 
 <div class="hero">
   <div class="over">Africa's AI Intelligence Archive</div>
   <h1>AIW African<br>Lens</h1>
   <div class="tag">AI · Machine Learning · Data Science · Across 54 Nations</div>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="val">2</div><div class="lbl">Monthly Issues</div></div>
+    <div class="hero-stat"><div class="val">3</div><div class="lbl">Monthly Issues</div></div>
     <div class="hero-stat"><div class="val">13</div><div class="lbl">Weekly Editions (Vol. I)</div></div>
-    <div class="hero-stat"><div class="val">21+</div><div class="lbl">Daily Editions</div></div>
     <div class="hero-stat"><div class="val">54</div><div class="lbl">Nations Covered</div></div>
   </div>
 </div>
 
 <div class="main">
 
+  <div class="prov-note">
+    <strong>Editorial standard change, effective AIW-2026-08:</strong> this publication now produces facts-only editions built from verified, named public sourcing. Every edition prior to AIW-2026-08 — including all of Volume I and monthly issues AIW-2026-06 and AIW-2026-07 — was produced as an illustrative scenario-planning exercise and should not be cited as fact. They remain in this archive for reference, clearly labelled.
+  </div>
+
   <div class="sec-label">§ Latest — AIW African Lens</div>
   <div class="featured">
     <div class="card-big">
-      <div class="cb-type">AIW Monthly Intelligence Review · Issue #AIW-2026-08 · NEW</div>
-      <h2>In Production</h2>
-      <p></p>
-      <div class="meta">26 August 2026 · Window: 30 July → 26 August 2026</div>
+      <div class="cb-type">AIW Monthly Intelligence Review · Issue #AIW-2026-08 · NEW · FACTS-ONLY</div>
+      <h2>The Compute Race Outpaces the Governance Race</h2>
+      <p>Nvidia and Cassava's $700M five-country GPU rollout, Egypt's $400M data-centre licence, and Morocco's $1.2B AI Factory are real, dated, and underway — while South Africa's AI policy remains withdrawn, Nigeria's digital-economy bill has missed two deadlines, and INTERPOL says AI now drives 55% of Africa's reported cybercrime. Built entirely from verified public reporting.</p>
+      <div class="meta">26 August 2026 · State of play as of 22 August 2026</div>
       <a class="read-btn" href="monthly/aiw-2026-08.html">Read Full Issue →</a>
     </div>
     <div class="card-stack">
       <div class="card-sm">
-        <div class="cs-type">Monthly Review · AIW-2026-07</div>
+        <div class="cs-type">Monthly Review (illustrative) · AIW-2026-07</div>
         <h3>The Vote Was the Easy Part</h3>
-        <div class="cs-meta">29 July 2026</div>
+        <div class="cs-meta">29 July 2026 — not verified reporting</div>
       </div>
       <div class="card-sm">
-        <div class="cs-type">Weekly Archive, Vol. I (closed) · AIW-026-13</div>
+        <div class="cs-type">Weekly Archive, Vol. I (closed, illustrative) · AIW-026-13</div>
         <h3>After the Audit</h3>
         <div class="cs-meta">02 June 2026 — final edition</div>
       </div>
-      <div class="card-sm">
-        <div class="cs-type">Daily Edition · DAL-026-088</div>
-        <h3>Equinix R7.5B + Nigeria Bill Post-Deadline + GITEX 6 Days</h3>
-        <div class="cs-meta">01 Apr 2026</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sec-label">§ Recurring Macro Themes</div>
-  <div class="themes">
-    <div class="theme-card policy">
-      <h4>African AI Policy & Regulation</h4>
-      <div class="tc-count">28+ editions · Nigeria AI Act Enacted · SA Panel Rebuild · Kenya Guidance Replicated</div>
-    </div>
-    <div class="theme-card ">
-      <h4>Language AI & African NLP</h4>
-      <div class="tc-count">14+ editions · DeepSeek Hausa · Masakhane · Google</div>
-    </div>
-    <div class="theme-card security">
-      <h4>AI Fraud & Biometric Security</h4>
-      <div class="tc-count">12+ editions · Smile ID · M-Pesa · NDPC</div>
-    </div>
-    <div class="theme-card infra">
-      <h4>Sovereign AI Infrastructure</h4>
-      <div class="tc-count">14+ editions · Egypt $800M · Cassava 3-Node Footprint · Kenya Gulf Facility</div>
-    </div>
-    <div class="theme-card geo">
-      <h4>US–China–Korea–Gulf AI Competition</h4>
-      <div class="tc-count">12+ editions · Microsoft · DeepSeek · Seoul MOU · ADQ</div>
-    </div>
-    <div class="theme-card ecosystem">
-      <h4>Deep Tech Ecosystem Building</h4>
-      <div class="tc-count">10+ editions · AIMS Field Trial Live · BAFAI · Indaba · Uganda</div>
     </div>
   </div>
 
   <div class="sec-label">§ Full Archive — Monthly Intelligence Review</div>
   <table class="archive-table">
-    <thead><tr><th>Issue</th><th>Window</th><th>Theme</th><th>Status</th></tr></thead>
+    <thead><tr><th>Issue</th><th>Date</th><th>Title</th><th>Status</th></tr></thead>
     <tbody>
-      <tr class="">
-  <td><span class="at-badge grey">AIW-2026-08</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">30 Jul → 26 Aug 2026</td>
-  <td>Full standard cadence — T-14/T-10/T-7/T-4/T-2 production calendar</td>
-  <td>
-    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
-  </td>
-</tr>
-
       <tr class="is-new">
-  <td><span class="at-badge gold">AIW-2026-07</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">25 Jun → 29 Jul 2026</td>
-  <td><strong>The Vote Was the Easy Part</strong> · Nigeria AI Act Signed · Kenya Gulf Facility · Seoul MOU Signed · AIMS Trial Live · Cassava Lagos Groundbreaking</td>
-  <td>
-    <a href="monthly/aiw-2026-07.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge teal">AIW-2026-06</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">3 → 24 Jun 2026</td>
-  <td>Korea's Seoul Tech-Transfer Offer · Cassava Lagos Confirmed · AIMS Pre-Trial Commercial Launch · Nigeria NDPC Budget Request · Zambia Cites Kenya</td>
-  <td>
-    <a href="monthly/aiw-2026-06.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
+        <td><span class="at-badge gold">AIW-2026-08</span></td>
+        <td style="font-family:'DM Mono',monospace;font-size:11px;">26 Aug 2026</td>
+        <td><strong>The Compute Race Outpaces the Governance Race</strong> · Facts-only edition</td>
+        <td><a href="monthly/aiw-2026-08.html" style="font-family:'DM Mono',monospace;font-size:10px;">Read →</a></td>
+      </tr>
+      <tr>
+        <td><span class="at-badge teal">AIW-2026-07</span></td>
+        <td style="font-family:'DM Mono',monospace;font-size:11px;">29 Jul 2026</td>
+        <td>The Vote Was the Easy Part · Illustrative, not verified</td>
+        <td><a href="monthly/aiw-2026-07.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td>
+      </tr>
+      <tr>
+        <td><span class="at-badge ink">AIW-2026-06</span></td>
+        <td style="font-family:'DM Mono',monospace;font-size:11px;">24 Jun 2026</td>
+        <td>The Inaugural Monthly Review · Illustrative, not verified</td>
+        <td><a href="monthly/aiw-2026-06.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td>
+      </tr>
     </tbody>
   </table>
 
-  <div class="sec-label">§ Full Archive — Weekly Archive, Volume I (Closed)</div>
+  <div class="sec-label">§ Full Archive — Weekly Archive, Volume I (Closed, Illustrative)</div>
   <table class="archive-table">
-    <thead><tr><th>Edition</th><th>Window</th><th>Theme</th><th>Status</th></tr></thead>
+    <thead><tr><th>Edition</th><th>Window</th><th>Title</th><th>Status</th></tr></thead>
     <tbody>
-      <tr class="">
-  <td><span class="at-badge ink">AIW-026-13</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">26 May → 02 Jun 2026</td>
-  <td>SA Panel ToR Confirmed · Indaba² Government-Research Interface · China Pre-Empts Seoul · AIMS Three-Tier Resolution · Egypt Talent Strategy</td>
-  <td>
-    <a href="weekly/aiw-026-13.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge ink">AIW-026-12</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">19 → 25 May 2026</td>
-  <td>SA Policy Reset · Nigeria Risk-Tier · Kenya CA Guidance · Angola Strategy · IFC $1.2B</td>
-  <td>
-    <a href="weekly/aiw-026-12.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge ink">AIW-026-11</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">12 → 18 May 2026</td>
-  <td>Nigeria Hearings · Egypt $800M Compute · Cassava Accra · DRC–Korea · SA Civil Society</td>
-  <td>
-    <a href="weekly/aiw-026-11.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge ink">AIW-026-10</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">05 → 11 May 2026</td>
-  <td>DRC Minerals Leverage · SA Comment Gap · Ethiopia $40M · DeepSeek Hausa · M-Pesa 32M</td>
-  <td>
-    <a href="weekly/aiw-026-10.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge ink">AIW-026-09</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">28 Apr → 04 May 2026</td>
-  <td>M-Pesa AI Trial · Ethiopia GERD · Cassava SA Metrics · Rwanda Sandbox</td>
-  <td>
-    <a href="weekly/aiw-026-09.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge ink">AIW-026-08</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">21 → 27 Apr 2026</td>
-  <td>SA Comment Opens · Morocco Nexus · Nigeria Senate Review · Abidjan IXP · Korea-UCT</td>
-  <td>
-    <a href="weekly/aiw-026-08.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge ink">AIW-026-07</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">14 → 21 Apr 2026</td>
-  <td>SA Gazette Published · AU PSC AI Security · GITEX Delivers · Language AI Gap · IMF Warning</td>
-  <td>
-    <a href="weekly/aiw-026-07.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge ink">AIW-026-06</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">08 → 14 Apr 2026</td>
-  <td>SA AI Policy Gazetted · Morocco Nexus $1.28B · GITEX $5B Pipeline · Mauritius FAIR</td>
-  <td>
-    <a href="weekly/aiw-026-06.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge ink">AIW-026-05</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">31 Mar → 07 Apr 2026</td>
-  <td>Equinix R7.5B · Nigeria Bill Misses Deadline · GITEX Africa Opens · ERA 2026</td>
-  <td>
-    <a href="weekly/aiw-026-05.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge grey">AIW-026-04</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">24 → 31 Mar 2026</td>
-  <td>Nigeria Bill Deadline · SA Gazette · $2B Surveillance · TECNO EllaClaw · GITEX Preview</td>
-  <td>
-    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge ink">AIW-026-03</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">17 → 24 Mar 2026</td>
-  <td>Cassava AI Factory · NVIDIA GTC Vera Rubin · Kenya AI Bill · $2.1B Surveillance · BAFAI</td>
-  <td>
-    <a href="weekly/aiw-026-03.html" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;">Read →</a>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge grey">AIW-026-02</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">10 → 17 Mar 2026</td>
-  <td>Microsoft vs DeepSeek · SA AI Policy · IFF 2026 Kigali · Nigeria Surveillance Bill</td>
-  <td>
-    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
-  </td>
-</tr>
-
-      <tr class="">
-  <td><span class="at-badge grey">AIW-026-01</span></td>
-  <td style="font-family:'DM Mono',monospace;font-size:11px;white-space:nowrap;">03 → 10 Mar 2026</td>
-  <td>Google 13 African Languages · Smile ID 69% AI Fraud · US-China AI Competition</td>
-  <td>
-    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid-grey);">Coming Soon</span>
-  </td>
-</tr>
-
+      <tr><td><span class="at-badge ink">AIW-026-13</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">26 May → 02 Jun 2026</td><td>After the Audit</td><td><a href="weekly/aiw-026-13.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td></tr>
+      <tr><td><span class="at-badge ink">AIW-026-12</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">19 → 25 May 2026</td><td>The Governance Quality Audit</td><td><a href="weekly/aiw-026-12.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td></tr>
+      <tr><td><span class="at-badge ink">AIW-026-11</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">12 → 18 May 2026</td><td>Before the Hearings</td><td><a href="weekly/aiw-026-11.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td></tr>
+      <tr><td><span class="at-badge ink">AIW-026-10</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">05 → 11 May 2026</td><td>The Consultation Week</td><td><a href="weekly/aiw-026-10.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td></tr>
+      <tr><td><span class="at-badge ink">AIW-026-09</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">28 Apr → 04 May 2026</td><td>The Deployment Quarter</td><td><a href="weekly/aiw-026-09.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td></tr>
+      <tr><td><span class="at-badge ink">AIW-026-08</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">21 → 27 Apr 2026</td><td>The Post-GITEX Reckoning</td><td><a href="weekly/aiw-026-08.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td></tr>
+      <tr><td><span class="at-badge ink">AIW-026-07</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">14 → 21 Apr 2026</td><td>The Policy Moment Arrives</td><td><a href="weekly/aiw-026-07.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td></tr>
+      <tr><td><span class="at-badge ink">AIW-026-06</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">08 → 14 Apr 2026</td><td>South Africa's AI Policy Lands</td><td><a href="weekly/aiw-026-06.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td></tr>
+      <tr><td><span class="at-badge ink">AIW-026-05</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">31 Mar → 07 Apr 2026</td><td>Infrastructure Ahead of Governance</td><td><a href="weekly/aiw-026-05.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td></tr>
+      <tr><td><span class="at-badge grey">AIW-026-04</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">24 → 31 Mar 2026</td><td>The Week Everything Converged</td><td>Not published</td></tr>
+      <tr><td><span class="at-badge ink">AIW-026-03</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">17 → 24 Mar 2026</td><td>The Sovereignty Inflection</td><td><a href="weekly/aiw-026-03.html" style="font-family:'DM Mono',monospace;font-size:10px;">View →</a></td></tr>
+      <tr><td><span class="at-badge grey">AIW-026-02</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">10 → 17 Mar 2026</td><td>Governance Week</td><td>Not published</td></tr>
+      <tr><td><span class="at-badge grey">AIW-026-01</span></td><td style="font-family:'DM Mono',monospace;font-size:11px;">03 → 10 Mar 2026</td><td>Launch Week</td><td>Not published</td></tr>
     </tbody>
   </table>
 
@@ -388,123 +172,23 @@ AIW African Lens — Full Intelligence Archive
   <table class="archive-table">
     <thead><tr><th>Edition</th><th>Date</th><th>Lead Story</th><th>Tags</th></tr></thead>
     <tbody>
-      <tr>
-        <td><span class="ed-badge">DAL-026-088</span></td>
-        <td>01 Apr 2026</td>
-        <td><a href="editions/dal-026-088.html">Equinix R7.5B + Nigeria Bill Post-Deadline + GITEX 6 Days</a></td>
-        <td><span class="tag-pill infra">Infrastructure</span><span class="tag-pill policy">Policy</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-087</span></td>
-        <td>31 Mar 2026</td>
-        <td><a href="editions/dal-026-087.html">Nigeria AI Bill Deadline Day + AfDB MEO 2026 + NKENNEAi Talks</a></td>
-        <td><span class="tag-pill policy">Legislation</span><span class="tag-pill ">Language AI</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-081</span></td>
-        <td>24 Mar 2026</td>
-        <td><a href="editions/dal-026-081.html">TECNO EllaClaw + Africa FinTech Forum SA + Nigeria Surveillance</a></td>
-        <td><span class="tag-pill ">Tech</span><span class="tag-pill security">Security</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-080</span></td>
-        <td>23 Mar 2026</td>
-        <td><a href="editions/dal-026-080.html">Africa Is Not Missing the AI Wave + SA Gazette + $2B Surveillance</a></td>
-        <td><span class="tag-pill ">Ecosystem</span><span class="tag-pill security">Security</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-079</span></td>
-        <td>21 Mar 2026</td>
-        <td><a href="editions/dal-026-079.html">Rest of World: $2B Chinese AI Surveillance + World Bank WDR 2026</a></td>
-        <td><span class="tag-pill security">Geopolitics</span><span class="tag-pill ">Research</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-078</span></td>
-        <td>20 Mar 2026</td>
-        <td><a href="editions/dal-026-078.html">Kenya AI Bill + Data Protection as Backdoor AI Regulation</a></td>
-        <td><span class="tag-pill policy">Legislation</span><span class="tag-pill ">Kenya</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-077</span></td>
-        <td>19 Mar 2026</td>
-        <td><a href="editions/dal-026-077.html">Cassava AI Factory Deploys in South Africa + Google Accelerator Closes</a></td>
-        <td><span class="tag-pill infra">Infrastructure</span><span class="tag-pill ">Ecosystem</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-076</span></td>
-        <td>18 Mar 2026</td>
-        <td><a href="editions/dal-026-076.html">Rwanda FinTech Centre + NDPC Deepfake Consultation + Standard Bank Kukura</a></td>
-        <td><span class="tag-pill ">Fintech</span><span class="tag-pill security">AI Fraud</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-075</span></td>
-        <td>17 Mar 2026</td>
-        <td><a href="editions/dal-026-075.html">NVIDIA GTC 2026 + MTN AI Data Centre + Mark Nasila Sovereign AI</a></td>
-        <td><span class="tag-pill infra">Infrastructure</span><span class="tag-pill ">Research</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-074</span></td>
-        <td>16 Mar 2026</td>
-        <td><a href="editions/dal-026-074.html">Microsoft Elevate 3M + Nigeria AI Bill + Ghana Court Challenge [48-Hr]</a></td>
-        <td><span class="tag-pill ">Geopolitics</span><span class="tag-pill policy">Policy</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-073</span></td>
-        <td>14 Mar 2026</td>
-        <td><a href="editions/dal-026-073.html">Servernah Cloud — East Africa's First Sovereign AI Platform Goes Live</a></td>
-        <td><span class="tag-pill infra">Infrastructure</span><span class="tag-pill ">Kenya</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-072</span></td>
-        <td>13 Mar 2026</td>
-        <td><a href="editions/dal-026-072.html">Microsoft vs DeepSeek for Africa's AI Market — Bloomberg Exclusive</a></td>
-        <td><span class="tag-pill ">Geopolitics</span><span class="tag-pill infra">Tech</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-071</span></td>
-        <td>12 Mar 2026</td>
-        <td><a href="editions/dal-026-071.html">Microsoft-MTN Copilot Deal + IFF 2026 Closes + Veta Origin LLM</a></td>
-        <td><span class="tag-pill ">Tech</span><span class="tag-pill ">Fintech</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-070</span></td>
-        <td>11 Mar 2026</td>
-        <td><a href="editions/dal-026-070.html">Inclusive FinTech Forum Kigali + TikTok $200K AI Literacy + FraudLens</a></td>
-        <td><span class="tag-pill security">AI Fraud</span><span class="tag-pill ">Rwanda</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-069</span></td>
-        <td>10 Mar 2026</td>
-        <td><a href="editions/dal-026-069.html">UN ECA ERA 2026 Preview + Nigeria AI Election Threat + Vodacom CEO</a></td>
-        <td><span class="tag-pill ">Continental</span><span class="tag-pill security">Security</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-068</span></td>
-        <td>09 Mar 2026</td>
-        <td><a href="editions/dal-026-068.html">Nigeria 2027 Election AI Attack + Cassava Autonomous Network + Roam Explorer</a></td>
-        <td><span class="tag-pill security">AI Fraud</span><span class="tag-pill infra">Infrastructure</span></td>
-      </tr>
-      <tr>
-        <td><span class="ed-badge">DAL-026-067</span></td>
-        <td>08 Mar 2026</td>
-        <td><a href="editions/dal-026-067.html">Google 13 African Languages + Smile ID 69% AI Fraud + US-China Competition</a></td>
-        <td><span class="tag-pill ">Language AI</span><span class="tag-pill security">Security</span></td>
-      </tr>
+      <tr><td><span class="ed-badge">DAL-026-088</span></td><td>01 Apr 2026</td><td><a href="editions/dal-026-088.html">Equinix R7.5B + Nigeria Bill Post-Deadline + GITEX 6 Days</a></td><td><span class="tag-pill infra">Infrastructure</span><span class="tag-pill policy">Policy</span></td></tr>
+      <tr><td><span class="ed-badge">DAL-026-087</span></td><td>31 Mar 2026</td><td><a href="editions/dal-026-087.html">Nigeria AI Bill Deadline Day + AfDB MEO 2026 + NKENNEAi Talks</a></td><td><span class="tag-pill policy">Legislation</span></td></tr>
+      <tr><td><span class="ed-badge">DAL-026-081</span></td><td>24 Mar 2026</td><td><a href="editions/dal-026-081.html">TECNO EllaClaw + Africa FinTech Forum SA + Nigeria Surveillance</a></td><td><span class="tag-pill security">Security</span></td></tr>
+      <tr><td><span class="ed-badge">DAL-026-067</span></td><td>08 Mar 2026</td><td><a href="editions/dal-026-067.html">Google 13 African Languages + Smile ID 69% AI Fraud + US-China Competition</a></td><td><span class="tag-pill security">Security</span></td></tr>
     </tbody>
   </table>
 
 </div>
 
-
 <footer>
   <p><strong>AIW African Lens</strong> · AI · Machine Learning · Data Science · Across 54 Nations</p>
   <p style="margin-top:8px;">Monthly Intelligence Review · Published the last Wednesday of every month, 06:00 SAST · © 2026 AIW African Lens</p>
-  <p style="margin-top:10px;display:flex;justify-content:center;flex-wrap:wrap;gap:16px;">
+  <div class="footer-links">
     <a href="privacy.html">Privacy Policy</a>
     <a href="terms.html">Terms of Use</a>
-    <a href="editorial.html">Editorial Standards</a>
     <a href="https://simphiwemlotshwa.substack.com/" target="_blank">Subscribe on Substack</a>
-  </p>
+  </div>
 </footer>
 
 </body>
